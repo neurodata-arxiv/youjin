@@ -1,0 +1,74 @@
+---
+title: "C. elegans Neuronal Network"
+output: html_document
+---
+
+```{r echo=FALSE, message =FALSE, warning = FALSE}
+library(igraph)
+library(RefManageR)
+bib <- ReadBib(system.file("Bib", "biblatexExamples.bib", 
+                           package = "RefManageR"), check = FALSE)
+BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", cite.style = 'alphabetic')
+```
+
+
+## Data Analysis
+
+  There have been a work on the properties of the neuronal network based on these incomplete or inconsistent wiring diagrams. Varshney et al(2011) proposed ``near-complete" wiring diagram of C. elegans. They are interested in local network properties as well as global network properties. We can naturally think that neuronal physical networks and some of the biological function or properties would be correlated each other.  
+
+```{r, echo = FALSE}
+elegans <- read.graph("data/c.elegans.herm_pharynx_1.graphml", format = "graphml")
+A <- get.adjacency(elegans)
+A <- as.matrix(A) # it is not symmetric
+soma_pos <- V(elegans)$soma_pos # continuous variable
+nt <- as.integer(as.factor(V(elegans)$neurotransmitters)) # categorial variable
+role <- as.integer(as.factor(V(elegans)$role)) # categorial variable
+cell_class <- as.integer(as.factor(V(elegans)$cell_class)) # categorial variable
+```
+  
+  We are given a connected, weighted and also directed network of \textit{C. elegans}, which is comprised of 279 nodes and 3225 (directed) edges between them. The given network illustrates the network in the region of pharynx, and the weight imposed on each edge is equivalent to the number of corresponding synapses. For vertex attributes, we have (1) \textbf{X_{1}} cell class, (2) \textbf{X_{2}} soma position, (3) \textbf{X_{3}} neurotransmitters and (4) \textbf{X_{4}} role. (1) Cell class can be considered as a categorical variable with 108 categories-that is pretty large number of categories.
+
+```{r}
+table(V(elegans)$cell_class)
+```
+  
+The second vertex attribute, (2) soma position looks like a continuous variable. The distribution of the position is shown below.
+
+```{r echo = FALSE}
+hist(V(elegans)$soma_pos, main = "distribution of positions", 
+     xlab = "soma position", col = "grey")
+```
+  
+Bad news about (3) neurotransmitters is that we have 161(58$\%$) missing values. We also have 92(32$\%$) missing in (4) role, too. Even if we treat it as another category, it still remains a problem on how to measure the distance within categorical variables. Different from the continuous cases, different values that a categorical attribute takes are not inherently ordered.
+
+
+
+## Univariate Dependence
+
+  Two types of distance matrix has been uses here.
+  
+($G_{A}$) Unweighted adjacent matrix $A$ - geodesic distance 
+
+($G_{B}$) Distance matrix $B$ weighted by the count of synapses, using Dijkstra algorithm.
+
+  - Distribution of distance 
+
+```{r echo = FALSE}
+unweighted.A <- ifelse(A >= 2, 1,A)
+disA <- shortest.paths(elegans, v = V(elegans), to = V(elegans), mode="all", weights = NA, algorithm = "unweighted")
+table(disA)
+weighted.B <- A
+disB <- shortest.paths(elegans, v = V(elegans), to = V(elegans), mode="all", weights = NULL, algorithm = "dijkstra")
+table(disB)
+```
+  
+Distribution of distance is much more diverse in weighted distance matrix. 
+
+First, soma position is a simply inplemented outcomes. 
+
+
+
+## Multivariate Dependence
+
+
+
