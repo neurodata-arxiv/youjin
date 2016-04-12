@@ -6,6 +6,7 @@ output: html_document
 ```{r echo=FALSE, message =FALSE, warning = FALSE}
 library(igraph)
 library(RefManageR)
+library(xtable)
 bib <- ReadBib(system.file("Bib", "biblatexExamples.bib", 
                            package = "RefManageR"), check = FALSE)
 BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", cite.style = 'alphabetic')
@@ -62,13 +63,55 @@ disB <- shortest.paths(elegans, v = V(elegans), to = V(elegans), mode="all", wei
 table(disB)
 ```
   
-Distribution of distance is much more diverse in weighted distance matrix. 
+Distribution of distance is much more diverse in weighted distance matrix. Here is the results of power calculation of all local test family in a weighted neuronal network:
 
-First, soma position is a simply inplemented outcomes. 
+```{r echo = FALSE}
+# soma_power_list <- IndependenceTest(soma.dist, disB, 500)
+load("data/soma_power.RData")
+```
+
+
+```{r echo = FALSE}
+# some_permute <- PermutationTest(soma.dist, disB, 500, 0, c(1,1,1,1))
+load("data/soma_permute.RData")
+```
+
+
+```{r echo = FALSE}
+par(mfrow = c(1,1))
+hist(soma_power_list[[1]], main = "Power of LGC by mcorr/dcorr/Mantel", col=rgb(0,0,1,0.5), xlab = "power of all family")
+hist(soma_power_list[[2]], col=rgb(0,0,0.5,0.5), xlab = "power of all family", add = T)
+hist(soma_power_list[[3]], col = rgb(0,0,0.3,0.5), xlab = "power of all family", add = T)
+```
+
+Among 279 $\times$ 278 possible combinations within a family of local statistics, about 97$\%$(mcorr), 99$\%$(dcorr), and 90$\%$(Mantel) acheive a power of 1. That indicates that most of local statistics are optimal scale. The following table illustrates the permutation results by different test methods. 
+
+```{r echo = FALSE, results='asis'}
+
+optimal1 <- which.max(soma_power_list[[1]])
+optimal2 <- which.max(soma_power_list[[2]])
+optimal3 <- which.max(soma_power_list[[3]])
+
+soma_power_summary <- matrix(NA, nrow = 2, ncol = 7)
+rownames(soma_power_summary) <- c("overall mean", "local optimal")
+colnames(soma_power_summary) <- c("LGCmcorr", "LGCdcorr", "LGCMantel",
+                                  "HHG", "mcorr", "dcorr", "Mantel")
+soma_power_summary[1,] <- c(mean(soma.permute[[1]]), mean(soma.permute[[2]]),
+                            mean(soma.permute[[3]]), mean(soma.permute[[4]]),
+                            mean(soma.permute[[5]]), mean(soma.permute[[6]]),
+                            mean(soma.permute[[7]]))
+soma_power_summary[2,1:3] <- c(soma.permute[[1]][optimal1], soma.permute[[2]][optimal2],
+                               soma.permute[[3]][optimal3] )
+
+soma_power_summary <- as.data.frame(soma_power_summary)
+print(xtable(soma_power_summary, digits = 4, row.names = FALSE), type = "html", comment = F)
+```
 
 
 
-## Multivariate Dependence
+
+
+## Multivariate Dependence 
 
 
 
