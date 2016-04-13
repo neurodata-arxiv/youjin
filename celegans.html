@@ -174,7 +174,7 @@ dcorr
 Mantel
 </th>  </tr>
   <tr> <td align="right"> 
-overall
+overall mean
 </td> <td align="right"> 
 0.0072
 </td> <td align="right"> 
@@ -203,8 +203,49 @@ local optimal
 
 
 
+<p>On the other hand, we cannot apply an Euclidean distance in measuring the similarity/disimilarity between categorical variables. I propose one of the methods to measure the distance between two samples having mixed types of variables. The basic idea of Gower(2971) is to calculate a similarity scores between individual <span class="math">\(i\)</span> and <span class="math">\(j\)</span>, <span class="math">\(s_{ijk}\)</span> ; two individuals <span class="math">\(i\)</span> and <span class="math">\(j\)</span> may be compared on a character <span class="math">\(k\)</span>(or a certain value of <span class="math">\(k\)</span>) and assigned a score <span class="math">\(s_{ijk}\)</span> zero when <span class="math">\(i\)</span> and <span class="math">\(j\)</span> are considered different and assigned a positive fraction or unity when they have some degree of agreemetn of similarity.</p>
+<p><span class="math">\[S_{ij} = \sum\limits_{k=1}^{v} S_{ijk} \delta_{ijk} / \sum\limits_{k=1}^{v} \delta_{ijk}\]</span></p>
+<p>(relaion to Euclidean distance : <span class="math">\(d_{ij} = (1 - S_{ij})^{\frac{1}{2}}\)</span>, and  should be positive semi-definite.)</p>
+<p>The score above basically impose the equivalent weight to each character(category) <span class="math">\(k\)</span>. According to importance of a certain class, we can introduce weights in the similarity coefficient above. Weights may be regarded as a function of the result of the values of character being compared. For example, differences in a character may be considered more important than agreement, or agreement between  character states might be given more weight than agreement between common states.</p>
+<p><span class="math">\[S_{ij} = \sum\limits_{k=1}^{v} S_{ijk} w_{k}(x_{ik}, x_{jk})  / \sum\limits_{k=1}^{v} w_{k}(x_{ik}, x_{jk})\]</span></p>
+<div id="comparison-to-other-possible-methods" class="section level3">
+<h3>Comparison to other possible methods</h3>
+<table border="1">
+<tr> <th>  </th> <th> 
+cell class
+</th> <th> 
+soma position
+</th> <th> 
+neurotransmitter
+</th> <th> 
+role
+</th>  </tr>
+  <tr> <td align="right"> 
+standardized statistics
+</td> <td align="right"> 
+0.0000
+</td> <td align="right"> 
+13.0640
+</td> <td align="right"> 
+0.0488
+</td> <td align="right"> 
+0.0001
+</td> </tr>
+  <tr> <td align="right"> 
+p-value
+</td> <td align="right"> 
+0.5000
+</td> <td align="right"> 
+0.0000
+</td> <td align="right"> 
+0.4805
+</td> <td align="right"> 
+0.5000
+</td> </tr>
+   </table>
+  
 
-
+</div>
 </div>
 <div id="multivariate-dependence" class="section level2">
 <h2>Multivariate Dependence</h2>

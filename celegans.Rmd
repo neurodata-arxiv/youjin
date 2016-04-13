@@ -109,9 +109,35 @@ print(xtable(soma_power_summary, digits = 4, row.names = FALSE), type = "html", 
 
 
 
+On the other hand, we cannot apply an Euclidean distance in measuring the similarity/disimilarity between categorical variables. I propose one of the methods to measure the distance between two samples having mixed types of variables. The basic idea of Gower(2971) is to calculate a similarity scores between individual $i$ and $j$, $s_{ijk}$ ; two individuals $i$ and $j$ may be compared on a character $k$(or a certain value of $k$) and assigned a score $s_{ijk}$ zero when $i$ and $j$ are considered different and assigned a positive fraction or unity when they have some degree of agreemetn of similarity. 
 
+$$S_{ij} = \sum\limits_{k=1}^{v} S_{ijk} \delta_{ijk} / \sum\limits_{k=1}^{v} \delta_{ijk}$$
+
+(relaion to Euclidean distance : $d_{ij} = (1 - S_{ij})^{\frac{1}{2}}$, and \textbf{S} should be positive semi-definite.)
+
+The score above basically impose the equivalent weight to each character(category) $k$. According to importance of a certain class, we can introduce weights in the similarity coefficient above. Weights may be regarded as a function of the result of the values of character being compared. For example, differences in a character may be considered more important than agreement, or agreement between \textit{rare} character states might be given more weight than agreement between common states.
+
+$$S_{ij} = \sum\limits_{k=1}^{v} S_{ijk} w_{k}(x_{ik}, x_{jk})  / \sum\limits_{k=1}^{v} w_{k}(x_{ik}, x_{jk})$$
+
+
+### Comparison to other possible methods
+
+```{r echo = FALSE, results='asis'}
+uni_summary <- matrix(NA, ncol = 4, nrow = 2)
+rownames(uni_summary) <- c("standardized statistics", "p-value")
+colnames(uni_summary) <- c("cell class", "soma position", "neurotransmitter", "role")
+uni_summary[1,] <- c(0.0000, 13.0640, 0.0488, 0.0001 )
+uni_summary[2,] <- c(0.5000, 0.0000, 0.4805, 0.5000)
+uni_summary <- as.data.frame(uni_summary)
+print(xtable(uni_summary, row.names = FALSE, digits = 4),type = "html", comment = F)
+```  
+  
 
 ## Multivariate Dependence 
 
+
+
+
+  
 
 
