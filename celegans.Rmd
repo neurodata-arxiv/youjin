@@ -7,6 +7,10 @@ output: html_document
 library(igraph)
 library(RefManageR)
 library(xtable)
+library(grid)
+library(ggplot2)
+library(png)
+library(grid)
 bib <- ReadBib(system.file("Bib", "biblatexExamples.bib", 
                            package = "RefManageR"), check = FALSE)
 BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", cite.style = 'alphabetic')
@@ -44,96 +48,71 @@ Bad news about (3) neurotransmitters is that we have 161(58$\%$) missing values.
 
 
 
-## Univariate Dependence
+## Dependence between Neuronal Network vs. Soma Position
 
   Two types of distance matrix has been uses here.
+
+```{r echo = FALSE}
+A <- ifelse(A > 1, 1, A)
+dist.A <- ifelse(A == 1, 0, 1)
+dist.A2 <- shortest.paths(elegans, v = V(elegans), to = V(elegans), mode="all", weights = NULL, algorithm = "dijkstra")
+
+soma.dist <- uni.dist(soma_pos) # distanc matrix of soma position
+soma.sim <- (1 - exp(-soma.dist))/max(1-exp(-soma.dist))
+```
+
+
+- $\textbf{A}$ :  Distance matrix based on an adjacency matrix of $A$ for which $A_{ij} = 0$ if and only if there exists an edge from node $i$ to node $j$; $A_{ij} = 1$ if they are NOT adjacent each other. 
+
+- $\textbf{A'}$ Geodesic distance matrix $A$ weighted by the count of synapses, using Dijkstra algorithm.
   
-($G_{A}$) Unweighted adjacent matrix $A$ - geodesic distance 
+- $\textbf{B}$ : $B_{ij} = (1 - \exp(-|X_{i} - X_{j}|)) / \max(B_{ij} ; i,j = 1,...,n)$
 
-($G_{B}$) Distance matrix $B$ weighted by the count of synapses, using Dijkstra algorithm.
+- $\textbf{B'}$ : Euclidean distance matrix of soma position.
 
-  - Distribution of distance 
-
-```{r echo = FALSE}
-unweighted.A <- ifelse(A >= 2, 1,A)
-disA <- shortest.paths(elegans, v = V(elegans), to = V(elegans), mode="all", weights = NA, algorithm = "unweighted")
-table(disA)
-weighted.B <- A
-disB <- shortest.paths(elegans, v = V(elegans), to = V(elegans), mode="all", weights = NULL, algorithm = "dijkstra")
-table(disB)
-```
-  
-Distribution of distance is much more diverse in weighted distance matrix. Here is the results of power calculation of all local test family in a weighted neuronal network:
-
-```{r echo = FALSE}
-# soma_power_list <- IndependenceTest(soma.dist, disB, 500)
-load("data/soma_power.RData")
-```
+- $\tilde{A} = H A H$ for all matrix $A$
 
 
 ```{r echo = FALSE}
-# some_permute <- PermutationTest(soma.dist, disB, 500, 0, c(1,1,1,1))
-load("data/soma_permute.RData")
+A_plot <- readPNG("figure/A_plot.png")
+B_plot <- readPNG("figure/B_plot.png")
+A2_plot <- readPNG("figure/A2_plot.png")
+B2_plot <- readPNG("figure/B2_plot.png")
+grid.raster(A_plot)
+grid.newpage()
+grid.raster(A2_plot)
+grid.newpage()
+grid.raster(B_plot)
+grid.newpage()
+grid.raster(B2_plot)
+
 ```
 
 
-```{r echo = FALSE}
-par(mfrow = c(1,1))
-hist(soma_power_list[[1]], main = "Power of LGC by mcorr/dcorr/Mantel", col=rgb(0,0,1,0.5), xlab = "power of all family")
-hist(soma_power_list[[2]], col=rgb(0,0,0.5,0.5), xlab = "power of all family", add = T)
-hist(soma_power_list[[3]], col = rgb(0,0,0.3,0.5), xlab = "power of all family", add = T)
-```
 
-Among 279 $\times$ 278 possible combinations within a family of local statistics, about 97$\%$(mcorr), 99$\%$(dcorr), and 90$\%$(Mantel) acheive a power of 1. That indicates that most of local statistics are optimal scale. The following table illustrates the permutation results by different test methods. 
+
+
+
+
+
+
+
+
+
+
 
 ```{r echo = FALSE, results='asis'}
-
-optimal1 <- which.max(soma_power_list[[1]])
-optimal2 <- which.max(soma_power_list[[2]])
-optimal3 <- which.max(soma_power_list[[3]])
-
-soma_power_summary <- matrix(NA, nrow = 2, ncol = 7)
-rownames(soma_power_summary) <- c("overall mean", "local optimal")
-colnames(soma_power_summary) <- c("LGCmcorr", "LGCdcorr", "LGCMantel",
-                                  "HHG", "mcorr", "dcorr", "Mantel")
-soma_power_summary[1,] <- c(mean(soma.permute[[1]]), mean(soma.permute[[2]]),
-                            mean(soma.permute[[3]]), mean(soma.permute[[4]]),
-                            mean(soma.permute[[5]]), mean(soma.permute[[6]]),
-                            mean(soma.permute[[7]]))
-soma_power_summary[2,1:3] <- c(soma.permute[[1]][optimal1], soma.permute[[2]][optimal2],
-                               soma.permute[[3]][optimal3] )
-
-soma_power_summary <- as.data.frame(soma_power_summary)
-print(xtable(soma_power_summary, digits = 4, row.names = FALSE), type = "html", comment = F)
-```
-
-
-
-On the other hand, we cannot apply an Euclidean distance in measuring the similarity/disimilarity between categorical variables. I propose one of the methods to measure the distance between two samples having mixed types of variables. The basic idea of Gower(2971) is to calculate a similarity scores between individual $i$ and $j$, $s_{ijk}$ ; two individuals $i$ and $j$ may be compared on a character $k$(or a certain value of $k$) and assigned a score $s_{ijk}$ zero when $i$ and $j$ are considered different and assigned a positive fraction or unity when they have some degree of agreemetn of similarity. 
-
-$$S_{ij} = \sum\limits_{k=1}^{v} S_{ijk} \delta_{ijk} / \sum\limits_{k=1}^{v} \delta_{ijk}$$
-
-(relaion to Euclidean distance : $d_{ij} = (1 - S_{ij})^{\frac{1}{2}}$, and \textbf{S} should be positive semi-definite.)
-
-The score above basically impose the equivalent weight to each character(category) $k$. According to importance of a certain class, we can introduce weights in the similarity coefficient above. Weights may be regarded as a function of the result of the values of character being compared. For example, differences in a character may be considered more important than agreement, or agreement between \textit{rare} character states might be given more weight than agreement between common states.
-
-$$S_{ij} = \sum\limits_{k=1}^{v} S_{ijk} w_{k}(x_{ik}, x_{jk})  / \sum\limits_{k=1}^{v} w_{k}(x_{ik}, x_{jk})$$
-
-
-### Comparison to other possible methods
-
-```{r echo = FALSE, results='asis'}
-uni_summary <- matrix(NA, ncol = 4, nrow = 2)
-rownames(uni_summary) <- c("standardized statistics", "p-value")
-colnames(uni_summary) <- c("cell class", "soma position", "neurotransmitter", "role")
-uni_summary[1,] <- c(0.0000, 13.0640, 0.0488, 0.0001 )
-uni_summary[2,] <- c(0.5000, 0.0000, 0.4805, 0.5000)
-uni_summary <- as.data.frame(uni_summary)
-print(xtable(uni_summary, row.names = FALSE, digits = 4),type = "html", comment = F)
+#uni_summary <- matrix(NA, ncol = 4, nrow = 2)
+#rownames(uni_summary) <- c("standardized statistics", "p-value")
+#colnames(uni_summary) <- c("cell class", "soma position", "neurotransmitter", "role")
+#uni_summary[1,] <- c(0.0000, 13.0640, 0.0488, 0.0001 )
+#uni_summary[2,] <- c(0.5000, 0.0000, 0.4805, 0.5000)
+#uni_summary <- as.data.frame(uni_summary)
+#print(xtable(uni_summary, row.names = FALSE, digits = 4),type = "html", comment = F)
 ```  
   
 
-## Multivariate Dependence 
+## Dependence between Neuronal Network vs. Cell type
 
 
 
