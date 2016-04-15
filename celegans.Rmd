@@ -34,7 +34,7 @@ cell_class <- as.integer(as.factor(V(elegans)$cell_class)) # categorial variable
   We are given a connected, weighted and also directed network of \textit{C. elegans}, which is comprised of 279 nodes and 3225 (directed) edges between them. The given network illustrates the network in the region of pharynx, and the weight imposed on each edge is equivalent to the number of corresponding synapses. For vertex attributes, we have (1) \textbf{X_{1}} cell class, (2) \textbf{X_{2}} soma position, (3) \textbf{X_{3}} neurotransmitters and (4) \textbf{X_{4}} role. (1) Cell class can be considered as a categorical variable with 108 categories-that is pretty large number of categories.
 
 ```{r}
-table(V(elegans)$cell_class)
+#table(V(elegans)$cell_class)
 ```
   
 The second vertex attribute, (2) soma position looks like a continuous variable. The distribution of the position is shown below.
@@ -114,9 +114,52 @@ grid.raster(B2_plot)
 
 ## Dependence between Neuronal Network vs. Cell type
 
+There are two main categories - "R"ight and "L"eft, and there exist 24 other categories which R/L is not specified. A total of 279 
+
+```{r echo = FALSE}
+tmp <- V(elegans)$cell_name
+tmp <- strsplit(tmp, "")
+
+cell <- c()
+for(i in 1:length(tmp)){
+  cell[i] <- ifelse(tmp[[i]][length(tmp[[i]])] == "L", "L", NA)
+  cell[i] <- ifelse(tmp[[i]][length(tmp[[i]])] == "R", "R", cell[i])
+  cell[i] <- ifelse(is.na(cell[i]), cell_class[i], cell[i])
+}
+```
+
+
+```{r echo = FALSE}
+C_plot <- readPNG("figure/C_plot.png")
+HCH_plot <- readPNG("figure/HCH_plot.png")
+
+grid.raster(C_plot)
+grid.newpage()
+grid.raster(HCH_plot)
+
+```
 
 
 
   
+## Subnetwork
 
+  Let's consider two categories in cell - "R"ight and "L"eft. Because 90 out of 279 nodes do not have information whether they are right or left, We can only consider a induced subnetwork comprised of 189 nodes. Let $A_{s}$ be a similarity matrix of sub-network and $A'_{s}$ be a geodesic distance matrix of subnetwork. Note that $A_{s}$ can be defined as a sub-matrix of $A,$ but how to define $A'_{s}$ can be flexible - depending on whether you take account 90 nodes in calculating geodesic distance or not. I assume that a full network of 279 nodes well reflects all the connectivity, so include other 90 nodes in possible paths. Thus, $A'_{s}$ can be also defined as a sub-matrix of $A'.$
+  
+Let $D$ be a distance matrix of cell direction.  
+  
+```{r echo = FALSE}
+D_plot <- readPNG("figure/D_plot.png")
+HDH_plot <- readPNG("figure/HDH_plot.png")
 
+grid.raster(D_plot)
+grid.newpage()
+grid.raster(HDH_plot)
+
+```
+
+  
+  
+  
+  
+  
