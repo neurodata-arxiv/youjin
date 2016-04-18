@@ -173,7 +173,17 @@ P-values, in overall, shows lower value, or lowest value in the second hypothesi
 \end{figure}
 
 
-* P-value for all local tests are still calculated..
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\includegraphics[width=0.4\textwidth]{../figure/P_A_C.png}
+\caption{Local p-value matrix $A$ vs C}
+\label{fig:PAC}
+\end{figure} 
+
+Figure \ref{fig:PAC} shows that p-values are largely dependent on neighboring choice of $A$ rather than that of $C$. It implies that the local p-values using a small number of neighbors in a neuronal network generally significant than those using a large number of neighbors, and their differences are larger than comparing the choice of distance matrix of cell types, $C$. 
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -204,7 +214,7 @@ Instead of using dissimilarity matrix for neuronal network $A$, Euclidean distan
 \label{fig:PA2C}
 \end{figure} 
 
-
+Compared to Figure \ref{PAC} where we used a dissimilarity matrix (modified adjacency matrix), Figure \ref{PA2C} illustrates significant p-values all over the local tests. 
 
 
 
@@ -212,7 +222,7 @@ Instead of using dissimilarity matrix for neuronal network $A$, Euclidean distan
 \newpage
 \section{Neuronal Network vs. Cell Direction}
 
-Let's consider two categories in cell - "R"ight and "L"eft. Because 90 out of 279 nodes do not have information whether they are right or left, We can only consider a induced subnetwork comprised of 189 nodes. Let $A_{s}$ be a similarity matrix of sub-network and $A^\prime_{s}$ be a geodesic distance matrix of subnetwork. Note that $A_{s}$ can be defined as a sub-matrix of $A,$ but how to define $A^\prime_{s}$ can be flexible - depending on whether you take account 90 nodes in calculating geodesic distance or not. I assume that a full network of 279 nodes well reflects all the connectivity, so include other 90 nodes in possible paths. Thus, $A^\prime_{s}$ can be also defined as a sub-matrix of $A^\prime.$
+Let's consider two categories in cell - "R"ight and "L"eft. Because 90 out of 279 nodes do not have information whether they are right or left, We can only consider an induced subnetwork comprised of 189 nodes. Let $A_{s}$ be a dissimilarity matrix of sub-network and $A^\prime_{s}$ be a geodesic distance matrix of subnetwork. Note that $A_{s}$ can be defined as a sub-matrix of $A,$ but how to define $A^\prime_{s}$ can be flexible - depending on whether you take account 90 nodes in calculating geodesic distance or not. I assume that a full network of 279 nodes well reflects all the connectivity, so include other 90 nodes in possible paths. Thus, $A^\prime_{s}$ can be also defined as a sub-matrix of $A^\prime.$
   
 Let $D$ be a distance matrix of cell direction - Right or Left. 
 
@@ -241,7 +251,7 @@ Let $D$ be a distance matrix of cell direction - Right or Left.
 \label{fig:PAD}
 \end{figure} 
 
- 
+Interestingly, Figure \ref{fig:PAD} shows that using a certain range of neighbors in $A$, p-values are higher than (still could be significant at $\alpha = 0.05$, though) the other choices; while including more neighbors yields less p-values in the choice of distance $D$.  
  
  
  
