@@ -73,6 +73,8 @@ soma.sim <- (1 - exp(-soma.dist))/max(1-exp(-soma.dist))
 - $\tilde{A} = H A H$ for all matrix $A$
 
 
+- Goal : Test $H_{0} : f_{AB} = f_{A}f_{B}$
+
 ```{r echo = FALSE}
 A_plot <- readPNG("figure/A_plot.png")
 B_plot <- readPNG("figure/B_plot.png")
@@ -116,6 +118,8 @@ grid.raster(B2_plot)
 
 There are two main categories - "R"ight and "L"eft, and there exist 24 other categories which R/L is not specified. A total of 279 
 
+- Goal : Test $H_{0} : f_{AC} = f_{A}f_{C}$
+
 ```{r echo = FALSE}
 tmp <- V(elegans)$cell_name
 tmp <- strsplit(tmp, "")
@@ -140,8 +144,23 @@ grid.raster(HCH_plot)
 ```
 
 
+### Power Estimation
 
+
+### P-value Heatmap 
+
+- $A'$ vs $B'$
+
+Geodesic Distance Matrix of neuronal network vs. Euclidean Distance Matrix of soma position 
+
+We have only one single value of all local test. The resulting the local p-value heat map shows that \textit{all} the local scales have significant p-values for neuronal connectivity vs. soma position in Euclidean distance measure.   
+
+```{r echo = FALSE}
+P_A2_E_plot <- readPNG("figure/P_A2_E.png")
+grid.raster(P_A2_E_plot)
+```  
   
+    
 ## Subnetwork
 
   Let's consider two categories in cell - "R"ight and "L"eft. Because 90 out of 279 nodes do not have information whether they are right or left, We can only consider a induced subnetwork comprised of 189 nodes. Let $A_{s}$ be a similarity matrix of sub-network and $A'_{s}$ be a geodesic distance matrix of subnetwork. Note that $A_{s}$ can be defined as a sub-matrix of $A,$ but how to define $A'_{s}$ can be flexible - depending on whether you take account 90 nodes in calculating geodesic distance or not. I assume that a full network of 279 nodes well reflects all the connectivity, so include other 90 nodes in possible paths. Thus, $A'_{s}$ can be also defined as a sub-matrix of $A'.$
@@ -152,14 +171,24 @@ Let $D$ be a distance matrix of cell direction.
 D_plot <- readPNG("figure/D_plot.png")
 HDH_plot <- readPNG("figure/HDH_plot.png")
 
-grid.raster(D_plot)
 grid.newpage()
+grid.raster(D_plot)
+
 grid.raster(HDH_plot)
 
 ```
 
+
   
-  
+```{r echo = FALSE}
+#P_A_D_plot <- readPNG("figure/P_A_D_plot.png")
+P_A2_D_plot <- readPNG("figure/P_A2_D.png")
+
+#grid.raster(P_A_D_plot)
+grid.newpage()
+grid.raster(P_A2_D_plot)
+
+```  
   
   
   
