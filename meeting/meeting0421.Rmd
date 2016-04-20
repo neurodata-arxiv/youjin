@@ -23,7 +23,7 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 
   We are given a connected, weighted and directed network of C.elegans, which is comprised of 279 nodes and 3225 directed edges between them. The given given network illustrates the network in the region of pharynx, and the weight imposed on each edge indicates the number of corresponding synapses. We will going to investigate two vertex attributes, (1) soma position and (2) cell class. For these two attributes, we have no missingness. 
   
- - soma position
+ - soma position ($I_{std} = 13.7529$)
 
 
 ```{r echo = FALSE}
@@ -31,26 +31,92 @@ somapos <- readPNG("../figure/somapos.png")
 grid.raster(somapos)
 ```
  
- - cell class
+ - cell class ($\Phi_{std} = 0.8575123$)
  
- 
+```{r echo = FALSE}
+cell <- readPNG("../figure/cell.png")
+grid.raster(cell)
+``` 
+
+
+## Heatmap Results(LGC dcorr)
+
+$$H_{0} : f_{AB} = f_{A} f_{B}$$
+
+- Binary $A$ $\&$ Binary $B$
+
+```{r echo = FALSE}
+PAB <- readPNG("../figure/P_A_B.png")
+grid.raster(PAB)
+``` 
+
+
+- Binary $A$ $\&$ Euclidean $B$
+
+```{r echo = FALSE}
+PAB2 <- readPNG("../figure/P_A_B2.png")
+grid.raster(PAB2)
+``` 
+
+
+- Geodesic distance $A$ $\&$ Binary $B$
+
+```{r echo = FALSE}
+PA2B <- readPNG("../figure/P_A2_B.png")
+grid.raster(PA2B)
+``` 
+
+
+- Geodesic distance $A$ $\&$ Euclidean $B$
+
+
+```{r echo = FALSE}
+PA2B2 <- readPNG("../figure/P_A2_E.png")
+grid.raster(PA2B2)
+``` 
 
 
 
-## Heatmap Results
+$$H_{0} : f_{AC} = f_{A} f_{C}$$
+
+- Binary $A$ $\&$ Binary $C$
+
+```{r echo = FALSE}
+PAC <- readPNG("../figure/P_A_C.png")
+grid.raster(PAC)
+``` 
+
+
+- Geodesic $A$ $\&$ Binary $C$
+
+```{r echo = FALSE}
+PA2C <- readPNG("../figure/P_A2_C.png")
+grid.raster(PA2C)
+``` 
+
 
 
 
 
 ## Remarks
 
-### Distance measure of networks 
+### Distance measure
+
+- Using more precise distance measure results in more sensitive test?
+
+- Lots of zero distance means lots of replicates (by Cencheng)
+
+- For continuous node's attributes, use Euclidean distance matrix will give larger power
+
+- For categorical nodes' attribute, we may think of other distance measure than dissimilarity matrix; $C_{ij} = 1$ if $y_{i} = y_{j}$, $C_{ij} = 0$ otherwise. 
+
+- For network distance matrix, i.e. distance measure between the two nodes in network, using every distance information may increase power of the test.
+
+- Using a distance matrix that reflects all distance relationship between nodes; reflects edge weights(e.g. the number of synapses)..
+
+- Next step? maybe we need a simulation to think about diverse measure of network distance / categorical variable distance? 
 
 
 
-### Distance measure of categorical outcomes 
 
 
-
-
-### Choosing the optimal scale in real network data (estimating power)
