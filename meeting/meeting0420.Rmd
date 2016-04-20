@@ -1,0 +1,110 @@
+---
+title: "Multiscale Graph Correlation"
+date: "April 20, 2016"
+output: html_document
+---
+
+# ``R`` Functions
+
+```{r echo=FALSE, message =FALSE, warning = FALSE}
+library(igraph)
+library(RefManageR)
+library(xtable)
+library(grid)
+library(ggplot2)
+library(png)
+library(grid)
+bib <- ReadBib(system.file("Bib", "biblatexExamples.bib", 
+                           package = "RefManageR"), check = FALSE)
+BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", cite.style = 'alphabetic')
+```
+
+## Permutation Tests
+
+```{r}
+# disToRank - compute a rank of a distance matrix
+# LocalGraphCorr - calculate local graph correlation
+# PermutationTest - prints out pvalues of independence tests for two distance matrix
+```
+
+- A function ``PermutationTest`` sometimes returns a really small negative pvalues(e.g.  -6.661338e-16). 
+
+- What is a difference between ``PermutationTest(C, P, rep, allP, option)`` and ``CorrPermDistTest(type, rep, cv, titlechar, allP, option)`` ? 
+
+- Why we need bootstrap samples to use for neighborhood validation? 
+
+
+## Pvalue Heatmap
+
+```{r}
+elegans <- read.graph("../data/c.elegans.herm_pharynx_1.graphml", format = "graphml")
+A <- get.adjacency(elegans)
+A <- as.matrix(A) # it is not symmetric
+A <- ifelse(A > 1, 1, A)
+dist.A <- ifelse(A == 1, 0, 1)
+dist.A2 <- shortest.paths(elegans, v = V(elegans), to = V(elegans), mode="all", weights = NULL, algorithm = "dijkstra")
+# univariate distance matrix
+uni.dist <- function(vec){
+  n <- length(vec)
+  mat <- matrix(0, n, n)
+  for(i in 1:(n-1)){
+    for(j in (i+1):n){
+      mat[i,j] <- sqrt((vec[i] - vec[j])^2)
+      mat[j,i] <- mat[i,j]
+    }
+  }
+  return(mat)
+}
+soma_pos <- V(elegans)$soma_pos # continuous variable
+soma.dist <- uni.dist(soma_pos) # distance matrix of soma position
+# soma.A.B <- PermutationTest(dist.A, soma.dist, 500, 0, c(1,1,1,1)) 
+# pvalue.A.sim <- soma.A.B[[2]]
+# heatmap.2(pvalue.A.sim, dendrogram='none', Rowv=FALSE, Colv=FALSE,trace='none',
+#          xlab = "Neighborhood Choice of A", labRow = "", labCol = "",
+#          ylab = "Neighborhood Choice of B",  
+#          main = expression("dcorr pvalue " ~ H[0] ~" : " ~ f[A*B] ~" = " ~f[A]*f[B]))
+
+```
+
+
+- Do you have any suggestions for drawing ``heatmap.2``? I want consistent gradient coloring, i.e. red when p-values = 0, and white when p-value = 1. (with legend included).
+
+- Interpretation of p-value heatmap.
+
+```{r}
+PAD <- readPNG("../figure/P_A_D.png")
+grid.raster(PAD)
+```
+
+
+Regarding neighborhood choice of $D$(cell direction), choosing only nearby neighbors results in (slightly) larger p-values; while for $A$ (neuronal network of c.elegans), including up to certain level of neighbors might lead to insignificant result.
+
+
+
+
+```{r}
+PAC <- readPNG("../figure/P_A_C.png")
+grid.raster(PAC)
+```
+
+
+Variation in p-values is more dependent on neighborhood choice of $A$(neuronal network) than that of $C$(cell type). (It might imply that in local test, choosing more than the certain level of neighbors in neuronal connectivity network ensures rejecting null hypothesis) 
+
+
+
+
+## Power Estimation
+
+- Resampling method 
+
+```{r}
+
+
+
+```
+
+
+- In case that a pair of data sets is available. 
+
+
+- What is the benefit we can get through Multiscale Graph Correlation when we cannot find the optimal scale $(k^{*}, l^{*})$? 

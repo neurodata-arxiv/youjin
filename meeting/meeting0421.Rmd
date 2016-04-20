@@ -1,0 +1,56 @@
+---
+title: "Testing Network Dependence Using Multiscale Graph Correlation"
+author: "Youjin Lee"
+date: "April 21, 2016"
+output: html_document
+---
+
+```{r echo=FALSE, message =FALSE, warning = FALSE}
+library(igraph)
+library(RefManageR)
+library(xtable)
+library(grid)
+library(ggplot2)
+library(png)
+library(grid)
+bib <- ReadBib(system.file("Bib", "biblatexExamples.bib", 
+                           package = "RefManageR"), check = FALSE)
+BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", cite.style = 'alphabetic')
+```
+
+
+## Data Descriptions
+
+  We are given a connected, weighted and directed network of C.elegans, which is comprised of 279 nodes and 3225 directed edges between them. The given given network illustrates the network in the region of pharynx, and the weight imposed on each edge indicates the number of corresponding synapses. We will going to investigate two vertex attributes, (1) soma position and (2) cell class. For these two attributes, we have no missingness. 
+  
+ - soma position
+
+
+```{r echo = FALSE}
+somapos <- readPNG("../figure/somapos.png")
+grid.raster(somapos)
+```
+ 
+ - cell class
+ 
+ 
+
+
+
+## Heatmap Results
+
+
+
+
+## Remarks
+
+### Distance measure of networks 
+
+
+
+### Distance measure of categorical outcomes 
+
+
+
+
+### Choosing the optimal scale in real network data (estimating power)

@@ -31,7 +31,7 @@ role <- as.integer(as.factor(V(elegans)$role)) # categorial variable
 cell_class <- as.integer(as.factor(V(elegans)$cell_class)) # categorial variable
 ```
   
-  We are given a connected, weighted and also directed network of \textit{C. elegans}, which is comprised of 279 nodes and 3225 (directed) edges between them. The given network illustrates the network in the region of pharynx, and the weight imposed on each edge is equivalent to the number of corresponding synapses. For vertex attributes, we have (1) \textbf{X_{1}} cell class, (2) \textbf{X_{2}} soma position, (3) \textbf{X_{3}} neurotransmitters and (4) \textbf{X_{4}} role. (1) Cell class can be considered as a categorical variable with 108 categories-that is pretty large number of categories.
+  We are given a connected, weighted and also directed network of C. elegans, which is comprised of 279 nodes and 3225 (directed) edges between them. The given network illustrates the network in the region of pharynx, and the weight imposed on each edge is equivalent to the number of corresponding synapses. For vertex attributes, we have (1) \textbf{X_{1}} cell class, (2) \textbf{X_{2}} soma position, (3) \textbf{X_{3}} neurotransmitters and (4) \textbf{X_{4}} role. (1) Cell class can be considered as a categorical variable with 108 categories-that is pretty large number of categories.
 
 ```{r}
 #table(V(elegans)$cell_class)
@@ -89,17 +89,6 @@ grid.newpage()
 grid.raster(B2_plot)
 
 ```
-
-
-
-
-
-
-
-
-
-
-
 
 
 
