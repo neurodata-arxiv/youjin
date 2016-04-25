@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  20 APR 2016 12:10
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  24 APR 2016 23:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -648,6 +648,12 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 105.
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))) (./report1.aux
 
+LaTeX Warning: Label `fig:statd' multiply defined.
+
+
+LaTeX Warning: Label `fig:histo1' multiply defined.
+
+
 LaTeX Warning: Label `fig:table' multiply defined.
 
 
@@ -751,17 +757,17 @@ Chapter 1.
 File: se-ascii-print.def 2011/12/02 v1.10 stringenc: Printable ASCII characters
 
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 72.
+LaTeX Font Info:    Try loading font information for U+msa on input line 71.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 72.
+LaTeX Font Info:    Try loading font information for U+msb on input line 71.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 72.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 71.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -769,6 +775,35 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 
 ]
+File: ../figure/trans.png Graphic file (type QTm)
+
+<use  "../figure/trans.png" >
+LaTeX Font Info:    Try loading font information for T1+aess on input line 95.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/ae/t1aess.fd
+File: t1aess.fd 1997/11/16 Font definitions for T1/aess.
+)
+LaTeX Font Info:    Try loading font information for T1+aett on input line 104.
+
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/ae/t1aett.fd
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+) [2]
+File: ../figure/statd.png Graphic file (type QTm)
+
+<use  "../figure/statd.png" >
+File: ../figure/A_plot.png Graphic file (type QTm)
+ <use  "../figure/A_plot.png" >
+File: ../figure/diffusion1.png Graphic file (type QTm)
+
+<use  "../figure/diffusion1.png" >
+File: ../figure/diffusion5.png Graphic file (type QTm)
+ <use  "../figure/diffusion5.png" > [3]
+File: ../figure/diffusion1.png Graphic file (type QTm)
+
+<use  "../figure/diffusion1.png" > [4]
+File: ../figure/histo1.png Graphic file (type QTm)
+ <use  "../figure/histo1.png" >
 File: ../figure/A_plot.png Graphic file (type QTm)
 
 <use  "../figure/A_plot.png" >
@@ -783,38 +818,36 @@ File: ../figure/HBH.png Graphic file (type QTm)
 
 <use  "../figure/HBH.png" >
 File: ../figure/HABH.png Graphic file (type QTm)
- <use  "../figure/HABH.png" >
-LaTeX Font Info:    Try loading font information for T1+aess on input line 96.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/ae/t1aess.fd
-File: t1aess.fd 1997/11/16 Font definitions for T1/aess.
-)
+ <use  "../figure/HABH.png" > [5]
 File: ../figure/P_A_B.png Graphic file (type QTm)
 
-<use  "../figure/P_A_B.png" > [2]
+<use  "../figure/P_A_B.png" >
 File: ../figure/AB_hist.png Graphic file (type QTm)
- <use  "../figure/AB_hist.png" > [3]
+ <use  "../figure/AB_hist.png" > [6] [7]
+File: ../figure/histo2.png Graphic file (type QTm)
+
+<use  "../figure/histo2.png" >
 File: ../figure/A2_plot.png Graphic file (type QTm)
-
-<use  "../figure/A2_plot.png" >
+ <use  "../figure/A2_plot.png" >
 File: ../figure/B2_plot.png Graphic file (type QTm)
- <use  "../figure/B2_plot.png" >
+
+<use  "../figure/B2_plot.png" >
 File: ../figure/A2B2_plot.png Graphic file (type QTm)
-
-<use  "../figure/A2B2_plot.png" >
+ <use  "../figure/A2B2_plot.png" >
 File: ../figure/HA2H.png Graphic file (type QTm)
- <use  "../figure/HA2H.png" >
-File: ../figure/HB2H.png Graphic file (type QTm)
 
-<use  "../figure/HB2H.png" >
+<use  "../figure/HA2H.png" >
+File: ../figure/HB2H.png Graphic file (type QTm)
+ <use  "../figure/HB2H.png" >
 File: ../figure/HA2B2H.png Graphic file (type QTm)
- <use  "../figure/HA2B2H.png" >
-Underfull \hbox (badness 10000) in paragraph at lines 126--132
+
+<use  "../figure/HA2B2H.png" >
+Underfull \hbox (badness 10000) in paragraph at lines 228--234
 [][] [][] [][]
  []
 
 File: ../figure/P_A2_E.png Graphic file (type QTm)
-<use  "../figure/P_A2_E.png" > [4] [5]
+<use  "../figure/P_A2_E.png" > [8] [9]
 File: ../figure/A_plot.png Graphic file (type QTm)
  <use  "../figure/A_plot.png" >
 File: ../figure/C_plot.png Graphic file (type QTm)
@@ -831,7 +864,7 @@ File: ../figure/HACH_plot.png Graphic file (type QTm)
 
 <use  "../figure/HACH_plot.png" >
 File: ../figure/P_A_C.png Graphic file (type QTm)
- <use  "../figure/P_A_C.png" > [6] [7]
+ <use  "../figure/P_A_C.png" > [10] [11]
 File: ../figure/A2_plot.png Graphic file (type QTm)
 
 <use  "../figure/A2_plot.png" >
@@ -847,19 +880,19 @@ File: ../figure/HCH_plot.png Graphic file (type QTm)
 <use  "../figure/HCH_plot.png" >
 File: ../figure/HA2CH_plot.png Graphic file (type QTm)
  <use  "../figure/HA2CH_plot.png" >
-Underfull \hbox (badness 10000) in paragraph at lines 198--204
+Underfull \hbox (badness 10000) in paragraph at lines 300--306
 [][] [][] [][]
  []
 
 File: ../figure/P_A2_C.png Graphic file (type QTm)
-<use  "../figure/P_A2_C.png" > [8]
+<use  "../figure/P_A2_C.png" > [12]
 
-LaTeX Warning: Reference `PAC' on page 9 undefined on input line 217.
+LaTeX Warning: Reference `PAC' on page 13 undefined on input line 319.
 
 
-LaTeX Warning: Reference `PA2C' on page 9 undefined on input line 217.
+LaTeX Warning: Reference `PA2C' on page 13 undefined on input line 319.
 
-[9]
+[13]
 File: ../figure/As_plot.png Graphic file (type QTm)
  <use  "../figure/As_plot.png" >
 File: ../figure/D_plot.png Graphic file (type QTm)
@@ -874,13 +907,13 @@ File: ../figure/HDH_plot.png Graphic file (type QTm)
 <use  "../figure/HDH_plot.png" >
 File: ../figure/HAsDH.png Graphic file (type QTm)
  <use  "../figure/HAsDH.png" >
-Underfull \hbox (badness 10000) in paragraph at lines 235--241
+Underfull \hbox (badness 10000) in paragraph at lines 337--343
 [][] [][] [][]
  []
 
-[10]
+[14]
 File: ../figure/P_A_D.png Graphic file (type QTm)
- <use  "../figure/P_A_D.png" > [11]
+ <use  "../figure/P_A_D.png" > [15]
 File: ../figure/A2s_plot.png Graphic file (type QTm)
  <use  "../figure/A2s_plot.png" >
 File: ../figure/D_plot.png Graphic file (type QTm)
@@ -896,19 +929,19 @@ File: ../figure/HDH_plot.png Graphic file (type QTm)
 File: ../figure/HAsDH.png Graphic file (type QTm)
 
 <use  "../figure/HAsDH.png" >
-Underfull \hbox (badness 10000) in paragraph at lines 260--266
+Underfull \hbox (badness 10000) in paragraph at lines 362--368
 [][] [][] [][]
  []
 
 File: ../figure/P_A2_D.png Graphic file (type QTm)
-<use  "../figure/P_A2_D.png" > [12]
+<use  "../figure/P_A2_D.png" > [16]
 No complaints by nag.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 282.
-[13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 282.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 384.
+[17]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 384.
  (./report1.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 282.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 282.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 384.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 384.
 
 
 LaTeX Warning: There were undefined references.
@@ -916,19 +949,19 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 282.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 384.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 56 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 14523 strings out of 493706
- 210482 string characters out of 6145769
- 286658 words of memory out of 5000000
- 17608 multiletter control sequences out of 15000+600000
- 34880 words of font info for 70 fonts, out of 8000000 for 9000
+ 14572 strings out of 493706
+ 211197 string characters out of 6145769
+ 286951 words of memory out of 5000000
+ 17641 multiletter control sequences out of 15000+600000
+ 39985 words of font info for 74 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 36i,11n,45p,748b,493s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,12n,45p,810b,491s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report1.pdf (13 pages).
+Output written on report1.pdf (17 pages).

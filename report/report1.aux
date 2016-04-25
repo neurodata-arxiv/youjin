@@ -20,33 +20,47 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Testing Network Dependence Using Multiscale Graph Correlation}{1}{chapter.1}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Neuronal Network vs. Soma position}{1}{section.1.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Heatmap of dissimilarity measures\relax }}{2}{figure.caption.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Choosing distance matrix for network(graph)}{1}{section.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Distances on undirected graphs}{2}{subsection.1.1.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Transition matrix P\relax }}{2}{figure.caption.1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:subnetwork}{{1.1}{2}{Heatmap of dissimilarity measures\relax }{figure.caption.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Local p-value matrix A vs B\relax }}{3}{figure.caption.2}}
-\newlabel{fig:PAB}{{1.2}{3}{Local p-value matrix A vs B\relax }{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces Local p-value depending on choice of neighborhood\relax }}{3}{figure.caption.3}}
-\newlabel{fig:ABhist}{{1.3}{3}{Local p-value depending on choice of neighborhood\relax }{figure.caption.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Heatmap of Geodesic Distance $\& $Euclidean Distance\relax }}{4}{figure.caption.4}}
-\newlabel{fig:table}{{1.4}{4}{Heatmap of Geodesic Distance $\& $Euclidean Distance\relax }{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces Local p-value matrix $A^\prime $ vs $B^\prime $\relax }}{4}{figure.caption.5}}
-\newlabel{fig:PA2E}{{1.5}{4}{Local p-value matrix $A^\prime $ vs $B^\prime $\relax }{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Neuronal Network vs. Cell type}{6}{section.1.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.6}{\ignorespaces Heatmap of Dissimilarity measure for all networks\relax }}{6}{figure.caption.7}}
-\newlabel{fig:table}{{1.6}{6}{Heatmap of Dissimilarity measure for all networks\relax }{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.7}{\ignorespaces Local p-value matrix $A$ vs C\relax }}{7}{figure.caption.8}}
-\newlabel{fig:PAC}{{1.7}{7}{Local p-value matrix $A$ vs C\relax }{figure.caption.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.8}{\ignorespaces Heatmap of geodesic distance for all networks\relax }}{8}{figure.caption.9}}
-\newlabel{fig:table}{{1.8}{8}{Heatmap of geodesic distance for all networks\relax }{figure.caption.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces Local p-value matrix $A^\prime $ vs C\relax }}{9}{figure.caption.10}}
-\newlabel{fig:PA2C}{{1.9}{9}{Local p-value matrix $A^\prime $ vs C\relax }{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Neuronal Network vs. Cell Direction}{10}{section.1.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces Heatmap of Dissimilarity measure for subnetworks\relax }}{11}{figure.caption.11}}
-\newlabel{fig:table}{{1.10}{11}{Heatmap of Dissimilarity measure for subnetworks\relax }{figure.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces Local p-value matrix $A_{s}$ vs D\relax }}{11}{figure.caption.12}}
-\newlabel{fig:PAD}{{1.11}{11}{Local p-value matrix $A_{s}$ vs D\relax }{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces Heatmap of Geodesic Distance for subnetworks\relax }}{12}{figure.caption.13}}
-\newlabel{fig:table}{{1.12}{12}{Heatmap of Geodesic Distance for subnetworks\relax }{figure.caption.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.13}{\ignorespaces Local p-value matrix $A^\prime _{s}$ vs D\relax }}{13}{figure.caption.14}}
-\newlabel{fig:PAD}{{1.13}{13}{Local p-value matrix $A^\prime _{s}$ vs D\relax }{figure.caption.14}{}}
+\newlabel{fig:trans}{{1.1}{2}{Transition matrix P\relax }{figure.caption.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Stationary probability based on P\relax }}{3}{figure.caption.2}}
+\newlabel{fig:statd}{{1.2}{3}{Stationary probability based on P\relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces Heatmap of distance measures\relax }}{4}{figure.caption.3}}
+\newlabel{fig:dist}{{1.3}{4}{Heatmap of distance measures\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Diffusion distances of neuronal network at time t = 1\relax }}{4}{figure.caption.4}}
+\newlabel{fig:statd}{{1.4}{4}{Diffusion distances of neuronal network at time t = 1\relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Neuronal Network vs. Soma position}{4}{section.1.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces distribution of soma position unadjacent pairs vs. adjacent pairs\relax }}{5}{figure.caption.5}}
+\newlabel{fig:histo1}{{1.5}{5}{distribution of soma position unadjacent pairs vs. adjacent pairs\relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.6}{\ignorespaces Heatmap of dissimilarity measures\relax }}{6}{figure.caption.6}}
+\newlabel{fig:subnetwork}{{1.6}{6}{Heatmap of dissimilarity measures\relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.7}{\ignorespaces Local p-value matrix A vs B\relax }}{6}{figure.caption.7}}
+\newlabel{fig:PAB}{{1.7}{6}{Local p-value matrix A vs B\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.8}{\ignorespaces Local p-value depending on choice of neighborhood\relax }}{7}{figure.caption.8}}
+\newlabel{fig:ABhist}{{1.8}{7}{Local p-value depending on choice of neighborhood\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces distribution of soma position across geodesic distance\relax }}{8}{figure.caption.9}}
+\newlabel{fig:histo1}{{1.9}{8}{distribution of soma position across geodesic distance\relax }{figure.caption.9}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces Heatmap of Geodesic Distance $\& $Euclidean Distance\relax }}{8}{figure.caption.10}}
+\newlabel{fig:table}{{1.10}{8}{Heatmap of Geodesic Distance $\& $Euclidean Distance\relax }{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.11}{\ignorespaces Local p-value matrix $A^\prime $ vs $B^\prime $\relax }}{9}{figure.caption.11}}
+\newlabel{fig:PA2E}{{1.11}{9}{Local p-value matrix $A^\prime $ vs $B^\prime $\relax }{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Neuronal Network vs. Cell type}{10}{section.1.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.12}{\ignorespaces Heatmap of Dissimilarity measure for all networks\relax }}{10}{figure.caption.13}}
+\newlabel{fig:table}{{1.12}{10}{Heatmap of Dissimilarity measure for all networks\relax }{figure.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.13}{\ignorespaces Local p-value matrix $A$ vs C\relax }}{11}{figure.caption.14}}
+\newlabel{fig:PAC}{{1.13}{11}{Local p-value matrix $A$ vs C\relax }{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.14}{\ignorespaces Heatmap of geodesic distance for all networks\relax }}{12}{figure.caption.15}}
+\newlabel{fig:table}{{1.14}{12}{Heatmap of geodesic distance for all networks\relax }{figure.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.15}{\ignorespaces Local p-value matrix $A^\prime $ vs C\relax }}{13}{figure.caption.16}}
+\newlabel{fig:PA2C}{{1.15}{13}{Local p-value matrix $A^\prime $ vs C\relax }{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Neuronal Network vs. Cell Direction}{14}{section.1.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.16}{\ignorespaces Heatmap of Dissimilarity measure for subnetworks\relax }}{15}{figure.caption.17}}
+\newlabel{fig:table}{{1.16}{15}{Heatmap of Dissimilarity measure for subnetworks\relax }{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.17}{\ignorespaces Local p-value matrix $A_{s}$ vs D\relax }}{15}{figure.caption.18}}
+\newlabel{fig:PAD}{{1.17}{15}{Local p-value matrix $A_{s}$ vs D\relax }{figure.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.18}{\ignorespaces Heatmap of Geodesic Distance for subnetworks\relax }}{16}{figure.caption.19}}
+\newlabel{fig:table}{{1.18}{16}{Heatmap of Geodesic Distance for subnetworks\relax }{figure.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.19}{\ignorespaces Local p-value matrix $A^\prime _{s}$ vs D\relax }}{17}{figure.caption.20}}
+\newlabel{fig:PAD}{{1.19}{17}{Local p-value matrix $A^\prime _{s}$ vs D\relax }{figure.caption.20}{}}

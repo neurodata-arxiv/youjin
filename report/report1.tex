@@ -62,9 +62,91 @@
 
 There have been a work on the properties of the neuronal network based on these incomplete or inconsistent wiring diagrams. Varshney et al(2011) proposed ``near-complete" wiring diagram of C. elegans. They are interested in local network properties as well as global network properties. We can naturally think that neuronal physical networks and some of the biological function or properties would be correlated each other.
 
-We are given a connected, weighted and also directed network of , which is comprised of 279 nodes and 3225 (directed) edges between them. The given network illustrates the network in the region of pharynx, and the weight imposed on each edge is equivalent to the number of corresponding synapses. For vertex attributes, we have (1) cell class, (2) soma position, (3) neurotransmitters and (4) role. 
+We are given a connected, weighted and also directed network of C. elegans, which is comprised of 279 nodes and 3225 (directed) edges between them. The given network illustrates the network in the region of pharynx, and the weight imposed on each edge is equivalent to the number of corresponding synapses. For vertex attributes, we have (1) cell class, (2) soma position, (3) neurotransmitters and (4) role. To avoid the difficulties due to missingness, we are going to look into the complete data first - (1) cell class and (2) soma position.  
+
+\section{Choosing distance matrix for network(graph)}
+
+\textit{Most of the works are borrowed from Minh Tang's thesis ``Graph metrics and dimension reduction"}
+
+First we have considered a few candidiates for distances on graphs. The first one is a dissimilarity matrix $A$ where $A_{ij} = 1$ if node $i$ and node $j$ are not adjacent or their is no edge starting from $i$ to $j$. The second candidate distance measure is a geodesic distance, which is defined as the shortest path length of consecutive edges connecting two nodes. Dissimilarity matrix is a part of geodesic distance. We have observed that these two measures are two extremes of opposite side. Maybe we want more than adjacency relationship and using all the path information, i.e. geodesic distance, may be too much. We assume that \textit{Diffusion distances} may provide a distnaces somewhere between the two. 
+
+
+
+\subsection{Distances on undirected graphs}
+
+- Similarity measure $\omega$
+
+$$\omega[i,j] = \mbox{ (the number of synapses starting from i to j)}$$
+ 
+
+- Transition probability (Assume time homogeneous Markov chain; left stochastic matrix)
+
+$$P[i,j] = Pr\big( X_{n} = j  | X_{n-1} = i \big)$$
+
+We define the transition matrix \textbf{P} = $(p_{ij})$ of a Markov chain as:
+
+$$p_{ij} = \left\{ \begin{array}{ll} \frac{w(\{ i, j\})}{ deg(i) } & \mbox{ if } u \sim v \\ 0 & \mbox{ otherwise }  \end{array}  \right.$$
+
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\includegraphics[width=0.4\textwidth]{../figure/trans.png}
+\caption{Transition matrix P}
+\label{fig:trans}
+\end{figure}
+
+
+
+
+- Stationary distribution 
+: A probability vector $\pi$ is a stationary distribution for Markov chain $P$ if $\pi P = \pi$. Over the long run, no matter what the starting state was, the proportion of time the chain spends in node $j$ is approximately $\pi(j) (j = 1, ... , n)$.
+Use \verb!statdistr! in r.
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\includegraphics[width=0.4\textwidth]{../figure/statd.png}
+\caption{Stationary probability based on P}
+\label{fig:statd}
+\end{figure}
+
+
+
+  Let $G = (V, E, \omega)$ be an undirected graph with $\omega$ being a similarity measure between vertices of $V.$ Denote by $\textbf{P}$ the probability transition matrix of $G.$ The diffusion distance at time $t,$ $\rho_{t}(u,v)$, between two nodes $u,v \in V$ is defined as:
+  
+  $$\rho^2_{t} = \sum\limits_{w \in V}\big( \textbf{P}^{t}(u,w) - \textbf{P}^{t}(v,w) \big)^2 \frac{1}{\pi(w)} =  \kappa(\textbf{P}^{2t} \Pi^{-1} )$$
+
+ 
+Diffusion distances for Directed Graph at time $t$ is defined as :
+
+$$\Delta_{\rho^{2}_{t}} = \kappa(\textbf{P}^{t} \Pi^{-1} (\textbf{P}^{t})^{T} )$$
+ 
+where $\kappa(\textbf{A}) = \textbf{A}_{dg} \textbf{1} \textbf{1}^{T} - \textbf{A} - \textbf{A}^{T} + \textbf{1} \textbf{1}^{T} \textbf{A}_{dg}$ 
  
  
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[dissimilarity matrix]{\includegraphics[width=0.3\textwidth]{../figure/A_plot.png}}
+\subfigure[t=1]{\includegraphics[width=0.3\textwidth]{../figure/diffusion1}}
+\subfigure[t=5]{\includegraphics[width=0.3\textwidth]{../figure/diffusion5.png}}
+\caption{Heatmap of distance measures}
+\label{fig:dist}    
+\end{figure} 
+ 
+ 
+ 
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\includegraphics[width=0.4\textwidth]{../figure/diffusion1.png}
+\caption{Diffusion distances of neuronal network at time t = 1}
+\label{fig:statd}
+\end{figure} 
+ 
+ 
+- Difficulties of applying diffusion distance to categorical variable graph : $G$ must be connected. Otherwise, transition probability between different categories will be zero.  
  
  \section{Neuronal Network vs. Soma position}
  
@@ -83,6 +165,15 @@ We are given a connected, weighted and also directed network of , which is compr
 
 \begin{center}\textbf{Goal : Test $H_{0} : f_{AB} = f_{A}f_{B}$}
 \end{center} 
+ 
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\includegraphics[width=0.4\textwidth]{../figure/histo1.png}
+\caption{distribution of soma position unadjacent pairs vs. adjacent pairs}
+\label{fig:histo1}
+\end{figure}  
+ 
  
 \begin{figure}[H]
 \captionsetup{format=plain}
@@ -120,6 +211,17 @@ We are given a connected, weighted and also directed network of , which is compr
 \newpage
 \begin{center}\textbf{Goal : Test $H_{0} : f_{A^\prime B^\prime} = f_{A^\prime}f_{B^\prime}$}
 \end{center} 
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\includegraphics[width=0.4\textwidth]{../figure/histo2.png}
+\caption{distribution of soma position across geodesic distance}
+\label{fig:histo1}
+\end{figure}  
+ 
+
+
 
 \begin{figure}[H]
 \captionsetup{format=plain}
