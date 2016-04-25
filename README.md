@@ -4,6 +4,6 @@
 
   - http://www.jstor.org/stable/pdf/2528823.pdf?_=1460126515800 - distance measures for mixed data types
 
-*  Estimate testing power in real network data to find the optimal scale
+*  Diffusion Distance : find an appropriate distance for network(graph) between two extremes - adjacency matrix vs. geodesic distance.
 
- - https://cran.r-project.org/web/packages/glasso/glasso.pdf
+ - http://www.ams.jhu.edu/~priebe/.FILES/MinhTang-jhu_nov11.pdf
