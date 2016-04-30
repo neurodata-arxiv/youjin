@@ -1,0 +1,290 @@
+\documentclass[12pt]{report}
+\usepackage{geometry}
+\usepackage{url,enumerate, amssymb, multirow, anysize, booktabs, threeparttable, amsfonts, bbm}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+\usepackage{setspace,listings,dsfont}
+%\usepackage{cite}
+\usepackage[square,numbers]{natbib}
+\bibliographystyle{abbrvnat, lipsum}
+\usepackage{mathrsfs, wrapfig}
+\usepackage{hanging}
+\renewcommand*\thesection{\arabic{section}}
+\usepackage{color,soul,amssymb}
+\usepackage{fancyhdr, mathtools}
+\usepackage{dcolumn, capt-of}
+\usepackage{indentfirst, verbatim}
+\newcounter{equationset, sectsty, breqn}
+\usepackage{setspace,float,lscape,subfigure,amsmath,multirow,color,nag}
+\usepackage[font=sf, labelfont={sf,bf}, margin=1cm]{caption}
+\captionsetup{font={small,sf,singlespacing}}
+\newcommand{\pb}{\mathbb{P}}
+\newcommand{\E}{\ensuremath{\mbox{E}}}
+% Page style definition
+\geometry{margin=1.0in}
+\pagestyle{fancy}
+% Customize this to your liking.
+\setlength{\headheight}{16pt}
+\lhead{}\chead{}\rhead{[Simulation] Diffusion Distance}\lfoot{}
+\cfoot{\thepage}\rfoot{April, 2016}
+\sffamily
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{0\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \interlinepenalty\@M
+    \Huge\bfseries  \thechapter.\quad #1\par\nobreak
+    \vskip 25\p@
+  }}
+\makeatother
+
+
+\usepackage{Sweave}
+\begin{document}
+\input{report2-concordance}
+
+
+\pagenumbering{roman}
+
+
+\pagenumbering{arabic}
+
+\doublespace
+
+
+\sffamily
+\normalsize
+\textit{Most of the works are borrowed from Minh Tang's thesis ``Graph metrics and dimension reduction"}
+
+\section{Network Distance}
+
+ The distance correlation(dCor) between random vectors $X$($\in \textbf{R}^{p}$) and $Y(\in \textbf{R}^{q})$ $\mathcal{R}^2$ defined based on Euclidean distaance between two. In the contexts of network, if node attributes vector $Y$ is all continuous, we can think its distance matrix, but we cannot intuitively think of Euclidean distance for their underlying networks. It is known that a dissimilarity matrix $\Delta$ is a Type-2 Euclidean distance matrix if and only $\tau(\Delta)$ is positive definite, where $\tau(A) = -\frac{1}{2}(I - 1 1^{T} / n) A (I - 1 1^{T} / n).$ Based on this, we suggest \textit{diffusion distance} as a distance matrix corresponding to Euclidean distance matrix for network. \textit{Diffusion distance} at time $t$ between two nodes can be measured as the dissimilarity of two in the network space with connectivity between them at $t$ step. Let me introduce some notations. 
+ 
+ - Similarity measure $\omega$
+
+$$\omega[i,j] = \mbox{ (the number of synapses starting from i to j)}$$
+ 
+
+- Transition probability (Assume time homogeneous Markov chain; left stochastic matrix)
+
+$$P[i,j] = Pr\big( X_{n} = j  | X_{n-1} = i \big)$$
+
+We define the transition matrix \textbf{P} = $(p_{ij})$ of a Markov chain as:
+
+$$p_{ij} = \left\{ \begin{array}{ll} \frac{w(\{ i, j\})}{ deg(i) } & \mbox{ if } u \sim v \\ 0 & \mbox{ otherwise }  \end{array}  \right.$$
+
+- Stationary distribution 
+: A probability vector $\pi$ is a stationary distribution for Markov chain $P$ if $\pi P = \pi$. Over the long run, no matter what the starting state was, the proportion of time the chain spends in node $j$ is approximately $\pi(j) (j = 1, ... , n)$.
+Use \verb!statdistr! in r.
+  
+  
+  Let $G = (V, E, \omega)$ be an undirected graph with $\omega$ being a similarity measure between vertices of $V.$ Denote by $\textbf{P}$ the probability transition matrix of $G.$ The diffusion distance at time $t,$ $\rho_{t}(u,v)$, between two nodes $u,v \in V$ is defined as:
+  
+  $$\rho^2_{t} = \sum\limits_{w \in V}\big( \textbf{P}^{t}(u,w) - \textbf{P}^{t}(v,w) \big)^2 \frac{1}{\pi(w)} =  \kappa(\textbf{P}^{2t} \Pi^{-1} )$$
+
+ 
+Diffusion distances for Directed Graph at time $t$ is defined as :
+
+$$\Delta_{\rho^{2}_{t}} = \kappa(\textbf{P}^{t} \Pi^{-1} (\textbf{P}^{t})^{T} )$$
+ 
+where $\kappa(\textbf{A}) = \textbf{A}_{dg} \textbf{1} \textbf{1}^{T} - \textbf{A} - \textbf{A}^{T} + \textbf{1} \textbf{1}^{T} \textbf{A}_{dg}$ 
+
+
+\section{Network Generating Model}
+  
+Consider a latent variable dependent model, where the node attributes and their network structures are correlated each other. Generate an undirected connected graph on $n=500$ nodes. 
+
+
+  
+
+
+
+
+
+\section{Simulation results for univariate case}
+
+  First of all, I have observed p-values at each time point. We could see the patterns in p-values -- the more neighbor you include in your network space, the lower their p-values are. Significance looks more independent on tho choice of network neighborhood than the choice of attribute neighborhood.  
+
+\begin{equation} 
+\label{eq:latent}
+(X_1, Y_1), (X_2, Y_2) , ... , (X_N, Y_N)  \overset{i.i.d}{\sim} N \left( \begin{bmatrix} 0 \\ 0 \end{bmatrix}, \begin{bmatrix}1 & \rho \\ \rho & 1 \end{bmatrix}  \right)
+\end{equation}
+
+
+\begin{equation}
+\label{eq:latentspace}
+\log \left( \frac{P\big( T_{ij} \big) }{1 - P\big( T_{ij}    \big) } \big| X_i, X_j \right) = f \big( | X_i - X_j |  \big)
+\end{equation}
+
+
+\begin{equation}
+\label{eq:model2}
+f\big( |X_i - X_j| \big) = \left\{ \begin{array}{cc} 2 / |X_i - X_j| & \max(0.01, |X_i - X_j| ) < 0.10 \\ |X_{i} - X_{j}| & 0.10 \leq |X_{i}  - X_{j}| < 0.50 \\ - |X_{i} - X_{j}| &  0.50 \leq |X_{i}  - X_{j}| < 1.00  \\ - 2 \cdot |X_{i} - X_{j}| &  1.00 \leq |X_{i}  - X_{j}| < 1.50  \\ -10 \cdot |X_i - X_j| & |X_i - X_j| \geq 1.50 \end{array}  \right.
+\end{equation}
+
+
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/pAll21.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/pAll22.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/pAll25.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/pAll210.png}}
+\caption{log-scale of P-values when $\rho$ = 0.2}
+\label{fig:pAll2}    
+\end{figure} 
+
+On the other hand, p-values might \textit{happen to be low} because they are also random variables. Moreover we never know the optimal scale nor power. The following results are from re-sampling procedures. Generate $M=500$ random graphs and their nodes' (1) univariate / (2) multivariate attributes from the same joint distribution. The power of independence is calculated in the following ways:
+
+
+$$\mbox{Power } = \hat{P}(\mbox{ p-values } \leq 0.05)$$
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/power0_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/power0_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/power0_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/power0_10.png}}
+\caption{Estimated power when $\rho$ = 0.0}
+\label{fig:power0}    
+\end{figure} 
+
+
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/power1_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/power1_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/power1_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/power1_10.png}}
+\caption{Estimated power when $\rho$ = 0.1}
+\label{fig:power1}    
+\end{figure} 
+ 
+ 
+ 
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/power2_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/power2_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/power2_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/power2_10.png}}
+\caption{Estimated power when $\rho$ = 0.2}
+\label{fig:power2}    
+\end{figure} 
+  
+ 
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Simulation results for univariate case}
+
+\begin{equation} 
+\label{eq:latent}
+(X_1, Y_{11}, Y_{12}, Y_{13}), ... , (X_N, Y_{1N}, Y_{2N}, Y_{3N})  \overset{i.i.d}{\sim} N \left( \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix}1 & \rho_{1} & \rho_{2}&  \rho_{3} \\ \rho_{1} & 1 & 0 & 0 \\ \rho_{2} & 0 & 1 & 0 \\ \rho_{3} & 0 & 0 & 1  \end{bmatrix}  \right)
+\end{equation}
+
+
+\textbf{(1) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.1, 0.1, 0.1)$}
+
+
+
+
+\textbf{(2) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.2, 0.2)$}
+
+
+
+\textbf{(3) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.0, 0.0)$}
+
+
+
+\textbf{(4) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.2, 0.1)$}
+
+
+\textbf{(5) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, -0.2, 0.0)$}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Application to Real Data}
+
+
+
+
+\section{Application to Real Data}
+
+- Similarity measure $\omega$
+
+$$\omega[i,j] = \mbox{ (the number of synapses starting from i to j)}$$
+ 
+
+- Transition probability (Assume time homogeneous Markov chain; left stochastic matrix)
+
+$$P[i,j] = Pr\big( X_{n} = j  | X_{n-1} = i \big)$$
+
+We define the transition matrix \textbf{P} = $(p_{ij})$ of a Markov chain as:
+
+$$p_{ij} = \left\{ \begin{array}{ll} \frac{w(\{ i, j\})}{ deg(i) } & \mbox{ if } u \sim v \\ 0 & \mbox{ otherwise }  \end{array}  \right.$$
+
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\includegraphics[width=0.4\textwidth]{../figure/trans.png}
+\caption{Transition matrix P}
+\label{fig:trans}
+\end{figure}
+
+
+
+- Stationary distribution 
+: A probability vector $\pi$ is a stationary distribution for Markov chain $P$ if $\pi P = \pi$. Over the long run, no matter what the starting state was, the proportion of time the chain spends in node $j$ is approximately $\pi(j) (j = 1, ... , n)$.
+Use \verb!statdistr! in r.
+
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\includegraphics[width=0.4\textwidth]{../figure/statd.png}
+\caption{Stationary probability based on P}
+\label{fig:statd}
+\end{figure}
+
+
+  Let $G = (V, E, \omega)$ be an undirected graph with $\omega$ being a similarity measure between vertices of $V.$ Denote by $\textbf{P}$ the probability transition matrix of $G.$ The diffusion distance at time $t,$ $\rho_{t}(u,v)$, between two nodes $u,v \in V$ is defined as:
+  
+  $$\rho^2_{t} = \sum\limits_{w \in V}\big( \textbf{P}^{t}(u,w) - \textbf{P}^{t}(v,w) \big)^2 \frac{1}{\pi(w)} =  \kappa(\textbf{P}^{2t} \Pi^{-1} )$$
+
+ 
+Diffusion distances for Directed Graph at time $t$ is defined as :
+
+$$\Delta_{\rho^{2}_{t}} = \kappa(\textbf{P}^{t} \Pi^{-1} (\textbf{P}^{t})^{T} )$$
+ 
+where $\kappa(\textbf{A}) = \textbf{A}_{dg} \textbf{1} \textbf{1}^{T} - \textbf{A} - \textbf{A}^{T} + \textbf{1} \textbf{1}^{T} \textbf{A}_{dg}$ 
+
+ 
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[dissimilarity matrix]{\includegraphics[width=0.3\textwidth]{../figure/A_plot.png}}
+\subfigure[t=1]{\includegraphics[width=0.3\textwidth]{../figure/diffusion1}}
+\subfigure[t=5]{\includegraphics[width=0.3\textwidth]{../figure/diffusion5.png}}
+\caption{Heatmap of distance measures}
+\label{fig:dist}    
+\end{figure} 
+ 
+  
+- Difficulties of applying diffusion distance to categorical variable graph : $G$ must be connected. Otherwise, transition probability between different categories will be zero.  
+
+ 
+\end{document}
