@@ -61,7 +61,7 @@
 
 \section{Network Distance}
 
- The distance correlation(dCor) between random vectors $X$($\in \textbf{R}^{p}$) and $Y(\in \textbf{R}^{q})$ $\mathcal{R}^2$ defined based on Euclidean distaance between two. In the contexts of network, if node attributes vector $Y$ is all continuous, we can think its distance matrix, but we cannot intuitively think of Euclidean distance for their underlying networks. It is known that a dissimilarity matrix $\Delta$ is a Type-2 Euclidean distance matrix if and only $\tau(\Delta)$ is positive definite, where $\tau(A) = -\frac{1}{2}(I - 1 1^{T} / n) A (I - 1 1^{T} / n).$ Based on this, we suggest \textit{diffusion distance} as a distance matrix corresponding to Euclidean distance matrix for network. \textit{Diffusion distance} at time $t$ between two nodes can be measured as the dissimilarity of two in the network space with connectivity between them at $t$ step. Let me introduce some notations. 
+ The distance correlation(dCor) $\mathcal{R}^2$ between random vectors $X$($\in \textbf{R}^{p}$) and $Y(\in \textbf{R}^{q})$ is defined based on Euclidean distance between two. In the contexts of network, if node attributes vector $Y$ is all continuous, we can think its distance matrix, but we cannot intuitively think of Euclidean distance for their underlying networks. It is known that a dissimilarity matrix $\Delta$ is a Type-2 Euclidean distance matrix if and only $\tau(\Delta)$ is positive definite, where $\tau(A) = -\frac{1}{2}(I - 1 1^{T} / n) A (I - 1 1^{T} / n).$ Based on this, we suggest \textit{diffusion distance} as a distance matrix corresponding to Euclidean distance matrix for network. \textit{Diffusion distance} at time $t$ between two nodes can be measured as the dissimilarity of two in the network space with connectivity between them at $t$ step. Let me introduce some notations. 
  
  - Similarity measure $\omega$
 
@@ -143,6 +143,7 @@ On the other hand, p-values might \textit{happen to be low} because they are als
 
 $$\mbox{Power } = \hat{P}(\mbox{ p-values } \leq 0.05)$$
 
+
 \begin{figure}[H]
 \captionsetup{format=plain}
 \centering
@@ -153,7 +154,6 @@ $$\mbox{Power } = \hat{P}(\mbox{ p-values } \leq 0.05)$$
 \caption{Estimated power when $\rho$ = 0.0}
 \label{fig:power0}    
 \end{figure} 
-
 
 
 \begin{figure}[H]
@@ -181,8 +181,12 @@ $$\mbox{Power } = \hat{P}(\mbox{ p-values } \leq 0.05)$$
 \end{figure} 
   
  
- 
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \section{Simulation results for univariate case}
 
@@ -195,20 +199,62 @@ $$\mbox{Power } = \hat{P}(\mbox{ p-values } \leq 0.05)$$
 \textbf{(1) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.1, 0.1, 0.1)$}
 
 
-
-
 \textbf{(2) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.2, 0.2)$}
-
-
 
 \textbf{(3) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.0, 0.0)$}
 
-
-
-\textbf{(4) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.2, 0.1)$}
-
+\textbf{(4) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.2, 0.0)$}
 
 \textbf{(5) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, -0.2, 0.0)$}
+
+
+ All of the above simulation schemes are planned to be based on $M =500$ independent iterations and $n=500$ nodes(subjects) for each network. It requires a lot of time to complete, so I prepared \textit{small} simulation, which iterates $M=100$ times and contains $n = 300$ nodes(subjects) per network.  
+ 
+ (1) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.1, 0.1, 0.1)$ ($M = 100; n = 300$)
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/smulti1_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/smulti1_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/smulti1_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/smulti1_10.png}}
+\caption{Estimated power when $\rho$ = (0.1, 0.1, 0.1)}
+\label{fig:smulti1}    
+\end{figure} 
+ 
+ The maximum estimated power is 0.50($t=1$), 0.59($t=2$), 0.66($t=5$), and 0.65($t=10$).
+
+ (4) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.2, 0.0)$ ($M = 100; n = 300$)
+
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/smulti4_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/smulti4_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/smulti4_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/smulti4_10.png}}
+\caption{Estimated power when $\rho$ = (0.2, 0.2, 0.0)}
+\label{fig:smulti4}    
+\end{figure} 
+
+The maximum estimated power is 0.95($t=1$), 0.97($t=2$), 0.98($t=5$), and 0.99($t=10$).
+
+
+\newpage
+\section{Comparison between distance measures}
+\textbf{Dissimilarity matrix vs. Geodesic distance vs. Diffusion Distance}
+
+
+\subsection{Univariate node attributes}
+
+
+
+
+
+\subsection{Multivariate node attributes}
+
 
 
 
