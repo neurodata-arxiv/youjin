@@ -279,38 +279,36 @@ For all nodes $i \neq j$ in a graph $G$, and all nodes $u \neq v$ in a graph $H$
 \log \left( \frac{P\big( T_{ij} \big) }{1 - P\big( T_{ij}    \big) } \big| X_i, X_j \right) = f \big( | X_i - X_j |  \big) = \log \left( \frac{P\big( T_{uv} \big) }{1 - P\big( T_{uv}    \big) } \big|W_i, W_j   \right)
 \end{equation}
 
-
+\newpage
 \textbf{Simple Example}
-(1) $\rho = 0.0$ (10 iterations; $n = 300$)
 
+
+(1) $\rho = 0.0$ ($M = 100$ iterations; $n = 300$)
 
 \begin{figure}[H]
 \captionsetup{format=plain}
 \centering
-\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/test1_1.png}}
-\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/test1_2.png}}
-\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/test1_5.png}}
-\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/test1_10.png}}
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/gh1_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/gh1_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/gh1_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/gh1_10.png}}
 \caption{Estimated power when $\rho$ = 0.0}
-\label{fig:test1}    
+\label{fig:gh1}    
 \end{figure} 
 
-
-(1) $\rho = 0.2$ (10 iterations; $n = 300$)
-
+\newpage
+(2) $\rho = 0.2$ (100 iterations; $n = 300$)
 
 \begin{figure}[H]
 \captionsetup{format=plain}
 \centering
-\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/test2_1.png}}
-\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/test2_2.png}}
-\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/test2_5.png}}
-\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/test2_10.png}}
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/gh2_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/gh2_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/gh2_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/gh2_10.png}}
 \caption{Estimated power when $\rho$ = 0.2}
-\label{fig:test2}    
+\label{fig:gh1}    
 \end{figure} 
-
-
 
 
 
