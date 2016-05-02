@@ -61,7 +61,7 @@
 
 \section{Network Distance}
 
- The distance correlation(dCor) $\mathcal{R}^2$ between random vectors $X$($\in \textbf{R}^{p}$) and $Y(\in \textbf{R}^{q})$ is defined based on Euclidean distance between two. In the contexts of network, if node attributes vector $Y$ is all continuous, we can think its distance matrix, but we cannot intuitively think of Euclidean distance for their underlying networks. It is known that a dissimilarity matrix $\Delta$ is a Type-2 Euclidean distance matrix if and only $\tau(\Delta)$ is positive definite, where $\tau(A) = -\frac{1}{2}(I - 1 1^{T} / n) A (I - 1 1^{T} / n).$ Based on this, we suggest \textit{diffusion distance} as a distance matrix corresponding to Euclidean distance matrix for network. \textit{Diffusion distance} at time $t$ between two nodes can be measured as the dissimilarity of two in the network space with connectivity between them at $t$ step. Let me introduce some notations. 
+ The distance correlation(dCor) $\mathcal{R}^2$ between random vectors $X$($\in \textbf{R}^{p}$) and $Y(\in \textbf{R}^{q})$ is defined based on Euclidean distance between two. In the contexts of network, if node attributes vector $Y$ is all continuous, we can think its distance matrix, but we cannot intuitively think of Euclidean distance for their underlying networks. It is known that a dissimilarity matrix $\Delta$ is a Type-2 Euclidean distance matrix if and only if $\tau(\Delta)$ is positive definite, where $\tau(A) = -\frac{1}{2}(I - 1 1^{T} / n) A (I - 1 1^{T} / n).$ Based on this, we suggest \textit{diffusion distance} as a distance matrix corresponding to Euclidean distance matrix for network. \textit{Diffusion distance} at time $t$ between two nodes can be measured as the dissimilarity of two in the network space with connectivity between them at $t$ step. Let me introduce some notations. 
  
  - Similarity measure $\omega$
 
@@ -195,6 +195,7 @@ $$\mbox{Power } = \hat{P}(\mbox{ p-values } \leq 0.05)$$
 (X_1, Y_{11}, Y_{12}, Y_{13}), ... , (X_N, Y_{1N}, Y_{2N}, Y_{3N})  \overset{i.i.d}{\sim} N \left( \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix}1 & \rho_{1} & \rho_{2}&  \rho_{3} \\ \rho_{1} & 1 & 0 & 0 \\ \rho_{2} & 0 & 1 & 0 \\ \rho_{3} & 0 & 0 & 1  \end{bmatrix}  \right)
 \end{equation}
 
+\textbf{(0) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.0, 0.0, 0.0)$}
 
 \textbf{(1) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.1, 0.1, 0.1)$}
 
@@ -294,6 +295,23 @@ For all nodes $i \neq j$ in a graph $G$, and all nodes $u \neq v$ in a graph $H$
 \caption{Estimated power when $\rho$ = 0.0}
 \label{fig:test1}    
 \end{figure} 
+
+
+(1) $\rho = 0.2$ (10 iterations; $n = 300$)
+
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/test2_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/test2_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/test2_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/test2_10.png}}
+\caption{Estimated power when $\rho$ = 0.2}
+\label{fig:test2}    
+\end{figure} 
+
+
 
 
 
