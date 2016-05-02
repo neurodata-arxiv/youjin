@@ -7,3 +7,4 @@
 *  Diffusion Distance : find an appropriate distance for network(graph) between two extremes - adjacency matrix vs. geodesic distance.
 
  - http://www.ams.jhu.edu/~priebe/.FILES/MinhTang-jhu_nov11.pdf
+ - using graph diffusion distance for comparing two graphs : http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=6736904&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D6736904
