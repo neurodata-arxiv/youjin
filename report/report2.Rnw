@@ -256,6 +256,46 @@ The maximum estimated power is 0.95($t=1$), 0.97($t=2$), 0.98($t=5$), and 0.99($
 
 
 
+\newpage
+\section{Test independence between two graphs(networks)}
+
+\subsection{Dependent Latent Variable Model}
+
+Assume a network $H$ and $G$ have same node index - maybe they are all considering same individuals but different networks. Someone might be interested in independence between online friendship and offline friendship; independence between physical connections and functional relationship, etc. 
+
+$$H_{0}: f_{GH}  = f_{G} f_{H}$$
+
+For all nodes $i \neq j$ in a graph $G$, and all nodes $u \neq v$ in a graph $H$, suppose the following latent variable model:
+
+\begin{equation} 
+\label{eq:latent}
+(X_1, W_1), (X_2, W_2) , ... , (X_N, W_N)  \overset{i.i.d}{\sim} N \left( \begin{bmatrix} 0 \\ 0 \end{bmatrix}, \begin{bmatrix}1 & \rho \\ \rho & 1 \end{bmatrix}  \right)
+\end{equation}
+
+
+\begin{equation}
+\label{eq:latentspace}
+\log \left( \frac{P\big( T_{ij} \big) }{1 - P\big( T_{ij}    \big) } \big| X_i, X_j \right) = f \big( | X_i - X_j |  \big) = \log \left( \frac{P\big( T_{uv} \big) }{1 - P\big( T_{uv}    \big) } \big|W_i, W_j   \right)
+\end{equation}
+
+
+\textbf{Simple Example}
+(1) $\rho = 0.0$ (10 iterations; $n = 300$)
+
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/test1_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/test1_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/test1_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/test1_10.png}}
+\caption{Estimated power when $\rho$ = 0.0}
+\label{fig:test1}    
+\end{figure} 
+
+
+
 
 
 

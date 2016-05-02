@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  1 MAY 2016 18:36
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.5.24)  2 MAY 2016 10:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -656,6 +656,12 @@ File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 
 LaTeX Warning: Label `eq:latent' multiply defined.
 
+
+LaTeX Warning: Label `eq:latent' multiply defined.
+
+
+LaTeX Warning: Label `eq:latentspace' multiply defined.
+
 )
 \openout1 = `report2.aux'.
 
@@ -835,10 +841,20 @@ File: ../figure/smulti4_5.png Graphic file (type QTm)
 File: ../figure/smulti4_10.png Graphic file (type QTm)
  <use  "../figure/smulti4_10.png" > [9]
 [10] [11]
+File: ../figure/test1_1.png Graphic file (type QTm)
+ <use  "../figure/test1_1.png" >
+File: ../figure/test1_2.png Graphic file (type QTm)
+ <use  "../figure/test1_2.png" >
+File: ../figure/test1_5.png Graphic file (type QTm)
+
+<use  "../figure/test1_5.png" >
+File: ../figure/test1_10.png Graphic file (type QTm)
+ <use  "../figure/test1_10.png" > [12] [13]
 File: ../figure/trans.png Graphic file (type QTm)
- <use  "../figure/trans.png" >
+
+<use  "../figure/trans.png" >
 File: ../figure/statd.png Graphic file (type QTm)
- <use  "../figure/statd.png" > [12]
+ <use  "../figure/statd.png" > [14]
 File: ../figure/A_plot.png Graphic file (type QTm)
 
 <use  "../figure/A_plot.png" >
@@ -846,31 +862,31 @@ File: ../figure/diffusion1.png Graphic file (type QTm)
  <use  "../figure/diffusion1.png" >
 File: ../figure/diffusion5.png Graphic file (type QTm)
 
-<use  "../figure/diffusion5.png" > [13]
+<use  "../figure/diffusion5.png" > [15]
 No complaints by nag.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 336.
-[14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 336.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 376.
+[16]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 376.
  (./report2.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 336.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 336.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 376.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 376.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 336.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 376.
  )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 55 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 14555 strings out of 493706
- 211499 string characters out of 6145769
- 288967 words of memory out of 5000000
- 17634 multiletter control sequences out of 15000+600000
+ 14565 strings out of 493706
+ 211653 string characters out of 6145769
+ 289115 words of memory out of 5000000
+ 17640 multiletter control sequences out of 15000+600000
  35360 words of font info for 63 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  36i,12n,45p,1002b,481s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on report2.pdf (14 pages).
+Output written on report2.pdf (16 pages).
