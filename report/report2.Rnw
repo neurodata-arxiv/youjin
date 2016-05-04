@@ -139,9 +139,47 @@ f\big( |X_i - X_j| \big) = \left\{ \begin{array}{cc} 2 / |X_i - X_j| & \max(0.01
 
 On the other hand, p-values might \textit{happen to be low} because they are also random variables. Moreover we never know the optimal scale nor power. The following results are from re-sampling procedures. Generate $M=500$ random graphs and their nodes' (1) univariate / (2) multivariate attributes from the same joint distribution. The power of independence is calculated in the following ways:
 
-
 $$\mbox{Power } = \hat{P}(\mbox{ p-values } \leq 0.05)$$
 
+Before using local test, first test independence via global test using \verb!dcov.test! from \verb!energy! package for \verb!R!. The following table shows the estimated power at different diffusion time points for each correlation coefficient. 
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & t=1 & t=2 & t=5 & t=10 \\ 
+  \hline
+$\rho$=0.0 & 0.05 & 0.06 & 0.06 & 0.07 \\ 
+$\rho$=0.1 & 0.09 & 0.24 & 0.39 & 0.42 \\ 
+$\rho$=0.2 & 0.29 & 0.83 & 0.95 & 0.97 \\ 
+   \hline
+\end{tabular}
+\caption{Estimated power based on dCor statistics}
+\label{tab:dcor}
+\end{table}
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & t=1 & t=2 & t=5 & t=10 \\ 
+  \hline
+r=0.0 & 0.08 & 0.09 & 0.09 & 0.09 \\ 
+  r=0.1 & 0.43 & 0.52 & 0.57 & 0.58 \\ 
+  r=0.2 & 0.97 & 0.99 & 0.99 & 1.00 \\ 
+   \hline
+\end{tabular}
+\caption{Estimated power of optimal local tests}
+\label{tab:local}
+\end{table}
+
+
+Table \ref{tab:dcor} illustrates changing (estimated) power as time goes. It is noticeble that the estimated power increases as diffusion process continues. Table \ref{tab:local} shows the estimated power at local optimal scale, where reaches the highest power. The area of reaching highest power as well as estimated power at local scale is increasing as the time point $t$ increases under $H_{A}.$ 
+
+
+%%%%%%%%%%%%%%%%%%% power heatmap %%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[H]
 \captionsetup{format=plain}
@@ -196,67 +234,104 @@ $$\mbox{Power } = \hat{P}(\mbox{ p-values } \leq 0.05)$$
 
 \textbf{(0) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.0, 0.0, 0.0)$}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \textbf{(1) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.1, 0.1, 0.1)$}
 
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/multi1_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/multi1_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/multi1_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/multi1_10.png}}
+\caption{Estimated power when $\rho$ = (0.1, 0.1, 0.1)}
+\label{fig:multi1}    
+\end{figure} 
+ 
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & t=1 & t=2 & t=5 & t=10 \\ 
+  \hline
+global test & 0.12 & 0.41 & 0.65 & 0.69 \\ 
+  local optimal & 0.72 & 0.83 & 0.87 & 0.87 \\ 
+   \hline
+\end{tabular}
+\caption{Estimated power of multivariate attribute model 1}
+\end{table}
 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \textbf{(2) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.2, 0.2)$}
 
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/multi2_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/multi2_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/multi2_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/multi2_10.png}}
+\caption{Estimated power when $\rho$ = (0.2, 0.2, 0.2)}
+\label{fig:multi2}    
+\end{figure} 
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & t=1 & t=2 & t=5 & t=10 \\ 
+  \hline
+global test & 0.64 & 1.00 & 1.00 & 1.00 \\ 
+  local optimal & 0.99 & 1.00 & 1.00 & 1.00 \\ 
+   \hline
+\end{tabular}
+\caption{Estimated power of multivariate attribute model 2}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
 \textbf{(3) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.0, 0.0)$}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
 \textbf{(4) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.2, 0.0)$}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \textbf{(5) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, -0.2, 0.0)$}
 
 
- All of the above simulation schemes are planned to be based on $M =500$ independent iterations and $n=500$ nodes(subjects) for each network. It requires a lot of time to complete, so I prepared \textit{small} simulation, which iterates $M=100$ times and contains $n = 300$ nodes(subjects) per network.  
-
-\newpage
- (1) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.1, 0.1, 0.1)$ ($M = 100; n = 300$)
-
 \begin{figure}[H]
 \captionsetup{format=plain}
 \centering
-\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/smulti1_1.png}}
-\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/smulti1_2.png}}
-\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/smulti1_5.png}}
-\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/smulti1_10.png}}
-\caption{Estimated power when $\rho$ = (0.1, 0.1, 0.1)}
-\label{fig:smulti1}    
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/multi5_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/multi5_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/multi5_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/multi5_10.png}}
+\caption{Estimated power when $\rho$ = (0.2, -0.2, 0.0)}
+\label{fig:multi5}    
 \end{figure} 
  
- The maximum estimated power is 0.50($t=1$), 0.59($t=2$), 0.66($t=5$), and 0.65($t=10$).
 
-\newpage
- (4) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.2, 0.2, 0.0)$ ($M = 100; n = 300$)
-
-
-\begin{figure}[H]
-\captionsetup{format=plain}
+\begin{table}[ht]
 \centering
-\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/smulti4_1.png}}
-\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/smulti4_2.png}}
-\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/smulti4_5.png}}
-\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/smulti4_10.png}}
-\caption{Estimated power when $\rho$ = (0.2, 0.2, 0.0)}
-\label{fig:smulti4}    
-\end{figure} 
-
-The maximum estimated power is 0.95($t=1$), 0.97($t=2$), 0.98($t=5$), and 0.99($t=10$).
-
-
-\newpage
-\section{Comparison between distance measures}
-\textbf{Dissimilarity matrix vs. Geodesic distance vs. Diffusion Distance}
-
-
-\subsection{Univariate node attributes}
-
-
-
-
-
-\subsection{Multivariate node attributes}
-
+\begin{tabular}{rrrrr}
+  \hline
+ & t=1 & t=2 & t=5 & t=10 \\ 
+  \hline
+global test & 0.40 & 0.91 & 0.99 & 0.99 \\ 
+  local optimal & 0.99 & 1.00 & 1.00 & 1.00 \\ 
+   \hline
+\end{tabular}
+\caption{Estimated power of multivariate attribute model 5}
+\end{table}
 
 
 \newpage
@@ -282,10 +357,10 @@ For all nodes $i \neq j$ in a graph $G$, and all nodes $u \neq v$ in a graph $H$
 \end{equation}
 
 \newpage
-\textbf{Simple Example}
+\textbf{Simulation Result}
 
 
-(1) $\rho = 0.0$ ($M = 100$ iterations; $n = 300$)
+(1) $\rho = 0.0$ ($M = 500$ iterations; $n = 300$)
 
 \begin{figure}[H]
 \captionsetup{format=plain}
@@ -298,20 +373,27 @@ For all nodes $i \neq j$ in a graph $G$, and all nodes $u \neq v$ in a graph $H$
 \label{fig:gh1}    
 \end{figure} 
 
-\newpage
-(2) $\rho = 0.2$ (100 iterations; $n = 300$)
 
-\begin{figure}[H]
-\captionsetup{format=plain}
+
+\begin{table}[ht]
 \centering
-\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/gh2_1.png}}
-\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/gh2_2.png}}
-\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/gh2_5.png}}
-\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/gh2_10.png}}
-\caption{Estimated power when $\rho$ = 0.2}
-\label{fig:gh1}    
-\end{figure} 
+\begin{tabular}{rrrrr}
+  \hline
+ & t=1 & t=2 & t=5 & t=10 \\ 
+  \hline
+global test & 0.05 & 0.06 & 0.06 & 0.05 \\ 
+  local optimal & 0.07 & 0.07 & 0.08 & 0.08 \\ 
+   \hline
+\end{tabular}
+\caption{G vs H when $\rho = 0.0$}
+\end{table}
 
+
+\newpage
+(2) $\rho = 0.1$ ($M = 500$ iterations; $n = 300$)
+
+\newpage
+(3) $\rho = 0.2$ ($M = 500$ iterations; $n = 300$)
 
 
 
