@@ -124,25 +124,28 @@ Consider a latent variable dependent model, where the node attributes and their 
 f\big( |X_i - X_j| \big) = \left\{ \begin{array}{cc} 2 / |X_i - X_j| & \max(0.01, |X_i - X_j| ) < 0.10 \\ |X_{i} - X_{j}| & 0.10 \leq |X_{i}  - X_{j}| < 0.50 \\ - |X_{i} - X_{j}| &  0.50 \leq |X_{i}  - X_{j}| < 1.00  \\ - 2 \cdot |X_{i} - X_{j}| &  1.00 \leq |X_{i}  - X_{j}| < 1.50  \\ -10 \cdot |X_i - X_j| & |X_i - X_j| \geq 1.50 \end{array}  \right.
 \end{equation}
 
-
+\textcolor{red}{Above arbitrary latent model should be simpler?}
 
 \begin{figure}[H]
 \captionsetup{format=plain}
 \centering
-\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/pAll21.png}}
-\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/pAll22.png}}
-\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/pAll25.png}}
-\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/pAll210.png}}
+\subfigure[t=1]{\includegraphics[width=0.20\textwidth, scale = 0.3]{../figure/pAll21.png}}
+\subfigure[t=2]{\includegraphics[width=0.20\textwidth, scale = 0.3]{../figure/pAll22.png}}
+\subfigure[t=5]{\includegraphics[width=0.20\textwidth, scale = 0.3]{../figure/pAll25.png}}
+\subfigure[t=10]{\includegraphics[width=0.20\textwidth, scale = 0.3]{../figure/pAll210.png}}
 \caption{log-scale of P-values when $\rho$ = 0.2}
 \label{fig:pAll2}    
 \end{figure} 
 
+\textcolor{red}{MGC P-value is NOT a smallest pvalues among k $\times$ l local test, but a optimal scale p-values that current function MGCPermutationTest prints out.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 On the other hand, p-values might \textit{happen to be low} because they are also random variables. Moreover we never know the optimal scale nor power. The following results are from re-sampling procedures. Generate $M=500$ random graphs and their nodes' (1) univariate / (2) multivariate attributes from the same joint distribution. The power of independence is calculated in the following ways:
 
 $$\mbox{Power } = \hat{P}(\mbox{ p-values } \leq 0.05)$$
 
 Before using local test, first test independence via global test using \verb!dcov.test! from \verb!energy! package for \verb!R!. The following table shows the estimated power at different diffusion time points for each correlation coefficient. 
-
 
 \begin{table}[ht]
 \centering
@@ -150,9 +153,9 @@ Before using local test, first test independence via global test using \verb!dco
   \hline
  & t=1 & t=2 & t=5 & t=10 \\ 
   \hline
-$\rho$=0.0 & 0.05 & 0.06 & 0.06 & 0.07 \\ 
-$\rho$=0.1 & 0.09 & 0.24 & 0.39 & 0.42 \\ 
-$\rho$=0.2 & 0.29 & 0.83 & 0.95 & 0.97 \\ 
+$\rho$=0.0 & 0.05 & 0.06 & 0.06 & 0.06 \\ 
+  $\rho$=0.1 & 0.08 & 0.16 & 0.42 & 0.48 \\ 
+  $\rho$=0.2 & 0.30 & 0.83 & 0.95 & 0.96 \\ 
    \hline
 \end{tabular}
 \caption{Estimated power based on dCor statistics}
@@ -166,9 +169,9 @@ $\rho$=0.2 & 0.29 & 0.83 & 0.95 & 0.97 \\
   \hline
  & t=1 & t=2 & t=5 & t=10 \\ 
   \hline
-r=0.0 & 0.08 & 0.09 & 0.09 & 0.09 \\ 
-  r=0.1 & 0.43 & 0.52 & 0.57 & 0.58 \\ 
-  r=0.2 & 0.97 & 0.99 & 0.99 & 1.00 \\ 
+$\rho$=0.0 & 0.08 & 0.09 & 0.09 & 0.09 \\ 
+  $\rho$=0.1 & 0.43 & 0.52 & 0.57 & 0.58 \\ 
+  $\rho$=0.2 & 0.97 & 0.99 & 0.99 & 1.00 \\ 
    \hline
 \end{tabular}
 \caption{Estimated power of optimal local tests}
@@ -177,6 +180,10 @@ r=0.0 & 0.08 & 0.09 & 0.09 & 0.09 \\
 
 
 Table \ref{tab:dcor} illustrates changing (estimated) power as time goes. It is noticeble that the estimated power increases as diffusion process continues. Table \ref{tab:local} shows the estimated power at local optimal scale, where reaches the highest power. The area of reaching highest power as well as estimated power at local scale is increasing as the time point $t$ increases under $H_{A}.$ 
+
+\textcolor{red}{I do not get why local tests yield higher power than glocal dCor test, even though including all the neighbors always look better.}
+
+
 
 
 %%%%%%%%%%%%%%%%%%% power heatmap %%%%%%%%%%%%%%%%%%%%
@@ -262,7 +269,7 @@ global test & 0.12 & 0.41 & 0.65 & 0.69 \\
 \caption{Estimated power of multivariate attribute model 1}
 \end{table}
 
-
+\textcolor{red}{In this case, using local optimal obviously performs better than global test; which I cannot still understand why. It should be similar, I think.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -389,13 +396,13 @@ global test & 0.05 & 0.06 & 0.06 & 0.05 \\
 \end{table}
 
 
-\newpage
+%\newpage
 (2) $\rho = 0.1$ ($M = 500$ iterations; $n = 300$)
 
-\newpage
+%\newpage
 (3) $\rho = 0.2$ ($M = 500$ iterations; $n = 300$)
 
-
+\textcolor{red}{Also considering simulation tests multiple networks vs. their attributes, .e.g, multiple connectivity of brain measured for several individuals and personality of each of them.}
 
 
 
