@@ -1,5 +1,11 @@
 # Testing Independence via Graph Correlation
 
+## Simulation
+* Network(Graph) vs.Node attributes 
+* Network 1 vs Network 2
+* Multiple Networks vs. Node Attributes
+ 
+## Reference
 * celegans : exploratory data analysis on neuronal network of C. elegans.
 
   - http://www.jstor.org/stable/pdf/2528823.pdf?_=1460126515800 - distance measures for mixed data types
@@ -8,3 +14,4 @@
 
  - http://www.ams.jhu.edu/~priebe/.FILES/MinhTang-jhu_nov11.pdf
  - using graph diffusion distance for comparing two graphs : http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=6736904&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D6736904
+ 
