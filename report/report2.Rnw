@@ -239,7 +239,36 @@ Table \ref{tab:dcor} illustrates changing (estimated) power as time goes. It is 
 (X_1, Y_{11}, Y_{12}, Y_{13}), ... , (X_N, Y_{1N}, Y_{2N}, Y_{3N})  \overset{i.i.d}{\sim} N \left( \begin{bmatrix} 0 \\ 0 \\ 0 \\ 0 \end{bmatrix}, \begin{bmatrix}1 & \rho_{1} & \rho_{2}&  \rho_{3} \\ \rho_{1} & 1 & 0 & 0 \\ \rho_{2} & 0 & 1 & 0 \\ \rho_{3} & 0 & 0 & 1  \end{bmatrix}  \right)
 \end{equation}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{(0) $\rho = (\rho_{1}, \rho_{2}, \rho_{3}) = (0.0, 0.0, 0.0)$}
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.2\textwidth]{../figure/multi0_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.2\textwidth]{../figure/multi0_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.2\textwidth]{../figure/multi0_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.2\textwidth]{../figure/multi0_10.png}}
+\caption{Estimated power when $\rho$ = (0.0, 0.0, 0.0)}
+\label{fig:multi0}    
+\end{figure}
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & t=1 & t=2 & t=5 & t=10 \\ 
+  \hline
+global test(dcor) & 0.05 & 0.04 & 0.05 & 0.05 \\ 
+  local optimal & 0.08 & 0.09 & 0.10 & 0.09 \\
+   \hline
+\end{tabular}
+\end{table}
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -402,7 +431,40 @@ global test & 0.05 & 0.06 & 0.06 & 0.05 \\
 %\newpage
 (3) $\rho = 0.2$ ($M = 500$ iterations; $n = 300$)
 
-\textcolor{red}{Also considering simulation tests multiple networks vs. their attributes, .e.g, multiple connectivity of brain measured for several individuals and personality of each of them.}
+
+
+\begin{figure}[H]
+\captionsetup{format=plain}
+\centering
+\subfigure[t=1]{\includegraphics[width=0.4\textwidth]{../figure/gh3_1.png}}
+\subfigure[t=2]{\includegraphics[width=0.4\textwidth]{../figure/gh3_2.png}}
+\subfigure[t=5]{\includegraphics[width=0.4\textwidth]{../figure/gh3_5.png}}
+\subfigure[t=10]{\includegraphics[width=0.4\textwidth]{../figure/gh3_10.png}}
+\caption{Estimated power when $\rho$ = 0.2}
+\label{fig:gh3}    
+\end{figure}
+
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & t=1 & t=2 & t=5 & t=10 \\ 
+  \hline
+global test & 0.12 & 0.33 & 0.70 & 0.76 \\ 
+  local optimal & 0.22 & 0.75 & 0.86 & 0.87 \\ 
+   \hline
+\end{tabular}
+\caption{Estimated power when $\rho$ = 0.2}
+\label{tab:gh3} 
+\end{table}
+
+
+
+
+
+
 
 
 
