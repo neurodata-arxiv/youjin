@@ -36,7 +36,7 @@ Global distance covariance which is used to measure the distances between two ra
 
 $$dCov_{n}(X,Y) = \frac{1}{n^2} \sum\limits_{i,j=1}^{n} A^{H}_{ij} B^{H}_{ij}$$
 
-where $A^{H} = HAH; A_{ij} = \parallel X_{i} - X_{j} \parallel ; H = I_{n} - J_{n} / n.$ Sample distance correlation is obtained through normalization. It is known that as $n \rightarrow \infty,$ the sample distance correlation, called dCor coverages to 0 if and only if $X$ and $Y$ are independent each other. Unfortunately, however, simulation results show that dCor performs worse if $X$ or $Y$ is high-dimensional. Now we suggest using \textit{local} distance covariance instead:
+where $A^{H} = HAH; A_{ij} = \parallel X_{i} - X_{j} \parallel ; H = I_{n} - J_{n} / n.$ Sample distance correlation is obtained through normalization. It is known that as $n \rightarrow \infty,$ the sample distance correlation, called dCor coverages to 0 if and only if $X$ and $Y$ are independent each other. Unfortunately, however, simulation results show that dCor performs worse if $X$ or $Y$ is high-dimensional. Now we suggest using local distance covariance instead:
 
 $$dCov_{kl}(X,Y) = \frac{1}{n^2} \sum\limits_{i,j}^{n} A^{H}_{ij} B^{H}_{ij} I(r(A_{ij}) < k) I(r(B_{ij}) < l )$$
 
@@ -48,7 +48,7 @@ where $r(A_{ij}) = k$ if and only if $A_{ij}$ is the $k^{th}$ smallest distance 
 ## Diffusion Distance
 <a name=" Diffusion Distance"/>
 
-The distance correlation(dCor) $\mathcal{R}^2$ between random vectors $X$($\in \textbf{R}^{p}$) and $Y(\in \textbf{R}^{q})$ is defined based on Euclidean distance between two. In the contexts of network, if node attributes vector $Y$ is all continuous, we can think its distance matrix, but we cannot intuitively think of Euclidean distance for their underlying networks. It is known that a dissimilarity matrix $\Delta$ is a Type-2 Euclidean distance matrix if and only if $\tau(\Delta)$ is positive definite, where $\tau(A) = -\frac{1}{2}(I - 1 1^{T} / n) A (I - 1 1^{T} / n).$ Based on this, we suggest \textit{diffusion distance} as a distance matrix corresponding to Euclidean distance matrix for network. \textit{Diffusion distance} at time $t$ between two nodes can be measured as the dissimilarity of two in the network space with connectivity between them at $t$ step. Let me introduce some notations. 
+The distance correlation(dCor) $\mathcal{R}^2$ between random vectors $X$($\in \textbf{R}^{p}$) and $Y(\in \textbf{R}^{q})$ is defined based on Euclidean distance between two. In the contexts of network, if node attributes vector $Y$ is all continuous, we can think its distance matrix, but we cannot intuitively think of Euclidean distance for their underlying networks. It is known that a dissimilarity matrix $\Delta$ is a Type-2 Euclidean distance matrix if and only if $\tau(\Delta)$ is positive definite, where $\tau(A) = -\frac{1}{2}(I - 1 1^{T} / n) A (I - 1 1^{T} / n).$ Based on this, we suggest diffusion distance as a distance matrix corresponding to Euclidean distance matrix for network. Diffusion distance at time $t$ between two nodes can be measured as the dissimilarity of two in the network space with connectivity between them at $t$ step. Let me introduce some notations. 
  
  - Similarity measure $\omega$
 
