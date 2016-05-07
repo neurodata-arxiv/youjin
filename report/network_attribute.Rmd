@@ -13,9 +13,6 @@ library(ggplot2)
 library(png)
 library(grid)
 library(knitr)
-bib <- ReadBib(system.file("Bib", "biblatexExamples.bib", 
-                           package = "RefManageR"), check = FALSE)
-BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", cite.style = 'alphabetic')
 ```
 
 
@@ -68,7 +65,6 @@ $$p_{ij} = \left\{ \begin{array}{ll} \frac{w(\{ i, j\})}{ deg(i) } & \mbox{ if }
 
 - Stationary distribution 
 : A probability vector $\pi$ is a stationary distribution for Markov chain $P$ if $\pi P = \pi$. Over the long run, no matter what the starting state was, the proportion of time the chain spends in node $j$ is approximately $\pi(j) (j = 1, ... , n)$.
-Use \verb!statdistr! in r.
   
   
   Let $G = (V, E, \omega)$ be an undirected graph with $\omega$ being a similarity measure between vertices of $V.$ Denote by $\textbf{P}$ the probability transition matrix of $G.$ The diffusion distance at time $t,$ $\rho_{t}(u,v)$, between two nodes $u,v \in V$ is defined as:
