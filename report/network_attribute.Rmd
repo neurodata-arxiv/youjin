@@ -6,15 +6,11 @@ output: html_document
 
 ```{r echo=FALSE, message =FALSE, warning = FALSE}
 library(igraph)
-library(RefManageR)
 library(xtable)
 library(grid)
-library(ggplot2)
 library(png)
-library(grid)
 library(knitr)
 ```
-
 
 
 - [Local Distance Correlation](# Local Distance Correlation)
@@ -77,8 +73,6 @@ Diffusion distances for Directed Graph at time $t$ is defined as :
 $$\Delta_{\rho^{2}_{t}} = \kappa(\textbf{P}^{t} \Pi^{-1} (\textbf{P}^{t})^{T} )$$
  
 where $\kappa(\textbf{A}) = \textbf{A}_{dg} \textbf{1} \textbf{1}^{T} - \textbf{A} - \textbf{A}^{T} + \textbf{1} \textbf{1}^{T} \textbf{A}_{dg}$ 
-
-
 
 
 ## Univariate Attributes
@@ -161,7 +155,6 @@ kable(sim1.table, align = 'c')
 <hr />
 
 (3) $\rho = 0.2$
-
 
 
 ```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -358,7 +351,32 @@ $$f\big( |X_i - X_j| \big) = \left\{ \begin{array}{cc}  |X_i - X_j| & \max(0.01,
 (1) $B = 2;$ $\rho = (0.0, 0.1)$; ratio = (1,1); $n=300$ ; $M=500$
 
 
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/block1_1.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/block1_2.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/block1_5.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/block1_10.png")
+```
 
+
+```{r echo = FALSE, results='asis'}
+dblock1 <- c(0.068, 0.098, 0.110, 0.116)
+maxiblock1 <- c(0.106, 0.120, 0.132, 0.130)
+
+block1.table <- matrix(0, nrow = 2, ncol = 4)
+rownames(block1.table) <- c("global test", "local optimal")
+colnames(block1.table) <- c("t=1", "t=2", "t=5", "t=10")
+block1.table[1,] <- dblock1
+block1.table[2,] <- maxiblock1
+block1.table <- as.data.frame(block1.table)
+kable(block1.table, align = 'c', digits = 4)
+```
 
 
 <hr />
@@ -389,10 +407,8 @@ colnames(block2.table) <- c("t=1", "t=2", "t=5", "t=10")
 block2.table[1,] <- dblock2
 block2.table[2,] <- maxiblock2
 block2.table <- as.data.frame(block2.table)
-kable(block2.table, align = 'c', digits = 4)
+kable(block2.table, align = 'c')
 ```
-
-
 
 
 <hr />
@@ -400,15 +416,9 @@ kable(block2.table, align = 'c', digits = 4)
 (3) $B = 2;$ $\rho = (0.0, 0.2)$; ratio = (1,1); $n=300$ ; $M=500$
 
 
-
-
-
-
 <hr />
 
 (4) $B = 3;$ $\rho = (0.0, 0.1, 0.2)$ ;  ratio = (1,1,1); $n = 200$ ; $M = 300$; 
-
-
 
 
 ```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}

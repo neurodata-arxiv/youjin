@@ -136,8 +136,6 @@ kable(gh3.table, align = 'c')
 
 
 
-
-
 ## Locally Dependent Model
 <a name=" Locally Dependent Model"/>
 
