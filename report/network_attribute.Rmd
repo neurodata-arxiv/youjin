@@ -20,59 +20,6 @@ library(knitr)
 - [Locally Dependent Model](# Locally Dependent Model)
 
 
-Throughout our work, we are interested in testing independence between network $G$ and its nodes' ($V(G)$) attribute $Y$.
-
-$$H_{0} : f_{G \cdot Y} = f_{G} \cdot f_{Y}$$
-
-
-## Local Distance Correlation
-<a name=" Local Distance Correlation"/>
-
-Global distance covariance which is used to measure the distances between two random variables $X \in \mathcal{R}^{p}$ and $Y \in \mathcal{R}^{q}$ is defined as follows:
-
-$$dCov_{n}(X,Y) = \frac{1}{n^2} \sum\limits_{i,j=1}^{n} A^{H}_{ij} B^{H}_{ij}$$
-
-where $A^{H} = HAH; A_{ij} = \parallel X_{i} - X_{j} \parallel ; H = I_{n} - J_{n} / n.$ Sample distance correlation is obtained through normalization. It is known that as $n \rightarrow \infty,$ the sample distance correlation, called dCor coverages to 0 if and only if $X$ and $Y$ are independent each other. Unfortunately, however, simulation results show that dCor performs worse if $X$ or $Y$ is high-dimensional. Now we suggest using local distance covariance instead:
-
-$$dCov_{kl}(X,Y) = \frac{1}{n^2} \sum\limits_{i,j}^{n} A^{H}_{ij} B^{H}_{ij} I(r(A_{ij}) < k) I(r(B_{ij}) < l )$$
-
-where $r(A_{ij}) = k$ if and only if $A_{ij}$ is the $k^{th}$ smallest distance in $\{ A_{ij} ; i,j=1,..,n , i \neq j \}.$
-
-
-
-
-## Diffusion Distance
-<a name=" Diffusion Distance"/>
-
-The distance correlation(dCor) $\mathcal{R}^2$ between random vectors $X$($\in \textbf{R}^{p}$) and $Y(\in \textbf{R}^{q})$ is defined based on Euclidean distance between two. In the contexts of network, if node attributes vector $Y$ is all continuous, we can think its distance matrix, but we cannot intuitively think of Euclidean distance for their underlying networks. It is known that a dissimilarity matrix $\Delta$ is a Type-2 Euclidean distance matrix if and only if $\tau(\Delta)$ is positive definite, where $\tau(A) = -\frac{1}{2}(I - 1 1^{T} / n) A (I - 1 1^{T} / n).$ Based on this, we suggest diffusion distance as a distance matrix corresponding to Euclidean distance matrix for network. Diffusion distance at time $t$ between two nodes can be measured as the dissimilarity of two in the network space with connectivity between them at $t$ step. Let me introduce some notations. 
- 
- - Similarity measure $\omega$
-
-$$\omega[i,j] = \mbox{ (the number of synapses starting from i to j)}$$
- 
-
-- Transition probability (Assume time homogeneous Markov chain; left stochastic matrix)
-
-$$P[i,j] = Pr\big( X_{n} = j  | X_{n-1} = i \big)$$
-
-We define the transition matrix \textbf{P} = $(p_{ij})$ of a Markov chain as:
-
-$$p_{ij} = \left\{ \begin{array}{ll} \frac{w(\{ i, j\})}{ deg(i) } & \mbox{ if } u \sim v \\ 0 & \mbox{ otherwise }  \end{array}  \right.$$
-
-- Stationary distribution 
-: A probability vector $\pi$ is a stationary distribution for Markov chain $P$ if $\pi P = \pi$. Over the long run, no matter what the starting state was, the proportion of time the chain spends in node $j$ is approximately $\pi(j) (j = 1, ... , n)$.
-  
-  
-  Let $G = (V, E, \omega)$ be an undirected graph with $\omega$ being a similarity measure between vertices of $V.$ Denote by $\textbf{P}$ the probability transition matrix of $G.$ The diffusion distance at time $t,$ $\rho_{t}(u,v)$, between two nodes $u,v \in V$ is defined as:
-  
-  $$\rho^2_{t} = \sum\limits_{w \in V}\big( \textbf{P}^{t}(u,w) - \textbf{P}^{t}(v,w) \big)^2 \frac{1}{\pi(w)} =  \kappa(\textbf{P}^{2t} \Pi^{-1} )$$
-
- 
-Diffusion distances for Directed Graph at time $t$ is defined as :
-
-$$\Delta_{\rho^{2}_{t}} = \kappa(\textbf{P}^{t} \Pi^{-1} (\textbf{P}^{t})^{T} )$$
- 
-where $\kappa(\textbf{A}) = \textbf{A}_{dg} \textbf{1} \textbf{1}^{T} - \textbf{A} - \textbf{A}^{T} + \textbf{1} \textbf{1}^{T} \textbf{A}_{dg}$ 
 
 
 ## Univariate Attributes

@@ -121,40 +121,6 @@ $(document).ready(function () {
 <li><a href="#%20Multivariate%20Attributes">Multivariate Attributes</a></li>
 <li><a href="#%20Locally%20Dependent%20Model">Locally Dependent Model</a></li>
 </ul>
-<p>Throughout our work, we are interested in testing independence between network <span class="math">\(G\)</span> and its nodes’ (<span class="math">\(V(G)\)</span>) attribute <span class="math">\(Y\)</span>.</p>
-<p><span class="math">\[H_{0} : f_{G \cdot Y} = f_{G} \cdot f_{Y}\]</span></p>
-<div id="local-distance-correlation" class="section level2">
-<h2>Local Distance Correlation</h2>
-<p><a name=" Local Distance Correlation"></a></p>
-<p>Global distance covariance which is used to measure the distances between two random variables <span class="math">\(X \in \mathcal{R}^{p}\)</span> and <span class="math">\(Y \in \mathcal{R}^{q}\)</span> is defined as follows:</p>
-<p><span class="math">\[dCov_{n}(X,Y) = \frac{1}{n^2} \sum\limits_{i,j=1}^{n} A^{H}_{ij} B^{H}_{ij}\]</span></p>
-<p>where <span class="math">\(A^{H} = HAH; A_{ij} = \parallel X_{i} - X_{j} \parallel ; H = I_{n} - J_{n} / n.\)</span> Sample distance correlation is obtained through normalization. It is known that as <span class="math">\(n \rightarrow \infty,\)</span> the sample distance correlation, called dCor coverages to 0 if and only if <span class="math">\(X\)</span> and <span class="math">\(Y\)</span> are independent each other. Unfortunately, however, simulation results show that dCor performs worse if <span class="math">\(X\)</span> or <span class="math">\(Y\)</span> is high-dimensional. Now we suggest using local distance covariance instead:</p>
-<p><span class="math">\[dCov_{kl}(X,Y) = \frac{1}{n^2} \sum\limits_{i,j}^{n} A^{H}_{ij} B^{H}_{ij} I(r(A_{ij}) &lt; k) I(r(B_{ij}) &lt; l )\]</span></p>
-<p>where <span class="math">\(r(A_{ij}) = k\)</span> if and only if <span class="math">\(A_{ij}\)</span> is the <span class="math">\(k^{th}\)</span> smallest distance in <span class="math">\(\{ A_{ij} ; i,j=1,..,n , i \neq j \}.\)</span></p>
-</div>
-<div id="diffusion-distance" class="section level2">
-<h2>Diffusion Distance</h2>
-<p><a name=" Diffusion Distance"></a></p>
-<p>The distance correlation(dCor) <span class="math">\(\mathcal{R}^2\)</span> between random vectors <span class="math">\(X\)</span>(<span class="math">\(\in \textbf{R}^{p}\)</span>) and <span class="math">\(Y(\in \textbf{R}^{q})\)</span> is defined based on Euclidean distance between two. In the contexts of network, if node attributes vector <span class="math">\(Y\)</span> is all continuous, we can think its distance matrix, but we cannot intuitively think of Euclidean distance for their underlying networks. It is known that a dissimilarity matrix <span class="math">\(\Delta\)</span> is a Type-2 Euclidean distance matrix if and only if <span class="math">\(\tau(\Delta)\)</span> is positive definite, where <span class="math">\(\tau(A) = -\frac{1}{2}(I - 1 1^{T} / n) A (I - 1 1^{T} / n).\)</span> Based on this, we suggest diffusion distance as a distance matrix corresponding to Euclidean distance matrix for network. Diffusion distance at time <span class="math">\(t\)</span> between two nodes can be measured as the dissimilarity of two in the network space with connectivity between them at <span class="math">\(t\)</span> step. Let me introduce some notations.</p>
-<ul>
-<li>Similarity measure <span class="math">\(\omega\)</span></li>
-</ul>
-<p><span class="math">\[\omega[i,j] = \mbox{ (the number of synapses starting from i to j)}\]</span></p>
-<ul>
-<li>Transition probability (Assume time homogeneous Markov chain; left stochastic matrix)</li>
-</ul>
-<p><span class="math">\[P[i,j] = Pr\big( X_{n} = j  | X_{n-1} = i \big)\]</span></p>
-<p>We define the transition matrix  = <span class="math">\((p_{ij})\)</span> of a Markov chain as:</p>
-<p><span class="math">\[p_{ij} = \left\{ \begin{array}{ll} \frac{w(\{ i, j\})}{ deg(i) } &amp; \mbox{ if } u \sim v \\ 0 &amp; \mbox{ otherwise }  \end{array}  \right.\]</span></p>
-<ul>
-<li>Stationary distribution : A probability vector <span class="math">\(\pi\)</span> is a stationary distribution for Markov chain <span class="math">\(P\)</span> if <span class="math">\(\pi P = \pi\)</span>. Over the long run, no matter what the starting state was, the proportion of time the chain spends in node <span class="math">\(j\)</span> is approximately <span class="math">\(\pi(j) (j = 1, ... , n)\)</span>.</li>
-</ul>
-<p>Let <span class="math">\(G = (V, E, \omega)\)</span> be an undirected graph with <span class="math">\(\omega\)</span> being a similarity measure between vertices of <span class="math">\(V.\)</span> Denote by <span class="math">\(\textbf{P}\)</span> the probability transition matrix of <span class="math">\(G.\)</span> The diffusion distance at time <span class="math">\(t,\)</span> <span class="math">\(\rho_{t}(u,v)\)</span>, between two nodes <span class="math">\(u,v \in V\)</span> is defined as:</p>
-<p><span class="math">\[\rho^2_{t} = \sum\limits_{w \in V}\big( \textbf{P}^{t}(u,w) - \textbf{P}^{t}(v,w) \big)^2 \frac{1}{\pi(w)} =  \kappa(\textbf{P}^{2t} \Pi^{-1} )\]</span></p>
-<p>Diffusion distances for Directed Graph at time <span class="math">\(t\)</span> is defined as :</p>
-<p><span class="math">\[\Delta_{\rho^{2}_{t}} = \kappa(\textbf{P}^{t} \Pi^{-1} (\textbf{P}^{t})^{T} )\]</span></p>
-<p>where <span class="math">\(\kappa(\textbf{A}) = \textbf{A}_{dg} \textbf{1} \textbf{1}^{T} - \textbf{A} - \textbf{A}^{T} + \textbf{1} \textbf{1}^{T} \textbf{A}_{dg}\)</span></p>
-</div>
 <div id="univariate-attributes" class="section level2">
 <h2>Univariate Attributes</h2>
 <p><a name=" Univariate Attributes"></a></p>
