@@ -16,3 +16,5 @@
  - http://www.ams.jhu.edu/~priebe/.FILES/MinhTang-jhu_nov11.pdf
  - using graph diffusion distance for comparing two graphs : http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=6736904&url=http%3A%2F%2Fieeexplore.ieee.org%2Fxpls%2Fabs_all.jsp%3Farnumber%3D6736904
  
+* Local Dependence : assumes that each edge variable depends on a finite subset of other edge variables, e.g. finite neighborhoods, M-dependence
+ - http://www.stat.rice.edu/~ms88/publications/h.ergm.pdf
