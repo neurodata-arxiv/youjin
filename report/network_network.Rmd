@@ -19,7 +19,7 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 ```
 
 - [Network vs. Network](# Network vs. Network)
-- [Locally Dependent Model](# Locally Dependent Model)
+- [Block Dependent Model](# Block Dependent Model)
 
 
 ## Network vs. Network
@@ -136,8 +136,8 @@ kable(gh3.table, align = 'c')
 
 
 
-## Locally Dependent Model
-<a name=" Locally Dependent Model"/>
+## Block Dependent Model
+<a name=" Block Dependent Model"/>
 
 For each block $i = 1,... , B:$
 
