@@ -22,6 +22,8 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 
 - [Network vs. Attributes](# Network vs. Attributes)
 
+- [Simple Block Models](# Simple Block Models)
+
 ## Local Dependence
 <a name=" Local Dependence"/>
 
@@ -190,6 +192,155 @@ table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
 ```
 
+
+## Simple Block Models
+<a name=" Simple Block Models"/>
+
+We can think of two-block models which divide the observations into two neighborhood, or blocks. We will introduce a variable $Z$ which indicate block membership.
+
+
+$$Z_{i} = \left\{ \begin{array}{ll}  -1 & i \in \mbox{ block 1 } \\ 1 & i \in \mbox{ block 2} \end{array} \right.$$
+
+Generate a Bernoulli random variable which depends on block membership and a parameter $\omega.$
+
+
+$$X_{i} \overset{i.i.d}{\sim} Bern(0.5 + z_{i} \omega)$$
+
+Note that larger value of $\omega$ implies much discrepency between blocks. The probability of having an edge also depends on the block membership.
+
+$$A = \left[  \begin{array}{c|c} p & q \\ \hline q & p \end{array} \right]$$
+
+First I sepecify $n=100$ ; $p = 0.3$ ; $q = 0.05.$
+
+(1) $\omega =0$
+
+
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local7_1.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local7_2.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local7_5.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/local7_10.png")
+```
+
+
+```{r echo = FALSE, results='asis'}
+a <- c(0.05000000, 0.05333333, 0.05000000, 0.06000000)
+b <- c(0.07666667, 0.07000000, 0.07333333, 0.07333333)
+
+table <- matrix(0, nrow = 2, ncol = 4)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
+
+
+
+
+(2) $\omega = 0.05$
+
+
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local6_1.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local6_2.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local6_5.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/local6_10.png")
+```
+
+
+```{r echo = FALSE, results='asis'}
+a <- c( 0.1566667, 0.1600000, 0.1633333, 0.1666667)
+b <- c(0.1600000, 0.1700000, 0.1800000, 0.1866667)
+
+table <- matrix(0, nrow = 2, ncol = 4)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
+
+
+
+
+
+(3) $\omega = 0.10$
+
+
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local8_1.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local8_2.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local8_5.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/local8_10.png")
+```
+
+
+```{r echo = FALSE, results='asis'}
+a <- c( 0.4400000, 0.4833333, 0.4966667, 0.5166667)
+b <- c(0.4466667, 0.5000000, 0.5100000, 0.5233333)
+
+table <- matrix(0, nrow = 2, ncol = 4)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
+
+
+
+
+(4) $\omega = 0.20$
+
+
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local9_1.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local9_2.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local9_5.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/local9_10.png")
+```
+
+
+```{r echo = FALSE, results='asis'}
+a <- c( 0.96, 0.98, 0.98, 0.98)
+b <- c(0.9600000, 0.9866667, 0.9866667, 0.9866667)
+
+table <- matrix(0, nrow = 2, ncol = 4)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
 
 
 
