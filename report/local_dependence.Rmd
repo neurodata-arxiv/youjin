@@ -59,58 +59,7 @@ $$g(X_{ij}) = \left\{ \begin{array}{ll} w_{i} & i = j \\ b_{ij} = b_{ji} & i \ne
 ## Network vs. Attributes
 <a name=" Network vs. Attributes"/>
 
-(1) $K = 3$ blocks. 
-
-$$Z_{i} \sim \left\{  \begin{array}{ll} Multinom(0.6, 0.2, 0.2) & Y_{i} <= -1 \\ Multinom(0.2, 0.6, 0.2) & -1 < Y_{i} \leq 1 \\ Multinom(0.2, 0.2, 0.6) & Y_{i} > 1 \end{array} \right.$$
-
-
-$$\left\{ \begin{array}{lll} w_{1} = 0.5 & w_{2} = 0.4 & w_{3} = 0.3 \\ b_{ij} = 0 & \forall i \neq j  \end{array} \right.$$
-
-At last, put an arbitrary edge between different connected components to make sure $G$ connected.
-
-
-
-```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center'}
-knitr::include_graphics("../figure/local1_net.png")
-```
-
-
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local1_1.png")
-```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local1_2.png")
-```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local1_5.png")
-```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local1_10.png")
-```
-
-
-```{r echo = FALSE, results='asis'}
-a <- c(1,1,1,1)
-b <- c(1,1,1,1)
-
-table <- matrix(0, nrow = 2, ncol = 4)
-rownames(table) <- c("global test", "local optimal")
-colnames(table) <- c("t=1", "t=2", "t=5", "t=10")
-table[1,] <- a
-table[2,] <- b
-table <- as.data.frame(table)
-kable(table, align = 'c', digits = 2)
-```
-
-
-
-Oops, it is too extreme.
-
-
-
-<hr />
-
-(2) $K = 3$ blocks 
+* $K = 3$ blocks 
 
 
 $$Z_{i} \sim \left\{  \begin{array}{ll} Multinom(0.5, 0.25, 0.25) & Y_{i} <= -1 \\ Multinom(0.25, 0.5, 0.25) & -1 < Y_{i} \leq 1 \\ Multinom(0.25, 0.25, 0.5) & Y_{i} > 1 \end{array} \right.$$
@@ -154,7 +103,7 @@ kable(table, align = 'c', digits = 2)
 ```
 
 
-(3) $K = 5$ blocks according to quantile on $Y$(attribute variable).
+* $K = 5$ blocks according to quantile on $Y$(attribute variable).
 
 
 $$\left\{ \begin{array}{lll} w_{i} = 0.3 & \forall{i} \\ b_{ij} = 0  & \forall i \neq j  \end{array} \right.$$
@@ -214,7 +163,7 @@ $$A = \left[  \begin{array}{c|c} p & q \\ \hline q & p \end{array} \right]$$
 
 First I sepecify $n=100$ ; $p = 0.3$ ; $q = 0.05.$
 
-(1) $\omega =0$
+* $\omega =0$
 
 
 ```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -246,42 +195,7 @@ kable(table, align = 'c', digits = 2)
 
 
 
-
-(2) $\omega = 0.05$
-
-
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local6_1.png")
-```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local6_2.png")
-```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local6_5.png")
-```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local6_10.png")
-```
-
-
-```{r echo = FALSE, results='asis'}
-a <- c( 0.1566667, 0.1600000, 0.1633333, 0.1666667)
-b <- c(0.1600000, 0.1700000, 0.1800000, 0.1866667)
-
-table <- matrix(0, nrow = 2, ncol = 4)
-rownames(table) <- c("global test", "local optimal")
-colnames(table) <- c("t=1", "t=2", "t=5", "t=10")
-table[1,] <- a
-table[2,] <- b
-table <- as.data.frame(table)
-kable(table, align = 'c', digits = 2)
-```
-
-
-
-
-
-(3) $\omega = 0.10$
+* $\omega = 0.10$
 
 
 ```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -312,9 +226,7 @@ kable(table, align = 'c', digits = 2)
 ```
 
 
-
-
-(4) $\omega = 0.20$
+* $\omega = 0.20$
 
 
 ```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -343,8 +255,6 @@ table[2,] <- b
 table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
 ```
-
-
 
 
 ## Three Blocks Models
