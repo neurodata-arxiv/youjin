@@ -24,6 +24,8 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 
 - [Simple Block Models](# Simple Block Models)
 
+- [Three Blocks Models](# Three Blocks Models)
+
 ## Local Dependence
 <a name=" Local Dependence"/>
 
@@ -341,6 +343,71 @@ table[2,] <- b
 table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
 ```
+
+
+
+
+## Three Blocks Models
+<a name=" Three Blocks Models"/>
+
+We can think of two-block models which divide the observations into two neighborhood, or blocks. We will introduce a variable $Z$ which indicate block membership.
+
+
+$$Z_{i} = \left\{ \begin{array}{ll}  -1 & i \in \mbox{ block 1 } \\ 1 & i \in \mbox{ block 2} \\ 0 &   i \in \mbox{ block 3} \end{array} \right.$$
+
+Generate a Bernoulli random variable which depends on block membership and a parameter $\omega.$
+
+
+$$X_{i} \overset{i.i.d}{\sim} Bern(0.5 + z_{i} \omega)$$
+
+Note that larger value of $\omega$ implies much discrepency between blocks. The probability of having an edge also depends on the block membership.
+
+$$A = \left[  \begin{array}{c|c | c} p & q + \epsilon & q \\ \hline q + \epsilon & p & q \\ \hline q & q & p \end{array} \right]$$
+
+Set $n=150$ ; $p = 0.3$ ; $q = 0.05;$ $\omega = 0.15$;  $\epsilon = 0.05$. In other words, the probability of having edges between or within block is:
+
+$$A = \left[  \begin{array}{c|c| c} 0.3 & 0.1 & 0.05 \\ \hline 0.1 & 0.3 & 0.05 \\ \hline 0.05 & 0.05 & 0.3 \end{array} \right]$$
+
+```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/local11_net.png")
+```
+
+
+and corresponding nodes' attributes are following such Bernoulli models :
+
+
+$$X = \left[  \begin{array}{c|c|c} Bern(0.35 ) &  &  \\ \hline  & Bern(0.65) &  \\ \hline  &  & Bern(0.50) \end{array} \right]$$
+
+
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local11_1.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local11_2.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local11_5.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/local11_10.png")
+```
+
+
+```{r echo = FALSE, results='asis'}
+a <- c(0.6166667, 0.5800000, 0.5500000, 0.5333333)
+b <- c(0.6466667, 0.7200000, 0.7300000, 0.7433333)
+
+table <- matrix(0, nrow = 2, ncol = 4)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
+
+
+As diffusion time increases, estimated power from global test is decreasing while that from the local optimal increases. That might be because the probability of journey from ``Block1`` to ``Block3`` is higher than ``Block1`` to ``Block2``, but the distribution between ``Block1`` and ``Block2`` is more similar. When the number of block is two, if $p > q$, global test achieves highest power because the distance between blocks is always proportion to the discrepancy in distributions.
 
 
 
