@@ -144,4 +144,26 @@ kable(table, align = 'c', digits = 2)
 
 Decreasing rate is much slower than the first case and the global test and local test are similar each other.
 
+However, these two possible scenarios are very sensitive to the distribution of attributes $X$ or graph $G$, that is, we might not get the results we want if we change the value of parameter slightly.
+
+$$A = \left[  \begin{array}{c|c|c} \color{red}{0.15} & 0.05 & 0.05 \\ \hline 0.05 & \color{red}{0.15} & 0.05 \\ \hline 0.05 & 0.05 & \color{red}{0.15} \end{array} \right]$$
+
+$$X = \left[  \begin{array}{c|c|c} Bern(0.10) &  &  \\ \hline  & Bern(0.90) &  \\ \hline  &  & Bern(0.50) \end{array} \right]$$
+
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local23_1.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local23_2.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local23_5.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local23_10.png")
+```
+
+
+
+
 
