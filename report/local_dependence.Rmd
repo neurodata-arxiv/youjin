@@ -26,6 +26,9 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 
 - [Three Blocks Models](# Three Blocks Models)
 
+- [Five Blocks Models](# Five Blocks Models)
+
+
 ## Local Dependence
 <a name=" Local Dependence"/>
 
@@ -38,7 +41,7 @@ and a suitable neighborhood structure is needed. Let $Z = (Z_{1}, ... , Z_{n})$ 
 $$P(Y=y|Z=z) = \prod\limits_{k=1}^{K} P(Y_{k,k} = y_{k,k} | Z_{z}) \times \prod\limits_{l=1}^{k-1}P(Y_{k,l} = y_{k,l}, Y_{l,k} = y_{l,k} | Z = z)$$
 
 
-Assume that a pair of nodes with similar values is more likely to be in a same neighborhood (same membership), and the probability of having an edge within the block is larger than the probability between the blocks. I start with simple model:
+Assume that a pair of nodes with similar values is more likely to be in the same neighborhood (same membership), and the probability of having an edge within the block is larger than the probability between the blocks. I start with simple model:
 
 - Distribution of Attributes
 
@@ -53,7 +56,7 @@ and make sure that $\textbf{P} = f(Y_{i})$
 
 Suppose $X_{ij} \sim Bernoulli(g(X_{ij}))$ such that $X_{ij} = 1$ iff there exists an edge between node $i$ and node $j$, and $X_{ij} = 0$ otherwise.
 
-$$g(X_{ij}) = \left\{ \begin{array}{ll} w_{i} & i = j \\ b_{ij} = b_{ji} & i \neq j    \end{array} \right.$$
+$$g(X_{ij}) = \left\{ \begin{array}{ll} w_{i} & i = j\mbox{ (within block)} \\ b_{ij} = b_{ji} & i \neq j\mbox{ (between blocks)}    \end{array} \right.$$
 
 
 ## Network vs. Attributes
@@ -75,16 +78,16 @@ knitr::include_graphics("../figure/local2_net.png")
 
 
 
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local2_1.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local2_2.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local2_5.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/local2_10.png")
 ```
 
@@ -116,16 +119,16 @@ knitr::include_graphics("../figure/local3_net.png")
 
 
 
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local3_1.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local3_2.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local3_5.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/local3_10.png")
 ```
 
@@ -272,14 +275,14 @@ $$X_{i} \overset{i.i.d}{\sim} Bern(0.5 + z_{i} \omega)$$
 
 Note that larger value of $\omega$ implies much discrepency between blocks. The probability of having an edge also depends on the block membership.
 
-$$A = \left[  \begin{array}{c|c | c} p & q + \epsilon & q \\ \hline q + \epsilon & p & q \\ \hline q & q & p \end{array} \right]$$
+$$A = \left[  \begin{array}{c|c | c} p & q  & q \\ \hline q  & p & q \\ \hline q & q & p \end{array} \right]$$
 
-Set $n=150$ ; $p = 0.3$ ; $q = 0.05;$ $\omega = 0.15$;  $\epsilon = 0.05$. In other words, the probability of having edges between or within block is:
+Set $n=150$ ; $p = 0.3$ ; $q = 0.05;$ $\omega = 0.15$. In other words, the probability of having edges between or within block is:
 
-$$A = \left[  \begin{array}{c|c| c} 0.3 & 0.1 & 0.05 \\ \hline 0.1 & 0.3 & 0.05 \\ \hline 0.05 & 0.05 & 0.3 \end{array} \right]$$
+$$A = \left[  \begin{array}{c|c| c} 0.3 & 0.05 & 0.05 \\ \hline 0.05 & 0.3 & 0.05 \\ \hline 0.05 & 0.05 & 0.3 \end{array} \right]$$
 
 ```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center'}
-knitr::include_graphics("../figure/local11_net.png")
+knitr::include_graphics("../figure/local12_net.png")
 ```
 
 
@@ -289,22 +292,22 @@ and corresponding nodes' attributes are following such Bernoulli models :
 $$X = \left[  \begin{array}{c|c|c} Bern(0.35 ) &  &  \\ \hline  & Bern(0.65) &  \\ \hline  &  & Bern(0.50) \end{array} \right]$$
 
 
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local11_1.png")
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_1.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local11_2.png")
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_2.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local11_5.png")
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_5.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local11_10.png")
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_10.png")
 ```
 
 
 ```{r echo = FALSE, results='asis'}
-a <- c(0.6166667, 0.5800000, 0.5500000, 0.5333333)
+a <- c(0.6300000, 0.6133333, 0.5566667, 0.5433333)
 b <- c(0.6466667, 0.7200000, 0.7300000, 0.7433333)
 
 table <- matrix(0, nrow = 2, ncol = 4)
@@ -317,9 +320,149 @@ kable(table, align = 'c', digits = 2)
 ```
 
 
-As diffusion time increases, estimated power from global test is decreasing while that from the local optimal increases. That might be because the probability of journey from ``Block1`` to ``Block3`` is higher than ``Block1`` to ``Block2``, but the distribution between ``Block1`` and ``Block2`` is more similar. When the number of block is two, if $p > q$, global test achieves highest power because the distance between blocks is always proportion to the discrepancy in distributions.
+As diffusion time increases, estimated power from global test is decreasing while that from the local optimal increases. This does not work when the number of block is two, if $p > q$, global test achieves highest power because the distance between blocks is always proportion to the discrepancy in distributions.
+
+Note that the local scale in (double-centered) $G$ (graph) is stuck in between 50-100. That means including the one neighboring block is okay while two neighboring blocks, which would be equivalent to global scale does not provide the most powerful test statistics. It makes sense in that for each block, two other block is equally likely to be diffuse but the distribution is different. In the case of the ``block1`` and ``block2``, including two other blocks supports diffusion distance means increasing disrepancy in distribution. On the other hand, for ``block3``, two other neighboring blocks are correlated in opposite directions.  
+
+<hr />
+
+The probability of having edges between or within block is:
+
+$$A = \left[  \begin{array}{c|c| c} 0.30 & 0.20 & 0.05 \\ \hline 0.20 & 0.30 & 0.10 \\ \hline 0.05 & 0.10 & 0.30 \end{array} \right]$$
 
 
+```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/local13_net.png")
+```
+
+
+and corresponding nodes' attributes are following such Bernoulli models :
+
+
+$$X = \left[  \begin{array}{c|c|c} Bern(0.35) &  &  \\ \hline  & Bern(0.65) &  \\ \hline  &  & Bern(0.50) \end{array} \right]$$
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local13_1.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local13_2.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local13_5.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local13_10.png")
+```
+
+
+```{r echo = FALSE, results='asis'}
+a <- c(0.08666667, 0.06333333, 0.08000000, 0.07666667)
+b <- c(0.1666667, 0.1466667, 0.2033333, 0.2133333)
+
+table <- matrix(0, nrow = 2, ncol = 4)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
+
+
+
+
+
+
+
+## Five Blocks Models
+<a name=" Five Blocks Models"/>
+
+We imitate the previous block model with more number of blocks, expecting that the local optimal scale is stuck much ealier.
+
+$$A = \left[  \begin{array}{c|c|c|c|c} \color{red}{0.30} & 0.05 & 0.05 & 0.05 & 0.05 \\ \hline 0.05 & \color{red}{0.30} & 0.05 & 0.05 & 0.05 \\ \hline 0.05 & 0.05 & \color{red}{0.30} & 0.05 & 0.05 \\ \hline 0.05 & 0.05 & 0.05 & \color{red}{0.30} & 0.05 \\ \hline 0.05 & 0.05 & 0.05 & 0.05 & \color{red}{0.30} \end{array} \right]$$
+
+
+
+```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/local14_net.png")
+```
+
+
+and corresponding nodes' attributes are following such Bernoulli models :
+
+
+$$X = \left[  \begin{array}{c|c|c|c|c} Bern(0.35) &  &  & & \\ \hline  & Bern(0.65) & & &  \\ \hline  &  & Bern(0.50) & & \\ \hline & & & Bern(0.65) & \\ \hline & & & & Bern(0.35) \end{array} \right]$$
+
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local14_1.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local14_2.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local14_5.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local14_10.png")
+```
+
+
+```{r echo = FALSE, results='asis'}
+a <- c(0.1233333, 0.1700000, 0.1566667, 0.1466667)
+b <- c(0.1600000, 0.1866667, 0.1933333, 0.1766667)
+
+table <- matrix(0, nrow = 2, ncol = 4)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
+
+
+It looks like the estimated power deceases as the number of blocks increases and the number of individuals within the block decreases. 
+
+
+<hr />
+
+Now increase the probability of having edges within the blocks to make sure the power is large enough. (and it was not enough, so) Also increase the discrepancy in distribution. 
+
+
+$$X = \left[  \begin{array}{c|c|c|c|c} Bern(0.35) &  &  & & \\ \hline  & Bern(0.65) & & &  \\ \hline  &  & Bern(0.50) & & \\ \hline & & & Bern(0.65) & \\ \hline & & & & Bern(0.35) \end{array} \right]$$
+
+$$A = \left[  \begin{array}{c|c|c|c|c} \color{red}{0.50} & 0.05 & 0.05 & 0.05 & 0.05 \\ \hline 0.05 & \color{red}{0.50} & 0.05 & 0.05 & 0.05 \\ \hline 0.05 & 0.05 & \color{red}{0.50} & 0.05 & 0.05 \\ \hline 0.05 & 0.05 & 0.05 & \color{red}{0.50} & 0.05 \\ \hline 0.05 & 0.05 & 0.05 & 0.05 & \color{red}{0.50} \end{array} \right]$$
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local18_1.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local18_2.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local18_5.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local18_10.png")
+```
+
+
+```{r echo = FALSE, results='asis'}
+a <- c(0.4033333, 0.4266667, 0.3866667, 0.3300000)
+b <- c(0.42, 0.48, 0.48, 0.46)
+
+table <- matrix(0, nrow = 2, ncol = 4)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
 
 
 
