@@ -20,7 +20,7 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 
 - [Local Dependence](# Local Dependence)
 
-- [Network vs. Attributes](# Network vs. Attributes)
+- [Motivating Example](# Motivating Example)
 
 - [Simple Block Models](# Simple Block Models)
 
@@ -32,16 +32,22 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 ## Local Dependence
 <a name=" Local Dependence"/>
 
-  The dependence induced by a probability measure $\textbf{P}$ is call local if there exists a partition of the set of nodes $\mathcal{A}$ into $K \geq 2$ non-empty, finite subsets $\mathcal{A}_{1}, ... , \mathcal{A}_{k}$, called neighborhoods, such that within- and between-neighborhoold subgraphs $\textbf{Y}_{k,l}$ within domains $\mathcal{A}_{k} \times \mathcal{A}_{l}$ and sample spaces $Y_{k,l}$ satisfy, for all $y_{k,l}:$
+  The dependence induced by a probability measure $\textbf{P}$ is called local if there exists a partition of the set of nodes $\mathcal{A}$ into $K \geq 2$ non-empty, finite subsets $\mathcal{A}_{1}, ... , \mathcal{A}_{k}$, called neighborhoods, such that within- and between-neighborhoold subgraphs $\textbf{Y}_{k,l}$ within domains $\mathcal{A}_{k} \times \mathcal{A}_{l}$ and sample spaces $Y_{k,l}$ satisfy, for all $y_{k,l}:$
   
   $$\textbf{P}_{K}(Y) = \prod\limits_{k=1}^{K} P_{k,k}(Y_{k,k}) \prod\limits_{l=1}^{k-1} P_{k,l}(Y_{k,l}, Y_{l,k})$$
 
-and a suitable neighborhood structure is needed. Let $Z = (Z_{1}, ... , Z_{n})$ be memebership indicators, where $Z_{i} = (z_{i1}, z_{i2},...,z_{iK})$ and $z_{ik} = 1$ if node $i$ is member of neighborghood $\mathcal{A}_{k}$ and $z_{ik} = 0$ otherwise. We assume that the conditional probability mass function (PMF) of a random graph $Y$ given neighborhood structure $Z = z$ can be written as:
+and a suitable neighborhood structure is needed. Let $Z = (Z_{1}, ... , Z_{n})$ be memebership indicators, where for $Z_{i} = (z_{i1}, z_{i2},...,z_{iK})$, $z_{ik} = 1$ if node $i$ is member of neighborghood $\mathcal{A}_{k}$ and $z_{ik} = 0$ otherwise. We assume that the conditional probability mass function (PMF) of a random graph $Y$ given neighborhood structure $Z = z$ can be written as:
 
 $$P(Y=y|Z=z) = \prod\limits_{k=1}^{K} P(Y_{k,k} = y_{k,k} | Z_{z}) \times \prod\limits_{l=1}^{k-1}P(Y_{k,l} = y_{k,l}, Y_{l,k} = y_{l,k} | Z = z)$$
 
 
-Assume that a pair of nodes with similar values is more likely to be in the same neighborhood (same membership), and the probability of having an edge within the block is larger than the probability between the blocks. I start with simple model:
+Assume that a pair of nodes with similar values is more likely to be in the same neighborhood (same membership), and the probability of having an edge within the block is larger than the probability between the blocks. 
+
+
+## Motivating Example
+<a name=" Motivating Example"/>
+
+I start with the following model:
 
 - Distribution of Attributes
 
@@ -58,9 +64,10 @@ Suppose $X_{ij} \sim Bernoulli(g(X_{ij}))$ such that $X_{ij} = 1$ iff there exis
 
 $$g(X_{ij}) = \left\{ \begin{array}{ll} w_{i} & i = j\mbox{ (within block)} \\ b_{ij} = b_{ji} & i \neq j\mbox{ (between blocks)}    \end{array} \right.$$
 
+We want to test independence between a graph $G$ and its nodes' attributes $Y:$
 
-## Network vs. Attributes
-<a name=" Network vs. Attributes"/>
+$$H_{0} : f_{G \cdot Y} = f_{G} \cdot f_{Y}$$
+
 
 * $K = 3$ blocks 
 
@@ -87,7 +94,7 @@ knitr::include_graphics("../figure/local2_2.png")
 ```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local2_5.png")
 ```
-```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local2_10.png")
 ```
 
@@ -128,7 +135,7 @@ knitr::include_graphics("../figure/local3_2.png")
 ```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local3_5.png")
 ```
-```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local3_10.png")
 ```
 
@@ -145,6 +152,9 @@ table[2,] <- b
 table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
 ```
+
+It looks like for the above cases, the optimal neighborhood choice is more dependent on the choice of $Y$ (node attributes) rather than that of $G$ (network). 
+
 
 
 ## Simple Block Models
@@ -178,7 +188,7 @@ knitr::include_graphics("../figure/local7_2.png")
 ```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local7_5.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local7_10.png")
 ```
 
@@ -210,7 +220,7 @@ knitr::include_graphics("../figure/local8_2.png")
 ```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local8_5.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local8_10.png")
 ```
 
@@ -241,7 +251,7 @@ knitr::include_graphics("../figure/local9_2.png")
 ```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local9_5.png")
 ```
-```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local9_10.png")
 ```
 
@@ -277,9 +287,14 @@ Note that larger value of $\omega$ implies much discrepency between blocks. The 
 
 $$A = \left[  \begin{array}{c|c | c} p & q  & q \\ \hline q  & p & q \\ \hline q & q & p \end{array} \right]$$
 
+Remind that our testing hypothesis is independence between network or graph $G$ and its nodes' attributes $X:$
+
+$$H_{0} : f_{G \cdot X} = f_{G} \cdot f_{X}$$
+
+
 Set $n=150$ ; $p = 0.3$ ; $q = 0.05;$ $\omega = 0.15$. In other words, the probability of having edges between or within block is:
 
-$$A = \left[  \begin{array}{c|c| c} 0.3 & 0.05 & 0.05 \\ \hline 0.05 & 0.3 & 0.05 \\ \hline 0.05 & 0.05 & 0.3 \end{array} \right]$$
+$$A = \left[  \begin{array}{c|c| c} 0.3 & 0.05 & 0 + \epsilon \\ \hline 0.05 & 0.3 & 0.05 \\ \hline 0 + \epsilon & 0.05 & 0.3 \end{array} \right]$$
 
 ```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center'}
 knitr::include_graphics("../figure/local12_net.png")
@@ -320,13 +335,13 @@ kable(table, align = 'c', digits = 2)
 ```
 
 
-As diffusion time increases, estimated power from global test is decreasing while that from the local optimal increases. This does not work when the number of block is two, if $p > q$, global test achieves highest power because the distance between blocks is always proportion to the discrepancy in distributions.
+As diffusion time increases, estimated power from global test is decreasing while that from the local optimal increases. This does not work when the number of blocks is two and when $p > q$, global test achieves highest power because the distance between blocks is always proportion to the discrepancy in distributions.
 
-Note that the local scale in (double-centered) $G$ (graph) is stuck in between 50-100. That means including the one neighboring block is okay while two neighboring blocks, which would be equivalent to global scale does not provide the most powerful test statistics. It makes sense in that for each block, two other block is equally likely to be diffuse but the distribution is different. In the case of the ``block1`` and ``block2``, including two other blocks supports diffusion distance means increasing disrepancy in distribution. On the other hand, for ``block3``, two other neighboring blocks are correlated in opposite directions.  
+On the other hand, when the number of blocks is three, the local scale in (double-centered) $G$ (graph) is stuck in between about 50-100. That means including the one neighboring block is okay while two neighboring blocks, which would be equivalent to global scale does not provide the most powerful test statistics. It makes sense in that for each block, two other block is equally likely to be diffuse but the distribution is different. In case of ``block1`` and ``block2``, including two other blocks supports increasing diffusion distance induces increasing disrepancy in distribution. On the other hand, for ``block3``, two other neighboring blocks are correlated in opposite directions.  
 
 <hr />
 
-The probability of having edges between or within block is:
+Consider the other case where the between-block probabilities differ but still being less than the within-block probability. 
 
 $$A = \left[  \begin{array}{c|c| c} 0.30 & 0.20 & 0.05 \\ \hline 0.20 & 0.30 & 0.10 \\ \hline 0.05 & 0.10 & 0.30 \end{array} \right]$$
 
@@ -370,15 +385,14 @@ kable(table, align = 'c', digits = 2)
 ```
 
 
-
-
-
+In this case, the choice of neighborhood becomes much narrower than the previous one. It seems including only one block is the optimal. Also note that the global test almost results independence.
 
 
 ## Five Blocks Models
 <a name=" Five Blocks Models"/>
 
-We imitate the previous block model with more number of blocks, expecting that the local optimal scale is stuck much ealier.
+I want to make sure whether in the case of five blocks, my assumption of ``getting stuck`` between one or two blocks holds or not. 
+It just imitates the previous block model with more number of blocks, expecting that the local optimal scale is stuck much ealier.
 
 $$A = \left[  \begin{array}{c|c|c|c|c} \color{red}{0.30} & 0.05 & 0.05 & 0.05 & 0.05 \\ \hline 0.05 & \color{red}{0.30} & 0.05 & 0.05 & 0.05 \\ \hline 0.05 & 0.05 & \color{red}{0.30} & 0.05 & 0.05 \\ \hline 0.05 & 0.05 & 0.05 & \color{red}{0.30} & 0.05 \\ \hline 0.05 & 0.05 & 0.05 & 0.05 & \color{red}{0.30} \end{array} \right]$$
 
@@ -424,12 +438,12 @@ kable(table, align = 'c', digits = 2)
 ```
 
 
-It looks like the estimated power deceases as the number of blocks increases and the number of individuals within the block decreases. 
+It does not show any particular pattern. This shows that estimated power deceases as the number of blocks increases and the number of individuals within the block decreases. 
 
 
 <hr />
 
-Now increase the probability of having edges within the blocks to make sure the power is large enough. (and it was not enough, so) Also increase the discrepancy in distribution. 
+Now increase the probability of having edges within block to make sure the power is large enough. (and it was not enough, so) Also increase the discrepancy in distribution. 
 
 
 $$X = \left[  \begin{array}{c|c|c|c|c} Bern(0.35) &  &  & & \\ \hline  & Bern(0.65) & & &  \\ \hline  &  & Bern(0.50) & & \\ \hline & & & Bern(0.65) & \\ \hline & & & & Bern(0.35) \end{array} \right]$$
@@ -464,5 +478,5 @@ table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
 ```
 
-
+As diffusion time increases, power difference between the local and globla increases. 
 

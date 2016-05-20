@@ -114,7 +114,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>Throughout all the simulations, we are testing independence between network diffusion distance and its nodes’ attributes.</p>
+<p>Throughout all the simulations, we are testing independence between network (graph) and its nodes’ attributes.</p>
 <p><span class="math">\[H_{0} : f_{GX} = f_{G} \cdot f_{X}\]</span></p>
 <ul>
 <li><p><a href="#%20Diffusion%20Distance">Diffusion Distance</a></p></li>
@@ -126,9 +126,13 @@ $(document).ready(function () {
 <p>Diffusion distance between node <span class="math">\(x\)</span> and <span class="math">\(y\)</span> at time <span class="math">\(t\)</span>, denoted by <span class="math">\(D_{t}(x,y)\)</span> involves summing over all paths of length <span class="math">\(t\)</span> connecting <span class="math">\(x\)</span> to <span class="math">\(y\)</span> and <span class="math">\(y\)</span> to <span class="math">\(x\)</span>. As a consequence, this number is very robust to noise perturbation, unlike the geodesic distance. To observe not monotonically increasing power in diffusion distance, therefore, we must introduce the block of observations which hinders obtaining higher power when the diffusion process progresses.</p>
 <p>Let’s consider two cases where we assume possibly result not increasing power as time progresses.</p>
 <ol style="list-style-type: decimal">
-<li><p>Negative Correlations</p></li>
-<li><p>Similar probability of between- and within blocks probability</p></li>
+<li>Negative Correlations</li>
 </ol>
+<p>Two blocks having the most different distributions are more likely to be adjacent each other than other pairs of blocks, and this probability is not that different from between-block probability so that in the end, as diffusion progresses, we are very likely to observe diffusion between these two blocks.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Similar probability of between- and within blocks probability</li>
+</ol>
+<p>This is the case where between-block probability and within-block probability is similar each other and also not strong. Thus, as time goes by, the interaction between block and within block would be similar.</p>
 </div>
 <div id="three-blocks-models" class="section level2">
 <h2>Three Blocks Models</h2>
@@ -168,6 +172,7 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+<p>In the above case, local dependence and decreasing power are both observed.</p>
 <hr />
 
 
@@ -206,6 +211,7 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+<p>Decreasing rate is much slower than the first case and the global test and local test are similar each other.</p>
 </div>
 
 

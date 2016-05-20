@@ -4,10 +4,9 @@ author: "Youjin Lee"
 output: html_document
 ---
 
-Throughout all the simulations, we are testing independence between network diffusion distance and its nodes' attributes.
+Throughout all the simulations, we are testing independence between network (graph) and its nodes' attributes.
 
 $$H_{0} : f_{GX} = f_{G} \cdot f_{X}$$
-
 
 
 ```{r echo=FALSE, message =FALSE, warning = FALSE}
@@ -38,9 +37,12 @@ Let's consider two cases where we assume possibly result not increasing power as
 
 (1) Negative Correlations
 
+Two blocks having the most different distributions are more likely to be adjacent each other than other pairs of blocks, and this probability is not that different from between-block probability so that in the end, as diffusion progresses, we are very likely to observe diffusion between these two blocks. 
+
 
 (2) Similar probability of between- and within blocks probability 
 
+This is the case where between-block probability and within-block probability is similar each other and also not strong. Thus, as time goes by, the interaction between block and within block would be similar. 
 
 
 
@@ -91,6 +93,8 @@ table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
 ```
 
+In the above case, local dependence and decreasing power are both observed.
+
 
 <hr />
 
@@ -137,3 +141,7 @@ table[2,] <- b
 table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
 ```
+
+Decreasing rate is much slower than the first case and the global test and local test are similar each other.
+
+
