@@ -1,0 +1,98 @@
+---
+title: "Two Blocks"
+author: "Youjin Lee"
+output: html_document
+---
+
+Throughout all the simulations, we are testing independence between network (graph) and its nodes' attributes.
+
+$$H_{0} : f_{GX} = f_{G} \cdot f_{X}$$
+
+(always write test (H0, HA), and test statistic, and alpha, and critical value)
+
+
+```{r echo=FALSE, message =FALSE, warning = FALSE}
+library(igraph)
+library(RefManageR)
+library(xtable)
+library(grid)
+library(ggplot2)
+library(png)
+library(grid)
+library(knitr)
+bib <- ReadBib(system.file("Bib", "biblatexExamples.bib", 
+                           package = "RefManageR"), check = FALSE)
+BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", cite.style = 'alphabetic')
+```
+
+
+- [Graph Generation](# Graph Generation)
+
+- [Flow Chart](# Flow Chart)
+
+- [Power Heatmap](# Power Heatmap)
+
+- [Interpretaion](# Interpretation)
+
+## Graph Generation
+<a name=" Graph Generation"/>
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/tblock1_net.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/tblock1_att.png")
+```
+
+
+blahblah..
+
+## Flow Chart
+<a name=" Flow Chart"/>
+
+(1) t = 1
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/tblock1_A1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/tblock1_HA1H.png")
+```
+
+<hr />
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/tblock1_B.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/tblock1_HBH.png")
+```
+
+
+<hr />
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/tblock1_A1B.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/tblock1_HA1BH.png")
+```
+
+<hr />
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/tblock1_P1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/tblock1_1.png")
+```
+
+
+
+## Power Heatmap
+<a name=" Power Heatmap"/>
+
+## Interpretation
+<a name=" Interpretation"/>
+
