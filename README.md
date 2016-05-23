@@ -7,6 +7,8 @@
 * [Multiple Networks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/multinetworks.html)
 * [Local Dependence](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/local_dependence.html) 
 * [Optimal Time in Diffusion Distance](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/local_time.html)
+* [Two Blocks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/twoblocks.html)
+* [Three Blocks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/threeblocks.html)
 
 ## Reference
 * celegans : exploratory data analysis on neuronal network of C. elegans.
