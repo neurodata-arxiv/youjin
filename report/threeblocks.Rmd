@@ -316,55 +316,17 @@ kable(table, align = 'c', digits = 2)
 - Change in diffusion distance matrix $A:$
 
 
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A1.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A2.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A5.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A10.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_A20.png")
-```
-
-
-
 - Change in double-centered diffusion distance matrix $\tilde{A}:$
 
-
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HA1H.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HA2H.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HA5H.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HA10H.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_HA20H.png")
-```
 
 
 ```{r echo = FALSE, results='asis'}
 a <- c(98, 100, 100, 100, 101)
 b <- c("92-150", "92-150", "92-150", "92,93", "92,93")
-
-table <- matrix(0, nrow = 2, ncol = 5)
-rownames(table) <- c("k*","l*")
-colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
-table[1,] <- a
-table[2,] <- b
-table <- as.data.frame(table)
-kable(table, align = 'c')
+table <- matrix(0, nrow = 2, ncol = 6)
+table[1,] <- c("k*", a)
+table[2,] <- c("l*", b)
+kable(table, aligh = 'c', col.names = c("Optimal","t=1", "t=2", "t=5", "t=10", "t=20"))
 ```
 
 
