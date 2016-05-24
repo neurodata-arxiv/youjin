@@ -271,8 +271,3 @@ kable(table, align = 'c', digits = 2)
 ## Interpretation
 <a name=" Interpretation"/>
 
-- Change in diffusion distance matrix $A:$
-
-
-- Change in double-centered diffusion distance matrix $\tilde{A}:$
-
