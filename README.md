@@ -1,14 +1,20 @@
 # Testing Independence via Graph Correlation
 
-## Simulation
+## Simulation - preliminaries
 
 * [Network(Graph) vs.Node attributes](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/network_attribute.html) 
 * [Network 1 vs Network 2](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/network_network.html)
 * [Multiple Networks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/multinetworks.html)
 * [Local Dependence](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/local_dependence.html) 
 * [Optimal Time in Diffusion Distance](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/local_time.html)
-* [Two Blocks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/twoblocks.html)
-* [Three Blocks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/threeblocks.html)
+
+## Simulation - block models
+* [Two Blocks(B2.1)](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/twoblocks.html)
+* [Three Blocks(B3.1)](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/B3_1.html)
+* [Three Blocks(B3.2)](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/B3_2.html)
+* [Three Blocks(B3.3)](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/threeblocks.html)
+* [Three Blocks(B3.4)](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/B3_4.html)
+
 
 ## Reference
 * celegans : exploratory data analysis on neuronal network of C. elegans.
