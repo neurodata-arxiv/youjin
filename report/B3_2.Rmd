@@ -4,8 +4,6 @@ author: "Youjin Lee"
 output: html_document
 ---
 
-
-
 ```{r echo=FALSE, message =FALSE, warning = FALSE}
 library(igraph)
 library(RefManageR)
@@ -130,7 +128,7 @@ knitr::include_graphics("../figure/local28_2.png")
 knitr::include_graphics("../figure/local28_A5.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local28_HA2H.png")
+knitr::include_graphics("../figure/local28_HA5H.png")
 ```
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -259,7 +257,7 @@ knitr::include_graphics("../figure/local28_20.png")
 
 ```{r echo = FALSE, results='asis'}
 a <- c(0.6833333, 0.7433333, 0.7666667, 0.7266667, 0.6533333)
-b <- c( 0.7033333, 0.7833333, 0.7666667, 0.7866667, 0.7400000)
+b <- c(0.7033333, 0.7833333, 0.7666667, 0.7866667, 0.7400000)
 
 table <- matrix(0, nrow = 2, ncol = 5)
 rownames(table) <- c("global test", "local optimal")

@@ -168,7 +168,7 @@ knitr::include_graphics("../figure/local12_2.png")
 knitr::include_graphics("../figure/local12_A5.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HA2H.png")
+knitr::include_graphics("../figure/local12_HA5H.png")
 ```
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}

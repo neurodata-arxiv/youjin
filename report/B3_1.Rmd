@@ -296,8 +296,8 @@ knitr::include_graphics("../figure/local27_20.png")
 
 
 ```{r echo = FALSE, results='asis'}
-a <- c()
-b <- c()
+a <- c(0.7366667, 0.74, 0.7400000, 0.7466667, 0.7200000)
+b <- c(0.7466667, 0.75, 0.7666667, 0.7633333, 0.7533333)
 
 table <- matrix(0, nrow = 2, ncol = 5)
 rownames(table) <- c("global test", "local optimal")
