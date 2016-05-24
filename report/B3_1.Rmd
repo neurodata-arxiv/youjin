@@ -168,7 +168,7 @@ knitr::include_graphics("../figure/local27_2.png")
 knitr::include_graphics("../figure/local27_A5.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local27_HA2H.png")
+knitr::include_graphics("../figure/local27_HA5H.png")
 ```
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -311,9 +311,13 @@ kable(table, align = 'c', digits = 2)
 ## Interpretation
 <a name=" Interpretation"/>
 
-- Change in diffusion distance matrix $A:$
 
-
-- Change in double-centered diffusion distance matrix $\tilde{A}:$
-
+```{r echo = FALSE, results='asis'}
+a <- c(149, "69-125", "52", "99-102", "111")
+b <- c("71-78", "2-90", "81", "65-86", "66,68")
+table <- matrix(0, nrow = 2, ncol = 6)
+table[1,] <- c("k*", a)
+table[2,] <- c("l*", b)
+kable(table, aligh = 'c', col.names = c("Optimal","t=1", "t=2", "t=5", "t=10", "t=20"))
+```
 

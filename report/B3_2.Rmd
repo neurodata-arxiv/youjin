@@ -271,3 +271,11 @@ kable(table, align = 'c', digits = 2)
 ## Interpretation
 <a name=" Interpretation"/>
 
+```{r echo = FALSE, results='asis'}
+a <- c(136, "80,86", "85-94", 53, "45,74")
+b <- c("88-93", "83-93", "66-150", "65,66", "92-150")
+table <- matrix(0, nrow = 2, ncol = 6)
+table[1,] <- c("k*", a)
+table[2,] <- c("l*", b)
+kable(table, aligh = 'c', col.names = c("Optimal","t=1", "t=2", "t=5", "t=10", "t=20"))
+```
