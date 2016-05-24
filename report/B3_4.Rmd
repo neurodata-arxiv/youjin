@@ -4,8 +4,6 @@ author: "Youjin Lee"
 output: html_document
 ---
 
-
-
 ```{r echo=FALSE, message =FALSE, warning = FALSE}
 library(igraph)
 library(RefManageR)
