@@ -1,5 +1,5 @@
 ---
-title: "Three Blocks(B3.3)"
+title: "Three Blocks(B3.1)"
 author: "Youjin Lee"
 output: html_document
 ---
@@ -68,21 +68,21 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 ## Graph Generation
 <a name=" Graph Generation"/>
 
-Set $n=150$ ; $p = 0.30$ ; $q = s = 0.05; r = 0.00; \omega= 0.15.$
+Set $n=150$ ; $p = 0.30$ ; $q = s =  r = 0.00; \omega= 0.15.$
 
 $$X_{i} = \left\{ \begin{array}{ll}  Bern(0.35) & i \in \mbox{ block 1 } \\ Bern(0.65) & i \in \mbox{ block 2} \\ Bern(0.50) &   i \in \mbox{ block 3} \end{array} \right.$$
 
 
-$$Adj_{G} = \left[  \begin{array}{c|c|c} 0.30 & 0.05  & 0^{*} \\ \hline 0.05 & 0.30 & 0.05 \\ \hline 0^{*} & 0.05 & 0.30 \end{array} \right]$$
+$$Adj_{G} = \left[  \begin{array}{c|c|c} 0.30 & 0^{*}  & 0^{*} \\ \hline 0^{*} & 0.30 & 0^{*} \\ \hline 0^{*} & 0^{*} & 0.30 \end{array} \right]$$
 
 To make sure $G$ is connected, $0^{*}$ could be very slightly larger than 0.
 
 
 ```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_net.png")
+knitr::include_graphics("../figure/local27_net.png")
 ```
 ```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_att.png")
+knitr::include_graphics("../figure/local27_att.png")
 ```
 
 
@@ -93,33 +93,33 @@ knitr::include_graphics("../figure/local12_att.png")
 ### t = 1
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A1.png")
+knitr::include_graphics("../figure/local27_A1.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HA1H.png")
+knitr::include_graphics("../figure/local27_HA1H.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_B.png")
+knitr::include_graphics("../figure/local27_B.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HBH.png")
+knitr::include_graphics("../figure/local27_HBH.png")
 ```
 
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A1B.png")
+knitr::include_graphics("../figure/local27_A1B.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_HA1BH.png")
+knitr::include_graphics("../figure/local27_HA1BH.png")
 ```
 
 <hr />
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_P1.png")
+knitr::include_graphics("../figure/local27_P1.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_1.png")
+knitr::include_graphics("../figure/local27_1.png")
 ```
 
 
@@ -128,36 +128,36 @@ knitr::include_graphics("../figure/local12_1.png")
 ### t = 2
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A2.png")
+knitr::include_graphics("../figure/local27_A2.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HA2H.png")
+knitr::include_graphics("../figure/local27_HA2H.png")
 ```
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_B.png")
+knitr::include_graphics("../figure/local27_B.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HBH.png")
+knitr::include_graphics("../figure/local27_HBH.png")
 ```
 
 
 <hr />
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A2B.png")
+knitr::include_graphics("../figure/local27_A2B.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_HA2BH.png")
+knitr::include_graphics("../figure/local27_HA2BH.png")
 ```
 
 <hr />
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_P2.png")
+knitr::include_graphics("../figure/local27_P2.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_2.png")
+knitr::include_graphics("../figure/local27_2.png")
 ```
 
 
@@ -165,72 +165,72 @@ knitr::include_graphics("../figure/local12_2.png")
 ### t = 5
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A5.png")
+knitr::include_graphics("../figure/local27_A5.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HA2H.png")
+knitr::include_graphics("../figure/local27_HA2H.png")
 ```
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_B.png")
+knitr::include_graphics("../figure/local27_B.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HBH.png")
+knitr::include_graphics("../figure/local27_HBH.png")
 ```
 
 
 <hr />
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A5B.png")
+knitr::include_graphics("../figure/local27_A5B.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_HA5BH.png")
+knitr::include_graphics("../figure/local27_HA5BH.png")
 ```
 
 <hr />
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_P5.png")
+knitr::include_graphics("../figure/local27_P5.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_5.png")
+knitr::include_graphics("../figure/local27_5.png")
 ```
 
 
 ### t = 10
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A10.png")
+knitr::include_graphics("../figure/local27_A10.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HA10H.png")
+knitr::include_graphics("../figure/local27_HA10H.png")
 ```
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_B.png")
+knitr::include_graphics("../figure/local27_B.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HBH.png")
+knitr::include_graphics("../figure/local27_HBH.png")
 ```
 
 
 <hr />
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A10B.png")
+knitr::include_graphics("../figure/local27_A10B.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_HA10BH.png")
+knitr::include_graphics("../figure/local27_HA10BH.png")
 ```
 
 <hr />
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_P10.png")
+knitr::include_graphics("../figure/local27_P10.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_10.png")
+knitr::include_graphics("../figure/local27_10.png")
 ```
 
 
@@ -238,36 +238,36 @@ knitr::include_graphics("../figure/local12_10.png")
 ### t = 20
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A20.png")
+knitr::include_graphics("../figure/local27_A20.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HA20H.png")
+knitr::include_graphics("../figure/local27_HA20H.png")
 ```
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_B.png")
+knitr::include_graphics("../figure/local27_B.png")
 ```
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_HBH.png")
+knitr::include_graphics("../figure/local27_HBH.png")
 ```
 
 
 <hr />
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A20B.png")
+knitr::include_graphics("../figure/local27_A20B.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_HA20BH.png")
+knitr::include_graphics("../figure/local27_HA20BH.png")
 ```
 
 <hr />
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_P20.png")
+knitr::include_graphics("../figure/local27_P20.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_20.png")
+knitr::include_graphics("../figure/local27_20.png")
 ```
 
 
@@ -278,26 +278,26 @@ knitr::include_graphics("../figure/local12_20.png")
 
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_1.png")
+knitr::include_graphics("../figure/local27_1.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_2.png")
+knitr::include_graphics("../figure/local27_2.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_5.png")
+knitr::include_graphics("../figure/local27_5.png")
 ```
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_10.png")
+knitr::include_graphics("../figure/local27_10.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
-knitr::include_graphics("../figure/local12_20.png")
+knitr::include_graphics("../figure/local27_20.png")
 ```
 
 
 ```{r echo = FALSE, results='asis'}
-a <- c(0.6266667, 0.6166667, 0.5933333, 0.5433333, 0.5633333)
-b <- c(0.6900000, 0.7566667, 0.7600000, 0.7700000, 0.7500000)
+a <- c()
+b <- c()
 
 table <- matrix(0, nrow = 2, ncol = 5)
 rownames(table) <- c("global test", "local optimal")
@@ -315,16 +315,5 @@ kable(table, align = 'c', digits = 2)
 
 
 - Change in double-centered diffusion distance matrix $\tilde{A}:$
-
-
-
-```{r echo = FALSE, results='asis'}
-a <- c(98, 100, 100, 100, 101)
-b <- c("92-150", "92-150", "92-150", "92,93", "92,93")
-table <- matrix(0, nrow = 2, ncol = 6)
-table[1,] <- c("k*", a)
-table[2,] <- c("l*", b)
-kable(table, aligh = 'c', col.names = c("Optimal","t=1", "t=2", "t=5", "t=10", "t=20"))
-```
 
 

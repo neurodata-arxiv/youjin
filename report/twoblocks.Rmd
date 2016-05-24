@@ -69,7 +69,7 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 
 - [Power Heatmap](# Power Heatmap)
 
-- [Interpretaion](# Interpretation)
+- [Interpretation](# Interpretation)
 
 ## Graph Generation
 <a name=" Graph Generation"/>
