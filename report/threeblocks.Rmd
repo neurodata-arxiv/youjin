@@ -296,21 +296,17 @@ knitr::include_graphics("../figure/local12_20.png")
 
 
 ```{r echo = FALSE, results='asis'}
-a <- c(0.6266667, 0.6166667, 0.5933333, 0.5433333, 0.5633333)
-b <- c(0.6900000, 0.7566667, 0.7600000, 0.7700000, 0.7500000)
+a <- c(0.6266667, 0.6166667, 0.5933333, 0.5433333, 0.5633333, 0.6766667)
+b <- c(0.6900000, 0.7566667, 0.7600000, 0.7700000, 0.7500000, 0.6933333)
 
-table <- matrix(0, nrow = 2, ncol = 5)
+table <- matrix(0, nrow = 2, ncol = 6)
 rownames(table) <- c("global test", "local optimal")
-colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20", "Euclidean")
 table[1,] <- a
 table[2,] <- b
 table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
 ```
-
-## Interpretation
-<a name=" Interpretation"/>
-
 
 ```{r echo = FALSE, results='asis'}
 a <- c(98, 100, 100, 100, 101)
@@ -321,4 +317,17 @@ table[2,] <- c("l*", b)
 kable(table, aligh = 'c', col.names = c("Optimal","t=1", "t=2", "t=5", "t=10", "t=20"))
 ```
 
+
+## Euclidean Distance Matrix
+<a name=" Euclidean Distance Matrix"/>
+
+
+- Diffusion distance (t = 1) vs. Euclidean distance Matrix
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/dislocal12.png")
+```
 

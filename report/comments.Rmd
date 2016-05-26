@@ -1,0 +1,310 @@
+---
+title: "Comments on Block Models"
+author: "Youjin Lee"
+output: html_document
+---
+
+We are testing independence between network (graph) $G$ and its nodes' attributes $X$.
+
+$$H_{0} : f_{GX} = f_{G} \cdot f_{X}$$
+
+$$H_{A} : f_{GX} \neq f_{G} \cdot f_{X}$$
+
+Test statistic which is used to measure the distances between two random variables $G \in \mathcal{G}(n; p,q)$ and $X \in \mathcal{R}$ is defined as follows for all pairs of $\{(k,l); k,l=1,..,n\}$:
+
+$$dCorr_{kl}(G,X) = \frac{dCov_{kl}(G,X)}{\sqrt{dVar_{k}(G) \cdot dVar_{l}(X)}}$$
+,where
+
+$$dCov_{kl}(G,X) = \frac{1}{n^2} \sum\limits_{i,j}^{n} A^{H}_{ij} B^{H}_{ij} I(r(A_{ij}) < k) I(r(B_{ij}) < l )$$
+
+$$dVar_{k}(G) = \frac{1}{n^2} \sum\limits_{i,j=1}^{n} A^{H}_{ij}A^{H}_{ij} I\big( r(A_{ij}) < k \big)$$
+
+$$dVar_{k}(X) = \frac{1}{n^2} \sum\limits_{i,j=1}^{n} B^{H}_{ij}B^{H}_{ij} I\big( r(B_{ij}) < k \big)$$
+
+
+where $A^{H} = HAH; A_{ij} = \parallel G_{i} - G_{j} \parallel ; H = I_{n} - J_{n} / n;$ $r(A_{ij}) = k$ if and only if $A_{ij}$ is the $k^{th}$ smallest distance in $\{ A_{ij} ; i,j=1,..,n , i \neq j \}.$
+
+
+
+
+
+The critical value of the test is based on the prespecified Type-I error $\alpha = 0.05$. P-value for each iteration is obtained through permutation.
+
+The testing power of local distance correlation equals to the best power among all of the local family. What we call global test refers to the test when $k=l=n,$ i.e. a test including all ranges of neighborhood. On the other hand, local optimal is a test of highest power.
+
+
+```{r echo=FALSE, message =FALSE, warning = FALSE}
+library(igraph)
+library(RefManageR)
+library(xtable)
+library(grid)
+library(ggplot2)
+library(png)
+library(grid)
+library(knitr)
+bib <- ReadBib(system.file("Bib", "biblatexExamples.bib", 
+                           package = "RefManageR"), check = FALSE)
+BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", cite.style = 'alphabetic')
+```
+
+
+- [Summary](# Summary)
+
+- [Diffusion Process](# Diffusion Process)
+
+- [Neighborhood Block](# Neighborhood Block)
+
+- [Local Power Heatmap](# Power Heatmap)
+
+- [Euclidean Distance of Network](# Euclidean Distance of Network)
+
+- [Implications](# Implications)
+
+## Summary
+<a name=" Summary"/>
+
+### Two block(B2.1)
+
+```{r echo = FALSE, results='asis'}
+a <- c(0.9133333, 0.9166667, 0.8200000, 0.6866667, 0.5933333)
+b <- c(0.9566667, 0.9300000, 0.8533333, 0.7200000, 0.6333333)
+
+table <- matrix(0, nrow = 2, ncol = 5)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
+
+
+### Three blocks(B3.1)
+
+
+```{r echo = FALSE, results='asis'}
+a <- c(0.7366667, 0.74, 0.7400000, 0.7466667, 0.7200000)
+b <- c(0.7466667, 0.75, 0.7666667, 0.7633333, 0.7533333)
+
+table <- matrix(0, nrow = 2, ncol = 5)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
+
+
+### Three blocks(B3.2)
+
+```{r echo = FALSE, results='asis'}
+a <- c(0.6833333, 0.7433333, 0.7666667, 0.7266667, 0.6533333)
+b <- c(0.7033333, 0.7833333, 0.7666667, 0.7866667, 0.7400000)
+
+table <- matrix(0, nrow = 2, ncol = 5)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
+
+### Three blocks(B3.3)(*)
+
+```{r echo = FALSE, results='asis'}
+a <- c(0.6266667, 0.6166667, 0.5933333, 0.5433333, 0.5633333)
+b <- c(0.6900000, 0.7566667, 0.7600000, 0.7700000, 0.7500000)
+
+table <- matrix(0, nrow = 2, ncol = 5)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
+
+
+### Three blocks(B3.4)(*)
+
+```{r echo = FALSE, results='asis'}
+a <- c(0.5800000, 0.4766667, 0.1733333, 0.05333333, 0.02666667)
+b <- c(0.6433333, 0.6933333, 0.6233333, 0.47000000, 0.37666667)
+
+table <- matrix(0, nrow = 2, ncol = 5)
+rownames(table) <- c("global test", "local optimal")
+colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+table[1,] <- a
+table[2,] <- b
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
+
+
+You can see that superiority of local test is much more clear when the between-block probabilities are different between pairs of blocks, and the between-block probability is NOT proportional to the similarity in distribution between the blocks. For instance, in the case where the distributions of ``Block1`` and ``Block3`` is much more similar than those between ``Block1`` and ``Block2`` but probability of having relations (or having edges) between ``Block1`` and ``Block2`` is higher, power to test local dependence is higher than the global dependence. In this situation, not including ``Block3`` would be better.   
+
+
+
+## Diffusion Process
+<a name=" Diffusion Process"/>
+
+Let us focus on the following simulations:
+
+- (B3.3) : The discrepancy between the local and global is increasing, and the power does not decrease as time increase, at least. 
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_2.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/local12_5.png")
+```
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_10.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/local12_20.png")
+```
+
+
+- (B3.4) : The discrepancy between the local and global is increasing, and the power is systematically decreasing as time goes by. 
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local25_1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local25_2.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/local25_5.png")
+```
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local25_10.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/local25_20.png")
+```
+
+<hr />
+
+First of all, let us focus on increasing discrepancy betwen local and global in (B3.3). The following panels show the changes in distance matrix of $G$, $A$, across time points. At $t=1,$ difference between blocks is not noticeably distinct each other - diffusion process is not yet active. As time increase, you can notice the difference between each block while the absolute difference is shrinking. On the other hand, distance matrix $B$ of node attribute $X$ is free from diffusion process. You can notice that ``block3`` is "redundant" in a sense that it cannot tell any difference between other blocks. That might incicate that when you consider the neighborhood choice of $X,$ not including node 100 - 150 would be a better choice. Note that this node set is almost middle part of $X$($\sim Bern(0.5)$). This might be the reason why we have a "middle hole" of column in most of the heatmap. 
+
+
+
+
+Let us focus on the distance matrix of $A.$ For ``Block1``, including the upto 100 neighborhood, i.e. including ``Block2`` but not including ``Block3``. For nodes in ``Block2``, they cannot differentiate between ``Block1`` and ``Block3`` in distance matrix $A$. In the case of ``Block3``, it seems that their network distance is independent of attribute distance. Therefore, in overall, including upto 100 neighbors looks the best choice in overall. 
+
+
+
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_A1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_A2.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/local12_A5.png")
+```
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_A10.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_A20.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local12_B.png")
+```
+
+<hr />
+
+Consider the case of (B3.4). Most obvious pattern you can see here is that in distance matrix of $A,$ distance between ``Block1`` and ``Block2`` are almost zero, especially compared to the distance to the ``Block3``. Since the attribute distribution of $X$ is most different between these two, for both block ``Block1`` and ``Block2``, including individuals only in the same block woul be best. In case of ``Block3``, by the same argument from (B3.3), including neighbors upto 50 will be the best.  
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local25_A1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local25_A2.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/local25_A5.png")
+```
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local25_A10.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local25_A20.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/local25_B.png")
+```
+
+Now let's think about why even the optimal one is decreasing. I discussed above that including only within-block membership is the best. As diffusion process progresses, distance between block is getting smaller. That might be the reason. 
+
+
+## Neighborhood Block
+<a name=" Neighborhood Block"/>
+
+In this section, let's forget about diffusion process and only think about two distance matrices $A$ and $B$ and think about when and why the local test is better than the global test in three-block cases. For simplicity, let's fix distance distribution of $X$, and then consider the following three cases : (1) Including one block ($k^{*} \approx 50$) is the optimal; (2) Including one neighboring block ($k^{*} \approx 100$) is the optimal; (3) global test ($k^{*} \approx 150$) is the optimal.
+
+(1) Including one block ($k^{*} \approx 50$) is the optimal
+
+
+
+
+(2) Including one neighboring block ($k^{*} \approx 100$) is the optimal
+
+
+
+(3) global test ($k^{*} \approx 150$) is the optimal
+
+
+
+
+
+## Local Power Heatmap
+<a name=" Local Power Heatmap"/>
+
+Suppose that $1 \leq k^{*}, l^{*} \leq n$ is the optimal neighborhood choice for $G$ and $X,$ respectively.
+
+$$A^{k^{*}}_{ij} = \left\{ \begin{array}{cc}  A_{ij} & rank_{i}(j) \leq k^{*} \\ 0 & rank_{i}(j) > k^{*} \end{array} \right.$$
+
+$$B^{l^{*}}_{ij} = \left\{ \begin{array}{cc}  B_{ij} & rank_{i}(j) \leq l^{*} \\ 0 & rank_{i}(j) > l^{*} \end{array} \right.$$
+
+Make sure test statistics having $A^{k^{*}}$ and $B^{l^{*}}$ would have global test as the optimal. (?)
+
+
+## Euclidean Distance of Network
+<a name=" Euclidean Distance of Network"/>
+
+It is known that a distance correlation is consistent against all dependent alternatives when testing on Euclidean data. Here we simply think of distance between nodes on network space as an Euclidean distance of similarity matrix. Similarity matrix is defined based on and adjacency matrix. 
+
+Let $Adj_{G} := E$ be an adjacency matrix of graph $G = (V , E)$, i.e. for each $i ,j \in V$
+
+$$E_{ij} = \left\{ \begin{array}{cc} 1 &  e = (i,j) \in E \\ 0 & \mbox{ o.w } \end{array} \right.$$
+
+Define a similarity matrix $S$ based on an adjacency matrix $E:$
+
+$$S_{ij} = \left\{ \begin{array}{cc} 1 &  E_{ij} = 0 \\ 0 & E_{ij} = 1 \end{array} \right.$$
+
+This implies that if node $i$ and node $j$ are adjacent each other, $S_{ij} = 0,$ and otherwise, $S_{ij} = 0.$ Distance matrix of $A$ is just a formal Euclidean distance from this similarity matrix $A:$
+
+$$A_{ij} = \parallel S_{i \cdot} -  S_{j \cdot} \parallel$$
+
+## Implications
+<a name=" Implications"/>
+
+
+
+
+

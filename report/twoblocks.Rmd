@@ -76,7 +76,7 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 
 Set $n=100$ ; $p = 0.3$ ; $q = 0.05; \omega= 0.20.$
 
-$$X_{i} \sim \left\{ \begin{array}{ll}  Bern(0.3) & i \in \mbox{ block 1 } \\ Bern(0.75) & i \in \mbox{ block 2} \end{array} \right.$$
+$$X_{i} \sim \left\{ \begin{array}{ll}  Bern(0.3) & i \in \mbox{ block 1 } \\ Bern(0.7) & i \in \mbox{ block 2} \end{array} \right.$$
 
 
 $$Adj_{G} = \left[  \begin{array}{c|c} 0.3 & 0.05 \\ \hline 0.05 & 0.05 \end{array} \right]$$
@@ -301,7 +301,7 @@ knitr::include_graphics("../figure/tblock1_20.png")
 
 
 ```{r echo = FALSE, results='asis'}
-a <- c(0.6266667, 0.6166667, 0.5933333, 0.5433333, 0.5433333)
+a <- c(0.9133333, 0.9166667, 0.8200000, 0.6866667, 0.5933333)
 b <- c(0.9566667, 0.9300000, 0.8533333, 0.7200000, 0.6333333)
 
 table <- matrix(0, nrow = 2, ncol = 5)
