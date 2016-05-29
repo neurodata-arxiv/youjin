@@ -257,19 +257,77 @@ Now let's think about why even the optimal one is decreasing. I discussed above 
 
 In this section, let's forget about diffusion process and only think about two distance matrices $A$ and $B$ and think about when and why the local test is better than the global test in three-block cases. For simplicity, let's fix distance distribution of $X$, and then consider the following three cases : (1) Including one block ($k^{*} \approx 50$) is the optimal; (2) Including one neighboring block ($k^{*} \approx 100$) is the optimal; (3) global test ($k^{*} \approx 150$) is the optimal.
 
-(1) Including one block ($k^{*} \approx 50$) is the optimal
+
+By mimicking (B3.4), I generated two distance matrices $A$ and $B$ while keeping symmetry to figure out why and when the local test beats global one:
+
+$$A = \left[  \begin{array}{c|c|c} N(0,0.01) & N(0.1, 0.01)  & N(1, 0.01) \\ \hline N(0.1, 0.01) & N(0, 0.01) & N(1, 0.01) \\ \hline N(1, 0.01) & N(1, 0.01) & N(0, 0.01) \end{array} \right]$$
+
+
+$$B = \left[  \begin{array}{c|c|c} Bern(0.4) & Bern(0.6)  & Bern(0.5) \\ \hline Bern(0.6) & Bern(0.4) & Bern(0.5) \\ \hline Bern(0.5) & Bern(0.5) & Bern(0.5) \end{array} \right]$$
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/A4.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/B4.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/block123.png")
+```
+
+Power heatmap suggests the optimal scale is most dependent on the neighborhood choice of $G$ and it prefers choosing almost 50 closest neighbors. Next I look through each pair of block. Between ``Block1`` and ``Block2``, it is quite obvious that both locally globally $A$ and $B$ are positively correlated each other. On the other hand, in the case of (``Block1``, ``Block3``) and (``Block2``,``Block3``), including 50 closest neighbors has equal (or higher) power than the global test(including whole 100 neighbors).   
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/block12.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/block13.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/block23.png")
+```
+ 
+
+Let's make a comparison between "block1 & block2" and "block 1 & block 3" as below. 
+
+
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/A12.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/B12.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/A13.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/B13.png")
+```
+
+
+Relative difference in matrix $A$ is similar: for each block, within-block difference is much smaller than between-block difference. In case of matrix $B_{12}$ matrix for ``block1`` and ``block2``, this relation still holds. In case of $B_{13}$ matrix for ``block1`` and ``block3``, this does not hold. For ``block3``, distance in $B$ is nearly independent of distance in $A$.   
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/AB12.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/HAB12H.png")
+```
 
 
 
 
-(2) Including one neighboring block ($k^{*} \approx 100$) is the optimal
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/AB13.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/HAB13H.png")
+```
 
-
-
-(3) global test ($k^{*} \approx 150$) is the optimal
-
-
-
+I am still looking for why this happens, connecting to the plots above. 
 
 
 ## Local Power Heatmap
