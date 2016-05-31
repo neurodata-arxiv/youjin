@@ -11,7 +11,7 @@
 ## Simulation - block models
 * [Two Blocks(B2.1)](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/twoblocks.html)
 * [Three Blocks(B3.1)](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/B3_1.html)
-* [Three Blocks(B3.2)](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/B3_2.html)
+* [Three Blocks(B3.2)](https://rawgit.com/neurodata/youjin/master/report/B3_2.html)
 * [Three Blocks(B3.3)](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/threeblocks.html)
 * [Three Blocks(B3.4)](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/B3_4.html)
 * [Comments](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/comments.html)
