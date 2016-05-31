@@ -66,12 +66,12 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 ### Two block(B2.1)
 
 ```{r echo = FALSE, results='asis'}
-a <- c(0.9133333, 0.9166667, 0.8200000, 0.6866667, 0.5933333)
-b <- c(0.9566667, 0.9300000, 0.8533333, 0.7200000, 0.6333333)
+a <- c(0.9133333, 0.8200000,  0.5933333)
+b <- c(0.9566667,  0.8533333,  0.6333333)
 
-table <- matrix(0, nrow = 2, ncol = 5)
+table <- matrix(0, nrow = 2, ncol = 3)
 rownames(table) <- c("global test", "local optimal")
-colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+colnames(table) <- c("t=1",  "t=5",  "t=20")
 table[1,] <- a
 table[2,] <- b
 table <- as.data.frame(table)
@@ -83,12 +83,12 @@ kable(table, align = 'c', digits = 2)
 
 
 ```{r echo = FALSE, results='asis'}
-a <- c(0.7366667, 0.74, 0.7400000, 0.7466667, 0.7200000)
-b <- c(0.7466667, 0.75, 0.7666667, 0.7633333, 0.7533333)
+a <- c(0.7366667,  0.7400000,  0.7200000)
+b <- c(0.7466667, 0.7666667,  0.7533333)
 
-table <- matrix(0, nrow = 2, ncol = 5)
+table <- matrix(0, nrow = 2, ncol = 3)
 rownames(table) <- c("global test", "local optimal")
-colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+colnames(table) <- c("t=1", "t=5",  "t=20")
 table[1,] <- a
 table[2,] <- b
 table <- as.data.frame(table)
@@ -99,12 +99,12 @@ kable(table, align = 'c', digits = 2)
 ### Three blocks(B3.2)
 
 ```{r echo = FALSE, results='asis'}
-a <- c(0.6833333, 0.7433333, 0.7666667, 0.7266667, 0.6533333)
-b <- c(0.7033333, 0.7833333, 0.7666667, 0.7866667, 0.7400000)
+a <- c(0.6833333,  0.7666667,  0.6533333)
+b <- c(0.7033333,  0.7666667,  0.7400000)
 
-table <- matrix(0, nrow = 2, ncol = 5)
+table <- matrix(0, nrow = 2, ncol = 3)
 rownames(table) <- c("global test", "local optimal")
-colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+colnames(table) <- c("t=1",  "t=5",  "t=20")
 table[1,] <- a
 table[2,] <- b
 table <- as.data.frame(table)
@@ -114,12 +114,12 @@ kable(table, align = 'c', digits = 2)
 ### Three blocks(B3.3)(*)
 
 ```{r echo = FALSE, results='asis'}
-a <- c(0.6266667, 0.6166667, 0.5933333, 0.5433333, 0.5633333)
-b <- c(0.6900000, 0.7566667, 0.7600000, 0.7700000, 0.7500000)
+a <- c(0.6266667,  0.5933333,  0.5633333)
+b <- c(0.6900000,  0.7600000,  0.7500000)
 
-table <- matrix(0, nrow = 2, ncol = 5)
+table <- matrix(0, nrow = 2, ncol = 3)
 rownames(table) <- c("global test", "local optimal")
-colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+colnames(table) <- c("t=1",  "t=5",  "t=20")
 table[1,] <- a
 table[2,] <- b
 table <- as.data.frame(table)
@@ -130,12 +130,12 @@ kable(table, align = 'c', digits = 2)
 ### Three blocks(B3.4)(*)
 
 ```{r echo = FALSE, results='asis'}
-a <- c(0.5800000, 0.4766667, 0.1733333, 0.05333333, 0.02666667)
-b <- c(0.6433333, 0.6933333, 0.6233333, 0.47000000, 0.37666667)
+a <- c(0.5800000, 0.1733333,  0.02666667)
+b <- c(0.6433333, 0.6233333,  0.37666667)
 
-table <- matrix(0, nrow = 2, ncol = 5)
+table <- matrix(0, nrow = 2, ncol = 3)
 rownames(table) <- c("global test", "local optimal")
-colnames(table) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+colnames(table) <- c("t=1",  "t=5", "t=20")
 table[1,] <- a
 table[2,] <- b
 table <- as.data.frame(table)
@@ -158,14 +158,7 @@ Let us focus on the following simulations:
 knitr::include_graphics("../figure/local12_1.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_2.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/local12_5.png")
-```
-
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_10.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/local12_20.png")
@@ -178,14 +171,7 @@ knitr::include_graphics("../figure/local12_20.png")
 knitr::include_graphics("../figure/local25_1.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local25_2.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/local25_5.png")
-```
-
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local25_10.png")
 ```
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/local25_20.png")
@@ -204,23 +190,16 @@ Let us focus on the distance matrix of $A.$ For ``Block1``, including the upto 1
 
 
 
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local12_A1.png")
 ```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A2.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local12_A5.png")
 ```
-
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local12_A10.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local12_A20.png")
 ```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/local12_B.png")
 ```
 
@@ -229,27 +208,121 @@ knitr::include_graphics("../figure/local12_B.png")
 Consider the case of (B3.4). Most obvious pattern you can see here is that in distance matrix of $A,$ distance between ``Block1`` and ``Block2`` are almost zero, especially compared to the distance to the ``Block3``. Since the attribute distribution of $X$ is most different between these two, for both block ``Block1`` and ``Block2``, including individuals only in the same block woul be best. In case of ``Block3``, by the same argument from (B3.3), including neighbors upto 50 will be the best.  
 
 
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local25_A1.png")
 ```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local25_A2.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local25_A5.png")
 ```
-
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/local25_A10.png")
-```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/local25_A20.png")
 ```
-```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/local25_B.png")
 ```
 
 Now let's think about why even the optimal one is decreasing. I discussed above that including only within-block membership is the best. As diffusion process progresses, distance between block is getting smaller. That might be the reason. 
+
+My next assumption is that the testing results may be related to the correlation between the columns of $A \cdot B$ and the columns of $\tilde{A} \cdot \tilde{B}.$
+
+
+- B3.1 (global $\approx$ local)
+
+
+```{r echo = FALSE, results='asis', warning =FALSE}
+globalcor <- c(0.58,0.95,0.99,0.99,0.97)
+localcor1 <- c(0.20,0.62,0.88,0.89,0.89)
+localcor2 <- c(0.24,0.61,0.85,0.86,0.86)
+localcor3 <- c(0.18,0.35,0.61,0.62,0.63)
+localcor12 <- c(0.73,0.98,0.99,0.99,0.98)
+localcor13 <- c(0.58,0.93,0.98,0.97,0.93)
+localcor23 <- c(0.43,0.91,0.98,0.98,0.98)
+
+cor.summary <- matrix(0, ncol = 6, nrow = 7)
+cor.summary <- as.data.frame(cor.summary)
+cor.summary[1,] <- c("global1",globalcor)
+cor.summary[2,] <- c("block1",localcor1)
+cor.summary[3,] <- c("block2",localcor2)
+cor.summary[4,] <- c("block3",localcor3)
+cor.summary[5,] <- c("block1,2",localcor12)
+cor.summary[6,] <- c("block1,3",localcor13)
+cor.summary[7,] <- c("block2,3", localcor23)
+kable(cor.summary, align = 'c', col.names =  c("time", "1", "2", "5", "10", "20"), row.names = NA)
+
+```
+
+
+- B3.3 (local optimal $\approx$ including 50-100 neighbors in graph $G$)
+
+```{r echo = FALSE, results='asis'}
+globalcor <- c(0.10, 0.15, 0.17, 0.16, 0.16)
+localcor1 <- c(0.15, 0.34,0.67,0.67,0.66 )
+localcor2 <- c(0.23, 0.50,0.81,0.82,0.82)
+localcor3 <- c(0.17, 0.36,0.70,0.73,0.74)
+localcor12 <- c(0.14, 0.21,0.22,0.20,0.20)
+localcor13 <- c(0.38,0.86,0.96,0.96,0.96)
+localcor23 <- c(-0.22,0.00,0.20,0.28,0.28)
+
+cor.summary <- matrix(0, ncol = 6, nrow = 7)
+cor.summary <- as.data.frame(cor.summary)
+cor.summary[1,] <- c("global1",globalcor)
+cor.summary[2,] <- c("block1",localcor1)
+cor.summary[3,] <- c("block2",localcor2)
+cor.summary[4,] <- c("block3",localcor3)
+cor.summary[5,] <- c("block1,2",localcor12)
+cor.summary[6,] <- c("block1,3",localcor13)
+cor.summary[7,] <- c("block2,3", localcor23)
+kable(cor.summary, align = 'c', col.names =  c("time", "1", "2", "5", "10", "20"), row.names = NA)
+
+```
+
+
+
+```{r echo = FALSE, results='asis'}
+opt.summary <- matrix(0, ncol = 5, nrow = 3)
+rownames(opt.summary) <- c("optimal scale", "correlation", "optimal power")
+opt.summary[1,] <- c("(98,92)","(100,92)", "(98,92)", "(100,92)", "(98,92)")
+opt.summary[2,] <- c(0.28, 0.37, 0.59, 0.55, 0.58)
+opt.summary[3,] <- c(0.69, 0.76,  0.76,	0.77,	0.75)
+kable(opt.summary, align = 'c', digits = 2, col.names =  c("1", "2", "5", "10", "20"), row.names = NA)
+```
+
+- B3.4 (local optimal $\approx$ including 50 neighbors in graph $G$)
+
+```{r echo = FALSE, results='asis'}
+globalcor <- c(0.06, 0.08, 0.05, 0.02, 0.02)
+localcor1 <- c(0.17, 0.42, 0.73, 0.83, 0.86)
+localcor2 <- c(0.23, 0.46, 0.71, 0.76, 0.78)
+localcor3 <- c(0.16, 0.31, 0.61, 0.63, 0.63)
+localcor12 <- c(0.56, 0.92, 0.96, 0.83, 0.79)
+localcor13 <- c(-0.35, -0.32, -0.16, 0.14, 0.26)
+localcor23 <- c(-0.38, -0.34, -0.18, 0.12, 0.23)
+
+cor.summary <- matrix(0, ncol = 6, nrow = 7)
+cor.summary <- as.data.frame(cor.summary)
+cor.summary[1,] <- c("global1",globalcor)
+cor.summary[2,] <- c("block1",localcor1)
+cor.summary[3,] <- c("block2",localcor2)
+cor.summary[4,] <- c("block3",localcor3)
+cor.summary[5,] <- c("block1,2",localcor12)
+cor.summary[6,] <- c("block1,3",localcor13)
+cor.summary[7,] <- c("block2,3", localcor23)
+kable(cor.summary, align = 'c', col.names =  c("time", "1", "2", "5", "10", "20"), row.names = NA)
+
+```
+
+
+
+```{r echo = FALSE, results='asis'}
+opt.summary <- matrix(0, ncol = 5, nrow = 3)
+rownames(opt.summary) <- c("optimal scale", "correlation", "optimal power")
+colnames(opt.summary) <- c("t=1", "t=2", "t=5", "t=10", "t=20")
+opt.summary[1,] <- c("(102,150)","(52,150)", "(50,150)", "(49,150)", "(47,150)")
+opt.summary[2,] <- c(0.05, 0.43, 0.62, 0.30, 0.13)
+opt.summary[3,] <- c(0.64,0.69, 0.62, 0.47,0.38)
+kable(opt.summary, align = 'c', digits = 2, col.names =  c("1", "2", "5", "10", "20"), row.names = NA)
+```
+
 
 
 ## Neighborhood Block
@@ -317,7 +390,7 @@ knitr::include_graphics("../figure/AB12.png")
 knitr::include_graphics("../figure/HAB12H.png")
 ```
 
-
+In this block1 and block2 case, the correlation between $A_{12} \cdot B_{12}$ and $\tilde{A}_{12} \cdot \tilde{B}_{12}$ is 0.9994942 while in the correlation between $A_{13} \cdot B_{13}$ and $\tilde{A}_{13} \cdot \tilde{B}_{13}$ is 0.6446029.  
 
 
 ```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}

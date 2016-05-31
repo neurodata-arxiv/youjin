@@ -84,7 +84,6 @@ knitr::include_graphics("../figure/local25_1.png")
 
 
 
-
 ### t = 2
 
 ```{r, out.width = 200, out.height = 200, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
