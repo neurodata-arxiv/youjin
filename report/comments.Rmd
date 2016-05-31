@@ -52,13 +52,12 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 
 - [Diffusion Process](# Diffusion Process)
 
-- [Neighborhood Block](# Neighborhood Block)
+- [Correlation between Matrics](# Correlation between Matrics)
 
 - [Local Power Heatmap](# Power Heatmap)
 
 - [Euclidean Distance of Network](# Euclidean Distance of Network)
 
-- [Implications](# Implications)
 
 ## Summary
 <a name=" Summary"/>
@@ -146,7 +145,6 @@ kable(table, align = 'c', digits = 2)
 You can see that superiority of local test is much more clear when the between-block probabilities are different between pairs of blocks, and the between-block probability is NOT proportional to the similarity in distribution between the blocks. For instance, in the case where the distributions of ``Block1`` and ``Block3`` is much more similar than those between ``Block1`` and ``Block2`` but probability of having relations (or having edges) between ``Block1`` and ``Block2`` is higher, power to test local dependence is higher than the global dependence. In this situation, not including ``Block3`` would be better.   
 
 
-
 ## Diffusion Process
 <a name=" Diffusion Process"/>
 
@@ -183,10 +181,7 @@ First of all, let us focus on increasing discrepancy betwen local and global in 
 
 
 
-
 Let us focus on the distance matrix of $A.$ For ``Block1``, including the upto 100 neighborhood, i.e. including ``Block2`` but not including ``Block3``. For nodes in ``Block2``, they cannot differentiate between ``Block1`` and ``Block3`` in distance matrix $A$. In the case of ``Block3``, it seems that their network distance is independent of attribute distance. Therefore, in overall, including upto 100 neighbors looks the best choice in overall. 
-
-
 
 
 
@@ -223,8 +218,12 @@ knitr::include_graphics("../figure/local25_B.png")
 
 Now let's think about why even the optimal one is decreasing. I discussed above that including only within-block membership is the best. As diffusion process progresses, distance between block is getting smaller. That might be the reason. 
 
-My next assumption is that the testing results may be related to the correlation between the columns of $A \cdot B$ and the columns of $\tilde{A} \cdot \tilde{B}.$
 
+## Correlation between Matrics
+<a name=" Correlation between Matrics"/>
+
+
+My next assumption is that the testing results may be related to the correlation between the columns of $A \cdot B$ and the columns of $\tilde{A} \cdot \tilde{B}.$ I have found that in the case where global test can be considered as a local maximum, heatmap of $A \cdot B$ looks similar to heatmap of $\tilde{A} \cdot \tilde{B}$ while it is not, these two are not proportional. 
 
 - B3.1 (global $\approx$ local)
 
@@ -325,8 +324,7 @@ kable(opt.summary, align = 'c', digits = 2, col.names =  c("1", "2", "5", "10", 
 
 
 
-## Neighborhood Block
-<a name=" Neighborhood Block"/>
+
 
 In this section, let's forget about diffusion process and only think about two distance matrices $A$ and $B$ and think about when and why the local test is better than the global test in three-block cases. For simplicity, let's fix distance distribution of $X$, and then consider the following three cases : (1) Including one block ($k^{*} \approx 50$) is the optimal; (2) Including one neighboring block ($k^{*} \approx 100$) is the optimal; (3) global test ($k^{*} \approx 150$) is the optimal.
 
