@@ -1,0 +1,60 @@
+---
+title: "Hierarchical Local Dependence"
+author: "Youjin Lee"
+output: html_document
+---
+
+We are going to look into testing statistics in more thorough way. We are testing independence between network (graph) $G$ and its nodes' attributes $X$.
+
+$$H_{0} : f_{GX} = f_{G} \cdot f_{X}$$
+
+$$H_{A} : f_{GX} \neq f_{G} \cdot f_{X}$$
+
+Test statistic which is used to measure the distances between two random variables $G \in \mathcal{G}(n; p,q)$ and $X \in \mathcal{R}$ is defined as follows for all pairs of $\{(k,l); k,l=1,..,n\}$:
+
+$$dCorr_{kl}(G,X) = \frac{dCov_{kl}(G,X)}{\sqrt{dVar_{k}(G) \cdot dVar_{l}(X)}}$$
+,where
+
+$$dCov_{kl}(G,X) = \frac{1}{n^2} \sum\limits_{i,j}^{n} A^{H}_{ij} B^{H}_{ij} I(r(A_{ij}) < k) I(r(B_{ij}) < l )$$
+
+$$dVar_{k}(G) = \frac{1}{n^2} \sum\limits_{i,j=1}^{n} A^{H}_{ij}A^{H}_{ij} I\big( r(A_{ij}) < k \big)$$
+
+$$dVar_{k}(X) = \frac{1}{n^2} \sum\limits_{i,j=1}^{n} B^{H}_{ij}B^{H}_{ij} I\big( r(B_{ij}) < k \big)$$
+
+
+where $A^{H} = HAH; A_{ij} = \parallel G_{i} - G_{j} \parallel ; H = I_{n} - J_{n} / n;$ $r(A_{ij}) = k$ if and only if $A_{ij}$ is the $k^{th}$ smallest distance in $\{ A_{ij} ; i,j=1,..,n , i \neq j \}.$
+
+
+Let's consider a few of simple distribution models where we can test:
+
+### Hierarchical Models with local dependence (Schweiberger $\&$ Handcock)
+
+- Assumption 1: latent, local structure : The set of nodes $\mathcal{N}$ is partitioned into $K$ subsets $\mathcal{N}_{1}, ... , \mathcal{N}_{K}:$
+
+$$Z_{i} | \pi_{1}, ... , \pi_{K} \overset{i.i.d}{\sim} Multinomial(1; \pi_{1}, ... ,\pi_{K}), i = 1,... , n$$
+
+
+- Assumption 2: Local dyad-dependence, global-independence: The conditional PMF of random graph $Y$ given local structure $X$ can be factorized into within- and between-block PMFs:
+
+$$P_{\theta}(Y = y | X = x) = \prod\limits_{k} P_{\theta}(Y_{(kk)} = y_{(kk)} | Z = z) \times \prod\limits_{k < l} P_{\theta} (Y_{kl} = y_{kl} | Z = z)$$
+
+where between-block PMFs are assumed to be factorizable while within-block PMFs are not assumed to be factorized. 
+
+Now assume that local dyad-dependence structure is a function of node's attributes $X$. That is, 
+
+$$P_{\theta}(Y_{(kk)} = y_{(kk)} | Z = z) = P_{\theta}(Y_{(kk)} = y_{(kk)} | X = x, Z = z).$$
+
+
+## Local Dependence and Diffusion Distance
+
+When the local dependence is strong, i.e. locally $X$ and $G$ are dependent each other, diffusion process is very likely to be stuck in dependent cluster. This also implies that simple Euclidean distance, which resembles diffusion distance in short time, is likely to fail to detect the local dependence. 
+
+
+## Local Dependence and Local Distance Correlation
+
+When the number of blocks of which structures are dependent on their node attributes $X$ is less than the total number of blocks, i.e. when not all of individuals in the network is dependent, testing only small number of neighborhood would be beneficial. 
+
+
+
+
+
