@@ -308,6 +308,7 @@ table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
 ```
 
+
 ```{r echo = FALSE, results='asis'}
 a <- c(98, 100, 100, 100, 101)
 b <- c("92-150", "92-150", "92-150", "92,93", "92,93")
