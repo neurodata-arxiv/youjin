@@ -16,6 +16,10 @@
 * [Three Blocks(B3.4)](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/B3_4.html)
 * [Comments](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/comments.html)
 
+## Simulation - hierarchical latent models 
+* [preliminaries](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/statistics.html)
+
+
 ## Reference
 * celegans : exploratory data analysis on neuronal network of C. elegans.
 
