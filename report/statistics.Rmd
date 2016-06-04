@@ -33,16 +33,35 @@ bib <- ReadBib(system.file("Bib", "biblatexExamples.bib",
 BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", cite.style = 'alphabetic')
 ```
 
-We are going to look into testing statistics in more thorough way. We are testing independence between network (graph) $G$ and its nodes' attributes $X$.
+Let's thick about the relationship between network $G$ and its nodes' attributes $X$ in a "modellable" way. Throughout all the simulations, we are testing independence between network (graph) $G$ and its nodes' attributes $X$.
 
 $$H_{0} : f_{GX} = f_{G} \cdot f_{X}$$
 
 $$H_{A} : f_{GX} \neq f_{G} \cdot f_{X}$$
 
+Test statistic which is used to measure the distance correlation between two random variables $G \in \mathcal{G}(n; \theta)$ and $X \in \mathcal{R}$ is defined as follows for all pairs of neighborhood pairs $\{(k,l); k,l=1,..,n\}$:
+
+$$dCorr_{kl}(G,X) = \frac{dCov_{kl}(G,X)}{\sqrt{dVar_{k}(G) \cdot dVar_{l}(X)}}$$
+,where
+
+$$dCov_{kl}(G,X) = \frac{1}{n^2} \sum\limits_{i,j}^{n} A^{H}_{ij} B^{H}_{ij} I(r(A_{ij}) < k) I(r(B_{ij}) < l )$$
+
+$$dVar_{k}(G) = \frac{1}{n^2} \sum\limits_{i,j=1}^{n} A^{H}_{ij}A^{H}_{ij} I\big( r(A_{ij}) < k \big)$$
+
+$$dVar_{k}(X) = \frac{1}{n^2} \sum\limits_{i,j=1}^{n} B^{H}_{ij}B^{H}_{ij} I\big( r(B_{ij}) < k \big)$$
+
+where $A^{H} = HAH; A_{ij} = \parallel G_{i} - G_{j} \parallel ; H = I_{n} - J_{n} / n;$ $r(A_{ij}) = k$ if and only if $A_{ij}$ is the $k^{th}$ smallest distance in $\{ A_{ij} ; i,j=1,..,n , i \neq j \}.$
+
+
+The critical value of the test is based on the prespecified Type-I error $\alpha = 0.05$. P-value for each iteration is obtained through permutation.
+
+The testing power of local distance correlation equals to the highest power among all of the local family. What we call \color{blue}{global test} refers to the test when $k=l=n,$ i.e. a test including all ranges of neighborhood. On the other hand, \color{blue}{local optimal} is a test of highest power.
+
+
 
 # Hierarchical Models with local dependence (Schweiberger $\&$ Handcock)
 
-[Schweiberger $\&$ Handcock 's paper](http://www.stat.rice.edu/%7Ems88/publications/h.ergm.pdf)
+[Schweiberger $\&$ Handcock 's paper](http://www.stat.rice.edu/%7Ems88/publications/h.ergm.pdf) : \texttt{local dependence refers to the situations where units which are close in a well-defined sense are dependent. They discuss how random graph models with local dependence can be contructed by exploting either observed or unobserved neighborhood structure.} 
 
 
 - Assumption 1: latent, local structure : The set of nodes $\mathcal{N}$ is partitioned into $K$ subsets $\mathcal{N}_{1}, ... , \mathcal{N}_{K}:$
