@@ -18,6 +18,8 @@
 
 ## Simulation - hierarchical latent models 
 * [preliminaries](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/statistics.html)
+* [Two Blocks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/latent_two.html)
+* [Three Blocks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/latent_three.html)
 
 
 ## Reference
