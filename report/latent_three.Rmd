@@ -29,9 +29,45 @@ BibOptions(check.entries = FALSE, style = "markdown", bib.style = "alphabetic", 
 ## Models
 <a name=" Models"/>
 
+Most of the structure of likelihood is same as [hierarhical models with binary latent variable](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/latent_two.html) except that Bernoulli distributions now turn into Multinomial distributions. Models are based on [model 2] $P(A, X, Z) = P( A | Z) P(Z | X) P(X)$. 
+
+- Generate iid node attribute with a parameter $u$
+
+$$X_{i} \overset{i.i.d}{\sim} Multinomial(u_{1}, u_{2}, 1 - u_{1} - u_{2} ), i = 1,... , n$$
+
+- Generate latent variables conditional on $X$ as a function of $\omega$
+
+$$\begin{align} Z_{i}  | X_{i} &   \overset{i.i.d}{\sim} Multinomial( 1 ; \pi_{1}(X_{i}), \pi_{2}(X_{i}), \pi_{3}(X_{i}) ) = Multinomial(1; \pi_{k} = (1/3 + \omega) I(X_{i} = k ) + (2/3 - \omega )  I(X_{i} \neq k) /2   , k = 1,2,3 )   \\  &  \overset{i.i.d}{\sim}    \left\{  \begin{array}{cc} Multinomial(1; \color{red}{\frac{1}{3} + \omega}, \frac{2/3 - \omega}{2} , \frac{2/3 - \omega}{2} ) & X_{i} = 1 \\  Multinomial(1;  \frac{2/3 - \omega}{2}, \color{red}{\frac{1}{3} + \omega} , \frac{2/3 - \omega}{2} ) & X_{i} = 2 \\ Multinomial(1;  \frac{2/3 - \omega}{2}, \frac{2/3 - \omega}{2}, \color{red}{\frac{1}{3} + \omega} ) & X_{i} = 3        \end{array} \right. \end{align}$$
+
+- Generate local dependent graph : $\phi = (p, q, K)$ 
+
+$$\begin{align} P_{\phi}(A = a | Z = z) & = \prod\limits_{k} P_{\theta}(A_{ij} = a_{ij} | Z = z) \times \prod\limits_{k < l} P_{\theta} (Y_{kl} = y_{kl} | Z = z) \\ & = \prod\limits_{Z_{i} = Z_{j} = 1}^{K} p^{a_{ij}}(1-p)^{a_{ij}} \prod\limits_{Z_{i} \neq Z_{j}, \\ Z_{i} = Z_{j} \notin \{1 ,... , K \}} q^{a_{ij}}(1 - q)^{a_{ij}} \end{align}$$.
+
+
+For simplicity, $Z = g(X)$ is a monotonically increasing function of $X.$ That is, nodes having smaller value of $X$ are more likely to be in small level of $Z.$ Under global dependence, we can expect that between-block probability $P_{\theta}(Y_{(kk)} = y_{(kk)} | Z = z)$ is strongest and off-diagonal probability $P_{\theta} (Y_{kl} = y_{kl} | Z = z)$ is non-increasing as distance between blocks increase. \color{red}{In two-block case, it is not difficult to find an example of global dependence}. 
+
+
+Joint likelihood of $(A_{ij}, X_{i}, Z_{i} ; i,j=1,... ,n)$ can be illustrated:
+
+$$P_{\theta}(A, X, Z)  = P_{\phi}(A | Z) P_{\omega}(Z | X) P_{u}(X)$$
+
+
+
+
+
 
 ### [sim] three.1
 <a name=" three.1"/>
+
+```{r echo = FALSE, results='asis'}
+a <- c(1/3, 1/3 ,0.0, 3, 0.5, 0.1)
+
+table <- matrix(0, nrow = 1, ncol = 6)
+colnames(table) <- c("u1", "u2", "w" , "K", "p", "q")
+table[1,] <- a
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
 
 
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -59,9 +95,23 @@ kable(table, align = 'c', digits = 2)
 ```
 
 
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/three1_plot.png")
+```
+
 
 ### [sim] three.2
 <a name=" three.2"/>
+
+```{r echo = FALSE, results='asis'}
+a <- c(1/3, 1/3 , 1/6, 3, 0.5, 0.1)
+
+table <- matrix(0, nrow = 1, ncol = 6)
+colnames(table) <- c("u1", "u2", "w" , "K", "p", "q")
+table[1,] <- a
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
 
 
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -90,8 +140,23 @@ kable(table, align = 'c', digits = 2)
 
 
 
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/three2_plot.png")
+```
+
+
 ### [sim] three.3
 <a name=" three.3"/>
+
+```{r echo = FALSE, results='asis'}
+a <- c(1/3, 1/3 , 1/6 , 3, 0.3, 0.3)
+
+table <- matrix(0, nrow = 1, ncol = 6)
+colnames(table) <- c("u1", "u2", "w" , "K", "p", "q")
+table[1,] <- a
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
 
 
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -119,8 +184,25 @@ kable(table, align = 'c', digits = 2)
 ```
 
 
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/three3_plot.png")
+```
+
+
+
 ### [sim] three.4
 <a name=" three.4"/>
+
+```{r echo = FALSE, results='asis'}
+a <- c(1/3, 1/3 , 1/6 , 2, 0.5, 0.1)
+
+table <- matrix(0, nrow = 1, ncol = 6)
+colnames(table) <- c("u1", "u2", "w" , "K", "p", "q")
+table[1,] <- a
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
 
 
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -149,8 +231,23 @@ kable(table, align = 'c', digits = 2)
 
 
 
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/three4_plot.png")
+```
+
+
 ### [sim] three.5
 <a name=" three.5"/>
+
+```{r echo = FALSE, results='asis'}
+a <- c(1/3, 1/3 , 1/6 , 1, 0.5, 0.1)
+
+table <- matrix(0, nrow = 1, ncol = 6)
+colnames(table) <- c("u1", "u2", "w" , "K", "p", "q")
+table[1,] <- a
+table <- as.data.frame(table)
+kable(table, align = 'c', digits = 2)
+```
 
 
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -178,3 +275,6 @@ kable(table, align = 'c', digits = 2)
 ```
 
 
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/three5_plot.png")
+```

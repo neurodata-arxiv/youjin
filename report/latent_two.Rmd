@@ -169,6 +169,11 @@ kable(table, align = 'c', digits = 2)
 
 
 
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/two1_plot.png")
+```
+
+
 ### [sim] two.2
 <a name=" two.2"/>
 
@@ -213,6 +218,10 @@ table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
 ```
 
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/two2_plot.png")
+```
 
 
 
@@ -259,6 +268,10 @@ kable(table, align = 'c', digits = 2)
 ```
 
 
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/two3_plot.png")
+```
+
 
 ### [sim] two.4
 <a name=" two.4"/>
@@ -300,4 +313,9 @@ table[1,] <- a
 table[2,] <- b
 table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
+```
+
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
+knitr::include_graphics("../figure/two4_plot.png")
 ```
