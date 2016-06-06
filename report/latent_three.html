@@ -127,7 +127,7 @@ $(document).ready(function () {
 <p><a name=" Models"></a></p>
 <p>Most of the structure of likelihood is same as <a href="http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/latent_two.html">hierarhical models with binary latent variable</a> except that Bernoulli distributions now turn into Multinomial distributions. Models are based on [model 2] <span class="math">\(P(A, X, Z) = P( A | Z) P(Z | X) P(X)\)</span>.</p>
 <ul>
-<li>Generate iid node attribute with a parameter <span class="math">\(u\)</span></li>
+<li>Generate iid node attribute with a parameter <span class="math">\(u = (u_{1}, u_{2})\)</span></li>
 </ul>
 <p><span class="math">\[X_{i} \overset{i.i.d}{\sim} Multinomial(u_{1}, u_{2}, 1 - u_{1} - u_{2} ), i = 1,... , n\]</span></p>
 <ul>
@@ -135,11 +135,10 @@ $(document).ready(function () {
 </ul>
 <p><span class="math">\[\begin{align} Z_{i}  | X_{i} &amp;   \overset{i.i.d}{\sim} Multinomial( 1 ; \pi_{1}(X_{i}), \pi_{2}(X_{i}), \pi_{3}(X_{i}) ) = Multinomial(1; \pi_{k} = (1/3 + \omega) I(X_{i} = k ) + (2/3 - \omega )  I(X_{i} \neq k) /2   , k = 1,2,3 )   \\  &amp;  \overset{i.i.d}{\sim}    \left\{  \begin{array}{cc} Multinomial(1; \color{red}{\frac{1}{3} + \omega}, \frac{2/3 - \omega}{2} , \frac{2/3 - \omega}{2} ) &amp; X_{i} = 1 \\  Multinomial(1;  \frac{2/3 - \omega}{2}, \color{red}{\frac{1}{3} + \omega} , \frac{2/3 - \omega}{2} ) &amp; X_{i} = 2 \\ Multinomial(1;  \frac{2/3 - \omega}{2}, \frac{2/3 - \omega}{2}, \color{red}{\frac{1}{3} + \omega} ) &amp; X_{i} = 3        \end{array} \right. \end{align}\]</span></p>
 <ul>
-<li>Generate local dependent graph : <span class="math">\(\phi = (p, q, K)\)</span></li>
+<li>Generate local dependent graph : <span class="math">\(\phi = (p_{k}, q_{k,l}; k,l = 1,... , K, k &lt; l)\)</span></li>
 </ul>
-<p><span class="math">\[\begin{align} P_{\phi}(A = a | Z = z) &amp; = \prod\limits_{k} P_{\theta}(A_{ij} = a_{ij} | Z = z) \times \prod\limits_{k &lt; l} P_{\theta} (Y_{kl} = y_{kl} | Z = z) \\ &amp; = \prod\limits_{Z_{i} = Z_{j} = 1}^{K} p^{a_{ij}}(1-p)^{a_{ij}} \prod\limits_{Z_{i} \neq Z_{j}, \\ Z_{i} = Z_{j} \notin \{1 ,... , K \}} q^{a_{ij}}(1 - q)^{a_{ij}} \end{align}\]</span>.</p>
-<p>For simplicity, <span class="math">\(Z = g(X)\)</span> is a monotonically increasing function of <span class="math">\(X.\)</span> That is, nodes having smaller value of <span class="math">\(X\)</span> are more likely to be in small level of <span class="math">\(Z.\)</span> Under global dependence, we can expect that between-block probability <span class="math">\(P_{\theta}(Y_{(kk)} = y_{(kk)} | Z = z)\)</span> is strongest and off-diagonal probability <span class="math">\(P_{\theta} (Y_{kl} = y_{kl} | Z = z)\)</span> is non-increasing as distance between blocks increase. .</p>
-<p>Joint likelihood of <span class="math">\((A_{ij}, X_{i}, Z_{i} ; i,j=1,... ,n)\)</span> can be illustrated:</p>
+<p><span class="math">\[\begin{align} P_{\phi}(A = a | Z = z) &amp; = \prod\limits_{k} P_{\phi}(A_{ij} = a_{ij} | Z = z) \times \prod\limits_{k &lt; l} P_{\phi} (Y_{kl} = y_{kl} | Z = z) \\ &amp; = \prod\limits_{Z_{i} = Z_{j} = 1}^{K} {p_{k}}^{a_{ij}}(1-p_{k})^{a_{ij}} \prod\limits_{Z_{i} \neq Z_{j}} {q_{kl}}^{a_{ij}}(1 - q_{kl})^{a_{ij}} \end{align}\]</span>.</p>
+<p>Joint likelihood of <span class="math">\((A_{ij}, X_{i}, Z_{i} ; i,j=1,... ,n)\)</span> under <span class="math">\(A \perp X \big| Z\)</span> can be illustrated :</p>
 <p><span class="math">\[P_{\theta}(A, X, Z)  = P_{\phi}(A | Z) P_{\omega}(Z | X) P_{u}(X)\]</span></p>
 <div id="sim-three.1" class="section level3">
 <h3>[sim] three.1</h3>
@@ -150,9 +149,12 @@ $(document).ready(function () {
 <th align="center">u1</th>
 <th align="center">u2</th>
 <th align="center">w</th>
-<th align="center">K</th>
-<th align="center">p</th>
-<th align="center">q</th>
+<th align="center">p1</th>
+<th align="center">p2</th>
+<th align="center">p3</th>
+<th align="center">q12</th>
+<th align="center">q13</th>
+<th align="center">q12</th>
 </tr>
 </thead>
 <tbody>
@@ -160,8 +162,11 @@ $(document).ready(function () {
 <td align="center">0.33</td>
 <td align="center">0.33</td>
 <td align="center">0</td>
-<td align="center">3</td>
 <td align="center">0.5</td>
+<td align="center">0.5</td>
+<td align="center">0.5</td>
+<td align="center">0.1</td>
+<td align="center">0.1</td>
 <td align="center">0.1</td>
 </tr>
 </tbody>
@@ -202,9 +207,12 @@ $(document).ready(function () {
 <th align="center">u1</th>
 <th align="center">u2</th>
 <th align="center">w</th>
-<th align="center">K</th>
-<th align="center">p</th>
-<th align="center">q</th>
+<th align="center">p1</th>
+<th align="center">p2</th>
+<th align="center">p3</th>
+<th align="center">q12</th>
+<th align="center">q13</th>
+<th align="center">q23</th>
 </tr>
 </thead>
 <tbody>
@@ -212,8 +220,11 @@ $(document).ready(function () {
 <td align="center">0.33</td>
 <td align="center">0.33</td>
 <td align="center">0.17</td>
-<td align="center">3</td>
 <td align="center">0.5</td>
+<td align="center">0.5</td>
+<td align="center">0.5</td>
+<td align="center">0.1</td>
+<td align="center">0.1</td>
 <td align="center">0.1</td>
 </tr>
 </tbody>
@@ -254,9 +265,12 @@ $(document).ready(function () {
 <th align="center">u1</th>
 <th align="center">u2</th>
 <th align="center">w</th>
-<th align="center">K</th>
-<th align="center">p</th>
-<th align="center">q</th>
+<th align="center">p1</th>
+<th align="center">p2</th>
+<th align="center">p3</th>
+<th align="center">q12</th>
+<th align="center">q13</th>
+<th align="center">q23</th>
 </tr>
 </thead>
 <tbody>
@@ -264,7 +278,10 @@ $(document).ready(function () {
 <td align="center">0.33</td>
 <td align="center">0.33</td>
 <td align="center">0.17</td>
-<td align="center">3</td>
+<td align="center">0.3</td>
+<td align="center">0.3</td>
+<td align="center">0.3</td>
+<td align="center">0.3</td>
 <td align="center">0.3</td>
 <td align="center">0.3</td>
 </tr>
@@ -306,9 +323,12 @@ $(document).ready(function () {
 <th align="center">u1</th>
 <th align="center">u2</th>
 <th align="center">w</th>
-<th align="center">K</th>
-<th align="center">p</th>
-<th align="center">q</th>
+<th align="center">p1</th>
+<th align="center">p2</th>
+<th align="center">p3</th>
+<th align="center">q12</th>
+<th align="center">q13</th>
+<th align="center">q23</th>
 </tr>
 </thead>
 <tbody>
@@ -316,8 +336,11 @@ $(document).ready(function () {
 <td align="center">0.33</td>
 <td align="center">0.33</td>
 <td align="center">0.17</td>
-<td align="center">2</td>
 <td align="center">0.5</td>
+<td align="center">0.5</td>
+<td align="center">0.1</td>
+<td align="center">0.1</td>
+<td align="center">0.1</td>
 <td align="center">0.1</td>
 </tr>
 </tbody>
@@ -358,9 +381,12 @@ $(document).ready(function () {
 <th align="center">u1</th>
 <th align="center">u2</th>
 <th align="center">w</th>
-<th align="center">K</th>
-<th align="center">p</th>
-<th align="center">q</th>
+<th align="center">p1</th>
+<th align="center">p2</th>
+<th align="center">p3</th>
+<th align="center">q12</th>
+<th align="center">q13</th>
+<th align="center">q23</th>
 </tr>
 </thead>
 <tbody>
@@ -368,8 +394,11 @@ $(document).ready(function () {
 <td align="center">0.33</td>
 <td align="center">0.33</td>
 <td align="center">0.17</td>
-<td align="center">1</td>
 <td align="center">0.5</td>
+<td align="center">0.1</td>
+<td align="center">0.1</td>
+<td align="center">0.1</td>
+<td align="center">0.1</td>
 <td align="center">0.1</td>
 </tr>
 </tbody>
