@@ -64,11 +64,11 @@ knitr::include_graphics("../figure/model2.png")
 ```
 
 \bigskip
-Actually, under the assumption below, two models are exactly the joint distribution of $(A, Z, X)$.
+Actually, under the assumption below, two models are exactly equivalent to joint distribution of $(A, Z, X)$.
 
 $$\mbox{Assumption 1 : A is independent of X conditional on Z}, i.e. A \perp X \big| Z.$$
 
-[Figure 1] and [Figure 2] above illustrates causal diagram of both models. I assume that diagram of Figure 2 would be more appropriate to schematize the assumption - conditional independence - above. In [Figure 2], a latent variable $Z$ can also be interpreted as an effect modifier or mediator between $X$ and $A$; while in [Figure 1],a latent variable $Z$ acts like a confounder. For both models, $X$ and $A$ are both associated with $Z$, and we sometimes adjust for $Z$. If $Z$ is a mediator, it is on the causal pathway, and if $Z$ is an effect modifier, the association/correlation between $X$ and $A$ varies by levels of $Z$; while if $Z$ is a confounder, relationship between $X$ and $A$ is in part or wholly explained by the relationship between $Z$ and $A$. Contextually, we are more interested in explaining association between $X$ and $A$ stratified to $Z$, rather than controlling the effect of $Z$ in explaining relationship of $X$ and $A$.
+[Figure 1] and [Figure 2] above illustrates causal diagram of both models. I assume that diagram of [Figure 2] would be more appropriate to schematize the assumption - conditional independence - above. In [Figure 2], a latent variable $Z$ can also be interpreted as an effect modifier or mediator between $X$ and $A$; while in [Figure 1],a latent variable $Z$ acts like a confounder. For both models, $X$ and $A$ are associated with $Z$, and we sometimes adjust for $Z$ to see the effect of $X$ on $A$. If $Z$ is a mediator, it is on the causal pathway from $X$ to $A$, and if $Z$ is an effect modifier, the association/correlation between $X$ and $A$ varies by levels of $Z$; while if $Z$ is a confounder, relationship between $X$ and $A$ is in part or wholly explained by the relationship between $Z$ and $A$. Contextually, even though we are never sure about causal relationship of node attribute and graph(network), we are more interested in explaining association between $X$ and $A$ stratified to $Z$ or fixing $Z$, rather than getting rid of the effect of $Z$ to explain relationship of $X$ and $A$. 
 
 
 
@@ -171,13 +171,16 @@ $$\begin{align} P_{\theta}(A, X, Z) & = P_{\phi}(A | Z) P_{\omega}(Z | X) P_{u}(
 
 Since $X \perp Z$ and $X$ is correlated to $A$ only through $Z,$ $X \perp A.$
 
+In this case, it is easy to show that $P(A, X) = P(X) P(A),$ i.e. $X \perp A.$
+
+$$\begin{align} P(A, X) & = \sum\limits_{z} P(A, X | Z)P(Z) \\ &= \sum\limits_{z} P(A | Z) p(X | Z) P(Z) (\because A \perp X | Z)  \\ & = \sum\limits_{z} P(A | Z )P(Z | X) P(X) \\ & = \sum\limits_{z} P(A | Z)P(Z) P(X) (\because P(Z | X) = P(Z)) \\ & = P(X) \sum\limits_{z} P(A | Z)P(Z) \\ & = P(X)P(A) \end{align}$$
 
 
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/two1_power1.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/two1_power10.png")
+knitr::include_graphics("../figure/two1_power5.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/two1_power20.png")
@@ -197,11 +200,31 @@ table <- as.data.frame(table)
 kable(table, align = 'c', digits = 2)
 ```
 
-
-
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
 knitr::include_graphics("../figure/two1_plot.png")
 ```
+
+
+```{r echo = FALSE, results='asis'}
+sum.table1 <- matrix(0, ncol = 4, nrow = 9)
+rownames(sum.table1) <- c("A1", "A5", "A10", "A20",
+                          "B", "HA1BH", "HA5BH", "HA10BH", "HA20BH")
+colnames(sum.table1) <- c("(Z1, Z1)", "(Z1,Z2)", "(Z2, Z1)", "(Z2, Z2)")
+sum.table1[1,] <- c(1.986489, 2.427601, 2.427601, 1.983865)
+sum.table1[2,] <- c(0.03124338, 0.28586782, 0.28586782, 0.03071402)
+sum.table1[3,] <- c( 0.004354298, 0.041272626, 0.041272626, 0.004285956)
+sum.table1[4,] <- c(9.355806e-05, 8.932768e-04, 8.932768e-04, 9.255985e-05)
+sum.table1[5,] <- c(0.4883659, 0.4998996, 0.4998996, 0.4906921)
+sum.table1[6,] <- c(0.1188885, -0.1142778, -0.1142778,  0.1149243)
+sum.table1[7,] <- c(0.06790292, -0.06532578, -0.06532578,  0.06561218)
+sum.table1[8,] <- c(0.009850410, -0.009491952, -0.009491952,  0.009538712)
+sum.table1[9,] <- c(0.0002112152, -0.0002043059, -0.0002043059,  0.0002056179)
+#kable(sum.table1, align = 'c')
+```
+
+
+
+
 
 
 ### [sim] two.2
@@ -222,7 +245,6 @@ kable(table, align = 'c', digits = 2)
 
 $$\begin{align} P_{\theta}(A, X, Z) & = P_{\phi}(A | Z) P_{\omega}(Z | X) P_{u}(X) \\ & = \prod\limits_{Z_{i} = Z_{j} = 0}^{1} 0.5^{a_{ij}}(1-0.5)^{a_{ij}} \prod\limits_{Z_{i} \neq Z_{j} } 0.1^{a_{ij}}(1 - 0.1)^{a_{ij}}  \\ & \times  \prod\limits_{i=1}^{n} \left[ (0.6)^{z_{i}} ( 1 -  0.6)^{1 - z_{i}} I(x_{i} = 0) +  (0.4)^{z_{i}} \big( 1 -  0.4  \big)^{1 - z_{i}} I(x_{i} = 1) \right] \prod\limits_{i=1}^{n} 0.5^{x_{i}} (1-0.5)^{1 - x_{i}}   \end{align}$$
 
-
 Now $\omega \neq 0,$ so $Z$ has correlation with $X.$ 
 
 
@@ -230,7 +252,7 @@ Now $\omega \neq 0,$ so $Z$ has correlation with $X.$
 knitr::include_graphics("../figure/two2_power1.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/two2_power10.png")
+knitr::include_graphics("../figure/two2_power5.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/two2_power20.png")
@@ -256,6 +278,23 @@ knitr::include_graphics("../figure/two2_plot.png")
 ```
 
 
+```{r echo = FALSE, results='asis'}
+sum.table2 <- matrix(0, ncol = 3, nrow = 9)
+rownames(sum.table2) <- c("A1", "A5", "A10", "A20",
+                          "B", "HA1BH", "HA5BH", "HA10BH", "HA20BH")
+colnames(sum.table2) <- c("(Z1, Z1)", "(Z1,Z2)", "(Z2, Z2)")
+sum.table2[1,] <- c(2.009659, 2.429425, 1.962192)
+sum.table2[2,] <- c(0.03144978, 0.28609389, 0.03046810)
+sum.table2[3,] <- c(0.004390610, 0.041307195, 0.004227921)
+sum.table2[4,] <- c(9.518467e-05, 8.970297e-04, 9.060265e-05)
+sum.table2[5,] <- c(0.4659864, 0.5184164, 0.4735461)
+sum.table2[6,] <- c(0.5556933, -0.5295170,  0.5266180)
+sum.table2[7,] <- c(0.3222089, -0.3066353,  0.3035341)
+sum.table2[8,] <- c( 0.04716910, -0.04481220,  0.04414113)
+sum.table2[9,] <- c(0.0010453429, -0.0009916747,  0.0009700060)
+#kable(sum.table2, align = 'c')
+```
+
 
 ### [sim] two.3
 <a name=" two.3"/>
@@ -269,21 +308,23 @@ table <- matrix(0, nrow = 1, ncol = 5)
 colnames(table) <- c("u", "w" , "p1", "p2", "q12")
 table[1,] <- a
 table <- as.data.frame(table)
-kable(table, align = 'c', digits = 2)
+#kable(table, align = 'c', digits = 2)
 ```
 
 
 $$\begin{align} P_{\theta}(A, X, Z) & = P_{\phi}(A | Z) P_{\omega}(Z | X) P_{u}(X) \\ & =  P_{\phi}(A) P_{\omega}(Z | X) P_{u}(X) \\ & = \prod\limits_{i,j=1}^{n} 0.3^{a_{ij}}(1-0.3)^{a_{ij}} \prod\limits_{i=1}^{n} \left[ (0.6)^{z_{i}} ( 1 -  0.6)^{1 - z_{i}} I(x_{i} = 0) +  (0.4)^{z_{i}} \big( 1 -  0.4  \big)^{1 - z_{i}} I(x_{i} = 1) \right] \prod\limits_{i=1}^{n} 0.5^{x_{i}} (1-0.5)^{1 - x_{i}}   \end{align}$$
 
 
-Now we set $A \perp Z.$ Since $X$ can be related to $A$ only through $Z,$ $X \perp A.$
+Now we set $A \perp Z.$ Since $X$ can be related to $A$ only through $Z,$ $X \perp A.$ You can also show the independence, i.e. $P(A, X) = P(X) P(A)$ through the following equations: 
+
+$$\begin{align} P(A, X) & = \sum\limits_{z} P(A, X | Z)P(Z) \\ &= \sum\limits_{z} P(A | Z) P(X | Z) P(X) (\because A \perp X | Z) \\ & = \sum\limits_{z} P(A)P(X | Z) P(Z) (\because A \perp Z) \\ & = P(A) \sum\limits_{z} P(X | Z)P(Z) \\ & = P(A) P(X)  \end{align}$$
 
 
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/two3_power1.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/two3_power10.png")
+knitr::include_graphics("../figure/two3_power5.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/two3_power20.png")
@@ -307,6 +348,26 @@ kable(table, align = 'c', digits = 2)
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
 knitr::include_graphics("../figure/two3_plot.png")
 ```
+
+
+```{r echo = FALSE, results='asis', results = FALSE}
+sum.table3 <- matrix(0, ncol = 4, nrow = 9)
+rownames(sum.table3) <- c("A1", "A5", "A10", "A20",
+                          "B", "HA1BH", "HA5BH", "HA10BH", "HA20BH")
+colnames(sum.table3) <- c("(Z1, Z1)", "(Z1,Z2)", "(Z2, Z1)", "(Z2, Z2)")
+sum.table3[1,] <- c(2.164019, 2.209740, 2.209740, 2.167230)
+sum.table3[2,] <- c(0.007966218, 0.008134024, 0.008134024, 0.007980015)
+sum.table3[3,] <- c(1.440155e-05, 1.470527e-05, 1.470527e-05, 1.443841e-05)
+sum.table3[4,] <- c( 1.213732e-07, 1.239579e-07, 1.239623e-07, 1.214982e-07)
+sum.table3[5,] <- c(0.4730927, 0.5204621, 0.5204621, 0.4672487)
+sum.table3[6,] <- c(0.05914563, -0.05478446, -0.05478446,  0.05253818)
+sum.table3[7,] <- c(0.0002030969, -0.0001823708, -0.0001823708,  0.0001702130)
+sum.table3[8,] <- c(3.345489e-07, -2.939790e-07, -2.939790e-07,  2.687838e-07)
+sum.table3[9,] <- c( 3.332084e-09, -3.126440e-09, -3.126440e-09, 3.043859e-09)
+#kable(sum.table3, align = 'c')
+```
+
+
 
 
 ### [sim] two.4
@@ -334,7 +395,7 @@ Now let $p_{2} = q_{12} < p_{1}$ so that only one block (about 50 $\%$ of tatal 
 knitr::include_graphics("../figure/two4_power1.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/two4_power10.png")
+knitr::include_graphics("../figure/two4_power5.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/two4_power20.png")
@@ -386,7 +447,7 @@ Now let $q_{12} < p_{2} < p_{1}$.
 knitr::include_graphics("../figure/two5_power1.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/two5_power10.png")
+knitr::include_graphics("../figure/two5_power5.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/two5_power20.png")
@@ -437,7 +498,7 @@ Now let $p_{2} < q_{12} < p_{1}$.
 knitr::include_graphics("../figure/two6_power1.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
-knitr::include_graphics("../figure/two6_power10.png")
+knitr::include_graphics("../figure/two6_power5.png")
 ```
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/two6_power20.png")
