@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- bower:css -->
+    <!-- <link rel="stylesheet" href="/content/themes/jhu_id/bower_components/normalize-css/normalize.css"> -->
+    <link rel="stylesheet" href="fonts/gentona/gentona.css">
+    <link rel="stylesheet" href="fonts/titling-gothic/titling-gothic.css">
+    <link rel="stylesheet" href="fonts/quadon/quadon.css">
+    <link rel="stylesheet" href="fonts/arnhem/arnhem.css">
+    <!-- endbower -->
+
+    <title>Testing Network</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(http://fonts.googleapis.com/css?family=Varela+Round:regular,italic,bold,bolditalic);
+      @import url(http://fonts.googleapis.com/css?family=Raleway:regular,italic,bold,bolditalic);
+
+      body {
+        font-family: 'gentona'; /* Varela Round */
+      }
+      /*      h1, h2, h3, h4, h5, h6 {
+        font-family: 'quadon';
+      }      */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'quadon';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .remark-slide-content h4 { font-size: 1.4em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      .navbar {
+        position: absolute;
+        float: center;
+        top: 0em;
+        font-family: 'titling-gothic';  /* Yanone Kaffeesatz */
+        font-weight: 200;
+        color: #A7A7A7;
+      }
+      .navbar a {
+        color: #A7A7A7;
+      }
+      .bbar {
+        position: absolute;
+        bottom: 13px;
+        left: 13px;
+        font-family: 'titling-gothic';  /* Yanone Kaffeesatz */
+        font-weight: 200;
+        color: #A7A7A7;
+      }
+      .bbar a {
+        color: #A7A7A7;
+      }
+      .btn {
+        background: #424242;
+        height: 2em;
+      }
+      .remark-slide-content {
+        font-size: 1.5em;
+        background: #272822;
+        color: white;
+      }
+      li p { line-height: 1.25em; }
+      .r { color: #fa0000; }
+      .y { color: #FFFF00; }
+      .pink { color: #FF87F3;}
+      .orange { color: #FFA500;}
+      .g { color: #00CC00; }
+      .blue { color: #75E9FF;}
+      .purple { color: #A149A9;}
+      .large { font-size: 2em; }
+      .black { color: black; background-color: white;}
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #424242;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+/*      .pull-left {
+        float: left;
+        width: 47%;
+      }*/
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .center {
+        margin: auto;
+        width: 100%;
+        padding: 10px;
+      }
+      .small {
+        font-size: 0.8em;
+      }
+/*      .pull-right {
+        float: right;
+        width: 47%;
+      }*/
+      .pull-bottom {
+        position: absolute;
+        bottom: 0;
+      }
+      .bottom {
+        position: absolute;
+        bottom: 35px;
+        left: 13px;
+        font-family: 'Yanone Kaffeesatz';
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: white;
+        color: white;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse p {
+        color: white;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      #frame { zoom: 0.75; -moz-transform: scale(0.75); -moz-transform-origin: 0 0; }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+        color: #000;
+      }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+      br {
+        line-height: 50%;
+      }
+      .task {
+        float: right;
+        font-size: 0.9em;
+        padding-top: 0.6em;
+      }
+
+    </style>
+  </head>
+  <body onload="var slideshow = remark.create();">
+    <textarea id="source">
+
+
+
+
+
+class: center, middle
+
+# [Testing Latent Dependence over Network](https://github.com/neurodata/youjin):
+## via Local Distance Correlation
+
+<br/>
+
+Youjin Lee , Department of Biostatistics
+
+<!-- #### e: [jovo@jhu.edu](mailto:jovo@jhu.edu) | w:  -->
+<!-- ### [NeuroData.io](http://neurodata.io) -->
+
+
+---
+layout: true
+.bbar[ _[Motivation](#Motivation)_  | [Local Dependence](#Local Dependence) | [Distance Correlation](#Distance Correlation) | [Diffusion Distance](#Diffusion Distance) | [Simulation](#Simulation) | [Implication](#Implication)]
+---
+
+
+
+## Motivation
+
+<br/>
+
+
+
+- Interests in Network structure and its node attributes
+  - Science : Linkage for function, Attributes passing through linkage, etc.
+  - Social Network : Peer effects, homophily, etc.
+
+<br />
+
+.center[
+<img src="http://bitspace.no/wp-content/uploads/2014/12/brain-network.jpg" alt="Drawing" style="width: 300px;"/>
+<img src="http://blogs-images.forbes.com/datafreaks/files/2015/01/photodune-5787803-social-network-l-1940x1455.jpg" alt="Drawing" style="width: 300px;"/>]
+
+---
+
+## Motivation
+
+<br/>
+
+- Connection to Previous Work 
+  - Out of concern about lots of epidemiology studies.
+     e.g.) obesity and social networks.
+  - Abuse of standard statistical analysis without confirming assumptions. 
+  - Comparions between adjacent pairs vs. non-adjacent pairs.
+- Assumptions 
+  - Robustness of using adjacent relationships
+  - Testing global dependency  
+- Limitations
+  - Needs to differentiate nodes having different number of friends. (unique connection vs. one of many connections)
+  - Fail to achieve high power under local dependence
+
+
+---
+layout: true
+.bbar[ [Motivation](#Motivation) | _[Local Dependence](#Local Dependence)_ | [Distance Correlation](#Distance Correlation) | [Diffusion Distance](#Diffusion Distance) | [Simulation](#Simulation) | [Implication](#Implication)]
+
+---
+name: Local Dependence
+
+
+## Local Dependence
+
+<br/>
+
+- Only nodes close enough are dependent. 
+  - M-dependence 
+  - Latent Structure : Block model  
+- Different dependence pattern across clusters or blocks.
+  - e.g) distribution of a signal X is associated to neuronal connectivity G in some parts of brain, but they are randomly distributed over neuronal network in other parts.
+
+---
+
+## Local Dependence
+
+Graph from simulation data (`kamada.kawai` in `R`)
+
+- Three types of node attribute outcomes (in ordinal scale)
+- Cannot tell any dependence easily. 
+
+.center[
+<img src="images/nogroup_three2.png" style="width: 400px;"/>]
+
+---
+
+## Local Dependence
+
+Graph from simulation data (`kamada.kawai` in `R`)
+
+- Three types of node attribute outcomes (in ordinal scale)
+- X = 1
+
+.center[
+<img src="images/outcome1_three2.png" style="width: 400px;"/>]
+
+---
+
+## Local Dependence
+
+Graph from simulation data (`kamada.kawai` in `R`)
+
+- Three types of node attribute outcomes (in ordinal scale)
+- X = 2
+
+.center[
+<img src="images/outcome2_three2.png" style="width: 400px;"/>]
+
+
+---
+
+## Local Dependence
+
+Graph from simulation data (`kamada.kawai` in `R`)
+
+- Three types of node attribute outcomes (in ordinal scale)
+- X = 3
+
+.center[
+<img src="images/outcome3_three2.png" style="width: 400px;"/>]
+
+---
+
+## Local Dependence
+
+Graph from simulation data (`kamada.kawai` in `R`)
+
+- Three types of node attribute outcomes (in ordinal scale)
+- Different shapes indicate different latent group Z
+- Distribution of X depends on latent group Z
+- Distribution of G depends on latent group Z
+
+.center[
+<img src="images/all_three2.png" style="width: 300px;"/>]
+
+
+---
+
+## Local Dependence
+
+Graph from simulation data (`kamada.kawai` in `R`)
+
+- In global test, it is relatively insensitive to detect the local dependence. 
+
+- X = 1
+
+.center[
+<img src="images/voutcome1_three2.png" style="width: 400px;"/>]
+
+---
+
+## Local Dependence
+
+Graph from simulation data (`kamada.kawai` in `R`)
+
+- Three types of node attribute outcomes (in ordinal scale)
+- X = 2
+
+.center[
+<img src="images/voutcome1_three2.png" style="width: 400px;"/>]
+
+
+---
+
+## Local Dependence
+
+Graph from simulation data (`kamada.kawai` in `R`)
+
+- Three types of node attribute outcomes (in ordinal scale)
+- X = 3
+
+.center[
+<img src="images/voutcome3_three2.png" style="width: 400px;"/>]
+
+
+
+---
+name: Local Dependence 
+
+## Local Dependence
+
+A : Edge indicator
+X : Node attribute
+.pink[Z : Latent Variable]
+
+- Model : 
+  - [Model 1] : P(A | .pink[Z]) P(X | .pink[Z]) P(.pink[Z])
+  - [Model 2] : P(A | .pink[Z]) P(X | .pink[Z]) P(X)
+
+- Causal Diagram
+
+.center[
+<img src="images/model1.png" style="width: 250px;"/>
+<img src="images/model2.png" style="width: 230px;"/>]
+
+
+---
+layout: true
+.bbar[ [Motivation](#Motivation)  | [Local Dependence](#Local Dependence) | _[Distance Correlation](#Distance Correlation)_ | [Diffusion Distance](#Diffusion Distance) | [Simulation](#Simulation) | [Implication](#Implication)]
+
+---
+
+## Distance Correlation
+
+$X_{i}$
+
+
+
+
+
+
+---
+
+## Local Distance Correlation
+
+
+
+
+
+What is the distance matric for graph G used in statistics? 
+
+
+---
+layout: true
+.bbar[ [Motivation](#Motivation)  | [Local Dependence](#Local Dependence) | [Distance Correlation](#Distance Correlation) | _[Diffusion Distance](#Diffusion Distance)_ | [Simulation](#Simulation) | [Implication](#Implication)]
+
+---
+
+
+## Diffusion Distance
+
+
+
+---
+
+
+## Diffusion Distance 
+
+
+
+
+
+
+---
+layout: true
+.bbar[ [Motivation](#Motivation)  | [Local Dependence](#Local Dependence) | [Distance Correlation](#Distance Correlation) | [Diffusion Distance](#Diffusion Distance) | _[Simulation](#Simulation)_ | [Implication](#Implication)]
+
+---
+## Simulation
+
+
+
+
+---
+
+## Simulation
+
+
+
+
+---
+layout: true
+.bbar[ [Motivation](#Motivation)  | [Local Dependence](#Local Dependence) | [Distance Correlation](#Distance Correlation) | [Diffusion Distance](#Diffusion Distance) | [Simulation](#Simulation) | _[Implication](#Implication)]_
+
+---
+
+## Implication
+
+
+
+
+
+---
+
+## Implication
+
+<br />
+
+| _Property_    | _Classical_ &nbsp;| _NeuroData_ &nbsp; | _Both_ |
+| :---          | :----:      | :---:       | :---: |
+| Quality     | .g[&check;]   | .r[&cross;] | .g[&check;] |
+| Scalability | .r[&cross;]   | .g[&check;] | .g[&check;] |
+| Capabilities| .g[&check;]   | .r[&cross;] | .g[&check;] |
+| 1-clickiness| .r[&cross;]   | .g[&check;] | .g[&check;] |
+
+
+--
+
+<br />
+
+.white[The ideal system will include both classical and novel NeuroData methods, as they complement one another.]
+
+
+
+
+
+---
+name: 
+
+# References
+
+
+.small[
+1. Burns B et al. [The Open Connectome Project Data Cluster: Scalaballe Analysis and Vision for High-Throughput Neuroscience](http://arxiv.org/abs/1306.3543).  Scientific and Statistical Database Management (SSDBM), 2013.
+
+1. Burns B, Vogelstein JT, Szalay AS. [From Cosmos to Connectomes: the Evolution of Data-Intensive Science](http://www.sciencedirect.com/science/article/pii/S0896627314007466). Neuron, 2015.
+
+
+1. Mhembere D, et al. [Computing Scalable Multivariate Glocal Invariants of Large (Brain-) Graphs](http://arxiv.org/abs/1312.4318). IEEE GlobalSIP, 2013.
+
+1. Kazhdan M, et al. [Distributed Gradient-Domain Processing
+of Planar and Spherical Images](http://www.cs.jhu.edu/~misha/MyPapers/ToG10.pdf).
+ACM Transactions on Graphic, 28(4) 2009.
+
+1. Kazhdan M, et al. [Gradient-Domain Fusion for Color Correction in Large EM Image Stacks](http://arxiv.org/abs/1506.02079). arXiv:1506.02079
+
+1. Kutten KS, et al. [Deformably Registering and Annotating Whole CLARITY Brains to an Atlas via Masked LDDMM](https://github.com/neurodata/spiePhotonics/raw/master/spiePhotonics.pdf). SPIE Photonics Europe, 2016.
+
+1. Gray Roncal, WR, et al. [VESICLE: Volumetric Evaluation of Synaptic Interfaces using Computer Vision at Large Scale](http://www.bmva.org/bmvc/2015/papers/paper081/paper081.pdf). BMVA 2015.
+
+1. Gray Roncal, WR, et al. [An automated images-to-graphs framework for high resolution connectomics](http://journal.frontiersin.org/article/10.3389/fninf.2015.00020/full). Frontiers in Neuroinformatics, 13 August 2015.
+
+1. Gray Roncal, WR, et al. [Magnetic Resonance Connectome Automated Pipeline: An Overview](http://ieeexplore.ieee.org/xpl/articleDetails.jsp?reload=true&arnumber=6173097). IEEE Pulse 3(2) 42-48, 2012.
+
+1. Gray Roncal WR, et al. [MIGRAINE: MRI Graph Reliability Analysis and Inference for Connectomics](http://arxiv.org/abs/1312.4875). IEEE GlobalSIP, 2013.
+]
+
+---
+name: ref2
+
+# References Continued
+
+.small[
+1. Kazhdan, Misha, et al. [Rotation Invariant Spherical Harmonic Representation
+of 3D Shape Descriptors](http://htmlpreview.github.io/?https://github.com/mkazhdan/ShapeSPH/blob/master/descriptors.html), Eurographics Symposium on Geometry Processing, 2003.
+
+1. Kazdahn, Misha, et al. [Modeling by
+Example](http://htmlpreview.github.io/?https://github.com/mkazhdan/ShapeSPH/blob/master/alignment.html),
+SIGGRAPH, 2004.
+
+1. Kazdahn, Misha, et al.  [Symmetry.html](http://htmlpreview.github.io/?https://github.com/mkazhdan/ShapeSPH/blob/master/symmetry.html), Eurographics Symposium on Geometry Processing, 2004.
+
+1. Zheng, Da, et al. [FlashGraph: Processing Billion-Node Graphs on
+an Array of Commodity SSDs](http://arxiv.org/abs/1408.0500),
+arXiv:1408.0500, 2014.
+
+1. Wang, Heng, et al. [Active Community Detection in Massive
+Graphs](http://arxiv.org/abs/1412.8576), arXiv:1412.8576, 2014.
+
+1. Zheng, Da, et al. [An SSD-based eigensolver for spectral analysis on
+billion-node graphs](http://arxiv.org/abs/1602.01421), arXiv:1602.01421, 2016.
+
+1. Zheng, Da, et al. [Semi-External Memory Sparse Matrix Multiplication
+on Billion-node Graphs in a Multicore Architecture](http://arxiv.org/abs/1602.02864), arXiv:1602.02864, 2016. 
+
+]
+
+
+---
+
+# NeuroData.CS Family
+
+<br>
+
+.center[
+|   |   | |
+| :--- | :--- | :--- |
+| Store | | Randal Burns, Eric Perlman, Kunal Lillaney, Priya Manavalan, Alex Eusman
+| Explore | | .orange[Alex Baden,  Ivan Kuznetsov, David Marchette, Leo Duan, Albert Lee]
+| Parse | | .y[Mike Miller, Nicholas Charon, Misha Kazhdan, Jordan Matelsky, Kwame Kutten, Greg Kiar, Eric Bridgeford, Greg Hager, Will Gray Roncal, Mark Chevillet,  Deank Kleissas, R. Jacob Vogelstein, Guillermo Sapiro, Anish Simhal, Konrad Kording, Eva Dyer]
+| Analyze | &nbsp;&nbsp;&nbsp;&nbsp; | .blue[Joshua T. Vogelstein, Da Zheng, Disa Mhembere]
+| Love | | .pink[yummy, family, friends, earth, universe, multiverse?]
+]
+
+
+
+
+---
+class:   
+
+
+# Questions?
+
+<!-- ### Funding &nbsp;&nbsp;&nbsp;&nbsp;   -->
+
+<br />
+
+
+---
+
+
+
+
+
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript">
+    </script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+
+      // Setup MathJax
+      MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+      MathJax.Hub.Queue(function() {
+          $(MathJax.Hub.getAllJax()).map(function(index, elem) {
+              return(elem.SourceElement());
+          }).parent().addClass('has-jax');
+      });
+
+      MathJax.Hub.Configured();
+
+      var slideshow = remark.create({
+        // Set the slideshow display ratio
+        // Default: '4:3'
+        // Alternatives: '16:9', ...
+        ratio: '4:3',
+
+        // Navigation options
+        navigation: {
+          // Enable or disable navigating using scroll
+          // Default: true
+          // Alternatives: false
+          scroll: true,
+
+          // Enable or disable navigation using touch
+          // Default: true
+          // Alternatives: false
+          touch: true,
+
+          // Enable or disable navigation using click
+          // Default: false
+          // Alternatives: true
+          click: false
+  },
+
+  // Customize slide number label, either using a format string..
+  // slideNumberFormat: 'Slide %current% of %total%',
+  // .. or by using a format function
+  slideNumberFormat: function (current, total) {
+    return  current + ' / ' + total;
+  },
+
+  // Enable or disable counting of incremental slides in the slide counting
+  countIncrementalSlides: false
+});
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

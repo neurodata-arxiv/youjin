@@ -1,0 +1,52 @@
+
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- <a class="navbar-brand" href="#">Brand</a> -->
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+        <li><a href="#intro">Intro</a></li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Methods<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#infra">Infrastructure</a></li>
+            <li><a href="#data">Data</a></li>
+            <li><a href="#store">Store</a></li>
+            <li><a href="#explore">Explore</a></li>
+            <li><a href="#pre">Pre-Proc</a></li>
+            <li><a href="#parse">Parse</a></li>
+            <li><a href="#anal">Analyze</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Results<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#r_infra">Infrastructure</a></li>
+            <li><a href="#r_data">Data</a></li>
+            <li><a href="#r_store">Store</a></li>
+            <li><a href="#r_explore">Explore</a></li>
+            <li><a href="#r_pre">Pre-Proc</a></li>
+            <li><a href="#r_parse">Parse</a></li>
+            <li><a href="#r_anal">Analyze</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#disc">Discussion</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
