@@ -264,7 +264,7 @@ layout: true
 
 
 
-- Interests in Network structure and its node attributes
+- Interest in network structure and its node attributes
   - Science : linkage for functional purpose, attributes passing through linkage, etc.
   - Social Network : peer effects, homophily, etc.
 
@@ -286,13 +286,13 @@ layout: true
   - Out of concern about lots of epidemiology studies.
      e.g.) obesity and social networks.
   - Abuse of standard statistical analysis without confirming independent sample assumptions. 
-  - Comparions between adjacent pairs vs. non-adjacent pairs.
+  - Comparison between adjacent pairs vs. nonadjacent pairs.
 - Assumptions 
   - Robustness of using adjacent relationships
   - Testing global dependency  
 - Limitations
-  - Needs to differentiate between nodes having different number of friends. (unique connection vs. one of many connections)
-  - Fail to achieve high power under .color{red}{local dependence}.
+  - Need to differentiate between nodes having different number of friends. (unique connection vs. one of many connections)
+  - Fail to achieve high power under .r[local dependence].
 
 ---
 
@@ -321,116 +321,64 @@ layout: true
 
 ---
 layout: true
-.bbar[ [Motivation](#Motivation) | _[Local Dependence](#Local Dependence)_ | [Distance Correlation](#Distance Correlation) | [Diffusion Distance](#Diffusion Distance) | [Simulation](#Simulation) | [Implication](#Implication)]
+.bbar[ [Motivation](#Motivation) | _[Local Independence](#Local Independence)_ | [Distance Correlation](#Distance Correlation) | [Diffusion Distance](#Diffusion Distance) | [Simulation](#Simulation) | [Implication](#Implication)]
 
 ---
 name: Local Dependence
 
 
-## Local Dependence
+## Structure of Networks
 
 <br/>
-
-- Only nodes close enough are dependent. 
-  - M-dependence 
-  - Latent Structure : Block model 
-- Different dependence pattern across clusters or blocks.
-  - e.g) distribution of a signal X is associated to neuronal connectivity G in some parts of brain, but they are randomly distributed over neuronal network in other parts.
-
-
----
-
-## Local Dependence
-
-Graph from simulation data (`kamada.kawai` in `R`)
-
-- Three types of node attribute outcomes (in ordinal scale)
-- Cannot tell any dependence easily. 
+- Network data often comes without natural structure, and shows evidence of local dependence.
+- Hierarchical models with latent, local structure and local dependence is instroduced [1]. 
+  - The set of nodes is partitioned into K blocks. (latent, local structure). 
+  - Probability of having edges within block is different across blocks, but having edges between blocks are homogeneous. 
 
 .center[
-<img src="images/nogroup_three2.png" style="width: 400px;"/>]
+<img src="images/latent.png" style="width: 250px;"/>]
 
 ---
+### Local Independence Latent Structure Model
 
-## Local Dependence
+<br/>
+- Borrowing an idea from hierarchical latent model, but we are not only interested in graphical structures, but also interested in distribution of nodes' attributes and their relationships.
 
-Graph from simulation data (`kamada.kawai` in `R`)
+- .r[Local independence] is an underlying assumption of latent variable models [2].
 
-- Three types of node attribute outcomes (in ordinal scale)
-- .y[X] = 1
+- .g[G] and .y[X] are conditionally independent each other given latent variable .blue[Z].
 
-.center[
-<img src="images/outcome1_three2.png" style="width: 400px;"/>]
+- Association between .g[G] and .y[X] can be explained only through .blue[Z].
 
----
+- If a latent .blue[Z] has no association to .g[G] or .y[X], .g[G] and .y[X] are independent each other. 
 
-## Local Dependence
-
-Graph from simulation data (`kamada.kawai` in `R`)
-
-- Three types of node attribute outcomes (in ordinal scale)
-- .y[X] = 2
-
-.center[
-<img src="images/outcome2_three2.png" style="width: 400px;"/>]
 
 
 ---
-
-## Local Dependence
-
-Graph from simulation data (`kamada.kawai` in `R`)
-
-- Three types of node attribute outcomes (in ordinal scale)
-- .y[X] = 3
-
-.center[
-<img src="images/outcome3_three2.png" style="width: 400px;"/>]
-
----
-
-## Local Dependence
+### Local Independence Latent Structure Model
 
 Graph from simulation data (`kamada.kawai` in `R`)
 
-- Three types of node attribute outcomes (in ordinal scale)
-- Different shapes indicate different latent group .blue[Z]
-- Distribution of .y[X] depends on latent group .blue[Z]
-- Distribution of .g[G] depends on latent group .blue[Z]
-
-.center[
-<img src="images/all_three2.png" style="width: 300px;"/>]
-
-
----
-
-## Local Dependence
-
-Graph from simulation data (`kamada.kawai` in `R`)
-
-- In global test, it is relatively insensitive to detect the local dependence. 
-
-- .y[X] = 1
+- Distribution of .y[X] = 1 is homogenous within block, but not identical across latent blocks.
 
 .center[
 <img src="images/voutcome1_three2.png" style="width: 400px;"/>]
 
 ---
 
-## Local Dependence
+### Local Independence Latent Structure Model
 
 Graph from simulation data (`kamada.kawai` in `R`)
 
-- Three types of node attribute outcomes (in ordinal scale)
-- .y[X] = 2
+- Distribution of .y[X] = 2 is homogenous within block, but not identical across latent blocks.
 
 .center[
-<img src="images/voutcome1_three2.png" style="width: 400px;"/>]
+<img src="images/voutcome2_three2.png" style="width: 400px;"/>]
 
 
 ---
 
-## Local Dependence
+### Local Independence Latent Structure Model
 
 Graph from simulation data (`kamada.kawai` in `R`)
 
@@ -441,11 +389,26 @@ Graph from simulation data (`kamada.kawai` in `R`)
 <img src="images/voutcome3_three2.png" style="width: 400px;"/>]
 
 
+---
+
+### Local Independence Latent Structure Model
+
+Graph from simulation data (`kamada.kawai` in `R`)
+
+- Three types of node attribute outcomes .y[X] and latent group .blue[Z].
+- Distribution of .y[X] depends on latent group .blue[Z]
+- Distribution of .g[G] depends on latent group .blue[Z]
+- Within .blue[Z], distribution of .y[X] and .g[G](edge) are independent. 
+
+
+.center[
+<img src="images/all_three2.png" style="width: 300px;"/>]
+
 
 ---
-name: Local Dependence 
 
-## Local Dependence
+name: Local Independence 
+### Local Independence Latent Structure Model
 
 .g[A] : Edge indicator
 .y[X] : Node attribute
@@ -455,7 +418,7 @@ name: Local Dependence
   - [Model 1] : P(A | .blue[Z]) P(X | .blue[Z]) P(.blue[Z])
   - [Model 2] : P(A | .blue[Z]) P(.blue[Z] | X) P(X)
 
- - Assumption : .g[A] $\perp$ .y[X] | .blue[Z]
+ - Assumption : .g[A] $\perp$ .y[X] | .blue[Z] (local independence)
 - Causal Diagram
 
 .center[
@@ -470,7 +433,7 @@ layout: true
 ---
 
 ## Distance Correlation 
-(Szekely, 2005)
+(Szekely, 2005 [3])
 
 <br/>
 
@@ -486,7 +449,7 @@ layout: true
 
 - Sample distance covariance
 
-$$dCov^2\_{n}(G, X) : = \frac{1}{n^2} \sum\limits\_{j,k=1}^{n} C\_{jk} D\_{jk}$$
+$$dCov^2\_{n}(G, X) : = \frac{1}{n^2} \sum\limits\_{i,j=1}^{n} C\_{ij} D\_{ij}$$
 
 ---
 
@@ -569,7 +532,7 @@ layout: true
 
 <br/>
 
-- Test : H0  : f(.g[G]⋅ .y[X]) = f(.g[G]) f(.y[X]) or f(.g[A] ⋅ .y[X]) = f(.g[A]) f(.y[X])
+- Test : $H\_{0}$  : f(.g[G]⋅ .y[X]) = f(.g[G]) f(.y[X]) or f(.g[A] ⋅ .y[X]) = f(.g[A]) f(.y[X])
 
 - Model : P(A | .blue[Z]) P(X | .blue[Z]) P(X)
 
@@ -601,10 +564,11 @@ layout: true
 ---
 ## Two Block Simulation 1
 
+<br/>
 
 - local optimal and global scale is very similar. 
 - Optimality is mostly dependent on neighborhood choice over network .g[G], and $k^{*} \approx 50.$
-- May indicate that testing wihtin one block for each .blue[Z] is not different or even better than testing using all individuals (nodes). 
+- May indicate that testing using a few edges between two blocks for is not different or even better than testing using all edges between two groups. 
 
 
 .center[
@@ -629,9 +593,10 @@ layout: true
 ---
 ## Two Block Simulation 2
 
+<br/>
 
 - local optimal and global scale is very similar. 
-- As diffusion distance t increases, optimal power as well as global testing power decreases.
+- As diffusion distance .r[t] increases, optimal power as well as global testing power decreases.
 - Including second block has no benefits to detecting dependency, and as diffusion proces progresses, we are more likely to take into account them. 
 
 
@@ -657,10 +622,11 @@ layout: true
 ---
 ## Two Block Simulation 3
 
+<br/>
 
 - Local optimal is systematically better than global test. 
-- As diffusion distance t increases, optimal power as well as global testing power decreases.
-- Including second block .r[against] to detecting dependency, and as diffusion proces progresses, we are more likely to take into account them. 
+- As diffusion distance .r[t] increases, optimal power as well as global testing power decreases.
+- Including second block is .r[against] to detecting dependency, and as diffusion proces progresses, we are more likely to take into account them. 
 
 
 .center[
@@ -686,7 +652,9 @@ layout: true
 ---
 ## Three Block Simulation 1
 
-- Figures presented before
+<br/>
+
+- Related to figures presented before.
 - Local optimal is systematically better than global test. 
 - Optimality mostly depends on the neighborhood choice of .y[X], and upto including 100 nearest neighbors. (size of two blocks)
 
@@ -718,7 +686,7 @@ layout: true
 
 - Gap between local optimal and global scale is getting larger. 
 - The intuition behind it is that as diffusion process progresses, we are more likely to include block 3, of which edge distribution is randomly distributed across blocks. 
-- Optimality depends on both neighborhood of .g[G] and .y[X]. 
+- Optimality depends on both neighborhood choice of .g[G] and .y[X]. 
 
 
 .center[
@@ -735,29 +703,19 @@ layout: true
 
 ## Implication
 
-
-
-
-
----
-
-## Implication
-
 <br />
+- Local optimality > Global Power
+  - When removing an edge between different blocks would improve testing power.
+  - Existence of block of which within-block edge distribution is no difference from between-block distribution.
+  - Existence of negative correlation, e.g. within-block edge probability is smaller than between-block edge probability. 
 
-
-
----
-
-## Limitations
-
-<br />
-- 
-
-
+- Different power across different diffusion time.
+  - When within-block edge probability is smaller than between-block edge probability. 
+  - Existence of block where a latent variable .blue[Z] has no influence on .g[A] or .y[X].
 
 
 ---
+
 ## Applications
 
 <br />
@@ -766,6 +724,40 @@ layout: true
   - Independence between two networks :   $H\_{0} : f(G\_{1} \cdot G\_{2}) = f(G\_{1}) f(G\_{2})$
 - Independence between Networks and Attributes using multiple samples
   - e.g) Independence between brain connectivites and personality studied from independent samples.
+- Can be used to study hidden structure of network.
+
+- If .y[X] acts as a confounder when analyzing the effect of other intervention on network structure .g[G], or vice versa, since within some range or neighborhood choice, we can assume independence we do not have to discard all individuals (nodes). 
+
+
+
+---
+
+## Limitations
+
+<br />
+- Hard to .r[prove] when and why we achieve local optimal. 
+
+- Hard to formalize when and why testing power changes according to diffusion distance matrix.
+
+- Hard to find the optimal scale and optimal time, if exists, in real data.
+
+
+
+
+
+---
+
+## Alternatives (Future work)
+
+<br />
+- Try different working model related to .r[local dependence]:
+  - P(.g[A], .y[X], .blue[Z]) = P(.g[A] | .y[X], .blue[Z]) P(.y[X]) P( .blue[Z])
+  - Within block : P(.g[A] | .y[X], .blue[Z]) $\neq$ P(.g[A] | .blue[Z])
+  - Between blocks : P(.g[A] | .y[X], .blue[Z]) = P(.g[A] | .blue[Z])
+  - Maybe easier to explain by likelihood : factorize into within block & between blocks. 
+- Study time by time and see how much time it takes until .r[reachability] between and within block is getting similar.
+- Study the algorithms to incorporate time-dependence optimality changes. 
+
 
 
 
@@ -776,8 +768,11 @@ name:
 
 
 .small[
-1. Székely, G. J., & Rizzo, M. L. (2013). Energy statistics: A class of statistics based on distances. Journal of statistical planning and inference, 143(8), 1249-1272.
+1. Schweinberger, M., & Handcock, M. S. (2015). Local dependence in random graph models: characterization, properties and statistical inference. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 77(3), 647-676.
 
+2. Lazarsfeld, P. F, & Henry, N. W. (1968). Latent structure analysis. New York: Houghton, Mifflin.
+
+3. Székely, G. J., & Rizzo, M. L. (2013). Energy statistics: A class of statistics based on distances. Journal of statistical planning and inference, 143(8), 1249-1272.
 
 ]
 
