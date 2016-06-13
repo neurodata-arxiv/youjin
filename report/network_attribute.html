@@ -146,11 +146,15 @@ $(document).ready(function () {
 <p><span class="math">\[P[i,j] = Pr\big( X_{n} = j  | X_{n-1} = i \big)\]</span></p>
 <p>We define the transition matrix  = <span class="math">\((p_{ij})\)</span> of a Markov chain as:</p>
 <p><span class="math">\[p_{ij} = \left\{ \begin{array}{ll} \frac{w(\{ i, j\})}{ deg(i) } &amp; \mbox{ if } u \sim v \\ 0 &amp; \mbox{ otherwise }  \end{array}  \right.\]</span></p>
+<p>That is,</p>
+<p><span class="math">\[P[i,j] =  \frac{\mbox{Number of edges between i and j}}{ \mbox{Degree of node i} }\]</span></p>
 <ul>
 <li>Stationary distribution : A probability vector <span class="math">\(\pi\)</span> is a stationary distribution for Markov chain <span class="math">\(P\)</span> if <span class="math">\(\pi P = \pi\)</span>. Over the long run, no matter what the starting state was, the proportion of time the chain spends in node <span class="math">\(j\)</span> is approximately <span class="math">\(\pi(j) (j = 1, ... , n)\)</span>.</li>
 </ul>
 <p>Let <span class="math">\(G = (V, E, \omega)\)</span> be an undirected graph with <span class="math">\(\omega\)</span> being a similarity measure between vertices of <span class="math">\(V.\)</span> Denote by <span class="math">\(\textbf{P}\)</span> the probability transition matrix of <span class="math">\(G.\)</span> The diffusion distance at time <span class="math">\(t,\)</span> <span class="math">\(\rho_{t}(u,v)\)</span>, between two nodes <span class="math">\(u,v \in V\)</span> is defined as:</p>
 <p><span class="math">\[\rho^2_{t} = \sum\limits_{w \in V}\big( \textbf{P}^{t}(u,w) - \textbf{P}^{t}(v,w) \big)^2 \frac{1}{\pi(w)} =  \kappa(\textbf{P}^{2t} \Pi^{-1} )\]</span></p>
+<p>If <span class="math">\(C\)</span> is a distance matrix of graph <span class="math">\(G\)</span>:</p>
+<p><span class="math">\[C_{t}[i,j] = \sum\limits_{w \in V(G)}\big( \textbf{P}^{t}[i,w] - \textbf{P}^{t}[j,w] \big)^2 \frac{1}{\pi(w)}\]</span></p>
 <p>Diffusion distances for Directed Graph at time <span class="math">\(t\)</span> is defined as :</p>
 <p><span class="math">\[\Delta_{\rho^{2}_{t}} = \kappa(\textbf{P}^{t} \Pi^{-1} (\textbf{P}^{t})^{T} )\]</span></p>
 <p>where <span class="math">\(\kappa(\textbf{A}) = \textbf{A}_{dg} \textbf{1} \textbf{1}^{T} - \textbf{A} - \textbf{A}^{T} + \textbf{1} \textbf{1}^{T} \textbf{A}_{dg}\)</span></p>

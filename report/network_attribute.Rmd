@@ -60,6 +60,11 @@ We define the transition matrix \textbf{P} = $(p_{ij})$ of a Markov chain as:
 
 $$p_{ij} = \left\{ \begin{array}{ll} \frac{w(\{ i, j\})}{ deg(i) } & \mbox{ if } u \sim v \\ 0 & \mbox{ otherwise }  \end{array}  \right.$$
 
+That is,
+
+$$P[i,j] =  \frac{\mbox{Number of edges between i and j}}{ \mbox{Degree of node i} }$$
+
+
 - Stationary distribution 
 : A probability vector $\pi$ is a stationary distribution for Markov chain $P$ if $\pi P = \pi$. Over the long run, no matter what the starting state was, the proportion of time the chain spends in node $j$ is approximately $\pi(j) (j = 1, ... , n)$.
   
@@ -67,6 +72,10 @@ $$p_{ij} = \left\{ \begin{array}{ll} \frac{w(\{ i, j\})}{ deg(i) } & \mbox{ if }
   Let $G = (V, E, \omega)$ be an undirected graph with $\omega$ being a similarity measure between vertices of $V.$ Denote by $\textbf{P}$ the probability transition matrix of $G.$ The diffusion distance at time $t,$ $\rho_{t}(u,v)$, between two nodes $u,v \in V$ is defined as:
   
   $$\rho^2_{t} = \sum\limits_{w \in V}\big( \textbf{P}^{t}(u,w) - \textbf{P}^{t}(v,w) \big)^2 \frac{1}{\pi(w)} =  \kappa(\textbf{P}^{2t} \Pi^{-1} )$$
+
+If $C$ is a distance matrix of graph $G$:
+
+$$C_{t}[i,j] = \sum\limits_{w \in V(G)}\big( \textbf{P}^{t}[i,w] - \textbf{P}^{t}[j,w] \big)^2 \frac{1}{\pi(w)}$$
 
  
 Diffusion distances for Directed Graph at time $t$ is defined as :
