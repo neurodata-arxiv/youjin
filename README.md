@@ -2,7 +2,7 @@
 
 ## Simulation - preliminaries
 
-* [Network(Graph) vs.Node attributes](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/network_attribute.html) 
+* [Network(Graph) vs.Node attributes](https://rawgit.com/neurodata/youjin/master/report/network_attribute.html) 
 * [Network 1 vs Network 2](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/network_network.html)
 * [Multiple Networks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/multinetworks.html)
 * [Local Dependence](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/local_dependence.html) 
