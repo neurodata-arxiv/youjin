@@ -21,6 +21,9 @@
 * [Two Blocks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/latent_two.html)
 * [Three Blocks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/latent_three.html)
 
+## Simulation - distance metrics
+* [diffusion maps](https://rawgit.com/neurodata/youjin/master/report/diffusion.html)
+
 
 ## Reference
 * celegans : exploratory data analysis on neuronal network of C. elegans.
