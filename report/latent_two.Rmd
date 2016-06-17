@@ -12,6 +12,7 @@ header-includes:
 - [two.2](# two.2)
 - [two.3](# two.3)
 - [two.4](# two.4)
+- [summary](# summary)
 
 ```{r echo=FALSE, message =FALSE, warning = FALSE}
 library(igraph)
@@ -522,3 +523,65 @@ kable(table, align = 'c', digits = 2)
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center'}
 knitr::include_graphics("../figure/two6_plot.png")
 ```
+
+
+## Summary
+<a name=" Summary"/>
+
+ Since we now have two types of multiscale - diffusion distance $(t)$, local family $(k,l)$ of test statistics, we summarize the change in optimal power and its change over diffusion process.  
+
+
+### With-block probability p vs. between-block probability q
+
+  First, for simplicity, we set the within-block probabilities are homogeneous for two blocks so that we can control two hyper parameters $p$ and $q$:
+  
+  $$X \sim Bern(0.5)$$
+  
+  $$Z  \sim  \left\{  \begin{array}{cc} Bern(0.6) & X = 0 \\ Bern(0.4) & X = 1  \end{array} \right.$$
+  
+ $$A \sim Bern \left[  \begin{array}{cc} \color{red}{p} & \color{blue}{q}  \\ \color{blue}{q} & \color{red}{p} \end{array}  \right]$$
+
+
+### Optimal power 
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_same_optimal.png")
+```
+
+### Discrepancy between local and global scale
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_same_diff1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_same_diff2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_same_diff3.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_same_diff4.png")
+```
+
+### Diffusion Process
+
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_same_time1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_same_time2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_same_time3.png")
+```
+
+
+```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_same_change.png")
+```
+
+
+
+
+
