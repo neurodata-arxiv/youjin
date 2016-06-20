@@ -582,6 +582,54 @@ knitr::include_graphics("../figure/two_same_change.png")
 ```
 
 
+### One with-block probability p vs. Others r
 
+  It is also plausible that probability of having edges differs for only one block and for other parts they are the same. 
+  
+  $$X \sim Bern(0.5)$$
+  
+  $$Z  \sim  \left\{  \begin{array}{cc} Bern(0.6) & X = 0 \\ Bern(0.4) & X = 1  \end{array} \right.$$
+  
+ $$A \sim Bern \left[  \begin{array}{cc} \color{red}{p} & \color{blue}{r}  \\ \color{blue}{r} & \color{red}{r} \end{array}  \right]$$
+
+
+### Optimal power 
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_part_optimal.png")
+```
+
+### Discrepancy between local and global scale
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_part_diff1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_part_diff2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_part_diff3.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_part_diff4.png")
+```
+
+### Diffusion Process
+
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_part_time1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_part_time2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_part_time3.png")
+```
+
+
+```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_part_change.png")
+```
 
 
