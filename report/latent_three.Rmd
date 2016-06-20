@@ -380,6 +380,8 @@ knitr::include_graphics("../figure/three6_plot.png")
 <a name=" summary"/>
 
 
+## Summary 1
+
 $$X_{i} \overset{i.i.d}{\sim} Multinorm(1/3, 1/3, 1/3), i = 1, ... ,n.$$
 
 $$Z_{i} | X_{i} \overset{i.i.d}{\sim} \left\{  \begin{array}{cc} Multinorm(1/2, 1/4, 1/4) & X_{i} = 1 \\  Multinorm(1/4, 1/2, 1/4) & X_{i} = 2 \\ Multinorm(1/4, 1/4, 1/2) & X_{i} = 3   \end{array} \right.$$
@@ -457,6 +459,93 @@ knitr::include_graphics("../figure/three_same_time3.png")
 ```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/three_same_change.png")
 ```
+
+
+<hr/>
+<hr/>
+
+## Summary 2
+
+$$X_{i} \overset{i.i.d}{\sim} Multinorm(1/3, 1/3, 1/3), i = 1, ... ,n.$$
+
+$$Z_{i} | X_{i} \overset{i.i.d}{\sim} \left\{  \begin{array}{cc} Multinorm(1/2, 1/4, 1/4) & X_{i} = 1 \\  Multinorm(1/4, 1/2, 1/4) & X_{i} = 2 \\ Multinorm(1/4, 1/4, 1/2) & X_{i} = 3   \end{array} \right.$$
+
+$$A_{G} \sim Bern \left[  \begin{array}{c|c|c} \color{red}{p} & r  & r \\ \hline r & \color{red}{p} & r \\ \hline r & r & r \end{array} \right]$$
+
+
+
+### Power heatmaps
+
+- Global Power
+
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_part_glot1.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_part_glot5.png")
+```
+```{r, out.width = 200, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_part_glot10.png")
+```
+```{r, out.width = 200, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_part_glot20.png")
+```
+
+- Optimal Power
+
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_part_optt1.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_part_optt5.png")
+```
+```{r, out.width = 200, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_part_optt10.png")
+```
+```{r, out.width = 200, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_part_optt20.png")
+```
+
+### Optimal power 
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_part_optimal.png")
+```
+
+### Discrepancy between local and global scale
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_part_diff1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_part_diff2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_part_diff3.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_part_diff4.png")
+```
+
+### Diffusion Process
+
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_part_time1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_part_time2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_part_time3.png")
+```
+
+
+```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_part_change.png")
+```
+
+
 
 
 

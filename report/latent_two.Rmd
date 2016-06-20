@@ -590,7 +590,7 @@ knitr::include_graphics("../figure/two_same_change.png")
   
   $$Z  \sim  \left\{  \begin{array}{cc} Bern(0.6) & X = 0 \\ Bern(0.4) & X = 1  \end{array} \right.$$
   
- $$A \sim Bern \left[  \begin{array}{cc} \color{red}{p} & \color{blue}{r}  \\ \color{blue}{r} & \color{red}{r} \end{array}  \right]$$
+ $$A \sim Bern \left[  \begin{array}{cc} \color{red}{p} & \color{blue}{r}  \\ \color{blue}{r} & \color{blue}{r} \end{array}  \right]$$
 
 
 ### Optimal power 
