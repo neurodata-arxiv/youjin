@@ -18,7 +18,7 @@
 
 ## Simulation - hierarchical latent models 
 * [preliminaries](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/statistics.html)
-* [Two Blocks](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/latent_two.html)
+* [Two Blocks](https://rawgit.com/neurodata/youjin/master/report/latent_two.html)
 * [Three Blocks](https://rawgit.com/neurodata/youjin/master/report/latent_three.html)
 
 ## Simulation - distance metrics
