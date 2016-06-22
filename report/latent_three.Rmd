@@ -547,6 +547,192 @@ knitr::include_graphics("../figure/three_part_change.png")
 
 
 
+<hr/>
+<hr/>
+
+## Summary 3
+
+$$X_{i} \overset{i.i.d}{\sim} Multinorm(1/3, 1/3, 1/3), i = 1, ... ,n.$$
+
+$$Z_{i} | X_{i} \overset{i.i.d}{\sim} \left\{  \begin{array}{cc} Multinorm(1/2, 1/4, 1/4) & X_{i} = 1 \\  Multinorm(1/4, 1/2, 1/4) & X_{i} = 2 \\ Multinorm(1/4, 1/4, 1/2) & X_{i} = 3   \end{array} \right.$$
+
+$$A_{G} \sim Bern \left[  \begin{array}{c|c|c} \color{red}{p} & q  & \color{blue}{r} \\ \hline q & \color{red}{p} & q \\ \hline \color{blue}{r} & q & \color{red}{p} \end{array} \right]$$
+
+
+Since block 1 ($Z_{i} = 1$) and block 3 ($Z_{i} = 3$) are most different, if $q < r,$ local scale is more likely to be better than the global scale. Thus I on purpose consider the case where $q < r.$ 
+
+
+<hr/>
+### r  =  q + 0.1
+
+
+
+### Power heatmaps
+
+- Global Power
+
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple_glot1.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple_glot5.png")
+```
+```{r, out.width = 200, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple_glot10.png")
+```
+```{r, out.width = 200, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple_glot20.png")
+```
+
+- Optimal Power
+
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple_optt1.png")
+```
+```{r, out.width = 200, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple_optt5.png")
+```
+```{r, out.width = 200, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple_optt10.png")
+```
+```{r, out.width = 200, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple_optt20.png")
+```
+
+### Optimal power 
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple_optimal.png")
+```
+
+### Discrepancy between local and global scale
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple_diff1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple_diff2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple_diff3.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple_diff4.png")
+```
+
+### Diffusion Process
+
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple_time1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple_time2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple_time3.png")
+```
+
+
+```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple_change.png")
+```
+
+
+
+
+
+
+
+
+<hr />
+### r = q + 0.2
+
+
+
+### Power heatmaps
+
+- Global Power
+
+```{r, out.width = 400, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"', fig.env = 'marginfigure' }
+knitr::include_graphics("../figure/three_triple2_glot1.png")
+```
+```{r, out.width = 400, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple2_glot5.png")
+```
+```{r, out.width = 400, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple2_glot10.png")
+```
+```{r, out.width = 400, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple2_glot20.png")
+```
+
+- Optimal Power
+
+```{r, out.width = 400, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple2_optt1.png")
+```
+```{r, out.width = 400, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple2_optt5.png")
+```
+```{r, out.width = 400, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple2_optt10.png")
+```
+```{r, out.width = 400, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple_optt20.png")
+```
+
+### Optimal power 
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple2_optimal.png")
+```
+
+### Discrepancy between local and global scale
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple2_diff1.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple2_diff2.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple2_diff3.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple2_diff4.png")
+```
+
+### Diffusion Process
+
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple2_time1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/three_triple2_time2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple2_time3.png")
+```
+
+
+```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/three_triple2_change.png")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

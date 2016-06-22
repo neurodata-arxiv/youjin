@@ -582,7 +582,7 @@ knitr::include_graphics("../figure/two_same_change.png")
 ```
 
 
-### One with-block probability p vs. Others r
+### One within-block probability p vs. Others r
 
   It is also plausible that probability of having edges differs for only one block and for other parts they are the same. 
   
@@ -631,5 +631,45 @@ knitr::include_graphics("../figure/two_part_time3.png")
 ```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/two_part_change.png")
 ```
+
+
+
+
+### Different between-block probabilities
+
+  It is also plausible that probability of having edges differs for only one block and for other parts they are the same. 
+  
+  $$X \sim Bern(0.5)$$
+  
+  $$Z  \sim  \left\{  \begin{array}{cc} Bern(0.6) & X = 0 \\ Bern(0.4) & X = 1  \end{array} \right.$$
+  
+ $$A \sim Bern \left[  \begin{array}{cc} \color{red}{p} & r  \\ r & \color{blue}{q} \end{array}  \right]$$
+
+
+<hr/>
+### p = q + 0.1
+
+
+
+
+
+
+<hr/>
+### p  = q + 0.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
