@@ -647,15 +647,49 @@ knitr::include_graphics("../figure/two_part_change.png")
 
 
 <hr/>
-### p = q + 0.1
+### q = p + 0.1
 
 
+### Optimal power 
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_triple_optimal.png")
+```
+
+### Discrepancy between local and global scale
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_triple_diff1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_triple_diff2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_triple_diff3.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_triple_diff4.png")
+```
+
+### Diffusion Process
 
 
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_triple_time1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_triple_time2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_triple_time3.png")
+```
 
 
-<hr/>
-### p  = q + 0.2
+```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_triple_change.png")
+```
+
+
 
 
 
