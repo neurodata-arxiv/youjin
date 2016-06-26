@@ -548,6 +548,7 @@ knitr::include_graphics("../figure/two6_plot.png")
 knitr::include_graphics("../figure/two_same_optimal.png")
 ```
 
+
 ### Discrepancy between local and global scale
 
 ```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
@@ -576,6 +577,11 @@ knitr::include_graphics("../figure/two_same_time2.png")
 knitr::include_graphics("../figure/two_same_time3.png")
 ```
 
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_same_t.png")
+```
 
 ```{r, out.width = 500, out.height = 500, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/two_same_change.png")

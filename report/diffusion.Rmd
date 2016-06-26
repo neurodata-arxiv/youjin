@@ -185,7 +185,7 @@ knitr::include_graphics("../figure/Dtwo10_diffusion20.png")
 ```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/Dtwo10_Dis.png")
 ```
-```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/Dtwo10_diffusionDis.png")
 ```
 
@@ -270,7 +270,7 @@ knitr::include_graphics("../figure/Dthree13_diffusion20.png")
 ```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
 knitr::include_graphics("../figure/Dthree13_Dis.png")
 ```
-```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
 knitr::include_graphics("../figure/Dthree13_diffusionDis.png")
 ```
 
