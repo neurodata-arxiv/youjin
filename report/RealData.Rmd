@@ -96,10 +96,74 @@ We implement the test at $t = 1, 2, ..., 20.$
 
 Unlike the simulation data, we never know the (estimated) power. Instead we have p-value heatmap for every combination of neighborhood choice $(k,l)$ and diffusion time $t.$
 
+### Euclidean Distance of nodal attribute X
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/elegansB.png")
+```
+
+
+### Diffusion Distance as a function of t
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/elegansA1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/elegansA2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/elegansA10.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/elegansA20.png")
+```
+
+
+### P-value Heatmap
+
+
+P-value based on 300 permutated random networks.
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/pvalue1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/pvalue2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/pvalue20.png")
+```
+
+
+### Other possible distance matrices
+
+- Dissmilarity Matrix
+
+
+$$C[i,j] = \left\{ \begin{array}{cc}  0 & \mbox{i and j are adjacent} \\ 1  & \mbox{o.w}   \end{array}\right.$$
+
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/DisA.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/elegansDisA.png")
+```
+
+
+<hr />
+
+
+- Euclidean Distance of Dissimilarity Matrix
 
 
 
-
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/EucA.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/elegansEucA.png")
+```
 
 
 
@@ -108,4 +172,15 @@ Unlike the simulation data, we never know the (estimated) power. Instead we have
 
 ## Concerns about Sparse Network with attributes
 <a name=" sparse"/>
+
+- Check empirically what happens in sparse networks. (under simplest possible sparse network model with attributes.)
+
+- Investigate theoretical properties for sparse networks.
+
+
+
+
+
+
+
 
