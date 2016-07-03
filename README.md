@@ -29,7 +29,7 @@
 
 
 ## Comparisons 
-* [Random Dot Product Graph](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/RDGP.html)
+* [Random Dot Product Graph](https://rawgit.com/neurodata/youjin/master/report/RDGP.html)
 
 
 
