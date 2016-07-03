@@ -7,6 +7,7 @@ output: html_document
 - [Random Dot Product Graph](# RDPG)
 - [Relationship to SBM](# SBM)
 - [Comparison to Existing Method](# Fosdick)
+- [Concerns about Sparse Network with attributes](# sparse)
 
 ```{r echo=FALSE, message =FALSE, warning = FALSE}
 library(igraph)
@@ -65,14 +66,14 @@ Both two block cases, we cannot find any function $f$ of $(x_{u} \cdot x_{v})$ w
 
 - Two Block Simulation 1:
 
-$$P(A_{ij} = 1 | \tilde{X}_{i}, \tilde{X}_{j}) = \left\{ \begin{array}{cc} \{(0.4)^2 + (0.6)^2\} p + 2 (0.6 \times 0.4) q & \tilde{X_{i}} \cdot \tilde{X_{j}} = 1 \mbox{ or } 4   \\ \{(0.4)^2 + (0.6)^2\} q + 2 (0.6 \times 0.4) p & \tilde{X_{i}} \cdot \tilde{X_{j}} = 2   \end{array} \right.$$.
+$$P(A_{ij} = 1 | \tilde{X}_{i}, \tilde{X}_{j}) = f\big( \tilde{X}_{i} \cdot \tilde{X}_{j} \big) = \left\{ \begin{array}{cc} \{(0.4)^2 + (0.6)^2\} p + 2 (0.6 \times 0.4) q & \tilde{X_{i}} \cdot \tilde{X_{j}} = 1 \mbox{ or } 4   \\ \{(0.4)^2 + (0.6)^2\} q + 2 (0.6 \times 0.4) p & \tilde{X_{i}} \cdot \tilde{X_{j}} = 2   \end{array} \right.$$.
 
 
 
 - Two Block Simulation 2:
 
 
-$$P(A_{ij} = 1 | \tilde{X}_{i}, \tilde{X}_{j}) = \left\{  \begin{array}{cc} \big\{ (0.4)^2 + 2(0.6 \cdot 0.4)\cdot r   \big\} + (0.6)^2 \cdot p    & \tilde{X_{i}} \cdot \tilde{X_{j}} = 1  \\ \big\{ (0.4)^2 + (0.6)^2 + (0.6 \cdot 0.4)\cdot r   \big\} + (0.6 \cdot 0.4)^2 \cdot p  & \tilde{X_{i}} \cdot \tilde{X_{j}} = 2  \\ \big\{ (0.6)^2 + 2(0.6 \cdot 0.4)\cdot r   \big\} + (0.4)^2 \cdot p  & \tilde{X_{i}} \cdot  X_{j} = 4 \end{array} \right.$$
+$$P(A_{ij} = 1 | \tilde{X}_{i}, \tilde{X}_{j}) = f\big(\tilde{X}_{i} \cdot \tilde{X}_{j}  \big) = \left\{  \begin{array}{cc} \big\{ (0.4)^2 + 2(0.6 \cdot 0.4)\cdot r   \big\} + (0.6)^2 \cdot p    & \tilde{X_{i}} \cdot \tilde{X_{j}} = 1  \\ \big\{ (0.4)^2 + (0.6)^2 + (0.6 \cdot 0.4)\cdot r   \big\} + (0.6 \cdot 0.4)^2 \cdot p  & \tilde{X_{i}} \cdot \tilde{X_{j}} = 2  \\ \big\{ (0.6)^2 + 2(0.6 \cdot 0.4)\cdot r   \big\} + (0.4)^2 \cdot p  & \tilde{X_{i}} \cdot  X_{j} = 4 \end{array} \right.$$
 
 
 
@@ -146,14 +147,12 @@ As well as random errors, the additive and multiplicative node-specific factors 
 
 Since our work consider a binary edge variable $A,$ we should incorporate a generalized linear model framework by modeling $y_{ij} = l(z_{ij})$, where $l$ is a logit link function. That is, for connection to our latent model framework, we assume the following model :
 
-$$logit\big( P(y_{ij} = 1) \big) =  \log \left( \frac{P(y_{ij} = 1)}{ 1 - P(y_{ij} = 1)} \right) =  \boldsymbol{\tilde{u}^{T}_{i} \cdot \tilde{v}_{j}} + \mu + e_{ij}.$$
+$$logit\big( P(y_{ij} = 1) \big| \mu, \sigma^2_{e}  \big) =  \log \left( \frac{P(y_{ij} = 1)}{ 1 - P(y_{ij} = 1)} \right) =  \boldsymbol{\tilde{u}^{T}_{i} \cdot \tilde{v}_{j}} + \mu + e_{ij}.$$
 
 They proposed an alternative testing approach using the $\color{red}{estimated}$ latent network factors $N_{n \times (2k + 1)} = [a,b,U,V]$ from the network model. The node attributes $X$ are independent of the network $Y$ if and only if the attributes are independent of any function of the network. 
 
 
-
-
-$$H_{0} : \Sigma_{X,N} = 0$$
+$$H_{0} : \Sigma_{X,N} = 0$$  
 $$H_{1} : \Sigma_{X,N} \neq 0$$
 
 
@@ -164,6 +163,143 @@ $$H_{1} : \Sigma_{X,N} \neq 0$$
 
 
 
+Using their methods, we are able to perform the test of independence based on the latent network factors to assess the evidence for any relationship between the attributes and network without creating a potentially unnecessarily complex network model or performing any model selection.
+
+The test of $H_{0} : \Sigma_{X,N} = 0$ was derived as the likelihood ratio test for a model where BOTH the network factors and attributes are sampled from a normal distribution. However in some cases these assumptions may not be appropriate. Fortunately, alternative interpretations of the test exist tht do not rely on such assumptions. The likelihood ratio test for it is the same as the likelihood ratio test to determine whether the coefficients in a linear regression are nonzero, where either (a) the network factors are regressed on the attributes or the attributes are regressed on the network factors. 
+
+
+
+#### Two Block Case 1 
+
+
+$$X \sim Bern(0.5)$$ 
+
+
+$$Z  \sim  \left\{  \begin{array}{cc} Bern(0.6) & X = 0 \\ Bern(0.4) & X = 1  \end{array} \right.$$
+
+$$A \sim Bern \left[  \begin{array}{cc} \color{red}{0.4} & 0.1  \\ 0.1 & \color{red}{0.4} \end{array}  \right]$$ 
+
+
+<Procedures>
+
+1.  Fit a model for network connectivity, using a linear function ``ame()`` in ``R``.
+
+$$P(Y_{ij} = 1) = \Phi(\mu + a_{i} + b_{j} + \boldsymbol{u}^{T}_{i} \boldsymbol{v}_{j} + e_{ij} )  ; a_{i}, b_{j} \in R; \boldsymbol{u}_{i}, \boldsymbol{v}_{j} \in R^{\color{red}{k} }$$
+
+  We can specify the dimension $\color{red}{k}$ of the multiplicative effects $\boldsymbol{u}^{T}_{i} \boldsymbol{v}_{j}$
+
+2. Network Factor $N = [a,b, U, V]$ is estimated from the model above.
+
+3. Fit a linear regression of network factors $N$ on the attributes $X$, and determine whether the coefficients in such multivariate linear regression are nonzero.
+
+$$H_{0} : \beta_{N | X} = 0 \mbox{    vs.    } H_{1}: \beta_{N | X} \neq 0$$
+
+  , which is based on $n_{i} | x_{i}  \overset{i.i.d}{\sim} N \big( \beta_{N|X} x_{i}, \Sigma_{N | X} \big)$
+
+
+
+
+#### Binary relational data
+
+Generate the data from R package ``amen``.
+
+Consider the network model with one multiplicative effect $(\color{red}{k} = 1)$ and the attribute 
+
+
+1. Generate jointly network covariates and node attributes.
+
+
+$$(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( \boldsymbol{0}, \color{red}{\Sigma}  \right), i = 1,... , 100$$
+
+$$e_{ij} \overset{i.i.d}{\sim} N(0,1); i,j = 1,.., 100$$
+
+
+2. Generate a binary $Y_{ij}$ through a probit model 
+
+$$y_{ij} \sim \Phi(a_{i} + b_{j} + u_{i} \cdot v_{j} + e_{ij} )$$
+
+
+3. Estimate the coefficients for additive and multiplicative(AME) effects using a binary probit AME model, so that we obtain $\hat{N} = \big\{ (\hat{a}_{i}, \hat{b}_{i}, \hat{u}_{i}, \hat{v}_{i} ); i =1,...,100  \big\}$
+
+
+4. Test (linear) independence between $X$ and $N$.
+
+
+<hr />
+
+#### Binary Case 1
+
+$$(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( \boldsymbol{0}, \color{red}{\Sigma}  \right), i = 1,... , 100$$
+
+$$\color{red}{\Sigma} = \begin{bmatrix} 1 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 1  \end{bmatrix}$$
+
+
+- Estimated Power as a function of $\color{red}{k}:$
+
+
+
+- Estimated Power using Multiscale distance correlation : 
+
+
+
+
+
+<hr />
+
+### Binary Case 2
+
+$$(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( \boldsymbol{0}, \color{red}{\Sigma}  \right), i = 1,... , 100$$
+
+$$\color{red}{\Sigma} = \begin{bmatrix} 1 & \color{blue}{0.5} & 0 & 0 & 0 \\ \color{blue}{0.5} & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 1  \end{bmatrix}$$
+
+
+
+- Estimated Power as a function of $\color{red}{k}:$
+
+
+
+- Estimated Power using Multiscale distance correlation : 
+
+
+
+
+
+<hr />
+
+### Binary Case 3
+
+$$(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( \boldsymbol{0}, \color{red}{\Sigma}  \right), i = 1,... , 100$$
+
+$$\color{red}{\Sigma} = \begin{bmatrix} 1 & 0 & 0 & \color{blue}{0.5} & 0 \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\  \color{blue}{0.5} & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 1  \end{bmatrix}$$
+
+
+- Estimated Power as a function of $\color{red}{k}:$
+
+
+
+- Estimated Power using Multiscale distance correlation : 
+
+
+
+
+
+
+
+
+
+## Concerns about Sparse Network with attributes
+<a name=" sparse"/>
+
+
+  Under SMB, we presume that all nodes within the same block have the same expected degree. On the other hand, the Degree-Corrected Stochastic Blockmodel (CD- SBM) adds an additional set of parameter to control the node degrees. For example, in our Two Block Simulation 2, let $\boldsymbol{B}$ be a 2 $\times$ 2 matrix, where 
+  
+  $$\boldsymbol{B} = \begin{bmatrix} p & q \\ q & p  \end{bmatrix}$$
+
+Under DC-SBM, we add a parameter $\boldsymbol{\theta}$  : $\theta_{i}\theta_{j} \boldsymbol{B}_{ij} \in [0,1],$ with the constraint that within each block, the summation of $\theta_{i}$'s is 1. (But!! block structure is unknown before testing.)
+
+- Check empirically what happens in sparse networks. (under simplest possible sparse network model with attributes.)
+
+- Investigate theoretical properties for sparse networks.
 
 
 

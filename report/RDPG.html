@@ -118,6 +118,7 @@ $(document).ready(function () {
 <li><a href="#%20RDPG">Random Dot Product Graph</a></li>
 <li><a href="#%20SBM">Relationship to SBM</a></li>
 <li><a href="#%20Fosdick">Comparison to Existing Method</a></li>
+<li><a href="#%20sparse">Concerns about Sparse Network with attributes</a></li>
 </ul>
 <div id="random-dot-product-graph" class="section level2">
 <h2>Random Dot Product Graph</h2>
@@ -144,11 +145,11 @@ $(document).ready(function () {
 <ul>
 <li>Two Block Simulation 1:</li>
 </ul>
-<p><span class="math">\[P(A_{ij} = 1 | \tilde{X}_{i}, \tilde{X}_{j}) = \left\{ \begin{array}{cc} \{(0.4)^2 + (0.6)^2\} p + 2 (0.6 \times 0.4) q &amp; \tilde{X_{i}} \cdot \tilde{X_{j}} = 1 \mbox{ or } 4   \\ \{(0.4)^2 + (0.6)^2\} q + 2 (0.6 \times 0.4) p &amp; \tilde{X_{i}} \cdot \tilde{X_{j}} = 2   \end{array} \right.\]</span>.</p>
+<p><span class="math">\[P(A_{ij} = 1 | \tilde{X}_{i}, \tilde{X}_{j}) = f\big( \tilde{X}_{i} \cdot \tilde{X}_{j} \big) = \left\{ \begin{array}{cc} \{(0.4)^2 + (0.6)^2\} p + 2 (0.6 \times 0.4) q &amp; \tilde{X_{i}} \cdot \tilde{X_{j}} = 1 \mbox{ or } 4   \\ \{(0.4)^2 + (0.6)^2\} q + 2 (0.6 \times 0.4) p &amp; \tilde{X_{i}} \cdot \tilde{X_{j}} = 2   \end{array} \right.\]</span>.</p>
 <ul>
 <li>Two Block Simulation 2:</li>
 </ul>
-<p><span class="math">\[P(A_{ij} = 1 | \tilde{X}_{i}, \tilde{X}_{j}) = \left\{  \begin{array}{cc} \big\{ (0.4)^2 + 2(0.6 \cdot 0.4)\cdot r   \big\} + (0.6)^2 \cdot p    &amp; \tilde{X_{i}} \cdot \tilde{X_{j}} = 1  \\ \big\{ (0.4)^2 + (0.6)^2 + (0.6 \cdot 0.4)\cdot r   \big\} + (0.6 \cdot 0.4)^2 \cdot p  &amp; \tilde{X_{i}} \cdot \tilde{X_{j}} = 2  \\ \big\{ (0.6)^2 + 2(0.6 \cdot 0.4)\cdot r   \big\} + (0.4)^2 \cdot p  &amp; \tilde{X_{i}} \cdot  X_{j} = 4 \end{array} \right.\]</span></p>
+<p><span class="math">\[P(A_{ij} = 1 | \tilde{X}_{i}, \tilde{X}_{j}) = f\big(\tilde{X}_{i} \cdot \tilde{X}_{j}  \big) = \left\{  \begin{array}{cc} \big\{ (0.4)^2 + 2(0.6 \cdot 0.4)\cdot r   \big\} + (0.6)^2 \cdot p    &amp; \tilde{X_{i}} \cdot \tilde{X_{j}} = 1  \\ \big\{ (0.4)^2 + (0.6)^2 + (0.6 \cdot 0.4)\cdot r   \big\} + (0.6 \cdot 0.4)^2 \cdot p  &amp; \tilde{X_{i}} \cdot \tilde{X_{j}} = 2  \\ \big\{ (0.6)^2 + 2(0.6 \cdot 0.4)\cdot r   \big\} + (0.4)^2 \cdot p  &amp; \tilde{X_{i}} \cdot  X_{j} = 4 \end{array} \right.\]</span></p>
 </div>
 </div>
 <div id="relationship-to-sbm" class="section level2">
@@ -182,12 +183,94 @@ $(document).ready(function () {
 <p><span class="math">\[P_Z(i \rightarrow j) = f \big( \boldsymbol{\tilde{u}^{T}_{i} \cdot \boldsymbol{\tilde{v}_{i}}}  \big) = \boldsymbol{\tilde{u}^{T}_{i} \cdot \boldsymbol{\tilde{v}_{i}}} + \mu + N(0, \sigma^{2}_{e}).\]</span></p>
 <p>As well as random errors, the additive and multiplicative node-specific factors are also modeled as Gaussian and independent across nodes:</p>
 <p>Since our work consider a binary edge variable <span class="math">\(A,\)</span> we should incorporate a generalized linear model framework by modeling <span class="math">\(y_{ij} = l(z_{ij})\)</span>, where <span class="math">\(l\)</span> is a logit link function. That is, for connection to our latent model framework, we assume the following model :</p>
-<p><span class="math">\[logit\big( P(y_{ij} = 1) \big) =  \log \left( \frac{P(y_{ij} = 1)}{ 1 - P(y_{ij} = 1)} \right) =  \boldsymbol{\tilde{u}^{T}_{i} \cdot \tilde{v}_{j}} + \mu + e_{ij}.\]</span></p>
+<p><span class="math">\[logit\big( P(y_{ij} = 1) \big| \mu, \sigma^2_{e}  \big) =  \log \left( \frac{P(y_{ij} = 1)}{ 1 - P(y_{ij} = 1)} \right) =  \boldsymbol{\tilde{u}^{T}_{i} \cdot \tilde{v}_{j}} + \mu + e_{ij}.\]</span></p>
 <p>They proposed an alternative testing approach using the <span class="math">\(\color{red}{estimated}\)</span> latent network factors <span class="math">\(N_{n \times (2k + 1)} = [a,b,U,V]\)</span> from the network model. The node attributes <span class="math">\(X\)</span> are independent of the network <span class="math">\(Y\)</span> if and only if the attributes are independent of any function of the network.</p>
-<p><span class="math">\[H_{0} : \Sigma_{X,N} = 0\]</span> <span class="math">\[H_{1} : \Sigma_{X,N} \neq 0\]</span></p>
+<p><span class="math">\[H_{0} : \Sigma_{X,N} = 0\]</span><br /><span class="math">\[H_{1} : \Sigma_{X,N} \neq 0\]</span></p>
 <div id="simulation-study" class="section level3">
 <h3>Simulation Study</h3>
+<p>Using their methods, we are able to perform the test of independence based on the latent network factors to assess the evidence for any relationship between the attributes and network without creating a potentially unnecessarily complex network model or performing any model selection.</p>
+<p>The test of <span class="math">\(H_{0} : \Sigma_{X,N} = 0\)</span> was derived as the likelihood ratio test for a model where BOTH the network factors and attributes are sampled from a normal distribution. However in some cases these assumptions may not be appropriate. Fortunately, alternative interpretations of the test exist tht do not rely on such assumptions. The likelihood ratio test for it is the same as the likelihood ratio test to determine whether the coefficients in a linear regression are nonzero, where either (a) the network factors are regressed on the attributes or the attributes are regressed on the network factors.</p>
+<div id="two-block-case-1" class="section level4">
+<h4>Two Block Case 1</h4>
+<p><span class="math">\[X \sim Bern(0.5)\]</span></p>
+<p><span class="math">\[Z  \sim  \left\{  \begin{array}{cc} Bern(0.6) &amp; X = 0 \\ Bern(0.4) &amp; X = 1  \end{array} \right.\]</span></p>
+<p><span class="math">\[A \sim Bern \left[  \begin{array}{cc} \color{red}{0.4} &amp; 0.1  \\ 0.1 &amp; \color{red}{0.4} \end{array}  \right]\]</span></p>
+<p><Procedures></p>
+<ol style="list-style-type: decimal">
+<li>Fit a model for network connectivity, using a linear function <code>ame()</code> in <code>R</code>.</li>
+</ol>
+<p><span class="math">\[P(Y_{ij} = 1) = \Phi(\mu + a_{i} + b_{j} + \boldsymbol{u}^{T}_{i} \boldsymbol{v}_{j} + e_{ij} )  ; a_{i}, b_{j} \in R; \boldsymbol{u}_{i}, \boldsymbol{v}_{j} \in R^{\color{red}{k} }\]</span></p>
+<p>We can specify the dimension <span class="math">\(\color{red}{k}\)</span> of the multiplicative effects <span class="math">\(\boldsymbol{u}^{T}_{i} \boldsymbol{v}_{j}\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Network Factor <span class="math">\(N = [a,b, U, V]\)</span> is estimated from the model above.</p></li>
+<li><p>Fit a linear regression of network factors <span class="math">\(N\)</span> on the attributes <span class="math">\(X\)</span>, and determine whether the coefficients in such multivariate linear regression are nonzero.</p></li>
+</ol>
+<p><span class="math">\[H_{0} : \beta_{N | X} = 0 \mbox{    vs.    } H_{1}: \beta_{N | X} \neq 0\]</span></p>
+<p>, which is based on <span class="math">\(n_{i} | x_{i} \overset{i.i.d}{\sim} N \big( \beta_{N|X} x_{i}, \Sigma_{N | X} \big)\)</span></p>
 </div>
+<div id="binary-relational-data" class="section level4">
+<h4>Binary relational data</h4>
+<p>Generate the data from R package <code>amen</code>.</p>
+<p>Consider the network model with one multiplicative effect <span class="math">\((\color{red}{k} = 1)\)</span> and the attribute</p>
+<ol style="list-style-type: decimal">
+<li>Generate jointly network covariates and node attributes.</li>
+</ol>
+<p><span class="math">\[(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( \boldsymbol{0}, \color{red}{\Sigma}  \right), i = 1,... , 100\]</span></p>
+<p><span class="math">\[e_{ij} \overset{i.i.d}{\sim} N(0,1); i,j = 1,.., 100\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Generate a binary <span class="math">\(Y_{ij}\)</span> through a probit model</li>
+</ol>
+<p><span class="math">\[y_{ij} \sim \Phi(a_{i} + b_{j} + u_{i} \cdot v_{j} + e_{ij} )\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Estimate the coefficients for additive and multiplicative(AME) effects using a binary probit AME model, so that we obtain <span class="math">\(\hat{N} = \big\{ (\hat{a}_{i}, \hat{b}_{i}, \hat{u}_{i}, \hat{v}_{i} ); i =1,...,100 \big\}\)</span></p></li>
+<li><p>Test (linear) independence between <span class="math">\(X\)</span> and <span class="math">\(N\)</span>.</p></li>
+</ol>
+<hr />
+
+</div>
+<div id="binary-case-1" class="section level4">
+<h4>Binary Case 1</h4>
+<p><span class="math">\[(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( \boldsymbol{0}, \color{red}{\Sigma}  \right), i = 1,... , 100\]</span></p>
+<p><span class="math">\[\color{red}{\Sigma} = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1  \end{bmatrix}\]</span></p>
+<ul>
+<li><p>Estimated Power as a function of <span class="math">\(\color{red}{k}:\)</span></p></li>
+<li><p>Estimated Power using Multiscale distance correlation :</p></li>
+</ul>
+<hr />
+
+</div>
+</div>
+<div id="binary-case-2" class="section level3">
+<h3>Binary Case 2</h3>
+<p><span class="math">\[(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( \boldsymbol{0}, \color{red}{\Sigma}  \right), i = 1,... , 100\]</span></p>
+<p><span class="math">\[\color{red}{\Sigma} = \begin{bmatrix} 1 &amp; \color{blue}{0.5} &amp; 0 &amp; 0 &amp; 0 \\ \color{blue}{0.5} &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1  \end{bmatrix}\]</span></p>
+<ul>
+<li><p>Estimated Power as a function of <span class="math">\(\color{red}{k}:\)</span></p></li>
+<li><p>Estimated Power using Multiscale distance correlation :</p></li>
+</ul>
+<hr />
+
+</div>
+<div id="binary-case-3" class="section level3">
+<h3>Binary Case 3</h3>
+<p><span class="math">\[(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( \boldsymbol{0}, \color{red}{\Sigma}  \right), i = 1,... , 100\]</span></p>
+<p><span class="math">\[\color{red}{\Sigma} = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; \color{blue}{0.5} &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\  \color{blue}{0.5} &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1  \end{bmatrix}\]</span></p>
+<ul>
+<li><p>Estimated Power as a function of <span class="math">\(\color{red}{k}:\)</span></p></li>
+<li><p>Estimated Power using Multiscale distance correlation :</p></li>
+</ul>
+</div>
+</div>
+<div id="concerns-about-sparse-network-with-attributes" class="section level2">
+<h2>Concerns about Sparse Network with attributes</h2>
+<p><a name=" sparse"></a></p>
+<p>Under SMB, we presume that all nodes within the same block have the same expected degree. On the other hand, the Degree-Corrected Stochastic Blockmodel (CD- SBM) adds an additional set of parameter to control the node degrees. For example, in our Two Block Simulation 2, let <span class="math">\(\boldsymbol{B}\)</span> be a 2 <span class="math">\(\times\)</span> 2 matrix, where</p>
+<p><span class="math">\[\boldsymbol{B} = \begin{bmatrix} p &amp; q \\ q &amp; p  \end{bmatrix}\]</span></p>
+<p>Under DC-SBM, we add a parameter <span class="math">\(\boldsymbol{\theta}\)</span> : <span class="math">\(\theta_{i}\theta_{j} \boldsymbol{B}_{ij} \in [0,1],\)</span> with the constraint that within each block, the summation of <span class="math">\(\theta_{i}\)</span>’s is 1. (But!! block structure is unknown before testing.)</p>
+<ul>
+<li><p>Check empirically what happens in sparse networks. (under simplest possible sparse network model with attributes.)</p></li>
+<li><p>Investigate theoretical properties for sparse networks.</p></li>
+</ul>
 </div>
 
 

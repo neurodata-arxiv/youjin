@@ -7,7 +7,7 @@ output: html_document
 - [Data Descriptions](# data)
 - [Statistics](# statistics)
 - [Results (P-value)](# results)
-- [Concerns about Sparse Network with attributes](# sparse)
+
 
 ```{r echo=FALSE, message =FALSE, warning = FALSE}
 library(igraph)
@@ -168,14 +168,6 @@ knitr::include_graphics("../figure/elegansEucA.png")
 
 
 
-
-
-## Concerns about Sparse Network with attributes
-<a name=" sparse"/>
-
-- Check empirically what happens in sparse networks. (under simplest possible sparse network model with attributes.)
-
-- Investigate theoretical properties for sparse networks.
 
 
 
