@@ -27,6 +27,15 @@
 ## Real Data Analysis
 * [C.elegans Neuronal Network](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/RealData.html)
 
+
+## Comparisons 
+* [Random Dot Product Graph](http://htmlpreview.github.io/?https://github.com/neurodata/youjin/blob/master/report/RDGP.html)
+
+
+
+
+
+
 ## Reference
 * celegans : exploratory data analysis on neuronal network of C. elegans.
 
