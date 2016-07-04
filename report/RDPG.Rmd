@@ -168,19 +168,7 @@ Using their methods, we are able to perform the test of independence based on th
 The test of $H_{0} : \Sigma_{X,N} = 0$ was derived as the likelihood ratio test for a model where BOTH the network factors and attributes are sampled from a normal distribution. However in some cases these assumptions may not be appropriate. Fortunately, alternative interpretations of the test exist tht do not rely on such assumptions. The likelihood ratio test for it is the same as the likelihood ratio test to determine whether the coefficients in a linear regression are nonzero, where either (a) the network factors are regressed on the attributes or the attributes are regressed on the network factors. 
 
 
-
-#### Two Block Case 1 
-
-
-$$X \sim Bern(0.5)$$ 
-
-
-$$Z  \sim  \left\{  \begin{array}{cc} Bern(0.6) & X = 0 \\ Bern(0.4) & X = 1  \end{array} \right.$$
-
-$$A \sim Bern \left[  \begin{array}{cc} \color{red}{0.4} & 0.1  \\ 0.1 & \color{red}{0.4} \end{array}  \right]$$ 
-
-
-<Procedures>
+* Procedures
 
 1.  Fit a model for network connectivity, using a linear function ``ame()`` in ``R``.
 
@@ -195,6 +183,40 @@ $$P(Y_{ij} = 1) = \Phi(\mu + a_{i} + b_{j} + \boldsymbol{u}^{T}_{i} \boldsymbol{
 $$H_{0} : \beta_{N | X} = 0 \mbox{    vs.    } H_{1}: \beta_{N | X} \neq 0$$
 
   , which is based on $n_{i} | x_{i}  \overset{i.i.d}{\sim} N \big( \beta_{N|X} x_{i}, \Sigma_{N | X} \big)$
+
+
+
+#### Two Block Case 1 
+
+
+$$X \sim Bern(0.5)$$ 
+
+
+$$Z  \sim  \left\{  \begin{array}{cc} Bern(0.6) & X = 0 \\ Bern(0.4) & X = 1  \end{array} \right.$$
+
+$$A \sim Bern \left[  \begin{array}{cc} \color{red}{0.4} & 0.2  \\ 0.2 & \color{red}{0.4} \end{array}  \right]$$ 
+
+
+```{r, out.width = 500, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two442_ame.png")
+```
+
+
+
+
+#### Three Block Case 3 
+
+$$X \sim Multi(1/3, 1/3, 1/3)$$
+
+$$Z \sim  \left\{  \begin{array}{cc} Multi(\color{red}{0.5}, 0.25, 0.25 ) & X = 1 \\ Multi(0.25, \color{red}{0.5}, 0.25  ) & X = 2 \\ Multi(0.25, 0.25, \color{red}{0.5} ) & X = 3 \end{array} \right.$$
+
+$$A \sim Bern \left[  \begin{array}{cc} \color{red}{0.5} & 0.2 & \color{pink}{0.3}  \\ 0.2 & \color{red}{0.5} & 0.2  \\ \color{pink}{0.3} & 0.2 & \color{red}{0.5}  \end{array}  \right]$$
+
+
+
+```{r, out.width = 500, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+#knitr::include_graphics("../figure/three523_ame.png")
+```
 
 
 
@@ -237,11 +259,25 @@ $$\color{red}{\Sigma} = \begin{bmatrix} 1 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 \
 - Estimated Power as a function of $\color{red}{k}:$
 
 
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim0_ame.png")
+```
+
 
 - Estimated Power using Multiscale distance correlation : 
 
-
-
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/sim0_power1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim0_power2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/sim0_power5.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim0_power10.png")
+```
 
 
 <hr />
@@ -257,8 +293,25 @@ $$\color{red}{\Sigma} = \begin{bmatrix} 1 & \color{blue}{0.5} & 0 & 0 & 0 \\ \co
 - Estimated Power as a function of $\color{red}{k}:$
 
 
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim1_ame.png")
+```
+
 
 - Estimated Power using Multiscale distance correlation : 
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/sim1_power1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim1_power2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/sim1_power5.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim1_power10.png")
+```
 
 
 
@@ -276,10 +329,25 @@ $$\color{red}{\Sigma} = \begin{bmatrix} 1 & 0 & 0 & \color{blue}{0.5} & 0 \\ 0 &
 - Estimated Power as a function of $\color{red}{k}:$
 
 
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim3_ame.png")
+```
+
 
 - Estimated Power using Multiscale distance correlation : 
 
-
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/sim3_power1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim3_power2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/sim3_power5.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim3_power10.png")
+```
 
 
 
