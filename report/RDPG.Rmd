@@ -108,14 +108,14 @@ For example, for any pair of vertices $u$ and $v$, if $z_{u} = 0$ and $z_{v} = 1
 ## Comparison to Existing Method
 <a name=" Fosdick" />
   
-  Assume network data which contain the network relations $\{ y_{ij} : i,j \in \{ 1, ... , n\} \}$ and $p$- variate nodal atributes $\{ \textbf{x}_{i} : i \in \{ 1,.. , n \} \}.$
+  Assume network data which contain the network relations $\{ y_{ij} : i,j \in \{ 1, ... , n\} \}$ and $p$- variate nodal attributes $\{ \textbf{x}_{i} : i \in \{ 1,.. , n \} \}.$
 
 
-[Fosdick & Hoff](http://www.tandfonline.com/doi/pdf/10.1080/01621459.2015.1008697) proposed a unified approach to the analysis of network and attributes, jointly modeling the network and atributes. They propose representing the $(n \times n)$ matrix of network relations $Y$ with a low dimensional structure defined by an $(n \times r)$ matrix $N$ of \textcolor{red}{node-specific} network factors ($r \ll n$). However, these network factors $N$ are not observed directly and hence are estimated from the observed network $Y$ using a network model.  
+[Fosdick & Hoff](http://www.tandfonline.com/doi/pdf/10.1080/01621459.2015.1008697) proposed a unified approach to the analysis of network and attributes, jointly modeling the network and attributes. They propose representing the $(n \times n)$ matrix of network relations $Y$ with a low dimensional structure defined by an $(n \times r)$ matrix $N$ of \textcolor{red}{node-specific} network factors ($r \ll n$). However, these network factors $N$ are not observed directly and hence are estimated from the observed network $Y$ using a network model.  
 
 
 
-The way to evaluate whether there exists dependencies between the network $Y$ and attributes $X$ they proposed is by formally testing testing for correlation between the estimated network factors $N$ and the attributes $X.$
+The way to evaluate whether there exists dependencies between the network $\color{red}{Y}$ and attributes $X$ they proposed is by formally testing testing for correlation between the estimated network factors $\color{red}{N}$ and the attributes $X.$
 
 [Figure 1] on leftside illustrates a conceptual representation of this testing framework. If the network $Y$ is independent of the attributes $X$, then any functions of the network, specifically the network network factors $N,$ are also independent of the attributes $X$.  This really resembles the model we have proposed (See another [Figure 1] on the rightside).
 
@@ -132,7 +132,7 @@ They considered an extension of the model presented in [Hoff (2009)](http://down
 $$logodds (y_{ij} = 1) = \theta_{ij},$$
 $$\mbox{ where } \theta_{ij} = \beta^{'}\boldsymbol{x_{ij} } + z_{ij}  = \beta^{'} \boldsymbol{x_{ij}} + \boldsymbol{u_{i} D v^{'}_{j}} + \epsilon_{ij}.$$
 
-Unlike our binary edge variable $a_{ij}$, let $y_{ij}$ represent a continuous measure of the ``directed" relation between node $i$ and node $j$ and consider the following model for $a_{i}, b_{j} \in R;  \boldsymbol{u_{i}, v_{j}} \in R^{k}$:
+Unlike our binary edge variable $a_{ij}$, let $y_{ij}$ represent a continuous measure of the ``directed" relation between node $i$ and node $j$ and consider the following model for $a_{i}, b_{j} \in R;  \boldsymbol{u_{i}, v_{j}} \in R^{\color{red}{k}}$:
 
 $$y_{ij} = \mu + a_{i} + b_{j} + \boldsymbol{u^{T}_{i} v_{j}} + e_{ij}.$$
 
@@ -153,7 +153,7 @@ Since our work consider a binary edge variable $A,$ we should incorporate a gene
 
 $$logit\big( P(y_{ij} = 1) \big| \mu, \sigma^2_{e}  \big) =  \log \left( \frac{P(y_{ij} = 1)}{ 1 - P(y_{ij} = 1)} \right) =  \boldsymbol{\tilde{u}^{T}_{i} \cdot \tilde{v}_{j}} + \mu + e_{ij}.$$
 
-They proposed an alternative testing approach using the $\color{red}{estimated}$ latent network factors $N_{n \times (2k + 1)} = [a,b,U,V]$ from the network model. The node attributes $X$ are independent of the network $Y$ if and only if the attributes are independent of any function of the network. 
+They proposed an alternative testing approach using the $\color{red}{estimated}$ latent network factors $N_{n \times (2k + 2)} = [a,b,U,V]$ from the network model. The node attributes $X$ are independent of the network $Y$ if and only if the attributes are independent of any function of the network. Thus they claim that it sufficies to test: 
 
 
 $$H_{0} : \Sigma_{X,N} = 0$$  
@@ -166,7 +166,7 @@ $$H_{1} : \Sigma_{X,N} \neq 0$$
 
 Using their methods, we are able to perform the test of independence based on the latent network factors to assess the evidence for any relationship between the attributes and network without creating a potentially unnecessarily complex network model or performing any model selection.
 
-The test of $H_{0} : \Sigma_{X,N} = 0$ was derived as the likelihood ratio test for a model where BOTH the network factors and attributes are sampled from a normal distribution. However in some cases these assumptions may not be appropriate. Fortunately, alternative interpretations of the test exist tht do not rely on such assumptions. The likelihood ratio test for it is the same as the likelihood ratio test to determine whether the coefficients in a linear regression are nonzero, where either (a) the network factors are regressed on the attributes or the attributes are regressed on the network factors. 
+The test of $H_{0} : \Sigma_{X,N} = 0$ was derived as the likelihood ratio test for a model where BOTH the network factors and attributes are sampled from a normal distribution. However in some cases these assumptions may not be appropriate. Fortunately, alternative interpretations of the test exist that do not rely on such assumptions. The likelihood ratio test for it is the same as the likelihood ratio test to determine whether the coefficients in a linear regression are nonzero, where either the network factors are regressed on the attributes or the attributes are regressed on the network factors. 
 
 
 * Procedures
@@ -175,7 +175,7 @@ The test of $H_{0} : \Sigma_{X,N} = 0$ was derived as the likelihood ratio test 
 
 $$P(Y_{ij} = 1) = \Phi(\mu + a_{i} + b_{j} + \boldsymbol{u}^{T}_{i} \boldsymbol{v}_{j} + e_{ij} )  ; a_{i}, b_{j} \in R; \boldsymbol{u}_{i}, \boldsymbol{v}_{j} \in R^{\color{red}{k} }$$
 
-  We can specify the dimension $\color{red}{k}$ of the multiplicative effects $\boldsymbol{u}^{T}_{i} \boldsymbol{v}_{j}$
+  We can specify the dimension $\color{red}{k}$ of the multiplicative effects $\boldsymbol{u}^{T}_{i} \boldsymbol{v}_{j}$ before fitting the model.
 
 2. Network Factor $N = [a,b, U, V]$ is estimated from the model above.
 
