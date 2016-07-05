@@ -82,23 +82,27 @@ $$P(A_{ij} = 1 | \tilde{X}_{i}, \tilde{X}_{j}) = f\big(\tilde{X}_{i} \cdot \tild
 
 (Most of Notations are borrowed from [Sussman, Tang, Fishkind $\&$ Carey's paper](http://amstat.tandfonline.com/doi/abs/10.1080/01621459.2012.699795))
 
-In a Stochastic BlockModel (SBM), each node is a member of exactly one block and the probability of an edge from node $u$ to node $v$ is determined by their block memberships. The block memberships of all nodes are determined by the random block membership function $\tau$
+In a Stochastic BlockModel (SBM), each node is a member of exactly one block and the probability of an edge from node $u$ to node $v$ is determined by their block memberships. The block memberships of all nodes are determined by the random block membership function $\tau$. 
 
 
 Note that covariate matrices $\boldsymbol{X}$ and $\boldsymbol{Y}$ should be random which satisfy $P\big[<\boldsymbol{X}_{u}, \boldsymbol{Y}_{v}> \in [0,1]   \big] = 1$
 
-Suppose we have a stochastic block model with rank($\boldsymbol{P}$) = $d.$ Then there exist $C,D \in R^{K \times d}$ such that $\boldsymbol{P} = \boldsymbol{C D^{T}}.$ Let $\boldsymbol{X} \in R^{n \times d}$ and $\boldsymbol{Y} \in R^{n \times d}$ have row $u$ given by $\boldsymbol{X}^{T}_{u} = \boldsymbol{C}^{T}_{\tau(u)}$ and $\boldsymbol{Y}^{T}_{u} = \boldsymbol{D}^{T}_{\tau(u)},$ respectively, for all $u$. Then we are able to present parameterize a SBM corresponding to the RDPG model: 
+Suppose we have a stochastic block model with rank($\boldsymbol{P}$) = $d.$ Then there exist $C,D \in R^{K \times d}$ such that $\boldsymbol{P} = \boldsymbol{C D^{T}}.$ Let $\boldsymbol{X} \in R^{n \times d}$ and $\boldsymbol{Y} \in R^{n \times d}$ have row $u$ given by $\boldsymbol{X}^{T}_{u} = \boldsymbol{C}^{T}_{\tau(u)}$ and $\boldsymbol{Y}^{T}_{u} = \boldsymbol{D}^{T}_{\tau(u)},$ respectively, for all $u$. Then we are able to present a SBM corresponding to the RDPG model: 
 
 $$P\big[ A_{u,v} = 1   \big] =  \boldsymbol{P}_{\tau(u), \tau(v)} = <\boldsymbol{C}_{\tau(u)}, \boldsymbol{D}_{\tau(v)}> =  <\boldsymbol{X}_{u}, \boldsymbol{Y}_{v} >$$
 
 For example, in Two Block Simulation model 1, $\boldsymbol{P}_{\tau(u), \tau(v)} = \boldsymbol{P}_{z_{u}, z_{v}} = \left[  \begin{array}{cc} \color{red}{p} & q  \\ q & \color{red}{p} \end{array}  \right]$. 
 
-If $p > q$ then $\boldsymbol{P}_{z_{u}, z_{v}}$ is a positive-definite, symmetric matrix so that we can apply Choleskey decomposition to get a matrix $\boldsymbol{C} (= \boldsymbol{D}).$
+If $\color{red}{p > q}$ then $\boldsymbol{P}_{z_{u}, z_{v}}$ is a positive-definite, symmetric matrix so that we can apply Choleskey decomposition to get a matrix $\boldsymbol{C} (= \boldsymbol{D}).$
 
 \bigskip
 
 $$\boldsymbol{C}_{\tau(u), \tau(v)} = \boldsymbol{C}_{z_{u}, z_{v}} = \left[  \begin{array}{cc} \sqrt{p - q^{2}/p} & q / \sqrt{p}  \\ 0 & \sqrt{p} \end{array}  \right] \big|_{z(u), z(v)} =  X_{u,v}$$
 
+
+Thus, $\boldsymbol{X}_{u,v} = \boldsymbol{C \cdot Z}_{u,v} = \boldsymbol{Y}_{u,v}.$
+
+For example, for any pair of vertices $u$ and $v$, if $z_{u} = 0$ and $z_{v} = 1,$ $\boldsymbol{X}_{u} = \boldsymbol{C \cdot Z}_{u} = \left[ \begin{array}{cc}  \sqrt{p - q^2 / p } & q / \sqrt{p}  \end{array} \right]$ and $\boldsymbol{Y}_{v} = \boldsymbol{C \cdot Z}_{v} = \left[ \begin{array}  0 & \sqrt{p}  \end{array} \right]$, so that $P[A_{u,v}  = 1]  = <X_{u}, Y_{v}> = < \boldsymbol{C \cdot Z}_{u}, \boldsymbol{C \cdot Z}_{v} > = q.$
 
 
 ## Comparison to Existing Method
@@ -107,7 +111,7 @@ $$\boldsymbol{C}_{\tau(u), \tau(v)} = \boldsymbol{C}_{z_{u}, z_{v}} = \left[  \b
   Assume network data which contain the network relations $\{ y_{ij} : i,j \in \{ 1, ... , n\} \}$ and $p$- variate nodal atributes $\{ \textbf{x}_{i} : i \in \{ 1,.. , n \} \}.$
 
 
-[Fosdict & Hoff](http://www.tandfonline.com/doi/pdf/10.1080/01621459.2015.1008697) proposed a unified approach to the analysis of network and attributes, jointly modeling the network and atributes. They propose representing the $(n \times n)$ matrix of network relations $Y$ with a low dimensional structure defined by an $(n \times r)$ matrix $N$ of \textcolor{red}{node-specific} network factors ($r \ll n$). However, these network factors $N$ are not observed directly and hence are estimated from the observed network $Y$ using a network model.  
+[Fosdick & Hoff](http://www.tandfonline.com/doi/pdf/10.1080/01621459.2015.1008697) proposed a unified approach to the analysis of network and attributes, jointly modeling the network and atributes. They propose representing the $(n \times n)$ matrix of network relations $Y$ with a low dimensional structure defined by an $(n \times r)$ matrix $N$ of \textcolor{red}{node-specific} network factors ($r \ll n$). However, these network factors $N$ are not observed directly and hence are estimated from the observed network $Y$ using a network model.  
 
 
 
@@ -158,9 +162,6 @@ $$H_{1} : \Sigma_{X,N} \neq 0$$
 
 
 ### Simulation Study
-
-
-
 
 
 Using their methods, we are able to perform the test of independence based on the latent network factors to assess the evidence for any relationship between the attributes and network without creating a potentially unnecessarily complex network model or performing any model selection.
@@ -314,9 +315,6 @@ knitr::include_graphics("../figure/sim1_power10.png")
 ```
 
 
-
-
-
 <hr />
 
 ### Binary Case 3
@@ -350,7 +348,41 @@ knitr::include_graphics("../figure/sim3_power10.png")
 ```
 
 
+<hr />
 
+### Binary Case 4
+
+$$(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( \boldsymbol{0}, \color{red}{\Sigma}  \right), i = 1,... , 100$$
+
+$$\color{red}{\Sigma} = \begin{bmatrix} 1 & 0 & 0 & \color{blue}{0.3} & \color{red}{-0.3} \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\  \color{blue}{0.3} & 0 & 0 & 1 & 0 \\ 
+\color{red}{-0.3} & 0 & 0 & 0 & 1  \end{bmatrix}$$
+
+
+- Estimated Power as a function of $\color{red}{k}:$
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/REsim4_ame.png")
+```
+
+
+- Estimated Power using Multiscale distance correlation : 
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/REsim4_power1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/REsim4_power2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/REsim4_power3.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/REsim4_power4.png")
+```
+
+
+s
 
 
 
