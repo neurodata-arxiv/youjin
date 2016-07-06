@@ -30,7 +30,7 @@
 
 ## Comparisons 
 * [Random Dot Product Graph](https://rawgit.com/neurodata/youjin/master/report/RDPG.html)
-
+* [Degree-Corrected Stochastic Block Model](https://rawgit.com/neurodata/youjin/master/report/DCSBM.html)
 
 
 
