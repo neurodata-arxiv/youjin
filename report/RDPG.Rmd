@@ -93,7 +93,7 @@ $$P\big[ A_{u,v} = 1   \big] =  \boldsymbol{P}_{\tau(u), \tau(v)} = <\boldsymbol
 
 For example, in Two Block Simulation model 1, $\boldsymbol{P}_{\tau(u), \tau(v)} = \boldsymbol{P}_{z_{u}, z_{v}} = \left[  \begin{array}{cc} \color{red}{p} & q  \\ q & \color{red}{p} \end{array}  \right]$. 
 
-If $\color{red}{p > q}$ then $\boldsymbol{P}_{z_{u}, z_{v}}$ is a positive-definite, symmetric matrix so that we can apply Choleskey decomposition to get a matrix $\boldsymbol{C} (= \boldsymbol{D}).$
+If $\color{red}{p > q}$ then $\boldsymbol{P}_{z_{u}, z_{v}}$ is a positive-definite ("assortative" in the context of node-contextualized stochastic block model), symmetric matrix so that we can apply Choleskey decomposition to get a matrix $\boldsymbol{C} (= \boldsymbol{D}).$
 
 \bigskip
 
@@ -203,6 +203,22 @@ knitr::include_graphics("../figure/two442_ame.png")
 ```
 
 
+
+
+#### Two Block Case 2 
+
+
+$$X \sim Bern(0.5)$$ 
+
+
+$$Z  \sim  \left\{  \begin{array}{cc} Bern(0.6) & X = 0 \\ Bern(0.4) & X = 1  \end{array} \right.$$
+
+$$A \sim Bern \left[  \begin{array}{cc} \color{red}{0.2} & 0.4  \\ 0.4 & \color{red}{0.2} \end{array}  \right]$$ 
+
+
+```{r, out.width = 500, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two224_ame.png")
+```
 
 
 #### Three Block Case 3 
@@ -382,24 +398,44 @@ knitr::include_graphics("../figure/REsim4_power4.png")
 ```
 
 
-s
+<hr />
+
+### Binary Case 5
+
+$$(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( \boldsymbol{0}, \color{red}{\Sigma}  \right), i = 1,... , 100$$
+
+$$\color{red}{\Sigma} = \begin{bmatrix} 1 & 0 & 0 & \color{blue}{0.3} & \color{red}{-0.3} \\ 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\  \color{blue}{0.3} & 0 & 0 & 1 & \color{green}{0.1} \\ 
+\color{red}{-0.3} & 0 & 0 & \color{green}{0.1} & 1  \end{bmatrix}$$
+
+
+- Estimated Power as a function of $\color{red}{k}:$
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+#knitr::include_graphics("../figure/sim5_ame.png")
+```
+
+
+- Estimated Power using Multiscale distance correlation : 
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+#knitr::include_graphics("../figure/sim5_power1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+#knitr::include_graphics("../figure/sim5_power2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+#knitr::include_graphics("../figure/sim5_power3.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+#knitr::include_graphics("../figure/sim5_power4.png")
+```
 
 
 
+## Computational Errors
 
-## Concerns about Sparse Network with attributes
-<a name=" sparse"/>
-
-
-  Under SMB, we presume that all nodes within the same block have the same expected degree. On the other hand, the Degree-Corrected Stochastic Blockmodel (CD- SBM) adds an additional set of parameter to control the node degrees. For example, in our Two Block Simulation 2, let $\boldsymbol{B}$ be a 2 $\times$ 2 matrix, where 
-  
-  $$\boldsymbol{B} = \begin{bmatrix} p & q \\ q & p  \end{bmatrix}$$
-
-Under DC-SBM, we add a parameter $\boldsymbol{\theta}$  : $\theta_{i}\theta_{j} \boldsymbol{B}_{ij} \in [0,1],$ with the constraint that within each block, the summation of $\theta_{i}$'s is 1. (But!! block structure is unknown before testing.)
-
-- Check empirically what happens in sparse networks. (under simplest possible sparse network model with attributes.)
-
-- Investigate theoretical properties for sparse networks.
+Fit ``ame(Y, burn = 50, nscan = 500, odens = 1, ..)`` and $Y$ is not a sigular, adjacency matrix. Then it prints out the error message of ``Error in solve.default(diag(2) + crossprod(cbind(a, b))) : system is computationally singular: reciprocal condition number = 0 In addition: Warning messages: 1: In sqrt(Sab[1, 1] - Sab[1, 2]^2/Sab[2, 2]) : NaNs produced 2: In runif(nrow(Z), pnorm((lba - ea)/sa), pnorm((uba - ea)/sa))  : NAs produced``
 
 
 

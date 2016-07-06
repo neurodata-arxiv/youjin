@@ -7,7 +7,7 @@ output: html_document
 - [Data Descriptions](# data)
 - [Statistics](# statistics)
 - [Results (P-value)](# results)
-
+- [AME](# AME)
 
 ```{r echo=FALSE, message =FALSE, warning = FALSE}
 library(igraph)
@@ -167,9 +167,32 @@ knitr::include_graphics("../figure/elegansEucA.png")
 
 
 
+## AME
+<a name=" AME"/>
 
 
+AME model of ordered probit model.
 
+1.  Fit a model for network connectivity, using a linear function ``ame()`` in ``R``.
+
+$$P(Y_{ij} = 1) = \tilde{\Phi}(\mu + a_{i} + b_{j} + \boldsymbol{u}^{T}_{i} \boldsymbol{v}_{j} + e_{ij} )  ; a_{i}, b_{j} \in R; \boldsymbol{u}_{i}, \boldsymbol{v}_{j} \in R^{\color{red}{k} }$$
+
+where $\tilde{\Phi}$ is an ordered probit. Ordered probit is used because the neuronal network is a weighted network and the range of weight goes from 0 to 37.
+
+  We can specify the dimension of $\color{red}{k}$ of the multiplicative effects $\boldsymbol{u}^{T}_{i} \boldsymbol{v}_{j}$ before fitting the model.
+
+2. Network Factor $N = [a,b, U, V]$ is estimated from the model above.
+
+3. Fit a linear regression of network factors $N$ on the attributes $X$, and determine whether the coefficients in such multivariate linear regression are nonzero.
+
+$$H_{0} : \beta_{N | X} = 0 \mbox{    vs.    } H_{1}: \beta_{N | X} \neq 0$$
+
+  , which is based on $n_{i} | x_{i}  \overset{i.i.d}{\sim} N \big( \beta_{N|X} x_{i}, \Sigma_{N | X} \big)$
+
+
+```{r, out.width = 500, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/celegans_ame.png")
+```
 
 
 
