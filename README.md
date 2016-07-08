@@ -1,5 +1,7 @@
 # Testing Independence via Graph Correlation
 
+## [Slides](http://youjin1207.github.io/)
+
 ## Simulation - preliminaries
 
 * [Network(Graph) vs.Node attributes](https://rawgit.com/neurodata/youjin/master/report/network_attribute.html) 
