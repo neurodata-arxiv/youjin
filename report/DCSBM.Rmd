@@ -294,6 +294,88 @@ knitr::include_graphics("../figure/redc441_power20.png")
 
 For both [Two Block 2](# two2) and [Two Block 3](# two3), averaged diffusion distance matrix over 100 independent networks lost distinct block patterns. This might be due to the increased variability between networks. Estimated power at t=1 for both cases, does not work as good as uncorrected SBM, but beyond diffusion time t=5, optimal power in corrected SBM works pretty well (about 5 $\%$ behind than uncorrected SBM). 
 
+\bigskip
+
+However, that is not all the cases. In three block case below, when between-block and within-block probabilities are similar and both are relatively high, degree-corrected one performs bad. Maybe that might be due to the increased number of nodes($n=100$ to $n=150$), which increases variability in degree distribution. 
+
+
+
+## Three Block
+<a name=" three"/>
+
+
+$$X_{i}  \overset{i.i.d}{\sim} Multi(1/3, 1/3, 1/3), i = 1,..., 150$$
+
+$$\theta_{i} \overset{i.i.d}{\sim} Unif(0 , \color{red}{2})$$
+
+$$Z_{i} \overset{i.i.d}{\sim}   \left\{  \begin{array}{cc} Multi(\color{red}{0.5}, 0.25, 0.25 ) & X_{i} = 1 \\ Multi(0.25, \color{red}{0.5}, 0.25  ) & X_{i} = 2 \\ Multi(0.25, 0.25, \color{red}{0.5} ) & X_{i} = 3 \end{array} \right.$$
+
+ $$A_{z_{i}, z_{j}} \sim Bern \left[  \begin{array}{cc} \color{red}{0.5} & 0.3 & 0.3  \\ 0.3 & \color{red}{0.5} & 0.3  \\ 0.3 & 0.3 & \color{red}{0.5}   \end{array}  \right]$$
+
+
+$$\tilde{A}_{z_{i}, z_{j}} \sim Bern \left\{ min \left(  \left[  \begin{array}{cc}  \color{blue}{\theta_{z_{i}}\theta_{z_{j}} } \color{red}{0.5} & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.3 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.3  \\ \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.3 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} } \color{red}{0.5} & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.3  \\ \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.3 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.3 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }\color{red}{0.5} \end{array}  \right] , \left[ \begin{array}{cc} 1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1 \end{array}  \right]   \right) \right\}$$
+
+#### Degree Distribution of $G(A)$ vs. $H(\tilde{A})$
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/rredc555_degree.png")
+```
+
+
+
+#### Diffusion Distance of $G(A)$ vs. $H(\tilde{A})$
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/H553_A1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/rredc555_A1.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/H553_A5.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/rredc555_A5.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/H553_A20.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/rredc555_A20.png")
+```
+
+
+
+#### Power Heatmap of $G(A)$ vs. $H(\tilde{A})$
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/H553_power1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/rredc555_power1.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/H553_power5.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/rredc555_power5.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/H553_power20.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/rredc555_power20.png")
+```
 
 
 

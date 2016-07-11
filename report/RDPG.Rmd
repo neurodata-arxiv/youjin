@@ -409,6 +409,43 @@ knitr::include_graphics("../figure/REsim4_power4.png")
 
 <hr />
 
+### Binary Case 5
+
+$$(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( (0,0,0,0,0), \color{red}{\Sigma}  \right), i = 1,... , 50$$
+
+$$(x_{i}, a_{i}, b_{i}, u_{i}, v_{i}) \overset{i.i.d}{\sim} N \left( (0,5,0,0,0), \color{red}{\Sigma}  \right), i = 50,... , 100$$
+
+
+$$\color{red}{\Sigma} = \begin{bmatrix} 1 & \color{red}{0.5} & 0 & 0 & 0 \\ \color{red}{0.5} & 1 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 \\  0 & 0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & 0 & 1  \end{bmatrix}$$
+
+
+- Estimated Power as a function of $\color{red}{k}:$
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim6_ame.png")
+```
+
+
+- Estimated Power using Multiscale distance correlation : 
+
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/sim6_power1.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim6_power2.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/sim6_power5.png")
+```
+```{r, out.width = 300, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/sim6_power10.png")
+```
+
+
+<hr />
+
 
 ## Computational Errors
 
