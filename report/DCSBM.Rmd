@@ -11,6 +11,7 @@ output: html_document
 - [Three Block Model](# three)
 
 
+
 ## Concerns about Sparse Network with attributes
 <a name=" sparse"/>
 
@@ -378,5 +379,252 @@ knitr::include_graphics("../figure/rredc555_power20.png")
 ```
 
 
+## Adjusting probabilities
+
+### Two Block
+
+$$X_{i} \overset{i.i.d}{\sim} Bern(0.5), i = 1,... , 100$$ 
+
+$$\theta_{i} \overset{i.i.d}{\sim} Unif(0 , \color{red}{2}) $$
 
 
+$$Z_{i}  \sim  \left\{  \begin{array}{cc} Bern(0.6) & X_{i} = 0 \\ Bern(0.4) & X_{i} = 1  \end{array} \right.$$
+
+
+$$A_{z_{i}, z_{j}} \sim Bern \left[  \begin{array}{cc}   \color{red}{0.20} & 0.05  \\ 0.05 & \color{red}{0.20} \end{array}  \right]$$ 
+
+
+$$\tilde{A}_{z_{i}, z_{j}} \sim \color{red}{Poisson} \left[  \begin{array}{cc}  \color{blue}{\theta_{z_{i}}\theta_{z_{j}} } \color{red}{0.20} & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05  \\ \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} } \color{red}{0.20} \end{array}  \right]$$
+
+
+Note that $0 < A_{ij} < 1$ for all $i,j=1,..., 100.$
+
+
+#### Degree Distribution of $G(A)$ vs. $H(\tilde{A})$
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC1_degree.png")
+```
+
+
+
+#### Diffusion Distance of $G(A)$ vs. $H(\tilde{A})$
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC1_A1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC1_A1.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC1_A3.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC1_A3.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC1_A5.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC1_A5.png")
+```
+
+
+#### Power Heatmap of $G(A)$ vs. $H(\tilde{A})$
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC1_power.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC1_power1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC1_power1.png")
+```
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC1_power3.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC1_power3.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC1_power5.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC1_power5.png")
+```
+
+
+
+### Three Block 1
+
+$$X_{i}  \overset{i.i.d}{\sim} Multi(1/3, 1/3, 1/3), i = 1,..., 150$$
+
+$$\theta_{i} \overset{i.i.d}{\sim} Unif(0 , \color{red}{2})$$
+
+$$Z_{i} \overset{i.i.d}{\sim}   \left\{  \begin{array}{cc} Multi(\color{red}{0.5}, 0.25, 0.25 ) & X_{i} = 1 \\ Multi(0.25, \color{red}{0.5}, 0.25  ) & X_{i} = 2 \\ Multi(0.25, 0.25, \color{red}{0.5} ) & X_{i} = 3 \end{array} \right.$$
+
+ $$A_{z_{i}, z_{j}} \sim Bern \left[  \begin{array}{cc} \color{red}{0.20} & 0.05 & 0.05  \\ 0.05 & \color{red}{0.20} & 0.05  \\ 0.05 & 0.05 & \color{red}{0.20}   \end{array}  \right]$$
+
+
+$$\tilde{A}_{z_{i}, z_{j}} \sim Bern \left\{   \left[  \begin{array}{cc}  \color{blue}{\theta_{z_{i}}\theta_{z_{j}} } \color{red}{0.20} & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05  \\ \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} } \color{red}{0.20} & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05  \\ \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }\color{red}{0.20} \end{array}  \right]  \right\}$$
+
+
+
+#### Degree Distribution of $G(A)$ vs. $H(\tilde{A})$
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC2_degree.png")
+```
+
+
+
+#### Diffusion Distance of $G(A)$ vs. $H(\tilde{A})$
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC2_A1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC2_A1.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC2_A3.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC2_A3.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC2_A5.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC2_A5.png")
+```
+
+
+#### Power Heatmap of $G(A)$ vs. $H(\tilde{A})$
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC2_power.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC2_power1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC2_power1.png")
+```
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC2_power3.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC2_power3.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC2_power5.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC2_power5.png")
+```
+
+
+<hr />
+
+Next I add one more three block simulation to examine whether multiscale distance correlation statistics works well when the local optimal is noticeably better than the gloal scale statistics, under DC-SBM.  
+
+### Three Block 2
+
+$$X_{i}  \overset{i.i.d}{\sim} Multi(1/3, 1/3, 1/3), i = 1,..., 150$$
+
+$$\theta_{i} \overset{i.i.d}{\sim} Unif(0 , \color{red}{2})$$
+
+$$Z_{i} \overset{i.i.d}{\sim}   \left\{  \begin{array}{cc} Multi(\color{red}{0.5}, 0.25, 0.25 ) & X_{i} = 1 \\ Multi(0.25, \color{red}{0.5}, 0.25  ) & X_{i} = 2 \\ Multi(0.25, 0.25, \color{red}{0.5} ) & X_{i} = 3 \end{array} \right.$$
+
+ $$A_{z_{i}, z_{j}} \sim Bern \left[  \begin{array}{cc} \color{red}{0.20} & 0.05 & 0.05  \\ 0.05 & \color{red}{0.20} & 0.05  \\ 0.05 & 0.05 & 0.05   \end{array}  \right]$$
+
+
+$$\tilde{A}_{z_{i}, z_{j}} \sim Bern \left\{   \left[  \begin{array}{cc}  \color{blue}{\theta_{z_{i}}\theta_{z_{j}} } \color{red}{0.20} & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05  \\ \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} } \color{red}{0.20} & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05  \\ \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05 & \color{blue}{\theta_{z_{i}}\theta_{z_{j}} }0.05 \end{array}  \right]  \right\}$$
+
+
+
+#### Degree Distribution of $G(A)$ vs. $H(\tilde{A})$
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC3_degree.png")
+```
+
+
+
+#### Diffusion Distance of $G(A)$ vs. $H(\tilde{A})$
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC3_A1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC3_A1.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC3_A3.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC3_A3.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC3_A5.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC3_A5.png")
+```
+
+
+#### Power Heatmap of $G(A)$ vs. $H(\tilde{A})$
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC3_power.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC3_power1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC3_power1.png")
+```
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC3_power3.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC3_power3.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/UC3_power5.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/DC3_power5.png")
+```
