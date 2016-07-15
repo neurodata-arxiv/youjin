@@ -1,0 +1,225 @@
+---
+title: "Testing Network Dependence via Multiscale metrics and Multiscale Distance Correlation (MNT?)" 
+author: "Youjin Lee"
+output: html_document
+---
+
+
+
+## Abstract 
+
+Network dependence over network space, which refers to the dependence between network topology and its nodal attributes, often exhibit nonlinear, latently dependent properties. Unfortunately, without knowledge on specific neighborhood structures, no statistic has been suggested to test network dependence further on globally linear dependence. In this study we propose a multiscale dependence test statistic, which borrows the idea of diffusion distance and Multiscale Generalized Correlation (MGC). Through simplest network simulation and theory, we have found that the newly proposed test is a consistent test and achieves higher power than other available ones. 
+
+## Outlines
+- [Introduction](# Introduction)
+- [Multiscale Distance Metrics](# diffusion)
+- [Multiscale Generalized Correlation](# MGC)
+- [Simulation](# Simulation)
+- [Dicussion](# Discussion)
+- [Appendix](# Appendix)
+- [Reference](# Reference)
+
+<hr />
+# Introduction
+<a name=" Introduction"/>
+
+#### * Introduce interests in association between network and nodal attributes and the related literatures.
+
+  Network, a collection of nodes and edges between them, has been a celebrated area of study over a field of psychology, information theory, biology, statistics, economics, etc. The relationship between the way a pair of nodes are connected and their attribute values is often a common interest in network analysis. There has been a lot of efforts to represent a network as a function of nodal attributes or model an outcome of nodal attribute variables through their underlying network. However, it is very obscure to determine which one should be put as a dependent variable and also network often does not have a natural structure. This is why there have exist a plethora of works on latent structure of network, which also depends on the characteristics of each node ( [Hoff et al. (2002)](#Hoff) , [Austin, Linkletter, and Wu (2013)](#Austin) ). In a latent space model, local independence between network and nodal attributes, conditional on a latent variable is often assumed ( [Lazarsfeld & Henry (1968)](#local)). In a real network data, however, it is almost impossible to estimate such latent variable and also we cannot guarantee that direction or amount of association of network and nodal attributes keeps consistent acorss latent variables, i.e. we cannot guanrantee linear dependence. 
+  
+
+  
+  
+  
+#### * Introduce notations we are going to use and introduce a common network model of nodal attributes.
+
+  Throughout this paper, we have an unweighted and connected network $\boldsymbol{G}$ comprised of $n$ nodes, for a fixed $n \in \mathbb{N}$. Its adjacency matrix, denoted by $\boldsymbol{A} = \{A_{ij} : i,j= 1,..,n \}$, is often introduced to formalize this relational data. Let us introduce a $m$-variate ($m \in \mathbb{N}$) variable for nodal attributes $\boldsymbol{X} = \{ \boldsymbol{X_{1}, X_{2}, .. , X_{n}} : \boldsymbol{X_{i}} \in \mathbb{R}^{m} \}$ which we are interested in. Investigating correlation between $\boldsymbol{G}$ and $\boldsymbol{X}$ and testing whether their distributions are independent or not is the key focus in our study. Distribution of graph $\boldsymbol{G}$ is formalized through modeling adjacent relations $\{a_{ij} : i,j = 1,... , n \}$ between each pair of nodes in $\boldsymbol{G}$. Rather than regressing $a_{ij}$ on $x_{i}$ or $x_{j}$, [Fosdick & Hoff](#Fosdick) proposed a latent variable model to estimate node-specific network factor which provides a one-to-one correspondence between $\boldsymbol{G}$ and $\boldsymbol{X}$ as well as reduces a dimension of network data. In their paper, Fosdick and Hoff also used these factors to test independence between $\boldsymbol{G}$ and $\boldsymbol{X}$. However, the performance of this test would not be good enough when the relational data $\boldsymbol{A}$ does not have linear relationship to network factors or has a latent mixture model. Since we never know the structure of networks and the way they are related to other variables, there always exist a limitation on testing based on modelling.    
+  
+
+# Multiscale Distance Metrics
+<a name=" diffusion"/>
+
+#### * Represent a network structure as a (multivariate) variable
+  
+  There have been a lot of efforts to represent the network in terms of a summarizing network factor( [Fosdick & Hoff (2015)](#Fosdick) ) or some meaningful coefficients, e.g. centrality or connectivity. However, there has been no vertex-wise variable which provides a configuration of vertex over network space withiout losing any information. [Coifman & Lafon](#Coifman) demonstrated that diffusion maps provide a meaningful multiscale geometries of data while keeping information on every local relation. Diffusion maps is constructed via Markov chain on graph. An adjacency matrix $\boldsymbol{A}$ acts as a kernel, representing a similarity between each node in $\boldsymbol{G}$ and taking into account every single relationships between nodes, rather than estimating or summarizing network structures. Transition matrix $P=\{P_{ij}: i,j=1,...,n \}$ in markov chain on $\boldsymbol{G}$ is defined as below:
+  
+$$P[i,j] = \frac{A_{ij}}{\sum\limits_{j=1} A_{ij}}$$
+
+A transition matrix $P$ is a new kernel of a Markov chain of which element $P[i,j]$ formalizes the probability of travel from node $i$ to node $j$ in one time. On the other hand, corresponding probability in $t$ steps is given by the $t$ th ($t \in \mathbb{N}$) power of $P$. For simplicity, assume that $\boldsymbol{G}$ is an undirected network: how to derive diffustion distance over a directed network is provided in [Tang & Trosset (2010)](#Tang). Other than a transition matrix, we need a stationary a stationary probability $\boldsymbol{\pi} = \{\pi_{1}, \pi_{2}, ... , \pi_{n} \}$ of which $\pi(i)$ denotes the probability that the chain stays in node $i$ regardless of the starting state. This is proportional to the degree of node $i$ in an undirected $\boldsymbol{G}$. 
+For each time point $t \in \mathbb{N}$, we can define a diffusion distance $D_{t}$  given by :
+
+$$C^2_{t}[i,j] = \sum\limits_{w =1}^{n} \big( P^{t}[i,w] - P^{t}[j,w]  \big)^{2} \frac{1}{\pi(w)} = \sum\limits_{w=1}^{n} \left(  \frac{P^{t}[i,w]}{\sqrt{\pi(w)}} - \frac{P^{t}[j,w]}{\sqrt{\pi(w)}}   \right)^2 = \parallel \frac{P^{t}[i, \cdot]}{\sqrt{\boldsymbol{\pi} }} - \frac{P^{t}[j, \cdot]}{\sqrt{\boldsymbol{\pi}}}  \parallel^2$$
+
+Key idea behind diffusion distance at $t$ is that it measures the chance that we stay between node $i$ and node $j$ at $t$ step on our journey of all other possible nodes. The higher the chance is, the smaller the distance between two is. As diffusion time $t$ increases, distance matrix $C$ is more likely to take into account distance between two nodes far away in terms of low connectivity. Connectivity between two nodes is higher if we need to eliminate more number of vertices to disconnect these two. Unlike an adjacency relation or geodesic distance, a connectivity between two nodes depends on their relationship to other vertices in a given network. Often a set of nodes with higher connectivity have a higher propensity of having edges within this set and form a cluster. Thus diffusion distance is very robust measure and likely to capture the clustering structure of network. 
+
+
+#### * Spectral properties of diffusion maps
+
+Diffusion map of 
+
+
+
+
+
+
+
+
+
+
+
+
+# Multiscale Generalized Correlation
+<a name=" MGC"/>
+
+
+#### * Introduce a Distance Correlation and Multiscale version. 
+
+
+  Relationship between network and nodal attributes often exhibits local or nonlinear properties. Moreover, dimension of spectrum of network increases as a sample size increases. Unfortunately, widely used correlation measures often fail to characterize non-linear associations so they do not provide a consistent test statistic against all thypes of dependencies. [Szekely et al. (2007)](#Szekely) extended pairwise constructed generalized correlation coefficient and developed a novel statistics called distance correlation (dCor) as a measure for all types of dependence between two random vectors in any dimension. Let us start from a general setting that we are given $n \in \mathbb{N}$ pairs of random samples $\{ (x_{i}, y_{i}) : x_{i} \in \mathbb{R}^{p}, y_{i} \in \mathbb{R}^{q}, i = 1,...,n \}$. Define $C_{ij} = \parallel x_{i} - x_{j} \parallel$ and $D_{ij} = \parallel y_{i} - y_{j} \parallel$ for $i,j=1,...,n$. 
+  
+  Distance correlation (dCorr) is defined via distance covariance (dCov) $\mathcal{V}^2_{n}$ of $\boldsymbol{X}$ and $\boldsymbol{Y}$, which is the following: 
+  
+  $$\mathcal{V}^2_{n}(\boldsymbol{X}, \boldsymbol{Y}) = \frac{1}{n^2} \sum\limits_{i,j=1}^{n} \tilde{C}_{ij} \tilde{D}_{ij}$$
+
+, where $\tilde{C}$ and $\tilde{D}$ is a doubly-centered $C$ and $D$ respectively, by its column mean and row mean. Distance correlation $\mathcal{R}^{2}_{n}(\boldsymbol{X}, \boldsymbol{Y})$ is a standardized dCov by $\mathcal{V}^2_{n}(\boldsymbol{X}, \boldsymbol{X})$ and $\mathcal{V}^2_{n}(\boldsymbol{Y}, \boldsymbol{Y}).$
+
+$$\mathcal{R}^{2} (\boldsymbol{X}, \boldsymbol{Y}) = \frac{\mathcal{V}^2_{n} (\boldsymbol{X}, \boldsymbol{Y}) }{\sqrt{\mathcal{V}^2_{n} (\boldsymbol{X}, \boldsymbol{X}) \mathcal{V}^2_{n} (\boldsymbol{Y}, \boldsymbol{Y}) } }$$
+
+[Lyons (2013)](#Lyons) proved that we can extend the theory behind test statistics proposed by Szekely et al from Euclidean space to more general metric spaces. This will be crucial in testing independence in network space. We will specify it later. On the other hand, a modified distance covariance (MCov) $\mathcal{V}^*_{n}$ and a modified distance correlation (MCorr) $\mathcal{R}^{*}_{n}$ for testing high dimensional random vectors was proposed in [Szekely et al. (2013)]( #Szekely2).  
+However, dCorr and even MCorr still perform not very well in various non-linear settings and under existence of outliers ( [Cencheng et al(2016)](#MGC) ). Out of this concern, Cencheng at al. developed Multiscale Generalized Correlation (MGC) by adding local scale on correlation coefficients. Cencheng et al. proved that 
+
+
+
+
+
+#### * Choice of distance metrics.
+
+Returning to the problem of network setting, the fundamental problem we confront is in measuring all types of dependence between $\boldsymbol{G}$ and $\boldsymbol{X}$, vertex-wise Euclidean distance in network space as well as Euclidean distance of $\boldsymbol{X}$ is required. You might first propose an adjacency matrix as a collection of observed data so that you assume we observe $n$ pairs of $\big\{ \big( \boldsymbol{A}_{i \cdot} , \boldsymbol{X}_{i} \big) : \boldsymbol{A}_{i \cdot} = (A_{i 1} , ... , A_{i n} ), \boldsymbol{X}_{i} \in \mathbb{R}^{m}, i=1,...,n  \big\}.$ In the contexts of network, however, it is almost impossible to assume $\{ \boldsymbol{A}_{1 \cdot}, \boldsymbol{A}_{2 \cdot} ... , \boldsymbol{A}_{n \cdot} \}$ is an independent observation from a common distribution. Since an adjacency matrix $\boldsymbol{A}$ is formed by relational data, one row is dependent on the other. Even if it is not, Euclidean distance between $\{ \boldsymbol{A}_{i \cdot} : i =1, ... , n \}$ is not a proper metric over network space. For simplest example, assume that a given network $\boldsymbol{G}$ is an undirected network so that its adjacency matrix $\boldsymbol{A}$ must be a symmetric matrix. Then for any $i \neq j$, $\boldsymbol{A}_{i \cdot}$ and $\boldsymbol{A}_{j \cdot}$ cannot be independent, and under no self-loop, $A_{ii} = 0$ for all $i \in \{1,...,n\}.$ Moreover, as for the validity of its Euclidean distance, let us introduce a simple example. Let a given network $\boldsymbol{G}$ comprised of 8 nodes is an unweighted, directed network and possibly having self-loop. Let $\boldsymbol{A}$ be its $8 \times 8$ binaray adjacency matrix. Assume $Node$ 1, $Node$ 4 and $Node$ 8 have the following row entries:
+
+$$\boldsymbol{A}_{1 \cdot} = \left( \begin{array}{r} 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \end{array} \right)$$
+$$\boldsymbol{A}_{4 \cdot} = \left( \begin{array}{r} 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \end{array} \right)$$
+$$\boldsymbol{A}_{8 \cdot} = \left( \begin{array}{r} 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \end{array} \right)$$
+
+,which results $\parallel \boldsymbol{A}_{1 \cdot} -\boldsymbol{A}_{4 \cdot} \parallel^2 = 4$, $\parallel \boldsymbol{A}_{1 \cdot} -\boldsymbol{A}_{8 \cdot} \parallel^2 = 7$,and $\parallel \boldsymbol{A}_{4 \cdot} -\boldsymbol{A}_{8 \cdot} \parallel^2 = 3.$ Accordingly, $\parallel \boldsymbol{A}_{4 \cdot} -\boldsymbol{A}_{8 \cdot} \parallel  < \parallel \boldsymbol{A}_{1 \cdot} -\boldsymbol{A}_{4 \cdot} \parallel$. However, you can easily see that this does not make sense because $Node$ 4 and $Node$ 8 are connected each other only through $Node$ 1. Therefore instead of using an adjacency matrix directly, we are considering embedding a vertex $v \in V(\boldsymbol{G})$ into its diffusion map of $\boldsymbol{U}$ and apply Euclidean distance metric, which is exactly a diffusion distance. Thanks to the properties of diffusion maps, we have better intrepretation of its Euclidean distance so that apply it to MGC.
+
+
+
+#### * Explictly formalize our testing goal 
+  
+  Thus, formally we can specify what we aim to test through MNT as follows:
+  
+  $$H_{0} : f_{ux} = f_{u} \cdot f_{x}$$
+  $$H_{A} : f_{ux} \neq f_{u} \cdot f_{x}$$
+  
+, where $f_{u}$ and $f_{x}$ are a marginal characteristic function of $\boldsymbol{U}$ and $\boldsymbol{X}$ respectively and $f_{ux}$ is a joint characteristic function of $\boldsymbol{U}$ and $\boldsymbol{X}$. Since $\boldsymbol{U}$ provides a configuration of vertices in $\boldsymbol{G},$ of which distance is their diffusion distance, the above hypothesis implies testing independence between the configuration of vertices in network space and in attribute space.
+
+
+
+
+
+# Simulation
+<a name=" Simulation"/>
+
+#### * Stochastic Block Model and Degree-Corrected Stochastic Block Model
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+#### * Linear latent variable model 
+
+
+
+
+
+
+
+
+
+# Discussion
+<a name=" Discussion"/>
+
+#### * merits of using MNT
+
+
+Throughout this study, we demonstrate that applying multiscale generalized correlation to test network independence performs well in diverse settings, being supported by thoroughly stuided theory on distance correlation and diffusion maps. 
+Testing dependence is often the very first step in investigating relationship between network topology and nodal variables in our interested. It is more likely that we want to know more than binary decision of rejecting or not rejecting the hypothesis. Multiscale test statistics due to both neighborhood choice and time spent in diffusion processes provides us a hint on a latent dependence structure.  
+
+#### * remaining challenges
+
+
+
+
+
+
+
+
+
+
+
+# Appendix
+<a name=" Appendix"/>
+
+
+
+
+#### * Proof of triangle inequality
+
+Let $x, y, z \in V(G).$
+
+$$\begin{align*} D^{2}_{t}(x,z) & = \sum\limits_{w \in V(G)} \big( P^{t}(x,w) - P^{t}(z,w)   \big)^2 \frac{1}{\pi(w)}  \\ & = \sum\limits_{w \in V(G)} \big(P^{t}(x, w) - P^{t}(y,w) + P^{t}(y,w) - P^{t}(z,w) \big)^2 \frac{1}{\pi(w)} \\ & = \sum\limits_{w \in V(G)} \big( P^{t}(x,w) - P^{t}(y,w) \big)^2 \frac{1}{\pi(w)}  + \sum\limits_{w \in V(G)} \big( P^{t}(y,w) - P^{t}(z,w)  \big)^2 \frac{1}{\pi(w)} \\ & + 2 \sum\limits_{w \in V(G)} \big( P^{t}(x,w) - P^{t}(y,w)  \big) \big( P^{t}(y,w) - P^{t}(z,w)  \big)\frac{1}{\pi(w)} \\ &= D^{2}_{t}(x,y) + D^{2}_{t}(y,z) +  2 \sum\limits_{w \in V(G)} \big( P^{t}(x,w) - P^{t}(y,w)  \big) \big( P^{t}(y,w) - P^{t}(z,w)  \big)\frac{1}{\pi(w)}   \end{align*}.$$
+
+Thus it suffices to show that 
+
+$$\begin{align} 
+\sum\limits_{w \in V(G)} \big( P^{t}(x,w) - P^{t}(y,w)  \big) \big( P^{t}(y,w) - P^{t}(z,w)  \big)\frac{1}{\pi(w)} \leq D_{t}(x,y) \cdot D_{t}(y,z). \end{align}$$
+
+Let $a_{w} = \big(P^{t}(x,w) - P^{t}(y,w) \big) \sqrt{1 / \pi(w)}$ and $b_{w} = \big( P^{t}(y,w) - P^{t}(z,w) \big) \sqrt{1 / \pi(w)}$. Then the above inequality is equivalent to :
+
+$$\begin{align} 
+\sum\limits_{w \in V(G)} a_{w} \cdot b_{w} \leq \sqrt{\sum\limits_{w \in V(G)} a^2_{w} \cdot \sum\limits_{w \in V(G)} b^2_{w} } \end{align}$$
+
+,which is true by Cauchy-Schwarz inequality.
+
+
+
+
+
+
+# Reference
+<a name=" Reference"/>
+
+
+<a name = "Hoff"/> Hoff, P. D., Raftery, A. E., & Handcock, M. S. (2002). Latent space approaches to social network analysis. Journal of the american Statistical association, 97(460), 1090-1098.
+
+
+<a name = "Austin"/> Austin, A., Linkletter, C., & Wu, Z. (2013). Covariate-defined latent space random effects model. Social Networks, 35(3), 338-346.
+
+<a name = "local"/> Lazarsfeld, P. F, & Henry, N. W. (1968). Latent structure analysis. New York: Houghton, Mifflin.
+
+<a name = "Fosdick"/> Fosdick, B. K., & Hoff, P. D. (2015). Testing and modeling dependencies between a network and nodal attributes. Journal of the American Statistical Association, 110(511), 1047-1056.
+
+ <a name = "Szekely"/> Székely, G. J., Rizzo, M. L., & Bakirov, N. K. (2007). Measuring and testing dependence by correlation of distances. The Annals of Statistics, 35(6), 2769-2794.
+
+
+<a name = "Szekely2"/> Székely, G. J., & Rizzo, M. L. (2013). The distance correlation t-test of independence in high dimension. Journal of Multivariate Analysis, 117, 193-213.
+
+
+ <a name = "MGC"/> Cecheng at al, Revealing the structure of dependency between multimodal datasets via multiscale generalized correlation.
+
+
+<a name = "Lyons"/> Lyons, R. (2013). Distance covariance in metric spaces. The Annals of Probability, 41(5), 3284-3305.
+
+<a name = "negative"/> Lee, J. R. (2006). Distance scales, embeddings, and metrics of negative type. University of California, Berkeley.
+
+<a name = "Tang"/> Tang, Minh, and Michael Trosset. "Graph metrics and dimension reduction." Indiana University, Indianapolis, IN (2010).
+
