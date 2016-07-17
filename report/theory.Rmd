@@ -10,7 +10,7 @@ output: html_document
 
 ## Abstract 
 
-Network dependence over network space, which refers to the dependence between network topology and its nodal attributes, often exhibit nonlinear, latently dependent properties. Unfortunately, without knowledge on specific neighborhood structures, no statistic has been suggested to test network dependence further on globally linear dependence. In this study we propose a multiscale dependence test statistic, which borrows the idea of diffusion distance and Multiscale Generalized Correlation (MGC). Through simplest network simulation and theory, we have found that the newly proposed test is a consistent test and achieves higher power than other available ones. 
+Network dependence over network space, which refers to the dependence between network topology and its nodal attributes, often exhibits nonlinear, latently dependent properties. Unfortunately, without knowledge on specific neighborhood structures, no statistic has been suggested to test network dependence further on globally linear dependence. In this study we propose a multiscale dependence test statistic, which borrows the idea of diffusion distance and Multiscale Generalized Correlation (MGC). Through simplest network simulation and theory, we have found that the newly proposed test is a consistent test and achieves higher power than other available ones. 
 
 ## Outlines
 - [Introduction](# Introduction)
@@ -27,15 +27,13 @@ Network dependence over network space, which refers to the dependence between ne
 
 #### * Introduce interests in association between network and nodal attributes and the related literatures.
 
-  Network, a collection of nodes and edges between them, has been a celebrated area of study over a field of psychology, information theory, biology, statistics, economics, etc. The relationship between the way a pair of nodes are connected and their attribute values is often a common interest in network analysis. There has been a lot of efforts to represent a network as a function of nodal attributes or model an outcome of nodal attribute variables through their underlying network. However, it is very obscure to determine which one should be put as a dependent variable and also network often does not have a natural structure. This is why there have exist a plethora of works on latent structure of network, which also depends on the characteristics of each node ( [Hoff et al. (2002)](#Hoff) , [Austin, Linkletter, and Wu (2013)](#Austin) ). In a latent space model, local independence between network and nodal attributes, conditional on a latent variable is often assumed ( [Lazarsfeld & Henry (1968)](#local)). In a real network data, however, it is almost impossible to estimate such latent variable and also we cannot guarantee that direction or amount of association of network and nodal attributes keeps consistent acorss latent variables, i.e. we cannot guanrantee linear dependence. 
+  Network, a collection of nodes and edges between them, has been a celebrated area of study over a field of psychology, information theory, biology, statistics, economics, etc. The relationship between the way a pair of nodes are connected and their attribute values is a common interest in network analysis. There has been a lot of efforts to represent a network as a function of nodal attributes or model an outcome of nodal attribute variables through their underlying network. However, it is very obscure to determine which one should be put as a dependent variable and also network often does not have a natural structure. This is why there exist a plethora of works on latent structure of network, which also depends on the characteristics of each node ( [Hoff et al. (2002)](#Hoff) , [Austin, Linkletter, and Wu (2013)](#Austin) ). In a latent space model, local independence between network and nodal attributes, conditional on a latent variable is often assumed ( [Lazarsfeld & Henry (1968)](#local)). In a real network data, however, it is almost impossible to estimate such latent variable and also we cannot guarantee that direction or amount of association of network and nodal attributes keeps consistent acorss latent variables, i.e. we cannot guanrantee linear dependence. 
   
 
-  
-  
   
 #### * Introduce notations we are going to use and introduce a common network model of nodal attributes.
 
-  Throughout this paper, we have an unweighted and connected network $\boldsymbol{G}$ comprised of $n$ nodes, for a fixed $n \in \mathbb{N}$. Its adjacency matrix, denoted by $\boldsymbol{A} = \{A_{ij} : i,j= 1,..,n \}$, is often introduced to formalize this relational data. Let us introduce a $m$-variate ($m \in \mathbb{N}$) variable for nodal attributes $\boldsymbol{X} = \{ \boldsymbol{X_{1}, X_{2}, .. , X_{n}} : \boldsymbol{X_{i}} \in \mathbb{R}^{m} \}$ which we are interested in. Investigating correlation between $\boldsymbol{G}$ and $\boldsymbol{X}$ and testing whether their distributions are independent or not is the key focus in our study. Distribution of graph $\boldsymbol{G}$ is formalized through modeling adjacent relations $\{a_{ij} : i,j = 1,... , n \}$ between each pair of nodes in $\boldsymbol{G}$. Rather than regressing $a_{ij}$ on $x_{i}$ or $x_{j}$, [Fosdick & Hoff](#Fosdick) proposed a latent variable model to estimate node-specific network factor which provides a one-to-one correspondence between $\boldsymbol{G}$ and $\boldsymbol{X}$ as well as reduces a dimension of network data. In their paper, Fosdick and Hoff also used these factors to test independence between $\boldsymbol{G}$ and $\boldsymbol{X}$. However, the performance of this test would not be good enough when the relational data $\boldsymbol{A}$ does not have linear relationship to network factors or has a latent mixture model. Since we never know the structure of networks and the way they are related to other variables, there always exist a limitation on testing based on modelling.    
+  Throughout this paper, we have an unweighted and connected network $\boldsymbol{G}$ comprised of $n$ nodes, for a fixed $n \in \mathbb{N}$. Suppose that our obervation of $\boldsymbol{G}$ is one random sample from true, population distribution of $\boldsymbol{G}$. Most of the arguments in this paper, we assume that $\boldsymbol{G}$ is an undirected network but we are able to extend all of the theory to directed and even weighted network. An adjacency matrix of a given network, denoted by $\boldsymbol{A} = \{A_{ij} : i,j= 1,..,n \}$, is often introduced to formalize this relational data. Let us introduce a $m$-variate ($m \in \mathbb{N}$) variable for nodal attributes $\boldsymbol{X} = \{ \boldsymbol{X_{1}, X_{2}, .. , X_{n}} : \boldsymbol{X_{i}} \in \mathbb{R}^{m} \}$ which we are interested in. Investigating correlation between $\boldsymbol{G}$ and $\boldsymbol{X}$ and testing whether their distributions are independent or not is the key focus in our study. Distribution of graph $\boldsymbol{G}$ is formalized through modeling adjacent relations $\{a_{ij} : i,j = 1,... , n \}$ between each pair of nodes in $\boldsymbol{G}$. Rather than regressing $a_{ij}$ on $x_{i}$ or $x_{j}$, [Fosdick & Hoff](#Fosdick) proposed a latent variable model to estimate node-specific network factor which provides a one-to-one correspondence between $\boldsymbol{G}$ and $\boldsymbol{X}$ as well as reduces a dimension of network data. In their paper, Fosdick and Hoff also used these factors to test independence between $\boldsymbol{G}$ and $\boldsymbol{X}$. However, the performance of this test would not be good enough when the relational data $\boldsymbol{A}$ does not have linear relationship to network factors or has a latent mixture model. Since we never know the structure of networks and the way they are related to other variables, there always exist a limitation on testing based on modelling.    
   
 
 # Multiscale Distance Metrics
@@ -150,20 +148,29 @@ $$\boldsymbol{A}_{8 \cdot} = \left( \begin{array}{r} 1 & 0 & 0 & 0 & 0 & 0 & 0 &
 
 #### * Stochastic Block Model and Degree-Corrected Stochastic Block Model
 
+ We mentioned in Introduction that latent network model is very common under the assumption of local independence. Stochastic Block Model (SBM) is one of the most popular and also useful network generative model, especially as a tool for community detection ([Karrerl & Newman](SBM)). The SBM, in the simplest setting, assume that each of $n$ vertices in graph $\boldsymbol{G}$ belongs to one of $K \in \mathbb{N} (\leq n)$ blocks or groups. Block affiliation is important because the probability of having edges between a pair of vertices depends on which blocks they are in. In the simplest model, if two vertices are assigned to different blocks each other, they are likely to be adjacent each other via undirected edges independently with the certain given probability $q$. On the other hand, undirected edges are likely to be placed independently with probability $p_{k} (k \in \{ 1, 2, ..., K \})$ if a pair of vertices are both assigned to the same block $k$ :
+ 
+ 
+ $$f \left(  \boldsymbol{A} | \boldsymbol{Z} \right) = \prod\limits_{k=1}^{K} \prod\limits_{z_{i} = z_{k} = k} p^{a_{ij}}_{k} (1 - p_{k})^{a_{ij}} \times \prod\limits_{z_{i} \neq z_{j}} q^{a_{ij}} (1 - q)^{a_{ij}}$$
+ 
+We can further assume heterogeous between-block probabilities $\{q_{l}\}$.
+ 
+ Connecting to a latent model, we can treat block affiliation for each vertex as an unobserved, latent variable assigned to each vertex. Let this latent variable denoting each vertex's block as $Z$. Let $\boldsymbol{X} \in \mathbb{R}^{m}$ be a variable representing nodal attribute we are interested in. Recall that what we want to test is independence between $\boldsymbol{G}$ and $\boldsymbol{X}$. Since an adjacency matrix $\boldsymbol{A}$, which determines the distribution of a graph (network) $\boldsymbol{G}$, it suffices to examine association between $\boldsymbol{A}$ and $\boldsymbol{X}$. Throughout all the simulations, we assume that the way $\boldsymbol{A}$ and $\boldsymbol{X}$ are related to each other is only through a latent, block variable $\boldsymbol{Z}$: $\boldsymbol{A}$ and $\boldsymbol{X}$ are independent each other conditional on $\boldsymbol{Z}$. This implies local independence assumption also mentioned in Introduction. However, the way $\boldsymbol{Z}$ are correlated to $\boldsymbol{X}$ and $\boldsymbol{Z}$ are correlated to $\boldsymbol{A}$ could not be consistent, which would results nonlinear correlation between $\boldsymbol{X}$ and $\boldsymbol{G}$. 
+ 
+ 
 
 
 
 
-
-
-
-
-
-  
-
+ Under SBM, we assume that all nodes within the same block have the same expected degrees. However, this block model is limited by homogeneous distribution within block and provides a poor fit to networks with highly varying node degrees within blocks, which are common in practice. The Degree-Corrected Stochastic Blockmodel (DC-SBM) instead adds an additional set of parameter, often denoted by $\theta$, to control the node degrees. This model allows variation in node degrees within a block while preserving the overall block community structure. We now compare how MNT works in DC-SBM compared to SBM in order to demonstrate the usefulness of the method in real data. 
 
 
 #### * Linear latent variable model 
+
+ [Fosdick & Hoff](#Fosdick) proposed the method for testing independence between network and nodal attributes by jointly modelling them. They represent $n \times n$ matrix of network relations $\boldsymbol{A}$ with a low dimensional structure defined by a $n \times r$ matrix $N$ of network factors ($r < n$). These network factors $N$ are not observed so should be estimated from the observed network $\boldsymbol{A}$, assuming a specific netowkr model. In our simplest representation of $\boldsymbol{A}$ as a binary relational data, their joint model can be formalized as follows : 
+ 
+ 
+
 
 
 
@@ -252,6 +259,13 @@ $$\begin{align}
 <a name = "Tang"/> Tang, Minh, and Michael Trosset. "Graph metrics and dimension reduction." Indiana University, Indianapolis, IN (2010).
 
 <a name = "Lafon"/> Lafon, S., & Lee, A. B. (2006). Diffusion maps and coarse-graining: A unified framework for dimensionality reduction, graph partitioning, and data set parameterization. IEEE transactions on pattern analysis and machine intelligence, 28(9), 1393-1403.
+
+<a name = "SBM"/> Karrer, B., & Newman, M. E. (2011). Stochastic blockmodels and community structure in networks. Physical Review E, 83(1), 016107.
+
+
+
+
+
 
 
 
