@@ -84,7 +84,7 @@ The advantages from such representation is that it is now possible to represent 
 
 <a name = "Theorem1"/>
 <b> $$\mbox{Theorem 1}$$  
-<center> Assume that an adjacency matrix $\mathbf{A}$ for a given graph $\mathbf{G}$ is invertible. Then for a fixed $t$, $\{ \boldsymbol{U}_{t}(1), \boldsymbol{U}_{t}(2), ... , \boldsymbol{U}_{t}(n) \}$ provides a linearly independent $n$-coordinate vectors.
+<center> Assume that a symmetric matrix $\mathbf{Q}$ for a given graph $\mathbf{G}$ is invertible. Then for a fixed $t$, $\{ \boldsymbol{U}_{t}(1), \boldsymbol{U}_{t}(2), ... , \boldsymbol{U}_{t}(n) \}$ provides a linearly independent $n$-coordinate vectors.
 </center></b>
 
 Proof is provided in [Appendix](# Appendix).
@@ -138,8 +138,9 @@ Therefore instead of using an adjacency matrix directly, we are considering embe
 
 #### * Explictly formalize our testing goal 
   
-  Different from an adjacency matrix, diffusion maps at each time point $\{ \boldsymbol{U}_{t}(i) \}_{i \in \{ 1,2,...,n \}}$ provides a (linearly) independent representation of each node and Euclidean distance between them is equivalent to diffusion distance, which is a well-defined measure for connectivity. Thus we test the independence between network topology and its nodal attributes through independence test between diffusion maps and attribute variables across different time points. 
-  
+  Different from an adjacency matrix, diffusion maps at each time point $\{ \boldsymbol{U}_{t}(i) \}_{i \in \{ 1,2,...,n \}}$ provides a linearly independent representation of each node and Euclidean distance between them is equivalent to diffusion distance, which is a well-defined measure for connectivity. Even in the case where $\boldsymbol{U}_{t}(i) \in q < n$, we have nice properties in testing independence.
+ 
+ Assume we have a random graph $\mathbf{G} \in \mathcal{G}$ of $n \in \mathbb{N}$ vertices. Derive or observe $n$ pairs of $\{ (\mathbf{U}_{t}(i), \mathbf{X}_{i}) : t \in \mathbb{N}, i = 1,2,... , n\}$, where $\mathbf{U}_{t} \in \mathbb{R}^{q} \leq n$ and $\mathbf{X} \in \mathbb{R}^{m}$. 
   Explicitly we specify what we aim to test through MNT as follows:
   
   $$H_{0} : f_{ux} = f_{u} \cdot f_{x}$$
@@ -148,11 +149,13 @@ Therefore instead of using an adjacency matrix directly, we are considering embe
 , where $f_{u}$ and $f_{x}$ are a marginal characteristic function of $\boldsymbol{U}$ and $\boldsymbol{X}$ respectively and $f_{ux}$ is a joint characteristic function of $\boldsymbol{U}$ and $\boldsymbol{X}$. Since $\boldsymbol{U}$ provides a configuration of vertices in $\boldsymbol{G},$ the above hypothesis implies testing independence between the configuration of vertices in network space and in attribute space. The following theorem explictly justifies the use of distance correlation in testing independence between these two.
 
 <a name = "Theorem2"/>
-<b> $$\mbox{Theorem 2}$$  <center> Preserve all the notations and assumptions made in [Theorem 1](#Theorem1). Assume $E\big| \boldsymbol{U}^2 \big| < \infty$   and $E\big| \boldsymbol{X}^2 \big| < \infty$. For a fixed $t$, $\mathcal{R}_{n}(\boldsymbol{U}, \boldsymbol{X})$ (MCorr)  = 0 if and only if $\boldsymbol{U}$ and $\boldsymbol{X}$ are independent, i.e. connectivity at $t$ between nodes are independent of their attributes.
+<b> $$\mbox{Theorem 2}$$  <center>  Assume $E\big| \boldsymbol{U}^2 \big| < \infty$   and $E\big| \boldsymbol{X}^2 \big| < \infty$. For a fixed $t$, $P[ \mathcal{T}_{n} < t ] \rightarrow P[t_{\nu - 1} < t]$ as $q,m \rightarrow \infty$
+
+where $\mathcal{T}_{n} = \sqrt{\nu-1} \frac{\mathcal{R}^{*}_{n} }{ \sqrt{1 - \mathcal{R}^{* 2}_{n} }}$ and $\nu = \frac{n(n-3)}{2}$.
 </center></b> 
 
 
-Details are provided in [Appendix](# Appendix). This Theorem is followed by assumption that our observed $\boldsymbol{G}$ is a randomly sampled network so that $\{ (\boldsymbol{U}_{t}(i), \boldsymbol{X}_{i} ) : i = 1,2, ... , n \}_{t \in \mathbb{N}}$ is a random sample from the joint distribution of $\{ (\boldsymbol{U}_{t}, \boldsymbol{X})\}_{t \in \mathbb{N}}$ from population network.
+Details are provided in [Appendix](# Appendix). 
 
 
 
@@ -171,9 +174,45 @@ We can further assume heterogeous between-block probabilities $\{q_{l}\}$.
  Connecting to a latent model, we can treat block affiliation for each vertex as an unobserved, latent variable assigned to each vertex. Let this latent variable denoting each vertex's block be $Z$. Let $\boldsymbol{X} \in \mathbb{R}^{m}$ be a variable representing nodal attribute we are interested in. Recall that what we want to test is independence between $\boldsymbol{G}$ and $\boldsymbol{X}$. Since an adjacency matrix $\boldsymbol{A}$ determines the distribution of a graph (network) $\boldsymbol{G}$, it suffices to examine association between $\boldsymbol{A}$ and $\boldsymbol{X}$. Throughout all the simulations, we assume that the way $\boldsymbol{A}$ and $\boldsymbol{X}$ are related to each other is only through a latent, block variable $\boldsymbol{Z}$: $\boldsymbol{A}$ and $\boldsymbol{X}$ are independent each other conditional on $\boldsymbol{Z}$. This implies local independence assumption also mentioned in the Introduction. However, the way $\boldsymbol{Z}$ are correlated to $\boldsymbol{X}$ and $\boldsymbol{Z}$ are correlated to $\boldsymbol{A}$ could not be consistent, which would results nonlinear correlation between $\boldsymbol{X}$ and $\boldsymbol{G}$. 
  
  
+#### * Show the results of two block case 
+
+$$X_{i} \overset{i.i.d}{\sim} Bern(0.5), i = 1,... , 100$$ 
+
+$$Z_{i}  \sim  \left\{  \begin{array}{cc} Bern(0.6) & X_{i} = 0 \\ Bern(0.4) & X_{i} = 1  \end{array} \right.$$
+
+
+$$A_{z_{i}, z_{j}} \sim Bern \left[  \begin{array}{cc}   \textbf{0.4} & \textbf{0.1}  \\ \textbf{0.1} & \textbf{0.4} \end{array}  \right]$$ 
+
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/T441_t1.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/T441_t10.png")
+```
+
+In general case where within block probability and between block probability are homogeneous across blocks, let the former one is $p \in (0,1)$ and the latter one is $q \in (0,1)$:   
+
+$$A_{z_{i}, z_{j}} \sim Bern \left[  \begin{array}{cc}   \textbf{p} & \textbf{q}  \\ \textbf{p} & \textbf{q} \end{array}  \right]$$. 
+
+In this very general and simple case, we observe the increased power as $|p-q|$ is larger. Moreover the optimal diffusion time when the highest local optimal is observed differs across all the combination of $(p,q)$.
 
 
 
+
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/two_same_optimal.png")
+```
+```{r, out.width = 400, out.height = 400, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/two_same_t.png")
+```
+
+
+#### * Show the results of three block case 
+
+
+
+\bigskip
 
  Under SBM, we assume that all nodes within the same block have the same expected degrees. However, this block model is limited by homogeneous distribution within block and it provides a poor fit to networks with highly varying node degrees within blocks, which are common in practice. The Degree-Corrected Stochastic Blockmodel (DC-SBM) instead adds an additional set of parameter, often denoted by $\theta$, to control the node degrees. This model allows variation in node degrees within a block while preserving the overall block community structure. We now compare how MNT works in DC-SBM compared to SBM in order to demonstrate the usefulness of the method in real data. 
 
@@ -234,9 +273,10 @@ Note that each of $\mathbf{\Lambda^{t}}$, $\mathbf{\Pi^{-1/2}}$, and $\mathbf{\P
 Throughout this paper, we assume that our observed network $\boldsymbol{G}$ is a randomly sampled network from its population, denoted by $\mathbf{\mathbb{G}} = \big( \mathbf{\mathbb{A}}, \mathbf{\mathbb{X}}  \big)$. A $n \times n$ matrix $\mathbb{A}$ is an adjacency matrix of $\mathbf{\mathbb{G}}$ and $m$-variate vector $\mathbf{\mathbb{X}}_{i}$ denotes each node's attribute values $(i=1,2,...,n)$. 
 
 
-Fix a diffusion time $t > 0$. Recall that a set of diffusion distance $\boldsymbol{U}_{t} = \{ \boldsymbol{U}_{t}(1) , \boldsymbol{U}_{t}(2) , ... , \boldsymbol{U}_{t}(n)  \}$ are constructed from an adjacency matrix. If we let $\mathbf{\mathbb{U}}_{t}$ be a diffusion map at $t$ defined from $\mathbf{\mathbb{A}}$, since $\boldsymbol{A}$ is a random graph of $\mathbf{\mathbb{A}}$, $\boldsymbol{U}_{t}$ is also a random diffusion map from $\mathbf{\mathbb{A}}$, i.e. $\boldsymbol{U}_{t}$ is a random observation of $\mathbf{\mathbb{U}_{t}}$. 
+Fix a diffusion time $t > 0$. Recall that a set of diffusion distance $\boldsymbol{U}_{t} = \{ \boldsymbol{U}_{t}(1) , \boldsymbol{U}_{t}(2) , ... , \boldsymbol{U}_{t}(n)  \}$ are constructed from an adjacency matrix. If we let $\mathbf{\mathbb{U}}_{t}$ be a diffusion map at $t$ defined from $\mathbf{\mathbb{A}}$, since $\boldsymbol{A}$ is a random graph of $\mathbf{\mathbb{A}}$, $\boldsymbol{U}_{t}$ is also a random diffusion map from $\mathbf{\mathbb{A}}$, i.e. $\boldsymbol{U}_{t}$ is a random observation of $\mathbf{\mathbb{U}_{t}}$. Each coordinate of $\mathbf{U}_{t}$ is exchangeable since $\mathbf{U}_{t}(i)$ is represented by eigenvalues, eigenvectors and stationary distribution of a given network. For an attribute variable $\mathbf{X}$, exchangability is satified from iid variable assumption. Even though exchangeability is a weaker condition than independence, we could enjoy some theoretical results from asymptotic properties.
 
-[Theorem 1](#Theorem1) supports the independence between each column of $\boldsymbol{U}_{t}$. Thus we observe $iid$ $n$-pair of observations $\{ ( \boldsymbol{U}_{t}(i), \boldsymbol{X}_{i} ) :  \boldsymbol{U}_{t}(i) \in \mathbb{R}^{n}, \boldsymbol{X} \in \mathbb{R}^{n}, i = \{ 1,2, ... , n \}, t \in \mathbb{N}  \}$ for each vertex in $\boldsymbol{G}$. Then under the provided assumptions, ``dCorr`` (or ``MCorr``) defined on these pairs of observations are measuring distance between the joint characteristic function $f_{UX}$ of $\mathbf{U}$ and $\mathbf{X}$ and the the product $f_{U}$ $f_{X}$ of the marginal characteristic functions for each $\mathbf{U}$ and $\mathbf{X}$ ([Szekely and Rizzo, 2013](Szekely2)).  $\blacksquare$ 
+
+Then under the provided assumptions, ``MCorr`` defined on these pairs of observations, $\mathcal{R}^{*}_{n}$ are measuring distance between the joint characteristic function $f_{UX}$ of $\mathbf{U}$ and $\mathbf{X}$ and the the product $f_{U}$ $f_{X}$ of the marginal characteristic functions for each $\mathbf{U}$ and $\mathbf{X}$ ([Szekely and Rizzo, 2013](Szekely2)). The desired asymptotic properties are well proven for exchangeable observations.  $\blacksquare$ 
 
 
 #### * Proof of triangle inequality
