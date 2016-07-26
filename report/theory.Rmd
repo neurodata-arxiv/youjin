@@ -247,9 +247,9 @@ Testing independence is often the very first step in investigating relationship 
 
 #### * Proof of linear independence of diffusion maps ([Theorem 1](#Theorem1)).
 
-  Assume that a unweighted and undirected, connected network $\boldsymbol{G}$ has a finite number of vertices $n \in \mathbb{N}$. Connectiveness of $\boldsymbol{G}$ leads to non-zero stationary probabilities $\{ \pi(i) > 0 : i =1, ... , n \}$. Also its adjacency matrix $\boldsymbol{A}$ is a symmetric but its transition matrix $\boldsymbol{P}[i,j] = A_{ij} \big/ \sum\limits_{j=1}^{n} A_{ij} = A_{ij} \big/ \pi(i)$ does not guarantee its symmetry. Define a symmetric kernel $\boldsymbol{Q} = \boldsymbol{\Pi^{1/2} P \Pi^{-1/2}}$ instead, where $\boldsymbol{\Pi}$ is a $n \times n$ diagonal matrix of which $i$th diagonal element of $\pi(i)$. That is, for any $i,j = \{1,2,... , n \}:$ 
+  Assume that a unweighted and undirected, connected network $\boldsymbol{G}$ has a finite number of vertices $n \in \mathbb{N}$. Connectiveness of $\boldsymbol{G}$ leads to non-zero stationary probabilities $\{ \pi(i) > 0 : i =1, ... , n \}$. Also its adjacency matrix $\boldsymbol{A}$ is a symmetric but its transition matrix $\boldsymbol{P}[i,j] = A_{ij} \big/ \sum\limits_{j=1}^{n} A_{ij} = A_{ij} \big/ \sum\limits_{i,j=1}^{n} A_{ij} \pi(i)$ does not guarantee its symmetry. Define a symmetric kernel $\boldsymbol{Q} = \boldsymbol{\Pi^{1/2} P \Pi^{-1/2}}$ instead, where $\boldsymbol{\Pi}$ is a $n \times n$ diagonal matrix of which $i$th diagonal element of $\pi(i)$. That is, for any $i,j = \{1,2,... , n \}:$ 
   
-  $$Q[i,j] = \frac{\sqrt{\pi(i)}}{\sqrt{\pi(j)}} \frac{A_{ij}}{\pi(i)} = \frac{A_{ij}}{\sqrt{\pi(i)} \sqrt{\pi(j)}}.$$
+  $$Q[i,j] = \frac{\sqrt{\pi(i)}}{\sqrt{\pi(j)}} \frac{A_{ij}}{\sum\limits_{i,j=1}^{n} A_{ij} \pi(i)} = \frac{A_{ij}}{\sqrt{\pi(i)} \sqrt{\pi(j)}} \big(\sum\limits_{i,j=1}^{n} A_{ij} \big)^{-1}.$$
 
 
 Since an adjacency matrix for an undirected graph is symmetric, $\boldsymbol{Q}$ is also symmetric. Thanks to the symmetry of $\boldsymbol{Q}$ and invertibility of $\mathbf{A}$, it has $n$ non-zero eigenvalues $\{(\lambda_{1}, \lambda_{2}, ... , \lambda_{n}) : 1 = |\lambda_{1}| \geq |\lambda_{2}| \geq ... \geq |\lambda_{n}| > 0 \}$ and the eigenvectors $\{ \boldsymbol{\psi_{1}, \psi_{2}, ... , \psi_{n} }\}$ which are orthogonal to each other. 

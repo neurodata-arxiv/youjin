@@ -1,0 +1,117 @@
+---
+title: "Exchangeability of Diffusion Maps" 
+author: "Youjin Lee"
+header-includes:
+   - \usepackage{amsmath}
+output: html_document
+---
+
+- [Theorem 2](#Theorem2)
+- [Exchangeability](#exchangeability)
+- [Reference](#Reference)
+
+## Theorem 2 
+
+<a name = "Theorem2"/>
+<b> $$\mbox{Theorem 2}$$  <center>  Assume $E| \boldsymbol{U}^2 | < \infty$   and $E | \boldsymbol{X}^2 | < \infty$. For a fixed $t$, $P[ \mathcal{T}_{n} < t ] \rightarrow P[t_{\nu - 1} < t]$ as $q,m \rightarrow \infty$
+
+where $\mathcal{T}_{n} = \sqrt{\nu-1} \frac{\mathcal{R}^{*}_{n} }{ \sqrt{1 - \mathcal{R}^{* 2}_{n} }}$ and $\nu = \frac{n(n-3)}{2}$.
+</center></b> 
+
+### Proof of Theorem 2
+
+Throughout this paper, we assume that our observed network $\boldsymbol{G}$ is a randomly sampled network from its population, infinite graph $\mathcal{G}$ of which we observe a finite subgraph. 
+
+Note that for fixed diffusion time $t > 0,$ diffusion distance $\mathbf{U}_{t} =  \{\mathbf{U}_{t}(1), \mathbf{U}_{t}(2), ... , \mathbf{U}_{t}(n) \}$ are constructed from an adjacency matrix $A_{ij}$, and it is represented by eigenvalues, eigenfunctions and stationary distribution of a given network. 
+
+Under the assumption that $\boldsymbol{G}$ is an exchangeable graph, its symmetric kernel $\boldsymbol{Q}$ is also exchangeable. :
+
+$\boldsymbol{Q}[\sigma(i), \sigma(j)] := \sqrt{\pi \big( \sigma(i) \big) / \pi \big( \sigma(j) \big) } P[\sigma(i), \sigma(j)] =  \big\{ A_{\sigma(i), \sigma(j)} \big/ \sqrt{ \mathbf{A}_{\sigma(i) \cdot }   \mathbf{A}_{\sigma(j) \cdot} } \big\} \big\{ \sum\limits_{i,j=1}^{n} A_{ \sigma(i), \sigma(j)} \big\}^{-1}  =  \big\{ A_{\sigma(i), \sigma(j)} \big/  \sqrt{ \mathbf{A}_{\sigma(i) \cdot }   \mathbf{A}_{\sigma(j) \cdot} }  \big\}  \big\{ \sum\limits_{i,j=1}^{n} A_{ij} \big\}^{-1}$
+
+where $\mathbf{A}_{\sigma(i) \cdot} = \sum\limits_{\sigma(j) = 1}^{n} A_{\sigma(i) \sigma(j)} = \sum\limits_{j=1}^{n} A_{\sigma(i) j}$ 
+
+Note that $\sum\limits_{i,j=1}^{n} \mathbf{A}_{ij} : =  c$ is invariant to permutation. 
+
+Thus ~
+
+
+
+
+
+Then under the provided assumptions, ``MCorr`` defined on these pairs of observations, $\mathcal{R}^{*}_{n}$ are measuring distance between the joint characteristic function $f_{UX}$ of $\mathbf{U}$ and $\mathbf{X}$ and the the product $f_{U}$ $f_{X}$ of the marginal characteristic functions for each $\mathbf{U}$ and $\mathbf{X}$ ([Szekely and Rizzo, 2013](Szekely2)). The desired asymptotic properties are well proven for exchangeable observations.  $\blacksquare$ 
+
+
+## Exchangeability
+<a names="exchangeability"/>
+
+Formally speaking, an exchangeable sequence of random variables is a finite or infinite sequence $U_{1}, U_{2}, ...$ of random variables such that for any inite permutation $\sigma$ of the indices 1,2,3, ... , the joint probability distribution of the permutated sequence 
+$U_{\sigma(1)}, U_{\sigma(2)}, U_{\sigma(3)}, ...$
+is the same as the joint probability distribution of the original sequence. 
+
+The propoerty of exchangeability is closely related to the use of independent and identically-distributed(i.i.d) random variable. A sequence of random variables that are i.i.d. conditional on some underlying distributional form is exchangeable. Moreover, the converse can be established for ``infinite sequence`` by [Bruno de Finetti](#Finetti). The extended versions of the theorem show that in any infinite sequence of exchangeable random variables, the random variables are conditionally i.i.d, given the underlying distributional form.  
+
+It is straightforward to check that $\mathbf{G}$ is an exchangeable graph if and only if its adjacency matix $\mathbf{A}$ is jointly exchangeble.  
+
+A random 2-array $(A_{ij})$ is called $\mathbf{\mbox{jointly exchangeable}}$ if 
+$$(A_{ij}) \stackrel{d}{=} (A_{\sigma(i) \sigma(j)})$$
+for every permutation $\sigma$ of $n$,
+and separately exchangeable if 
+$$(A_{ij}) \stackrel{d}{=} (A_{\sigma(i) \sigma^{\prime}(j) })$$
+for every pair of permutation $\sigma, \sigma^{\prime}$ of $n$.
+
+$\mathbf{\mbox{Joint exchangeability}}$ of $A$ is what we need. 
+
+The analogue of de Finetti's theorem for exchangeable arrays is the ``Aldous-Hoover Theorem``. A random array $(A_{ij})$ is jointly exchangeable if and only if it can be represented as follows : There is a random function $F : [0,1]^2 \rightarrow \mathbf{A}$ such that
+
+$$(A_{ij}) \stackrel{d}{=} \big( F( W_{i}, W_{j}, W_{i,j} )\big)$$
+
+where $(W_{i})_{i = 1,2,... , n}$ and $(W_{i,j})_{i,j=1,2,.,,n}$ are, respectively, a sequence and an array of i.i.d. Uniform[0,1] random variables, which are independent of $F$. 
+
+$$A[i,j] := \mathbb{P} \big[  F(W_{i},W_{j}, W_{ij}) = 1  \big| F \big]$$
+
+The distribution of any exchangeable graph is characterized by a distribution on the space of functions $A$ from $[0,1]^2$ to [0,1]. 
+It was proven that $\mathbf{G}$ is an exchangeable if and only if there exists a random function $f$ from $[0,1]^2$ to [0,1] such that 
+
+$$(A_{ij}) \stackrel{d}{=} \big( \mathbb{1}\{ W_{i,j} < f(W_{i}, W_{j})   \}   \big)$$.
+
+
+This representation yields the following generative process : 
+
+(1) Sample a random function $f \sim \mathcal{f}$.
+
+(2) For every vertex $i \in \{1,2, .. , n\}$, sample an indepenent uniform random variable $W_{i}$, independently also from $f$.
+
+(3) For every pair of vertices $i < j \in \{1,2, ... , n\}$, sample
+
+$$A_{ij} | f, W_{i}, W_{i} \sim Bernoulli \big( f(W_{i}, W_{j} ) \big)$$
+
+where $A_{ij} = 1$ indicates the edge connecting $i$ and $j$ is present; if $A_{ij} = 0$, it is absent. 
+
+
+#### Example 1. Random Dot Product Graph
+
+
+#### Example 2. Stochastic Block Model 
+
+
+
+
+
+
+
+
+
+
+
+Then 
+
+
+
+# Reference
+<a name="Reference"/>
+
+<a name = "Szekely2"/> Székely, G. J., & Rizzo, M. L. (2013). The distance correlation t-test of independence in high dimension. Journal of Multivariate Analysis, 117, 193-213.
+
+<a name = "Sussman"/> Sussman, D. L., Tang, M., & Priebe, C. E. (2012). Universally consistent latent position estimation and vertex classification for random dot product graphs. arXiv preprint arXiv:1207.6745.
+
+<a name = "Orbanz"/> Orbanz, P., & Roy, D. M. (2015). Bayesian models of graphs, arrays and other exchangeable random structures. IEEE transactions on pattern analysis and machine intelligence, 37(2), 437-461.
