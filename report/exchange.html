@@ -127,21 +127,10 @@ $(document).ready(function () {
 where <span class="math">\(\mathcal{T}_{n} = \sqrt{\nu-1} \frac{\mathcal{R}^{*}_{n} }{ \sqrt{1 - \mathcal{R}^{* 2}_{n} }}\)</span> and <span class="math">\(\nu = \frac{n(n-3)}{2}\)</span>.
 </center>
 <p></b></p>
-<div id="proof-of-theorem-2" class="section level3">
-<h3>Proof of Theorem 2</h3>
-<p>Throughout this paper, we assume that our observed network <span class="math">\(\boldsymbol{G}\)</span> is a randomly sampled network from its population, infinite graph <span class="math">\(\mathcal{G}\)</span> of which we observe a finite subgraph.</p>
-<p>Note that for fixed diffusion time <span class="math">\(t &gt; 0,\)</span> diffusion distance <span class="math">\(\mathbf{U}_{t} = \{\mathbf{U}_{t}(1), \mathbf{U}_{t}(2), ... , \mathbf{U}_{t}(n) \}\)</span> are constructed from an adjacency matrix <span class="math">\(A_{ij}\)</span>, and it is represented by eigenvalues, eigenfunctions and stationary distribution of a given network.</p>
-<p>Under the assumption that <span class="math">\(\boldsymbol{G}\)</span> is an exchangeable graph, its symmetric kernel <span class="math">\(\boldsymbol{Q}\)</span> is also exchangeable. :</p>
-<p><span class="math">\(\boldsymbol{Q}[\sigma(i), \sigma(j)] := \sqrt{\pi \big( \sigma(i) \big) / \pi \big( \sigma(j) \big) } P[\sigma(i), \sigma(j)] = \big\{ A_{\sigma(i), \sigma(j)} \big/ \sqrt{ \mathbf{A}_{\sigma(i) \cdot } \mathbf{A}_{\sigma(j) \cdot} } \big\} \big\{ \sum\limits_{i,j=1}^{n} A_{ \sigma(i), \sigma(j)} \big\}^{-1} = \big\{ A_{\sigma(i), \sigma(j)} \big/ \sqrt{ \mathbf{A}_{\sigma(i) \cdot } \mathbf{A}_{\sigma(j) \cdot} } \big\} \big\{ \sum\limits_{i,j=1}^{n} A_{ij} \big\}^{-1}\)</span></p>
-<p>where <span class="math">\(\mathbf{A}_{\sigma(i) \cdot} = \sum\limits_{\sigma(j) = 1}^{n} A_{\sigma(i) \sigma(j)} = \sum\limits_{j=1}^{n} A_{\sigma(i) j}\)</span></p>
-<p>Note that <span class="math">\(\sum\limits_{i,j=1}^{n} \mathbf{A}_{ij} : = c\)</span> is invariant to permutation.</p>
-<p>Thus ~</p>
-<p>Then under the provided assumptions, <code>MCorr</code> defined on these pairs of observations, <span class="math">\(\mathcal{R}^{*}_{n}\)</span> are measuring distance between the joint characteristic function <span class="math">\(f_{UX}\)</span> of <span class="math">\(\mathbf{U}\)</span> and <span class="math">\(\mathbf{X}\)</span> and the the product <span class="math">\(f_{U}\)</span> <span class="math">\(f_{X}\)</span> of the marginal characteristic functions for each <span class="math">\(\mathbf{U}\)</span> and <span class="math">\(\mathbf{X}\)</span> (<a href="Szekely2">Szekely and Rizzo, 2013</a>). The desired asymptotic properties are well proven for exchangeable observations. <span class="math">\(\blacksquare\)</span></p>
 </div>
-</div>
-<div id="exchangeability" class="section level2">
-<h2>Exchangeability</h2>
-<p><a names="exchangeability"></a></p>
+<div id="exchangeability-of-graph" class="section level2">
+<h2>Exchangeability of Graph</h2>
+<p><a names="exchangeability1"></a></p>
 <p>Formally speaking, an exchangeable sequence of random variables is a finite or infinite sequence <span class="math">\(U_{1}, U_{2}, ...\)</span> of random variables such that for any inite permutation <span class="math">\(\sigma\)</span> of the indices 1,2,3, … , the joint probability distribution of the permutated sequence <span class="math">\(U_{\sigma(1)}, U_{\sigma(2)}, U_{\sigma(3)}, ...\)</span> is the same as the joint probability distribution of the original sequence.</p>
 <p>The propoerty of exchangeability is closely related to the use of independent and identically-distributed(i.i.d) random variable. A sequence of random variables that are i.i.d. conditional on some underlying distributional form is exchangeable. Moreover, the converse can be established for <code>infinite sequence</code> by <a href="#Finetti">Bruno de Finetti</a>. The extended versions of the theorem show that in any infinite sequence of exchangeable random variables, the random variables are conditionally i.i.d, given the underlying distributional form.</p>
 <p>It is straightforward to check that <span class="math">\(\mathbf{G}\)</span> is an exchangeable graph if and only if its adjacency matix <span class="math">\(\mathbf{A}\)</span> is jointly exchangeble.</p>
@@ -166,8 +155,31 @@ where <span class="math">\(\mathcal{T}_{n} = \sqrt{\nu-1} \frac{\mathcal{R}^{*}_
 </div>
 <div id="example-2.-stochastic-block-model" class="section level4">
 <h4>Example 2. Stochastic Block Model</h4>
-<p>Then</p>
 </div>
+</div>
+<div id="exchangeability-of-transition-probability" class="section level2">
+<h2>Exchangeability of Transition Probability</h2>
+<p><a names="exchangeability2"></a></p>
+<p>We have shown that for fixed time <span class="math">\(t\)</span>, diffusion distance is defined as an Euclidean distance of diffusion maps. Diffusion maps is represented by :</p>
+<p><span class="math">\[\boldsymbol{U}_{t}(i) = \begin{pmatrix} \lambda^{t}_{1} \phi_{1}(i) &amp; \lambda^{t}_{2} \phi_{2} (i)  &amp; \cdots &amp; \lambda^{t}_{n} \phi_{q}(i) \end{pmatrix} \in \mathbb{R}^{q}.\]</span></p>
+<p>Remind that <span class="math">\(\Phi = \Pi^{-1/2}\Phi\)</span> and <span class="math">\(\mathbf{Q}=\mathbf{\Psi}\mathbf{\Lambda}\mathbf{\Psi}^{T} = \mathbf{\Pi}^{1/2} \mathbf{P} \mathbf{\Pi}^{-1/2}\)</span>. Thus, <span class="math">\(\mathbf{P \Pi^{-1/2} \Psi = \Pi^{-1/2} \Psi \Lambda}\)</span>.</p>
+<p>Then for any <span class="math">\(r \in \{1,2, ... , q \}\)</span> th row, we can see that <span class="math">\(P \phi_{r} = \lambda_{r} \phi_{r}\)</span>, where <span class="math">\(\phi_{r} = \begin{pmatrix} \frac{\psi_{r}(1)}{\sqrt{\pi(1)}} &amp; \frac{\psi_{r}(2)}{\sqrt{\pi(2)}} &amp; \cdots &amp; \frac{\psi_{r}(n)}{\sqrt{\pi(n)}} \end{pmatrix}\)</span>.</p>
+<p>Therefore for exchangeability of <span class="math">\(\mathbf{U}_{t}\)</span>, it suffices to show exchangeability of <span class="math">\(\mathbf{P}\)</span> under some conditions.</p>
+<p>Assume that in with probability 1, degree of every node goes to <span class="math">\(0&lt; d_{p} &lt; 1\)</span> and also assume joint exchangeability of <span class="math">\(\mathbf{G}\)</span>, i.e. <span class="math">\((A_{ij}) \stackrel{d}{=} \big( A_{\sigma(i) \sigma(j)} \big)\)</span>. Then joint exchangeability of transition probability holds.</p>
+<p>Thus, transition probability is <code>asymptotically</code> exchangeable. This leads to asymptotically exchangeable eigenfunctions <span class="math">\(\{ \Phi(1), \Phi(2), , ... , \Phi(n) \}\)</span> where <span class="math">\(\Phi_{i} := \begin{pmatrix} \phi_{1}(i) &amp; \phi_{2}(i) &amp; \cdots &amp; \phi_{q}(i) \end{pmatrix}^{T}\)</span>. Thus diffusion maps at fixed <span class="math">\(t\)</span>, <span class="math">\(\mathbf{U}_{t} = \begin{pmatrix} \Lambda^{t} \Phi(1) &amp; \Lambda^{t} \Phi(2) &amp; \cdots &amp; \lambda^{t} \Phi(n) \end{pmatrix}\)</span> are exchangeable.</p>
+</div>
+<div id="strong-negative-type" class="section level2">
+<h2>Strong Negative Type</h2>
+<p>When <span class="math">\(\mathcal{X}\)</span> (support) is finite, then strong negative type is the same as strict negative type (Li and Weston, 2010).</p>
+</div>
+<div id="proving-consistency-via-latent-position-estimation" class="section level2">
+<h2>Proving consistency via latent position estimation</h2>
+<p>Suppose we are testing independence between distributions of graph adjacency matrix <span class="math">\(\mathbf{A}\)</span> and node attributes <span class="math">\(\mathbf{X}\)</span>:</p>
+<p><span class="math">\[f_{AX} = f_{A} \cdot f_{X}\]</span></p>
+<p>Suppose such latent generative model via <span class="math">\(Z\)</span>:</p>
+<p><span class="math">\[X_{i} \overset{i.i.d}{\sim} f_{X}\]</span> <span class="math">\[Z_{i} \big| X_{i} \overset{i.i.d}{\sim} f_{Y | X}\]</span> <span class="math">\[A_{ij} \big| (Z_{i}, Z_{j}) \overset{i.i.d}{\sim} f_{A | Z} \stackrel{d}{=} Bern\big( g (Z_{i}, Z_{j} )  \big)\]</span></p>
+<p>for some link function of <span class="math">\(g\)</span>.</p>
+<p><span class="math">\(h(A) \xrightarrow{p} \hat{Z}\)</span> (consistently estimate latent position of each vertex).</p>
 </div>
 <div id="reference" class="section level1">
 <h1>Reference</h1>
