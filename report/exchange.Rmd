@@ -7,7 +7,9 @@ output: html_document
 ---
 
 - [Theorem 2](#Theorem2)
-- [Exchangeability](#exchangeability)
+- [Exchangeability of graph](#exchangeability1)
+- [Exchangeability of Transition](#exchangeability2)
+- [Strong negative Type](#strong)
 - [Reference](#Reference)
 
 ## Theorem 2 
@@ -101,6 +103,7 @@ This leads to asymptotically exchangeable eigenfunctions $\{ \Phi(1), \Phi(2), ,
 
 
 ## Strong Negative Type
+<a name = "strong"/>
 
 
 When $\mathcal{X}$ (support) is finite, then strong negative type is the same as strict negative type (Li and Weston, 2010). 
