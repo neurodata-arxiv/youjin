@@ -105,12 +105,7 @@ This leads to asymptotically exchangeable eigenfunctions $\{ \Phi(1), \Phi(2), ,
 ## Strong Negative Type
 <a name = "strong"/>
 
-
-When $\mathcal{X}$ (support) is finite, then strong negative type is the same as strict negative type (Li and Weston, 2010). 
-
-
-
-
+When $\mathcal{X}$ (support) is finite, then ``strong negative type`` is the same as ``strict negative type`` (Li and Weston, 2010). 
 
 
 
@@ -128,22 +123,11 @@ $$A_{ij} \big| (Z_{i}, Z_{j}) \overset{i.i.d}{\sim} f_{A | Z} \stackrel{d}{=} Be
 
 for some link function of $g$.
 
-$h(A) \xrightarrow{p} \hat{Z}$ (consistently estimate latent position of each vertex). 
+Generally, conditional iid does not guarantee marginal iid so we cannot say $A_{i}$ are iid observations from its marginal distribution function. 
 
+It was proven that we can have consistent estimator for latent position for $Z$ of each vertex, i.e. $\exists h$ s.t. $h(A) \xrightarrow{p} \hat{Z}$ (consistently estimate latent position of each vertex). 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+Instead marginal distribution of A, $f_{A} = \int_{z} f_{A|Z} \int_{x} f_{Z|X} f_{X} dx dz$. To make sure that $A_{ij}$ is iid sample from its marginal distribution, $A_{ij} \overset{i.i.d.}{\sim} f_{A}$ not from $f_{A | Z}$. 
 
 
 # Reference

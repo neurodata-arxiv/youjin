@@ -189,7 +189,9 @@ where <span class="math inline">\(\mathcal{T}_{n} = \sqrt{\nu-1} \frac{\mathcal{
 <p>Suppose such latent generative model via <span class="math inline">\(Z\)</span>:</p>
 <p><span class="math display">\[X_{i} \overset{i.i.d}{\sim} f_{X}\]</span> <span class="math display">\[Z_{i} \big| X_{i} \overset{i.i.d}{\sim} f_{Z | X}\]</span> <span class="math display">\[A_{ij} \big| (Z_{i}, Z_{j}) \overset{i.i.d}{\sim} f_{A | Z} \stackrel{d}{=} Bern\big( g (Z_{i}, Z_{j} )  \big)\]</span></p>
 <p>for some link function of <span class="math inline">\(g\)</span>.</p>
-<p><span class="math inline">\(h(A) \xrightarrow{p} \hat{Z}\)</span> (consistently estimate latent position of each vertex).</p>
+<p>Generally, conditional iid does not guarantee marginal iid so we cannot say <span class="math inline">\(A_{i}\)</span> are iid observations from its marginal distribution function.</p>
+<p>It was proven that we can have consistent estimator for latent position for <span class="math inline">\(Z\)</span> of each vertex, i.e. <span class="math inline">\(\exists h\)</span> s.t. <span class="math inline">\(h(A) \xrightarrow{p} \hat{Z}\)</span> (consistently estimate latent position of each vertex).</p>
+<p>Instead marginal distribution of A, <span class="math inline">\(f_{A} = \int_{z} f_{A|Z} \int_{x} f_{Z|X} f_{X} dx dz\)</span>. To make sure that <span class="math inline">\(A_{ij}\)</span> is iid sample from its marginal distribution, <span class="math inline">\(A_{ij} \overset{i.i.d.}{\sim} f_{A}\)</span> not from <span class="math inline">\(f_{A | Z}\)</span>.</p>
 </div>
 <div id="reference" class="section level1">
 <h1>Reference</h1>
