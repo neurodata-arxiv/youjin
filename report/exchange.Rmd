@@ -5,32 +5,23 @@ header-includes:
    - \usepackage{amsmath}
 output: html_document
 ---
-
-- [Theorem 2](#Theorem2)
 - [Exchangeability of graph](#exchangeability1)
 - [Exchangeability of Transition](#exchangeability2)
 - [Strong negative Type](#strong)
+- [Proving consistency via latent position estimation](#latent)
 - [Reference](#Reference)
-
-## Theorem 2 
-
-<a name = "Theorem2"/>
-<b> $$\mbox{Theorem 2}$$  <center>  Assume $E| \boldsymbol{U}^2 | < \infty$   and $E | \boldsymbol{X}^2 | < \infty$. For a fixed $t$, $P[ \mathcal{T}_{n} < t ] \rightarrow P[t_{\nu - 1} < t]$ as $q,m \rightarrow \infty$
-
-where $\mathcal{T}_{n} = \sqrt{\nu-1} \frac{\mathcal{R}^{*}_{n} }{ \sqrt{1 - \mathcal{R}^{* 2}_{n} }}$ and $\nu = \frac{n(n-3)}{2}$.
-</center></b> 
 
 
 ## Exchangeability of Graph
 <a names="exchangeability1"/>
 
-Formally speaking, an exchangeable sequence of random variables is a finite or infinite sequence $U_{1}, U_{2}, ...$ of random variables such that for any inite permutation $\sigma$ of the indices 1,2,3, ... , the joint probability distribution of the permutated sequence 
+Formally speaking, an exchangeable sequence of random variables is a finite or infinite sequence $U_{1}, U_{2}, ...$ of random variables such that for any finite permutation $\sigma$ of the indices 1,2,3, ... , the joint probability distribution of the permutated sequence 
 $U_{\sigma(1)}, U_{\sigma(2)}, U_{\sigma(3)}, ...$
 is the same as the joint probability distribution of the original sequence. 
 
 The propoerty of exchangeability is closely related to the use of independent and identically-distributed(i.i.d) random variable. A sequence of random variables that are i.i.d. conditional on some underlying distributional form is exchangeable. Moreover, the converse can be established for ``infinite sequence`` by [Bruno de Finetti](#Finetti). The extended versions of the theorem show that in any infinite sequence of exchangeable random variables, the random variables are conditionally i.i.d, given the underlying distributional form.  
 
-It is straightforward to check that $\mathbf{G}$ is an exchangeable graph if and only if its adjacency matix $\mathbf{A}$ is jointly exchangeble.  
+It is straightforward to check that $\mathbf{G}$ is an exchangeable graph if and only if its adjacency matix $\mathbf{A}$ is jointly exchangeable.  
 
 A random 2-array $(A_{ij})$ is called $\mathbf{\mbox{jointly exchangeable}}$ if 
 $$(A_{ij}) \stackrel{d}{=} (A_{\sigma(i) \sigma(j)})$$
@@ -70,8 +61,14 @@ where $A_{ij} = 1$ indicates the edge connecting $i$ and $j$ is present; if $A_{
 
 #### Example 1. Random Dot Product Graph
 
+Assume that the latent positions $Z_{1}, Z_{2}, ... , Z_{n} \overset{i.i.d.}{\sim} F$. Then the upper triangular entries of $\mathbf{A}$ are independent with $A_{ij} \sim Bern\big( \big< Z_{i}, Z_{j} \big>  \big), \forall i < j$.
 
 #### Example 2. Stochastic Block Model 
+
+Assume that the latent positions $Z_{1}, Z_{2}, ... , Z_{n} \overset{i.i.d.}{\sim} Multinomial\big( \pi_{1}, \pi_{2}, ... , \pi_{K} \big)$. Then the uppwer triangular entries of $\mathbf{A}$ are independent with 
+$A_{ij} \sim Bern\big( \sum\limits_{k,l=1}^{K} p_{kl} I\big( Z_{i} = k, Z_{j} = l  \big)    \big), \forall  i < j$.
+
+
 
 
 
@@ -80,9 +77,9 @@ where $A_{ij} = 1$ indicates the edge connecting $i$ and $j$ is present; if $A_{
 
 We have shown that for fixed time $t$, diffusion distance is defined as an Euclidean distance of diffusion maps. Diffusion maps is represented by :
 
-$$\boldsymbol{U}_{t}(i) = \begin{pmatrix} \lambda^{t}_{1} \phi_{1}(i) & \lambda^{t}_{2} \phi_{2} (i)  & \cdots & \lambda^{t}_{n} \phi_{q}(i) \end{pmatrix} \in \mathbb{R}^{q}.$$
+$$\boldsymbol{U}_{t}(i) = \begin{pmatrix} \lambda^{t}_{1} \phi_{1}(i) & \lambda^{t}_{2} \phi_{2} (i)  & \cdots & \lambda^{t}_{q} \phi_{q}(i) \end{pmatrix} \in \mathbb{R}^{q}.$$
 
-Remind that $\Phi = \Pi^{-1/2}\Phi$ and $\mathbf{Q}=\mathbf{\Psi}\mathbf{\Lambda}\mathbf{\Psi}^{T} = \mathbf{\Pi}^{1/2} \mathbf{P} \mathbf{\Pi}^{-1/2}$. 
+Remind that $\Phi = \Pi^{-1/2}\Psi$ and $\mathbf{Q}=\mathbf{\Psi}\mathbf{\Lambda}\mathbf{\Psi}^{T} = \mathbf{\Pi}^{1/2} \mathbf{P} \mathbf{\Pi}^{-1/2}$. 
 Thus, $\mathbf{P \Pi^{-1/2} \Psi = \Pi^{-1/2} \Psi \Lambda}$. 
 
 
@@ -91,6 +88,9 @@ Then for any $r \in \{1,2, ... , q \}$ th row, we can see that $P \phi_{r} = \la
 Therefore for exchangeability of $\mathbf{U}_{t}$, it suffices to show exchangeability of $\mathbf{P}$ under some conditions.
 
 Assume that in with probability 1, degree of every node goes to $0< d_{p} < 1$ and also assume joint exchangeability of $\mathbf{G}$, i.e. $(A_{ij}) \stackrel{d}{=} \big( A_{\sigma(i) \sigma(j)} \big)$. Then joint exchangeability of transition probability holds.
+
+
+$$\big( P_{ij} \big) = \big(  \frac{A_{ij}}{deg(i)} \big) \xrightarrow{p} \big( \frac{A_{ij}}{d_{p}}  \big) \stackrel{d}{=} \big( \frac{A_{\sigma(i) \sigma(j)}}{d_{p}} \big) \xleftarrow{p} \big( \frac{A_{\sigma(i) \sigma(j)} }{deg(\sigma(i))} \big) = \big( P_{\sigma(i) \sigma(j)} \big)$$
 
 
 
@@ -105,11 +105,20 @@ This leads to asymptotically exchangeable eigenfunctions $\{ \Phi(1), \Phi(2), ,
 ## Strong Negative Type
 <a name = "strong"/>
 
-When $\mathcal{X}$ (support) is finite, then ``strong negative type`` is the same as ``strict negative type`` (Li and Weston, 2010). 
+- Lyons (2013) used the notion of ``strong negative type`` to show that a metric space $X$ has strong negative type iff the theory of distance covariance holds in $X$ just as in Euclidean spaces.
 
 
+- When $\mathcal{X}$ (support) is finite, then ``strong negative type`` is the same as ``strict negative type`` (Li and Weston, 2010).
+
+- It has been proven that Euclidean spaces have strong negative types (Lyons, 2013)
+
+- Schoenberg (1937, 1938) showed that $X$ is of negative type iff there is a Hilbert space $H$ and a map $\phi : X \rightarrow H$ such that $\forall x, x^{\prime} \in X$ $d(x, x^{\prime}) = \|  \phi(x) - \phi(x^{\prime})  \|^2$.
+
+- Let $(\mathcal{A}, d)$ be a metric space. Let $M(\mathcal{A})$ denote the finite signed Borel measures on $\mathcal{A}$ and $M_{1}(\mathcal{A})$ be the subset of probability measures. Suppose that $\mu_{1}, \mu_{2} \in M_{1}$ have finite first moments. By approximating $\mu_{i}$ by probability measures of finite support, we see that when $\mathcal{A}$ has negative type, $D(\mu_{1} - \mu_{2}) = \int d(x, x^{\prime}) d(\mu_{1} - \mu_{2})^2 (x , x^{\prime})   \leq 0$. We say that $(\mathcal{A}, d)$ has strong negative type if it has negative type and equality holds when $\mu_{1} = \mu_{2}$. 
+ 
 
 ## Proving consistency via latent position estimation
+<a name = "latent"/>
 
 Suppose we are testing independence between distributions of graph adjacency matrix $\mathbf{A}$ and node attributes $\mathbf{X}$:
 
@@ -125,9 +134,24 @@ for some link function of $g$.
 
 Generally, conditional iid does not guarantee marginal iid so we cannot say $A_{i}$ are iid observations from its marginal distribution function. 
 
-It was proven that we can have consistent estimator for latent position for $Z$ of each vertex, i.e. $\exists h$ s.t. $h(A) \xrightarrow{p} \hat{Z}$ (consistently estimate latent position of each vertex). 
+Instead marginal distribution of A, $f_{A} = \int_{z} f_{A|Z} \int_{x} f_{Z|X} f_{X} dx dz$ or $f_{A} = \int_{z} f_{A|Z} f_{Z} dz$. To make sure that $A_{ij}$ is iid sample from its marginal distribution, $A_{ij} \overset{i.i.d.}{\sim} f_{A}$ not from $f_{A | Z}$. 
 
-Instead marginal distribution of A, $f_{A} = \int_{z} f_{A|Z} \int_{x} f_{Z|X} f_{X} dx dz$. To make sure that $A_{ij}$ is iid sample from its marginal distribution, $A_{ij} \overset{i.i.d.}{\sim} f_{A}$ not from $f_{A | Z}$. 
+On the other hand, it was proven that we can have consistent estimator for latent position for $Z$ of each vertex. Let us assume that $Z$ (or $\hat{Z}$) have two groups 0 or 1; thus there exists $p \in (0,1)$ such that $Z_{i} \overset{i.i.d.}{\sim} Bern(p) \equiv f_{Z}$. Then marginal probability density of $\mathbf{A}$ can be derived by integrating conditional distribution over $Z$:
+
+$$\begin{align} P\big( A_{ij}  = a_{ij} \big) & = \sum\limits_{s_1 , s_{2} \in \{ 0,1\}} P\big( A_{ij} = a_{ij} \big|  Z_{i}, Z_{j}\big) P\big( Z_{i} = s_{1}  \big) P \big( Z_{j} = s_{2} \big) \\ & = q^{2} \cdot g(0,0)^{a_{ij}} \big( 1 - g(0,0)  \big)^{1-a_{ij}} +  pq  \cdot g(0,1)^{a_{ij}} \big( 1 - g(0,1)  \big)^{1-a_{ij}} \\ & + pq \cdot g(1,0)^{a_{ij}} \big( 1 - g(1,0)  \big)^{1-a_{ij}} + p^2 \cdot g(1,1)^{a_{ij}} \big( 1 - g(1,1)  \big)^{1-a_{ij}}  \end{align}$$
+
+Since latent variable $Z$ is often unobservable, we use $\hat{p} = \sum\limits_{i=1}^{n} \hat{Z}_{i} / n$ as an estimate for $p$, where $\hat{Z}_{i}$ is a consistent estimator for vertex's latent position. Since $\{ \hat{Z}_{i} \}$ are consistent estimators, $\hat{p}$ and $\hat{q}$ are also consistent estimators for true $p$ and $q$. Under the assumption that $f_{A|Z}$ is correctly specified, $\hat{P}(A = a) = \sum\limits_{z} P(A = a|\hat{Z}) \hat{P}(Z = z)$ is a consistent estimator of $P(A = a)$ under some constaint to a link function $g$. Note that $P \big( A_{ij} = a_{ij}\big)$ does not depend on the index of a pair of vertices. Thus : 
+
+
+$$a_{ij} \overset{i.i.d.}{\sim} P\big( A_{ij} = a_{ij} \big), i,j = 1,2,..., n$$
+
+If we know that $f(A_{ij} = a_{ij} | Z) = g(z_{i}, z_{j})^{a_{ij}} \big( 1 - g(z_{i}, z_{j})  \big)^{1 - a_{ij}}$ for continuous function of $g$, 
+
+
+$$a_{ij} \overset{i.i.d.}{\approx}  \hat{P}\big( A_{ij} = a_{ij} \big) \xrightarrow{p} P \big( A_{ij} = a_{ij} \big), i,j = 1,2,..., n$$
+
+
+
 
 
 # Reference
