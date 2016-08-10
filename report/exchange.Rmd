@@ -5,11 +5,49 @@ header-includes:
    - \usepackage{amsmath}
 output: html_document
 ---
+
+- [Main Theorem](#theorem)
 - [Exchangeability of graph](#exchangeability1)
-- [Exchangeability of Transition](#exchangeability2)
-- [Strong negative Type](#strong)
+- [Exchangeability of Transition Probability](#exchangeability2)
+- [Exchangeability of Sparse Graph](#sparse)
 - [Proving consistency via latent position estimation](#latent)
+- [Strong negative Type](#strong)
+- [Appendix](#Appendix)
 - [Reference](#Reference)
+
+
+## Main Theorem for Both Dense & Sparse Graph
+<a names="theorem"/>
+
+
+### Theorem of iid diffusion maps 
+
+Assume that connected, undirected and unweigted graph $\mathbf{G}$ is a graphex, i.e. exchangeable random graph from infinite graph. Then observed diffusion maps $\{ u_{i} ; i = 1,2,... , n\}$ derived from $\mathbf{G}$ are independent and identically distributed (i.i.d.) as $\mathbf{u} \sim f_{u}$.    
+
+
+#### Proof
+
+[Exchangeabiliy of Transition Probability](#exchangeability2) proves asymptotic exchangeability of diffusion maps given exchangeable graph. This holds for infinite sequence of diffusion maps from infinite graph. 
+
+By [de Finetti](#Finetti)'s theorem, such exchangeable diffusion maps are i.i.d. given some underlying distribution.
+
+
+
+
+
+
+
+
+### consistency of test statistics
+
+Let us fix the diffusion time step $t \in \mathbb{N}$. Assume that we are given $n$-pair of observations $\{ (u_{i}, x_{i}): i = 1,2,... , n  \}$ of $u_{i} \overset{i.i.d.}{\sim} f_{x}$ and $x_{j} \overset{i.i.d.}{\sim} f_{x}$. Then MGC applied to these pair of data is theoretically consistent against all dependent alternatives.
+
+(Proof by Cencheng at el.)
+
+
+
+
+
 
 
 ## Exchangeability of Graph
@@ -32,7 +70,9 @@ for every pair of permutation $\sigma, \sigma^{\prime}$ of $n$.
 
 $\mathbf{\mbox{Joint exchangeability}}$ of $A$ is what we need. 
 
-The analogue of de Finetti's theorem for exchangeable arrays is the ``Aldous-Hoover Theorem``. A random array $(A_{ij})$ is jointly exchangeable if and only if it can be represented as follows : There is a random function $F : [0,1]^2 \rightarrow \mathbf{A}$ such that
+The following arguments are refered to [Orbanz and Roy](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6847223).
+Assume that graph $\mathbf{G}$ is simple, undirected graph without self-loops.
+The analogue of de Finetti's theorem for exchangeable arrays is the [Aldous-Hoover Theorem](Aldous). A random array $(A_{ij})$ is jointly exchangeable if and only if it can be represented as follows : There is a random function $F : [0,1]^2 \rightarrow \mathbf{A}$ such that
 
 $$(A_{ij}) \stackrel{d}{=} \big( F( W_{i}, W_{j}, W_{i,j} )\big)$$
 
@@ -69,9 +109,6 @@ Assume that the latent positions $Z_{1}, Z_{2}, ... , Z_{n} \overset{i.i.d.}{\si
 $A_{ij} \sim Bern\big( \sum\limits_{k,l=1}^{K} p_{kl} I\big( Z_{i} = k, Z_{j} = l  \big)    \big), \forall  i < j$.
 
 
-
-
-
 ## Exchangeability of Transition Probability
 <a names="exchangeability2"/>
 
@@ -90,7 +127,13 @@ Therefore for exchangeability of $\mathbf{U}_{t}$, it suffices to show exchangea
 Assume that in with probability 1, degree of every node goes to $0< d_{p} < 1$ and also assume joint exchangeability of $\mathbf{G}$, i.e. $(A_{ij}) \stackrel{d}{=} \big( A_{\sigma(i) \sigma(j)} \big)$. Then joint exchangeability of transition probability holds.
 
 
-$$\big( P_{ij} \big) = \big(  \frac{A_{ij}}{deg(i)} \big) \xrightarrow{p} \big( \frac{A_{ij}}{d_{p}}  \big) \stackrel{d}{=} \big( \frac{A_{\sigma(i) \sigma(j)}}{d_{p}} \big) \xleftarrow{p} \big( \frac{A_{\sigma(i) \sigma(j)} }{deg(\sigma(i))} \big) = \big( P_{\sigma(i) \sigma(j)} \big)$$
+$$\big( P_{ij} \big) = \big(  \frac{A_{ij}}{deg(i)} \big) \xrightarrow{p} \big( \frac{A_{ij}}{d_{n}}  \big) \stackrel{d}{=} \big( \frac{A_{\sigma(i) \sigma(j)}}{d_{n}} \big) \xleftarrow{p} \big( \frac{A_{\sigma(i) \sigma(j)} }{deg(\sigma(i))} \big) = \big( P_{\sigma(i) \sigma(j)} \big)$$
+
+
+
+Note that for fixed row index $i$, $A_{ij} \sim Bernoull \big( f^{\prime}(W_{j}) \big)$ some function of $f^{\prime}$ since now a latent position of $i$, $W_{i}$ is constant. From random generation of $(W_{j})$ from Uniform distribution, $(A_{ij} : j=1,2,..., n)$ are i.i.d.. 
+
+Thus, $deg(i) \xrightarrow{p} \frac{1}{n} d_{n} = \frac{1}{n} E\big( \sum\limits_{j=1}^{n} A_{ij} \big) = \frac{1}{n} E\big( \sum\limits_{j=1}^{n} A_{\sigma(i) \sigma(j)}  \big) = \frac{1}{n} E\big( \sum\limits_{\sigma(j)=1}^{n} A_{\sigma(i) \sigma(j)}  \big)$
 
 
 
@@ -102,20 +145,83 @@ This leads to asymptotically exchangeable eigenfunctions $\{ \Phi(1), \Phi(2), ,
 
 
 
-## Strong Negative Type
-<a name = "strong"/>
 
-- Lyons (2013) used the notion of ``strong negative type`` to show that a metric space $X$ has strong negative type iff the theory of distance covariance holds in $X$ just as in Euclidean spaces.
+## Exchangeability of Sparse Graph
+<a name = "sparse"/>
+
+Aldous-Hoover representation theorem applies and informs us that the graph is necessarily either dense or empty [Caron and Fox, 2014](Caron).
+
+Completely Random Measure (CRM) specifies sampling procedure for the weights and atom locations of the measure. 
+
+A CRM $W$ on $\mathbb{R}_{+}$ is a random measure such that for any countable number of measurable sets $V_{1}, V_{2}, ... ,$ of $\mathbb{R}_{+}$, the random variables $W(V_{1}), W_{V_{2}}, ...$ are independent and 
+$$W \big( \bigcup\limits_{j} V_{j} \big) = \sum\limits_{j} W \big( V_{j}  \big)$$.
+If one additionally assumes that the distribution of $W([t,s])$ only depends on $t-s$, then the CRM takes the following form:
+$$W = \sum\limits_{i=1}^{\infty} w_{i} \delta_{{\theta}_{i}}$$
+where weights $(w_{i})_{i \in \mathbb{N}}$, $(\theta_{i})_{i \in \mathbb{N}}$ are independent sequences of random variables on $\mathbb{R}_{+}$.
 
 
-- When $\mathcal{X}$ (support) is finite, then ``strong negative type`` is the same as ``strict negative type`` (Li and Weston, 2010).
 
-- It has been proven that Euclidean spaces have strong negative types (Lyons, 2013)
+[Orbanz and Williamson](Orbanz) and many others have been studying CRM framework, especially in Bayesian non-parametric literature. They studied Poisson process, compound Poisson process and also Gamma process but we are going to focus on Poisson process. 
 
-- Schoenberg (1937, 1938) showed that $X$ is of negative type iff there is a Hilbert space $H$ and a map $\phi : X \rightarrow H$ such that $\forall x, x^{\prime} \in X$ $d(x, x^{\prime}) = \|  \phi(x) - \phi(x^{\prime})  \|^2$.
+Exchangeability for point process on $\mathbb{R}^{2}_{+}$ is formulated as follows :
 
-- Let $(\mathcal{A}, d)$ be a metric space. Let $M(\mathcal{A})$ denote the finite signed Borel measures on $\mathcal{A}$ and $M_{1}(\mathcal{A})$ be the subset of probability measures. Suppose that $\mu_{1}, \mu_{2} \in M_{1}$ have finite first moments. By approximating $\mu_{i}$ by probability measures of finite support, we see that when $\mathcal{A}$ has negative type, $D(\mu_{1} - \mu_{2}) = \int d(x, x^{\prime}) d(\mu_{1} - \mu_{2})^2 (x , x^{\prime})   \leq 0$. We say that $(\mathcal{A}, d)$ has strong negative type if it has negative type and equality holds when $\mu_{1} = \mu_{2}$. 
- 
+Let $h > 0$ and consider intervals $V_{i} := \big[h(i-1), hi  \big]$, $i \in \mathbb{N}$. The joint process $\mathbf{A}$ is jointly exchangeable if and only if 
+$$\left( A \big( V_{i} \times V_{j}  \big) \right) \stackrel{d}{=} \left( A \big( V_{\pi(i)} \times V_{\pi (j)}  \big)  \right) \mbox{ for } (i,j) \in \mathbb{N}^{2}$$ 
+for any permutation $\pi$ of $\mathbb{N}$.
+
+One of the special cases of sparse and exchangeable undirected graphs can be generated from a unit-rate Poisson processes and uniform random variables. A point process is exchangeable ``if and only if`` it can be represented as a transformation of unit-rate Poisson process and uniform random variables (this is in direct analogy to the graphon transformation of uniform random variables in the Aldous-Hoover representation.). More precisely, within the Kallenberg framework, we consider that two nodes $i \neq j$ connect with probability 
+$$P(a_{ij} = 1 \big| w_{i}, w_{j}) = 1 - e^{-2 w_{i} w_{j}}$$
+where the positive "sociability" parameters $(w_{i})_{i=1,2,..}$ are the points of a Poisson point process. They showed that by carefully choosing the Levy measure characterizing this CRM, we are able to construct graphs ranging from sparse to dense. In particular, any Levy measure yielding an infinite activity CRM leads to sparse graphs; alternatively, finite activity CRMs, whose associated point process are in the compound Poisson process family, yield dense graphs. 
+
+
+[Veitch and Roy, 2015](Veitch) introduce the concept of ``graphex``, also based on Kallenberg Exchangeable Graphs (KEG) frameworks. Graphexes are the analogues of graphons and the space of distributions on (sparse) graphs can be parametrized by the space of graphexes. 
+
+$\left\{  \begin{array}{cc} \theta = \mathbb{R}_{+} & \mbox{ the space of labels of the graph} \\ \vartheta = \mathbb{R}_{+} & \mbox{ the space of latent parameters} \\ \Pi \sim Poisson(1)  & \mbox{ on } \theta \times \vartheta \end{array} \right.$
+
+
+$$(\theta_{i}, \theta_{j}) \big| W, \Pi \overset{ind}{\sim} Bernoulli\big( W (\vartheta_{i}, \vartheta_{j}) \big)$$
+
+Finite size graphs are given by restricting to only edges $(\theta_{i}, \theta_{j})$ such that $\theta_{i}, \theta_{j} < \nu$ and including vertices only if they participate in at least one such edge. Let $G_{\nu}$ be the random graph given by truncating the label space $\theta$ to $[0, \nu]$; we call the random graph model $(G_{\nu})_{nu \in \mathbb{R}_{+}}$ the KEG associated with $W$. 
+
+
+[Theorem] Let $G$ be Kallenberg exchangeable graph with graphex $W$. If $W$ is compactly supported, then $G$ is dense with probability 1. Conversely, if $W$ is integrable and not compactly supported, then $G$ is sparse with probability 1. 
+
+
+#### Exchangeable Sparse Networks
+
+I will present one of the exmaples of sparse graph with power-law degree distribution. Details of its properties are well explained in [Veitch and Roy, 2015](Veitch). 
+
+1. Sample a (latent) unit rate Poisson process $\Pi$ on $\theta \times \vartheta \in [0, \nu] \times [0, c]$.
+
+$$N_{\nu} \sim Poi( c \nu)$$
+$$\{ \theta_{i} \} \big| N_{\nu} \overset{iid}{\sim} Uniform[0, \nu]$$
+$$\{ \vartheta_{i} \} \big| N_{\nu} \overset{iid}{\sim} Uniform[0,1]$$
+$$\{ X_{i}  \} | N_{\nu} \overset{ind}{\sim} Normal \big( \vartheta_{i}, \color{red}{\sigma} \big)$$
+$$(\theta_{i}, \theta_{j}) \big| W, \vartheta_{i}, \vartheta_{j} \overset{ind}{\sim} Bernoulli \big( W\big( \vartheta{i}, \vartheta{j} \big) \big)$$
+
+
+Set  $c = 1, {\nu} = 50$.
+
+
+2. For each pair of points $(\theta_{i}, \vartheta_{i}), (\theta_{j}, \vartheta_{j}) \in \Pi$ include an edges $(\theta_{i}, \theta_{j})$ with probability $W(\vartheta_{i}, \vartheta{j})$ where
+
+$$W(\vartheta_{i}, \vartheta_{j}) = \left\{ \begin{array}{cc} 0 & \vartheta_{i} = \vartheta_{j} \\ (\vartheta_{i} + 1)^{-2}  (\vartheta_{j} + 1)^{-2} & \mbox{ otherwise}   \end{array} \right.$$
+
+
+Note that number of nodes $N_{\nu}$ differs every time. 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Proving consistency via latent position estimation
 <a name = "latent"/>
@@ -154,6 +260,36 @@ $$a_{ij} \overset{i.i.d.}{\approx}  \hat{P}\big( A_{ij} = a_{ij} \big) \xrightar
 
 
 
+## Strong Negative Type
+<a name = "strong"/>
+
+- Lyons (2013) used the notion of ``strong negative type`` to show that a metric space $X$ has strong negative type iff the theory of distance covariance holds in $X$ just as in Euclidean spaces.
+
+
+- When $\mathcal{X}$ (support) is finite, then ``strong negative type`` is the same as ``strict negative type`` (Li and Weston, 2010).
+
+- It has been proven that Euclidean spaces have strong negative types (Lyons, 2013)
+
+- Schoenberg (1937, 1938) showed that $X$ is of negative type iff there is a Hilbert space $H$ and a map $\phi : X \rightarrow H$ such that $\forall x, x^{\prime} \in X$ $d(x, x^{\prime}) = \|  \phi(x) - \phi(x^{\prime})  \|^2$.
+
+- Let $(\mathcal{A}, d)$ be a metric space. Let $M(\mathcal{A})$ denote the finite signed Borel measures on $\mathcal{A}$ and $M_{1}(\mathcal{A})$ be the subset of probability measures. Suppose that $\mu_{1}, \mu_{2} \in M_{1}$ have finite first moments. By approximating $\mu_{i}$ by probability measures of finite support, we see that when $\mathcal{A}$ has negative type, $D(\mu_{1} - \mu_{2}) = \int d(x, x^{\prime}) d(\mu_{1} - \mu_{2})^2 (x , x^{\prime})   \leq 0$. We say that $(\mathcal{A}, d)$ has strong negative type if it has negative type and equality holds when $\mu_{1} = \mu_{2}$.
+
+
+# Appendix
+<a name = "Appendix"/>
+
+### Aldous-Hoover Theorm
+<a name="Aldous"/>
+
+[Aldous, 1981](Al), [Hoover, 1979](Hoover)
+
+Let $\mathbf{A} = \{A_{ij}\}, 1 \leq i,j \leq \infty$ be a jointly exchangeable binary array if and only if there exists a random measurable function $f : [0,1]^{3} \rightarrow \mathbf{A}$ such that 
+
+$$\big(  A_{ij}  \big) \stackrel{d}{=} \left( f \big( U_{i}, U_{j}, U_{ij} \big)  \right)$$,
+where $(U_{i})_{i \in \mathbb{N}}$ and $(U_{ij})_{i,j > i \in mathbb{N}}$ with $U_{ij} = U_{ji}$ are a sequence and matrix, respectively, of i.i.d. Uniform[0,1] random variables. 
+
+
+
 # Reference
 <a name="Reference"/>
 
@@ -162,3 +298,12 @@ $$a_{ij} \overset{i.i.d.}{\approx}  \hat{P}\big( A_{ij} = a_{ij} \big) \xrightar
 <a name = "Sussman"/> Sussman, D. L., Tang, M., & Priebe, C. E. (2012). Universally consistent latent position estimation and vertex classification for random dot product graphs. arXiv preprint arXiv:1207.6745.
 
 <a name = "Orbanz"/> Orbanz, P., & Roy, D. M. (2015). Bayesian models of graphs, arrays and other exchangeable random structures. IEEE transactions on pattern analysis and machine intelligence, 37(2), 437-461.
+
+<a name = "Caron"/> Caron, F., & Fox, E. B. (2014). Sparse graphs using exchangeable random measures. arXiv preprint arXiv:1401.1137.
+ 
+<a name = "Veitch"/> Veitch, V., & Roy, D. M. (2015). The class of random graphs arising from exchangeable random measures. arXiv preprint arXiv:1512.03099. 
+ 
+ 
+<a name = "Al"/> Aldous, D. J. (1981). Representations for partially exchangeable arrays of random variables. Journal of Multivariate Analysis 11 581–598.
+
+<a name = "Hoover"/> Hoover, D. N. (1979). Relations on probability spaces and arrays of random variables. Preprint, Institute for Advanced Study, Princeton, NJ.
