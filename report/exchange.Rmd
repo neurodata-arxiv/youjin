@@ -11,7 +11,6 @@ output: html_document
 - [Exchangeability of Transition Probability](#exchangeability2)
 - [Exchangeability of Sparse Graph](#sparse)
 - [Proving consistency via latent position estimation](#latent)
-- [Strong negative Type](#strong)
 - [Appendix](#Appendix)
 - [Reference](#Reference)
 
@@ -45,7 +44,7 @@ Assume that a connected, undirected and unweigted graph $\mathbf{G}$ is a ``grap
 
 <b>Proof</b>
 
-Also given $\{ \vartheta_{i} \}$, which are random generated from Poisson distribution, $\{ A_{ij} \}$ are i.i.d. and so $\{ P_{ij} \}$ are also i.i.d.. This argument leads to the conclusion that the observed diffusion maps $\{ U_{i} : i = 1,2,... , n \}$ are i.i.d. conditional on the unobserved uniformly distributed $\{ \vartheta_{i} \}$.
+In terms of notations used in [Exchangeability of Sparse Graph](sparse), given $\{ \vartheta_{i} \}$, which are randomly generated from Poisson process, $\{ A_{ij} \}$ are i.i.d. and so thus transition probability $\{ P_{ij} \}$ are also i.i.d.. This argument leads to the conclusion that the observed diffusion maps $\{ U_{i} : i = 1,2,... , n \}$ are i.i.d. conditional on the unobserved i.i.d. $\{ \vartheta_{i} \}$.
 
 
 
@@ -54,10 +53,6 @@ Also given $\{ \vartheta_{i} \}$, which are random generated from Poisson distri
 Let us fix the diffusion time step $t \in \mathbb{N}$. Denote a conditional distribution of diffusion maps $U$ given i.i.d. latent variable by $f_{u}$ and a marginal distribution of $X$ by $f_{X}$. Assume that we are given $n$-pair of observations $\{ (u_{i}, x_{i}): i = 1,2,... , n  \}$ of $u_{i} \overset{i.i.d.}{\sim} f_{u}$ and $x_{j} \overset{i.i.d.}{\sim} f_{x}$. Then MGC applied to these pair of data is theoretically consistent against all dependent alternatives. 
 
 (Proof by Cencheng at el.)
-
-
-
-
 
 
 
@@ -147,29 +142,23 @@ This results exchangeable eigenfunctions $\{ \Phi(1), \Phi(2), , ... , \Phi(n) \
 ## Exchangeability of Sparse Graph
 <a name = "sparse"/>
 
-Aldous-Hoover representation theorem applies and informs us that the graph is necessarily either dense or empty [Caron and Fox, 2014](Caron).
-
-Completely Random Measure (CRM) specifies sampling procedure for the weights and atom locations of the measure. 
-
-A CRM $W$ on $\mathbb{R}_{+}$ is a random measure such that for any countable number of measurable sets $V_{1}, V_{2}, ... ,$ of $\mathbb{R}_{+}$, the random variables $W(V_{1}), W_{V_{2}}, ...$ are independent and 
-$$W \big( \bigcup\limits_{j} V_{j} \big) = \sum\limits_{j} W \big( V_{j}  \big)$$.
+Aldous-Hoover representation theorem applies and informs us that the graph is necessarily either dense or empty ([Caron and Fox, 2014](Caron)). Alternatively, Completely Random Measure (CRM) specifies sampling procedure for the weights and atom locations of the measure. A CRM $W$ on $\mathbb{R}_{+}$ is a random measure such that for any countable number of measurable sets $V_{1}, V_{2}, ... ,$ of $\mathbb{R}_{+}$, the random variables $W(V_{1}), W(V_{2}), ...$ are independent and 
+$$W \big( \bigcup\limits_{j} V_{j} \big) = \sum\limits_{j} W \big( V_{j}  \big)$$
 If one additionally assumes that the distribution of $W([t,s])$ only depends on $t-s$, then the CRM takes the following form:
 $$W = \sum\limits_{i=1}^{\infty} w_{i} \delta_{{\theta}_{i}}$$
 where weights $(w_{i})_{i \in \mathbb{N}}$, $(\theta_{i})_{i \in \mathbb{N}}$ are independent sequences of random variables on $\mathbb{R}_{+}$.
 
 
 
-[Orbanz and Williamson](Orbanz) and many others have been studying CRM framework, especially in Bayesian non-parametric literature. They studied Poisson process, compound Poisson process and also Gamma process but we are going to focus on Poisson process. 
+[Orbanz and Williamson](Orbanz) and many others have been studying CRM framework, especially in Bayesian non-parametric literature. 
 
 Exchangeability for point process on $\mathbb{R}^{2}_{+}$ is formulated as follows :
 
-Let $h > 0$ and consider intervals $V_{i} := \big[h(i-1), hi  \big]$, $i \in \mathbb{N}$. The joint process $\mathbf{A}$ is jointly exchangeable if and only if 
+Let $h > 0$ and consider intervals $V_{i} := \big[h(i-1), hi  \big]$, $i \in \mathbb{N}$. The joint process $\mathbf{A}$ is jointly exchangeable <em>if and only if</em> 
 $$\left( A \big( V_{i} \times V_{j}  \big) \right) \stackrel{d}{=} \left( A \big( V_{\pi(i)} \times V_{\pi (j)}  \big)  \right) \mbox{ for } (i,j) \in \mathbb{N}^{2}$$ 
-for any permutation $\pi$ of $\mathbb{N}$.
+for any permutation $\pi$ of $\mathbb{N}$.One of the special cases of sparse and exchangeable undirected graphs can be generated from a <b>unit-rate Poisson processes and uniform random variables</b>. 
 
-One of the special cases of sparse and exchangeable undirected graphs can be generated from a unit-rate Poisson processes and uniform random variables. A point process is exchangeable ``if and only if`` it can be represented as a transformation of unit-rate Poisson process and uniform random variables (this is in direct analogy to the graphon transformation of uniform random variables in the Aldous-Hoover representation.). More precisely, within the Kallenberg framework, we consider that two nodes $i \neq j$ connect with probability 
-$$P(a_{ij} = 1 \big| w_{i}, w_{j}) = 1 - e^{-2 w_{i} w_{j}}$$
-where the positive "sociability" parameters $(w_{i})_{i=1,2,..}$ are the points of a Poisson point process. They showed that by carefully choosing the Levy measure characterizing this CRM, we are able to construct graphs ranging from sparse to dense. In particular, any Levy measure yielding an infinite activity CRM leads to sparse graphs; alternatively, finite activity CRMs, whose associated point process are in the compound Poisson process family, yield dense graphs. 
+A point process is exchangeable <em>if and only if</em> it can be represented as a transformation of unit-rate Poisson process and uniform random variables (this is in direct analogy to the graphon transformation of uniform random variables in the Aldous-Hoover representation.). 
 
 
 [Veitch and Roy, 2015](Veitch) introduce the concept of ``graphex``, also based on Kallenberg Exchangeable Graphs (KEG) frameworks. Graphexes are the analogues of graphons and the space of distributions on (sparse) graphs can be parametrized by the space of graphexes. 
@@ -179,10 +168,14 @@ $\left\{  \begin{array}{cc} \theta = \mathbb{R}_{+} & \mbox{ the space of labels
 
 $$(\theta_{i}, \theta_{j}) \big| W, \Pi \overset{ind}{\sim} Bernoulli\big( W (\vartheta_{i}, \vartheta_{j}) \big)$$
 
-Finite size graphs are given by restricting to only edges $(\theta_{i}, \theta_{j})$ such that $\theta_{i}, \theta_{j} < \nu$ and including vertices only if they participate in at least one such edge. Let $G_{\nu}$ be the random graph given by truncating the label space $\theta$ to $[0, \nu]$; we call the random graph model $(G_{\nu})_{nu \in \mathbb{R}_{+}}$ the KEG associated with $W$. 
+Finite size graphs are given by restricting to only edges $(\theta_{i}, \theta_{j})$ such that $\theta_{i}, \theta_{j} < \nu$ and including vertices only if they participate in at least one such edge. Let $G_{\nu}$ be the random graph given by truncating the label space $\theta$ to $[0, \nu]$; we call the random graph model $(G_{\nu})_{\nu \in \mathbb{R}_{+}}$ the KEG associated with $W$. 
 
 
-[Theorem] Let $G$ be Kallenberg exchangeable graph with graphex $W$. If $W$ is compactly supported, then $G$ is dense with probability 1. Conversely, if $W$ is integrable and not compactly supported, then $G$ is sparse with probability 1. 
+<b> Theorem </b> 
+
+<em>
+Let $G$ be Kallenberg exchangeable graph with graphex $W$. If $W$ is compactly supported, then $G$ is dense with probability 1. Conversely, if $W$ is integrable and not compactly supported, then $G$ is sparse with probability 1. 
+</em>
 
 
 #### Exchangeable Sparse Networks
@@ -195,7 +188,7 @@ $$N_{\nu} \sim Poi( c \nu)$$
 $$\{ \theta_{i} \} \big| N_{\nu} \overset{iid}{\sim} Uniform[0, \nu]$$
 $$\{ \vartheta_{i} \} \big| N_{\nu} \overset{iid}{\sim} Uniform[0,1]$$
 $$\{ X_{i}  \} | N_{\nu} \overset{ind}{\sim} Normal \big( \vartheta_{i}, \color{red}{\sigma} \big)$$
-$$(\theta_{i}, \theta_{j}) \big| W, \vartheta_{i}, \vartheta_{j} \overset{ind}{\sim} Bernoulli \big( W\big( \vartheta{i}, \vartheta{j} \big) \big)$$
+$$(\theta_{i}, \theta_{j}) \big| W, \vartheta_{i}, \vartheta_{j} \overset{ind}{\sim} Bernoulli \big( W\big( \vartheta_{i}, \vartheta_{j} \big) \big)$$
 
 
 Set  $c = 1, {\nu} = 50$.
@@ -207,6 +200,44 @@ $$W(\vartheta_{i}, \vartheta_{j}) = \left\{ \begin{array}{cc} 0 & \vartheta_{i} 
 
 
 Note that number of nodes $N_{\nu}$ differs every time. 
+
+<em> Since the number of vertices is different, it is not straightforward to pick local optimal scale. Thus for now, I will just present global p-values from 100 randomly generated networks. Note that the size of networks is not the same. </em> 
+
+<center> <b> $X_{i} \overset{i.i.d.}{\sim} Normal(0,1)$ </b> </center>
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/Num_hist0.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/EdgeVertex0.png")
+```
+
+
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/pvalues0_t1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/pvalues0_t5.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/pvalues0_t10.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/pvalues0_t20.png")
+```
+
+
+
+
+<center> <b> $X_{i} \overset{ind}{\sim} Normal( \vartheta_{i}, 0.1)$ </b> </center>
+
+
+
+
+
+
+<center> <b> $X_{i} \overset{ind}{\sim} Normal(\vartheta_{i}, 1)$ </b> </center>
 
 
 
@@ -223,6 +254,12 @@ Note that number of nodes $N_{\nu}$ differs every time.
 
 ## Proving consistency via latent position estimation
 <a name = "latent"/>
+
+
+#### Theorem
+
+
+
 
 Suppose we are testing independence between distributions of graph adjacency matrix $\mathbf{A}$ and node attributes $\mathbf{X}$:
 
@@ -256,21 +293,6 @@ $$a_{ij} \overset{i.i.d.}{\approx}  \hat{P}\big( A_{ij} = a_{ij} \big) \xrightar
 
 
 
-
-
-## Strong Negative Type
-<a name = "strong"/>
-
-- Lyons (2013) used the notion of ``strong negative type`` to show that a metric space $X$ has strong negative type iff the theory of distance covariance holds in $X$ just as in Euclidean spaces.
-
-
-- When $\mathcal{X}$ (support) is finite, then ``strong negative type`` is the same as ``strict negative type`` (Li and Weston, 2010).
-
-- It has been proven that Euclidean spaces have strong negative types (Lyons, 2013)
-
-- Schoenberg (1937, 1938) showed that $X$ is of negative type iff there is a Hilbert space $H$ and a map $\phi : X \rightarrow H$ such that $\forall x, x^{\prime} \in X$ $d(x, x^{\prime}) = \|  \phi(x) - \phi(x^{\prime})  \|^2$.
-
-- Let $(\mathcal{A}, d)$ be a metric space. Let $M(\mathcal{A})$ denote the finite signed Borel measures on $\mathcal{A}$ and $M_{1}(\mathcal{A})$ be the subset of probability measures. Suppose that $\mu_{1}, \mu_{2} \in M_{1}$ have finite first moments. By approximating $\mu_{i}$ by probability measures of finite support, we see that when $\mathcal{A}$ has negative type, $D(\mu_{1} - \mu_{2}) = \int d(x, x^{\prime}) d(\mu_{1} - \mu_{2})^2 (x , x^{\prime})   \leq 0$. We say that $(\mathcal{A}, d)$ has strong negative type if it has negative type and equality holds when $\mu_{1} = \mu_{2}$.
 
 
 # Appendix
