@@ -232,8 +232,26 @@ knitr::include_graphics("../figure/pvalues0_t20.png")
 
 <center> <b> $X_{i} \overset{ind}{\sim} Normal( \vartheta_{i}, 0.1)$ </b> </center>
 
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/Num_hist1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/EdgeVertex1.png")
+```
 
 
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/pvalues1_t1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/pvalues1_t5.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/pvalues1_t10.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/pvalues1_t20.png")
+```
 
 
 
@@ -241,14 +259,26 @@ knitr::include_graphics("../figure/pvalues0_t20.png")
 
 
 
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/Num_hist2.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/EdgeVertex2.png")
+```
 
 
-
-
-
-
-
-
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/pvalues2_t1.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/pvalues2_t5.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold', out.extra='style="float:left"'}
+knitr::include_graphics("../figure/pvalues2_t10.png")
+```
+```{r, out.width = 300, out.height = 300, echo = FALSE, fig.align='center', fig.show='hold'}
+knitr::include_graphics("../figure/pvalues2_t20.png")
+```
 
 
 
@@ -257,7 +287,6 @@ knitr::include_graphics("../figure/pvalues0_t20.png")
 
 
 #### Theorem
-
 
 
 
