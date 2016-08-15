@@ -17,7 +17,7 @@ output: html_document
 
   Throughout our paper, assume that we observe finite sub-network $\mathbf{G}$ and its $p$-variate node attributes $\mathbf{X}$. We only restrict the structure of the observed network to an "exchangeable" graph and test the following hypothesis:
   $$H_{0} : f_{A^{*} \cdot X} = f^{*}_{A} \cdot f_{X}$$
-where $f^{*}_{A}$ is a characteristic function of $A$ conditional on some unobserved i.i.d. sequence and $f_{X}$ is a marginal characteristic function of $X$.
+where $f^{*}_{A}$ is a characteristic function of $A$ as a form of a function of some conditional i.i.d. variable and $f_{X}$ is a marginal characteristic function of $X$.
   
 
 
@@ -33,7 +33,7 @@ Assume that a connected, undirected and unweigted graph $\mathbf{G}$ is a ``grap
 
 <b>Proof</b>
 
-[Exchangeability of Transition Probability](#exchangeability2) proves exchangeability of diffusion maps, assuming exchangeable graph. Given $\{ W_{i} \}$, which are random generated from Uniform distribution, $\{ A_{ij} \}$ are i.i.d. and so $\{ P_{ij} \}$ are also asymptotically i.i.d.. This argument leads to the conclusion that the observed diffusion maps $\{ U_{i} : i = 1,2,... , n \}$ are i.i.d. conditional on the unobserved uniformly distributed $\{ W_{i} \}$.
+[Exchangeability of Transition Probability](#exchangeability2) proves exchangeability of diffusion maps, assuming exchangeable graph. Given $\{ W_{i} \}$, which are randomly generated from Uniform distribution, $\{ A_{ij} \}$ are i.i.d. and so $\{ P_{ij} \}$ are also asymptotically i.i.d.. This argument leads to the conclusion that the observed diffusion maps $\{ U_{i} : i = 1,2,... , n \}$ are i.i.d. conditional on the unobserved uniformly distributed $\{ W_{i} \}$.
 
 <hr />
 ### Theorem of iid diffusion maps (sparse graph ver.)
@@ -44,7 +44,7 @@ Assume that a connected, undirected and unweigted graph $\mathbf{G}$ is a ``grap
 
 <b>Proof</b>
 
-In terms of notations used in [Exchangeability of Sparse Graph](sparse), given $\{ \vartheta_{i} \}$, which are randomly generated from Poisson process, $\{ A_{ij} \}$ are i.i.d. and so thus transition probability $\{ P_{ij} \}$ are also i.i.d.. This argument leads to the conclusion that the observed diffusion maps $\{ U_{i} : i = 1,2,... , n \}$ are i.i.d. conditional on the unobserved i.i.d. $\{ \vartheta_{i} \}$.
+In terms of notations used in [Exchangeability of Sparse Graph](#sparse), given $\{ \vartheta_{i} \}$, which are randomly generated from Poisson process, $\{ A_{ij} \}$ are i.i.d. and so thus transition probability $\{ P_{ij} \}$ are also i.i.d.. This argument leads to the conclusion that the observed diffusion maps $\{ U_{i} : i = 1,2,... , n \}$ are i.i.d. conditional on the unobserved i.i.d. $\{ \vartheta_{i} \}$.
 
 
 
@@ -79,7 +79,7 @@ $\mathbf{\mbox{Joint exchangeability}}$ of $A$ is what we need.
 
 The following arguments are refered to [Orbanz and Roy](http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6847223).
 Assume that graph $\mathbf{G}$ is simple, undirected graph without self-loops.
-The analogue of de Finetti's theorem for exchangeable arrays is the [Aldous-Hoover Theorem](Aldous). A random array $(A_{ij})$ is jointly exchangeable if and only if it can be represented as follows : There is a random function $F : [0,1]^3 \rightarrow \mathbf{A}$ such that
+The analogue of de Finetti's theorem for exchangeable arrays is the [Aldous-Hoover Theorem](#Aldous). A random array $(A_{ij})$ is jointly exchangeable if and only if it can be represented as follows : There is a random function $F : [0,1]^3 \rightarrow \mathbf{A}$ such that
 
 $$(A_{ij}) \stackrel{d}{=} \big( F( W_{i}, W_{j}, W_{i,j} )\big)$$
 
@@ -142,7 +142,7 @@ This results exchangeable eigenfunctions $\{ \Phi(1), \Phi(2), , ... , \Phi(n) \
 ## Exchangeability of Sparse Graph
 <a name = "sparse"/>
 
-Aldous-Hoover representation theorem applies and informs us that the graph is necessarily either dense or empty ([Caron and Fox, 2014](Caron)). Alternatively, Completely Random Measure (CRM) specifies sampling procedure for the weights and atom locations of the measure. A CRM $W$ on $\mathbb{R}_{+}$ is a random measure such that for any countable number of measurable sets $V_{1}, V_{2}, ... ,$ of $\mathbb{R}_{+}$, the random variables $W(V_{1}), W(V_{2}), ...$ are independent and 
+Aldous-Hoover representation theorem applies and informs us that the graph is necessarily either dense or empty ([Caron and Fox, 2014](#Caron)). Alternatively, Completely Random Measure (CRM) specifies sampling procedure for the weights and atom locations of the measure. A CRM $W$ on $\mathbb{R}_{+}$ is a random measure such that for any countable number of measurable sets $V_{1}, V_{2}, ... ,$ of $\mathbb{R}_{+}$, the random variables $W(V_{1}), W(V_{2}), ...$ are independent and 
 $$W \big( \bigcup\limits_{j} V_{j} \big) = \sum\limits_{j} W \big( V_{j}  \big)$$
 If one additionally assumes that the distribution of $W([t,s])$ only depends on $t-s$, then the CRM takes the following form:
 $$W = \sum\limits_{i=1}^{\infty} w_{i} \delta_{{\theta}_{i}}$$
@@ -150,7 +150,7 @@ where weights $(w_{i})_{i \in \mathbb{N}}$, $(\theta_{i})_{i \in \mathbb{N}}$ ar
 
 
 
-[Orbanz and Williamson](Orbanz) and many others have been studying CRM framework, especially in Bayesian non-parametric literature. 
+[Orbanz and Williamson](#Orbanz) and many others have been studying CRM framework, especially in Bayesian non-parametric literature. 
 
 Exchangeability for point process on $\mathbb{R}^{2}_{+}$ is formulated as follows :
 
@@ -161,7 +161,7 @@ for any permutation $\pi$ of $\mathbb{N}$.One of the special cases of sparse and
 A point process is exchangeable <em>if and only if</em> it can be represented as a transformation of unit-rate Poisson process and uniform random variables (this is in direct analogy to the graphon transformation of uniform random variables in the Aldous-Hoover representation.). 
 
 
-[Veitch and Roy, 2015](Veitch) introduce the concept of ``graphex``, also based on Kallenberg Exchangeable Graphs (KEG) frameworks. Graphexes are the analogues of graphons and the space of distributions on (sparse) graphs can be parametrized by the space of graphexes. 
+[Veitch and Roy, 2015](http://arxiv.org/abs/1512.03099) introduce the concept of ``graphex``, also based on Kallenberg Exchangeable Graphs (KEG) frameworks. Graphexes are the analogues of graphons and the space of distributions on (sparse) graphs can be parametrized by the space of graphexes. 
 
 $\left\{  \begin{array}{cc} \theta = \mathbb{R}_{+} & \mbox{ the space of labels of the graph} \\ \vartheta = \mathbb{R}_{+} & \mbox{ the space of latent parameters} \\ \Pi \sim Poisson(1)  & \mbox{ on } \theta \times \vartheta \end{array} \right.$
 
@@ -180,7 +180,7 @@ Let $G$ be Kallenberg exchangeable graph with graphex $W$. If $W$ is compactly s
 
 #### Exchangeable Sparse Networks
 
-I will present one of the exmaples of sparse graph with power-law degree distribution. Details of its properties are well explained in [Veitch and Roy, 2015](Veitch). 
+I will present one of the exmaples of sparse graph with power-law degree distribution. Details of its properties are well explained in [Veitch and Roy, 2015](http://arxiv.org/abs/1512.03099). 
 
 1. Sample a (latent) unit rate Poisson process $\Pi$ on $\theta \times \vartheta \in [0, \nu] \times [0, c]$.
 
@@ -330,7 +330,7 @@ $$a_{ij} \overset{i.i.d.}{\approx}  \hat{P}\big( A_{ij} = a_{ij} \big) \xrightar
 ### Aldous-Hoover Theorm
 <a name="Aldous"/>
 
-[Aldous, 1981](Al), [Hoover, 1979](Hoover)
+[Aldous, 1981](#Al), [Hoover, 1979](#Hoover)
 
 Let $\mathbf{A} = \{A_{ij}\}, 1 \leq i,j \leq \infty$ be a jointly exchangeable binary array if and only if there exists a random measurable function $f : [0,1]^{3} \rightarrow \mathbf{A}$ such that 
 
